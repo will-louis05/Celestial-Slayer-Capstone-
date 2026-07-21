@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9f69d571a9cb54943b5a80ccd6b19e96, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -224,13 +224,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140777244}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.26152992, y: 0, z: 2.6131}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 51.309605, y: 0, z: 7.468745}
   m_LocalScale: {x: 69.33925, y: 0.39347, z: 73.872}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1145496991}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &391841308
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 455253700034721769, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.017400883
+      value: 42.54
       objectReference: {fileID: 0}
     - target: {fileID: 455253700034721769, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -405,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 1145496990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.509738, y: 0, z: 3.7000675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -567,13 +567,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892914977}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19054902, y: -0, z: -0, w: 0.9816778}
-  m_LocalPosition: {x: -0.26152706, y: 12.304446, z: 44.97263}
+  m_LocalRotation: {x: 0.13474058, y: -0.69415057, z: 0.13474058, w: 0.69415057}
+  m_LocalPosition: {x: 8.95, y: 12.304414, z: 7.4687386}
   m_LocalScale: {x: 69.33925, y: 26.515, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1145496991}
-  m_LocalEulerAnglesHint: {x: 21.97, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.97, y: -90, z: 0}
 --- !u!65 &1892914979
 BoxCollider:
   m_ObjectHideFlags: 0
