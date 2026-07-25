@@ -29,7 +29,9 @@ public class Enemy : MonoBehaviour
         pierce = true;
         stuck = false;
 
-        behaviorGraph.SetVariableValue("CanMove", speared);
+        Killed();
+
+        //behaviorGraph.SetVariableValue("CanMove", speared);
     }
 
     public void EnemyStuck()
@@ -40,6 +42,14 @@ public class Enemy : MonoBehaviour
 
     private void SpearBreak()
     {
+
+    }
+
+    private void Killed()
+    {
+        EnemySpawner enemySpawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
+        enemySpawner.currentEnemyCount--;
+        Destroy(gameObject);
 
     }
 }
