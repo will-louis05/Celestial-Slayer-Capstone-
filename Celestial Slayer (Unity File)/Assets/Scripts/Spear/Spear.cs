@@ -24,6 +24,10 @@ public class Spear : MonoBehaviour
     private float preCollisionSpeed;
     private bool enemySpeared;
 
+
+
+    private Vector3 aimPoint;
+
     private void Start()
     {
         spearRb = GetComponent<Rigidbody>();
@@ -45,6 +49,18 @@ public class Spear : MonoBehaviour
         transform.SetParent(null);
 
         Transform camTransform = Camera.main.transform;
+
+        RaycastHit hit;
+        if(Physics.Raycast(camTransform.position, camTransform.forward, out hit, 500))
+        {
+            aimPoint = hit.point;
+            transform.LookAt(aimPoint);
+        }
+        else
+        {
+            aimPoint = camTransform.forward * 500;
+            transform.LookAt(aimPoint);
+        }
 
         Vector3 moveDirection = camTransform.forward * throwStrength * 250f;
 
@@ -208,5 +224,11 @@ public class Spear : MonoBehaviour
             objRb.useGravity = true;
         }
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(aimPoint, 1);
     }
 }

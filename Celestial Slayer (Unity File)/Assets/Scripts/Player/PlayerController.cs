@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
     private bool inReload;
     private float throwTimer;
 
+    [Header("Debugging Tools")]
+    [SerializeField] private bool infiniteSpears;
+
 
 
     void Start()
@@ -76,12 +79,15 @@ public class PlayerController : MonoBehaviour
 
         //For Debug Purposes
         //if(Input.GetKeyDown(KeyCode.F)) Debug.Log()
+
+        if (infiniteSpears)
+            currentSpearCount = 5;
             
     }
 
     private void InputManger()
     {
-        if(inputHandler.equipSpearTriggered && currentSpearCount != 0)
+        if(inputHandler.equipSpearTriggered && (currentSpearCount != 0 || infiniteSpears))
             SpearEquip();
 
         if (inputHandler.fireTriggered && holdingSpear || inThrow)
