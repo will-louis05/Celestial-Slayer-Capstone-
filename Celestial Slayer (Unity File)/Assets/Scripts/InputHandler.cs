@@ -17,6 +17,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string fire = "Fire";
     [SerializeField] private string shoulderSwitch = "Shoulder Switch";
     [SerializeField] private string equipSpear = "Equip Spear";
+    [SerializeField] private string equipTranferSpear = "Equip Transfer Spear";
     [SerializeField] private string reload = "Reload";
 
     private InputAction moveAction;
@@ -25,7 +26,8 @@ public class InputHandler : MonoBehaviour
     private InputAction aimAction;
     private InputAction fireAction;
     private InputAction shoulderSwitchAction;
-    private InputAction equipSpearAction;
+    private InputAction equipBasicSpearAction;
+    private InputAction equipTranferSpearAction;
     private InputAction reloadAction;
 
     public Vector2 moveInput { get; private set; }
@@ -36,7 +38,8 @@ public class InputHandler : MonoBehaviour
 
     public bool jumpTriggered;
     public bool shoulderSwitchTriggered;
-    public bool equipSpearTriggered;
+    public bool equipBasicSpearTriggered;
+    public bool equipTranferTriggered;
     public bool fireTriggered;
     public bool reloadTriggered;
 
@@ -67,7 +70,7 @@ public class InputHandler : MonoBehaviour
         aimAction = playerControls.FindActionMap(actionMapName).FindAction(aim);
         fireAction = playerControls.FindActionMap(actionMapName).FindAction(fire);
         shoulderSwitchAction = playerControls.FindActionMap(actionMapName).FindAction(shoulderSwitch);
-        equipSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipSpear);
+        equipBasicSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipSpear);
         reloadAction = playerControls.FindActionMap(actionMapName).FindAction(reload);
 
 
@@ -98,8 +101,11 @@ public class InputHandler : MonoBehaviour
         shoulderSwitchAction.performed += context => shoulderSwitchTriggered = true;
         shoulderSwitchAction.canceled += context => shoulderSwitchTriggered = false;
 
-        equipSpearAction.performed += context => equipSpearTriggered = true;
-        equipSpearAction.canceled += context => equipSpearTriggered = false;
+        equipBasicSpearAction.performed += context => equipBasicSpearTriggered = true;
+        equipBasicSpearAction.canceled += context => equipBasicSpearTriggered = false;
+
+        equipTranferSpearAction.performed += context => equipTranferTriggered = true;
+        equipTranferSpearAction.canceled += context => equipTranferTriggered = false;
 
         reloadAction.performed += context => reloadTriggered = true;
         reloadAction.canceled += context => reloadTriggered = false;
@@ -116,7 +122,8 @@ public class InputHandler : MonoBehaviour
         aimAction.Enable();
         fireAction.Enable();
         shoulderSwitchAction.Enable();
-        equipSpearAction.Enable();
+        equipBasicSpearAction.Enable();
+        equipTranferSpearAction.Enable();
         reloadAction.Enable();
     }
 
@@ -128,7 +135,8 @@ public class InputHandler : MonoBehaviour
         aimAction.Disable();
         fireAction.Disable();
         shoulderSwitchAction.Disable();
-        equipSpearAction.Disable(); 
+        equipBasicSpearAction.Disable(); 
+        equipTranferSpearAction.Disable();
         reloadAction.Disable();
     }
 }

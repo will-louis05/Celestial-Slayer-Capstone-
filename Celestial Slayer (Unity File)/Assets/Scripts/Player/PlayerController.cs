@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private float reloadTimeTracker;
     private int currentSpearCount;
     private float throwStrength;
+    private enum CurrentSpearType {basicSpear, transferSpear}
+    CurrentSpearType currentSpearType;
 
     private GameObject heldSpear;
     private List<GameObject> thrownSpears = new List<GameObject>();
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     private void InputManger()
     {
-        if(inputHandler.equipSpearTriggered && (currentSpearCount != 0 || infiniteSpears))
+        if(inputHandler.equipBasicSpearTriggered && (currentSpearCount != 0 || infiniteSpears))
             SpearEquip();
 
         if (inputHandler.fireTriggered && holdingSpear || inThrow)
@@ -231,7 +233,7 @@ public class PlayerController : MonoBehaviour
             heldSpear = null;
             holdingSpear = false;
         }
-        inputHandler.equipSpearTriggered = false;
+        inputHandler.equipBasicSpearTriggered = false;
     }
 
     void SpearThrow()
@@ -254,7 +256,7 @@ public class PlayerController : MonoBehaviour
 
         if (!inThrow || inThrow && !inputHandler.fireTriggered)
         {
-            Spear spearScrp = heldSpear.GetComponent<Spear>();
+            BasicSpear spearScrp = heldSpear.GetComponent<BasicSpear>();
             spearScrp.SpearThrown(throwStrength, maxThrowStrength);
             currentSpearCount -= 1;
             thrownSpears.Add(heldSpear);
@@ -325,7 +327,7 @@ public class PlayerController : MonoBehaviour
         {
             foreach(GameObject thrownSpear in thrownSpears)
             {
-                Spear spearScr = thrownSpear.GetComponent<Spear>();
+                BasicSpear spearScr = thrownSpear.GetComponent<BasicSpear>();
                 spearScr.SpearDestory();
             }
             reloadParticle.Stop();

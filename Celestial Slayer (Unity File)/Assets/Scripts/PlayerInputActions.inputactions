@@ -52,9 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Equip Spear",
+                    "name": "Equip Basic Spear",
                     "type": "Button",
                     "id": "264e0d72-6e47-4d0f-933d-c7272c335fe3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Transfer Spear",
+                    "type": "Button",
+                    "id": "fa2832ac-4bb8-4e81-af74-977387f12a09",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -186,7 +195,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Equip Spear",
+                    "action": "Equip Basic Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -209,6 +218,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bad39c7f-dbf8-48bc-9fe8-f788e3b2c87f",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Transfer Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Spear : MonoBehaviour
+public class BasicSpear : MonoBehaviour
 {
     [Header("Spear Stats")]
     [SerializeField] private float spearLegnth;
@@ -10,8 +10,6 @@ public class Spear : MonoBehaviour
 
     [Header("Angle Checks")]
     [SerializeField] private Transform angleCheck;
-    [SerializeField] private float xAllowedAngle;
-    [SerializeField] private float yAllowedAngle;
 
 
     private Collider spearBodyCollider;
@@ -40,7 +38,7 @@ public class Spear : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!inCollision && !stuck)
+        if (!inCollision && !stuck)
             preCollisionSpeed = spearRb.linearVelocity.magnitude;
     }
 
@@ -50,17 +48,17 @@ public class Spear : MonoBehaviour
 
         Transform camTransform = Camera.main.transform;
 
-        RaycastHit hit;
-        if(Physics.Raycast(camTransform.position, camTransform.forward, out hit, 500))
-        {
-            aimPoint = hit.point;
-            transform.LookAt(aimPoint);
-        }
-        else
-        {
-            aimPoint = camTransform.forward * 500;
-            transform.LookAt(aimPoint);
-        }
+        //RaycastHit hit;
+        //if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 500))
+        //{
+        //    aimPoint = hit.point;
+        //    transform.LookAt(aimPoint);
+        //}
+        //else
+        //{
+        //    aimPoint = camTransform.forward * 500;
+        //    transform.LookAt(aimPoint);
+        //}
 
         Vector3 moveDirection = camTransform.forward * throwStrength * 250f;
 
@@ -130,7 +128,7 @@ public class Spear : MonoBehaviour
 
         if (spearedObj != null)
         {
-            spearedObj.Speared(out pierce, out stuck);       
+            spearedObj.Speared(out pierce, out stuck);
         }
         else if (enemyScrp != null)
         {
@@ -199,6 +197,7 @@ public class Spear : MonoBehaviour
             //Stop Spear if inverse speed is too strong
             spearRb.linearVelocity = Vector3.zero;
             stuck = true;
+            transform.SetParent(spearedRb.transform);
             Destroy(spearRb);
             return;
         }
@@ -214,7 +213,7 @@ public class Spear : MonoBehaviour
 
     public void SpearDestory()
     {
-        for(int i = 0; i < spearedObjects.Count; i++)
+        for (int i = 0; i < spearedObjects.Count; i++)
         {
             GameObject spearedObject = spearedObjects[i];
             spearedObject.transform.SetParent(null);
@@ -226,9 +225,9 @@ public class Spear : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(aimPoint, 1);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(aimPoint, 1);
+    //}
 }
