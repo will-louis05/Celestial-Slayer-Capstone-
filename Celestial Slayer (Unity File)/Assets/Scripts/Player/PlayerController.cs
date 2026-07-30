@@ -167,6 +167,22 @@ public class PlayerController : MonoBehaviour
             rb.linearDamping = 0;
             rb.AddForce(moveDirection.normalized * (moveSpeed / 4) * airSpeedClamp, ForceMode.Force);
         }
+
+
+        //// NEW STUFF
+        //Vector3 lookDirection = Camera.main.transform.forward;
+        //lookDirection.y = 0f;
+
+        //if (playerOrientation.transform.rotation.y - Camera.main.transform.rotation.y < - 30)
+        //{
+        //    Debug.Log("Looking Left");
+        //    Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
+        //    playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+        //}
+        //else if (true)
+        //{
+        //    // EDIT
+        //}
     }
 
     private void AimedMove()
