@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
-
+        GameObject spawnedEnemy = null;
         List<Vector3> availableSpawns = spawnLocations;
 
         for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
@@ -58,21 +58,24 @@ public class EnemySpawner : MonoBehaviour
                 availableSpawns.RemoveAt(randomIndex);
 
                 //SpawnEnemy at random Location and set its parent as the spawner
-                GameObject spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
+                spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
 
-                //if(!hasSpawnedEnemy)
-                //{
-                //    Debug.Log("FirstEnemy");
-                //    BehaviorGraphAgent behaviorGraph = spawnedEnemy.GetComponent<BehaviorGraphAgent>();
-                //    GameObject player = GameObject.Find("Player");
-                //    behaviorGraph.SetVariableValue("Target (Player)", player);
-
-                //    hasSpawnedEnemy = true;
-                //}
+                if (!hasSpawnedEnemy)
+                {
+                   
+                }
 
                 currentEnemyCount++;
             }
         }
+
+        Debug.Log("FirstEnemy");
+        BehaviorGraphAgent behaviorGraph = spawnedEnemy.GetComponent<BehaviorGraphAgent>();
+        GameObject player = GameObject.Find("Player");
+
+        behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+
+        hasSpawnedEnemy = true;
     }
 }
 
