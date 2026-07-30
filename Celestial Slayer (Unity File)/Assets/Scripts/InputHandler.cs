@@ -71,6 +71,7 @@ public class InputHandler : MonoBehaviour
         fireAction = playerControls.FindActionMap(actionMapName).FindAction(fire);
         shoulderSwitchAction = playerControls.FindActionMap(actionMapName).FindAction(shoulderSwitch);
         equipBasicSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipSpear);
+        equipTranferSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipTranferSpear);
         reloadAction = playerControls.FindActionMap(actionMapName).FindAction(reload);
 
 

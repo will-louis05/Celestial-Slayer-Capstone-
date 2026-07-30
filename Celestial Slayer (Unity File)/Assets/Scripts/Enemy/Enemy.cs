@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private BehaviorGraphAgent behaviorGraph;
-    bool speared;
-    Rigidbody spearRb;
+    private BehaviorGraphAgent behaviorGraph;
+    private bool speared;
+    private Rigidbody spearRb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        behaviorGraph = GetComponent<BehaviorGraphAgent>();
     }
 
     // Update is called once per frame

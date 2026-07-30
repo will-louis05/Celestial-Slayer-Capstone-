@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Behavior;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private WaveData[] waveData;
     private int totalWaves;
     private int currentWave;
+    private bool hasSpawnedEnemy;
     public int currentEnemyCount;
 
     public bool spawnEnemies;
@@ -30,6 +32,11 @@ public class EnemySpawner : MonoBehaviour
     {
         if (spawnEnemies && currentEnemyCount == 0)
         {
+            if (currentWave == totalWaves)
+            {
+                Destroy(gameObject);
+                return;
+            }
             SpawnEnemies();
             currentWave++;
         }
@@ -37,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
+
         List<Vector3> availableSpawns = spawnLocations;
 
         for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
@@ -50,7 +58,18 @@ public class EnemySpawner : MonoBehaviour
                 availableSpawns.RemoveAt(randomIndex);
 
                 //SpawnEnemy at random Location and set its parent as the spawner
-                Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
+                GameObject spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
+
+                //if(!hasSpawnedEnemy)
+                //{
+                //    Debug.Log("FirstEnemy");
+                //    BehaviorGraphAgent behaviorGraph = spawnedEnemy.GetComponent<BehaviorGraphAgent>();
+                //    GameObject player = GameObject.Find("Player");
+                //    behaviorGraph.SetVariableValue("Target (Player)", player);
+
+                //    hasSpawnedEnemy = true;
+                //}
+
                 currentEnemyCount++;
             }
         }
