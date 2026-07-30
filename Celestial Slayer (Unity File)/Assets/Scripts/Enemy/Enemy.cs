@@ -6,49 +6,44 @@ public class Enemy : MonoBehaviour
     private BehaviorGraphAgent behaviorGraph;
     private bool speared;
     private Rigidbody spearRb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private EnemySpawner spawner;
+
     void Start()
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
+        spawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
         if (speared && spearRb.linearVelocity.magnitude < 10)
         {
-            
+            RegainControl();
         }
     }
 
-    public void EnemySpeared(out bool pierce, out bool stuck, Rigidbody spearRb)
+    public void EnemySpeared(out bool pierce, Rigidbody spearRb)
     {
         speared = true;
         pierce = true;
-        stuck = false;
 
-        Killed();
-
-        //behaviorGraph.SetVariableValue("CanMove", speared);
+        behaviorGraph.SetVariableValue("CanMove", !speared);
     }
 
     public void EnemyStuck()
     {
-        behaviorGraph.SetVariableValue("CanMove", false);
-        Destroy(this);
+        Killed();
     }
 
-    private void SpearBreak()
+    private void RegainControl()
     {
-
+        speared = false;
+        behaviorGraph.SetVariableValue("CanMove", !speared);
     }
 
     private void Killed()
     {
-        EnemySpawner enemySpawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
-        enemySpawner.currentEnemyCount--;
+        spawner.currentEnemyCount--;
         Destroy(gameObject);
 
     }

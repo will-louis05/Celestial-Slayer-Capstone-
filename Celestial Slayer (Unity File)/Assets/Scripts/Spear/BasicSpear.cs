@@ -20,7 +20,7 @@ public class BasicSpear : MonoBehaviour
     private bool stuck = false;
     private bool inCollision = false;
     private float preCollisionSpeed;
-    private bool enemySpeared;
+    private List<Enemy> spearedEnemies;
 
 
 
@@ -132,8 +132,8 @@ public class BasicSpear : MonoBehaviour
         }
         else if (enemyScrp != null)
         {
-            enemyScrp.EnemySpeared(out pierce, out stuck, spearRb);
-            enemySpeared = true;
+            enemyScrp.EnemySpeared(out pierce, spearRb);
+            spearedEnemies.Add(enemyScrp);
         }
         else if (spearedRb != null)
         {
@@ -206,6 +206,12 @@ public class BasicSpear : MonoBehaviour
         spearedObjects.Add(spearedRb.gameObject);
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
+
+        foreach(var enemy in spearedEnemies)
+        {
+            enemy.EnemyStuck();
+        }
+        
         Destroy(spearedRb);
 
         spearRb.linearVelocity = postCollisionSpeed * transform.forward;
