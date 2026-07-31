@@ -168,21 +168,15 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(moveDirection.normalized * (moveSpeed / 4) * airSpeedClamp, ForceMode.Force);
         }
 
+        //Turns player towards camera
+        Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
+        Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
 
-        //// NEW STUFF
-        //Vector3 lookDirection = Camera.main.transform.forward;
-        //lookDirection.y = 0f;
+        float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
 
-        //if (playerOrientation.transform.rotation.y - Camera.main.transform.rotation.y < - 30)
-        //{
-        //    Debug.Log("Looking Left");
-        //    Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
-        //    playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
-        //}
-        //else if (true)
-        //{
-        //    // EDIT
-        //}
+        Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y + angleDif, playerAngle.z);
+
+        playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
     }
 
     private void AimedMove()
