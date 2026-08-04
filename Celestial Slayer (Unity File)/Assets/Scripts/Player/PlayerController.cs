@@ -156,11 +156,11 @@ public class PlayerController : MonoBehaviour
             }
 
             //Turns player model to face where they are walking
-            if (moveDirection.magnitude > 0)
-            {
-                Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-                playerOrientation.transform.rotation = (Quaternion.Slerp(playerOrientation.transform.rotation, toRotation, 10f * Time.deltaTime));
-            }
+            //if (moveDirection.magnitude > 0)
+            //{
+            //    Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            //    playerOrientation.transform.rotation = (Quaternion.Slerp(playerOrientation.transform.rotation, toRotation, 10f * Time.deltaTime));
+            //}
         }
         else
         {
@@ -171,11 +171,11 @@ public class PlayerController : MonoBehaviour
         //Turns player towards camera
         Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
         Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
+        
+        //90 degree cone
+        //float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
 
-        float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
-
-        Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y + angleDif, playerAngle.z);
-
+        Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y, playerAngle.z);
         playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
     }
 
