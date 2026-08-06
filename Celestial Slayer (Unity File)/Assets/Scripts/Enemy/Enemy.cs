@@ -8,25 +8,30 @@ public class Enemy : MonoBehaviour
     private Rigidbody spearRb;
     private EnemySpawner spawner;
 
+    [SerializeField] private float regainSpeed;
+
     void Start()
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
-        spawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
+        //spawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
     }
 
     void Update()
     {
-        if (speared && spearRb.linearVelocity.magnitude < 10)
+        if (speared)
         {
-            RegainControl();
+            Debug.Log(spearRb.linearVelocity.magnitude);
+            if (spearRb.linearVelocity.magnitude < regainSpeed)
+            {
+                RegainControl();
+            }
         }
     }
 
-    public void EnemySpeared(out bool pierce, Rigidbody spearRb)
+    public void EnemySpeared(Rigidbody spearRigidbody)
     {
+        spearRb = spearRigidbody;
         speared = true;
-        pierce = true;
-
         behaviorGraph.SetVariableValue("CanMove", !speared);
     }
 
@@ -43,8 +48,9 @@ public class Enemy : MonoBehaviour
 
     private void Killed()
     {
-        spawner.currentEnemyCount--;
-        Destroy(gameObject);
+        //spawner.currentEnemyCount--;
+        Debug.Log("enemyKilled");
+        Destroy(this);
 
     }
 }

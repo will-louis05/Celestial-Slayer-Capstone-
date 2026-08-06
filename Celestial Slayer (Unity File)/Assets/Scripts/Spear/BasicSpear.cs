@@ -124,16 +124,22 @@ public class BasicSpear : MonoBehaviour
         Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
         ISpearedObj spearedObj = collisionTraform.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTraform.GetComponent<Rigidbody>();
-        bool pierce = false;
+
 
         if (spearedObj != null)
         {
+            bool pierce = false;
             spearedObj.Speared(out pierce, out stuck);
+
+            if (pierce)
+                PierceAmount(collision);          
         }
         else if (enemyScrp != null)
         {
-            enemyScrp.EnemySpeared(out pierce, spearRb);
             spearedEnemies.Add(enemyScrp);
+            PierceAmount(collision);
+            enemyScrp.EnemySpeared(spearRb);     
+            RbObjSpeared(spearedRb);
         }
         else if (spearedRb != null)
         {
@@ -142,19 +148,14 @@ public class BasicSpear : MonoBehaviour
         }
         else
         {
-            pierce = true;
+            PierceAmount(collision);
             stuck = true;
         }
 
 
-        if (pierce)
-        {
-            PierceAmount(collision);
-        }
         if (stuck)
         {
-            Destroy(spearRb);
-            stuck = true;
+            SpearStuck();
         }
 
 
@@ -202,19 +203,27 @@ public class BasicSpear : MonoBehaviour
             return;
         }
 
-        //RigidBody must be destory to prevent physics bugs as such save mass to reapply later
+        //RigidBody must be destoryed to prevent physics bugs as such save mass to reapply later
         spearedObjects.Add(spearedRb.gameObject);
+        Debug.Log(spearedRb.name);
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
-
-        foreach(var enemy in spearedEnemies)
-        {
-            enemy.EnemyStuck();
-        }
         
         Destroy(spearedRb);
 
         spearRb.linearVelocity = postCollisionSpeed * transform.forward;
+    }
+
+    private void SpearStuck()
+    {
+        Destroy(spearRb);
+        if(spearedEnemies.Count > 0)
+        {
+            foreach(Enemy enemy in spearedEnemies)
+            {
+                enemy.EnemyStuck();
+            }
+        }
     }
 
     public void SpearDestory()

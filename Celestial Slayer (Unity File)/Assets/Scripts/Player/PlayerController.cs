@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
+    [SerializeField] private GameObject debugLight;
 
 
 
@@ -248,14 +249,15 @@ public class PlayerController : MonoBehaviour
        
         if (!inEquip)
         {
+            debugLight.SetActive(true);
             reloadTimeTracker = Time.time;
             inEquip = true;
         }     
-        var elapsedTime = Time.time - reloadTimeTracker;
 
-        Debug.Log("spearequiping = " + inEquip + "time = " + elapsedTime);
+        var elapsedTime = Time.time - reloadTimeTracker;
         if (elapsedTime > equipTime)
         {
+            debugLight.SetActive(false);
             heldSpear = Instantiate(spear, holdOffset);
             heldSpear.transform.SetParent(holdOffset);
             holdingSpear = true;
