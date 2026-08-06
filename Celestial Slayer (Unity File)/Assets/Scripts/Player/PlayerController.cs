@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxThrowStrength;
     [SerializeField] private float throwStrengthIncrease;
     [SerializeField] private int totalSpearCount;
+    [SerializeField] private float equipTime;
     [SerializeField] private float reloadTimeSec;
     private float reloadTimeTracker;
     private int currentSpearCount;
@@ -44,7 +45,9 @@ public class PlayerController : MonoBehaviour
 
     private GameObject heldSpear;
     private List<GameObject> thrownSpears = new List<GameObject>();
+    private bool spearEquiped;
     private bool holdingSpear;
+    private bool inEquip;
     private bool inThrow;
     private bool inReload;
     private float throwTimer;
@@ -84,18 +87,30 @@ public class PlayerController : MonoBehaviour
 
         if (infiniteSpears)
             currentSpearCount = 5;
+
+        if ((spearEquiped && !holdingSpear && currentSpearCount != 0) || inEquip)
+        {
+            SpearEquip();
+        }
+        else if (!spearEquiped && holdingSpear)
+        {
+            SpearUnequip();
+        }
             
     }
 
     private void InputManger()
     {
-        if(inputHandler.equipBasicSpearTriggered && (currentSpearCount != 0 || infiniteSpears))
-            SpearEquip();
+        if (inputHandler.equipBasicSpearTriggered)
+        {
+            spearEquiped = !spearEquiped;
+            inputHandler.equipBasicSpearTriggered = false;
+        }
 
         if (inputHandler.fireTriggered && holdingSpear || inThrow)
             SpearThrow();
 
-        if (inputHandler.reloadTriggered && currentSpearCount != totalSpearCount || inReload)
+        if ((inputHandler.reloadTriggered && currentSpearCount != totalSpearCount && !inEquip) || inReload)
             SpearReload();
 
     }
@@ -230,20 +245,31 @@ public class PlayerController : MonoBehaviour
 
     void SpearEquip()
     {
-        if (!holdingSpear)
+       
+        if (!inEquip)
+        {
+            reloadTimeTracker = Time.time;
+            inEquip = true;
+        }     
+        var elapsedTime = Time.time - reloadTimeTracker;
+
+        Debug.Log("spearequiping = " + inEquip + "time = " + elapsedTime);
+        if (elapsedTime > equipTime)
         {
             heldSpear = Instantiate(spear, holdOffset);
             heldSpear.transform.SetParent(holdOffset);
             holdingSpear = true;
+            inEquip = false;
         }
-        else if(holdingSpear)
-        {
-            GameObject spearToDestory = heldSpear;
-            Destroy(spearToDestory);
-            heldSpear = null;
-            holdingSpear = false;
-        }
-        inputHandler.equipBasicSpearTriggered = false;
+        
+    }
+
+    void SpearUnequip()
+    { 
+        GameObject spearToDestory = heldSpear;
+        Destroy(spearToDestory);
+        heldSpear = null;
+        holdingSpear = false;
     }
 
     void SpearThrow()
