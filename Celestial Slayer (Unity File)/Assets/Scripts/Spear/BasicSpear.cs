@@ -20,7 +20,7 @@ public class BasicSpear : MonoBehaviour
     private bool stuck = false;
     private bool inCollision = false;
     private float preCollisionSpeed;
-    private List<Enemy> spearedEnemies;
+    private List<Enemy> spearedEnemies = new List<Enemy>();
 
 
 
