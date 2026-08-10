@@ -208,7 +208,13 @@ public class BasicSpear : MonoBehaviour
         Debug.Log(spearedRb.name);
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
-        
+
+        //BUGFIX
+        Collider collider = spearedRb.GetComponent<Collider>();
+        if (collider != null)
+            collider.enabled = false;
+        spearedRb.isKinematic = true;
+
         Destroy(spearedRb);
 
         spearRb.linearVelocity = postCollisionSpeed * transform.forward;
@@ -236,6 +242,11 @@ public class BasicSpear : MonoBehaviour
             objRb.mass = spearedObjectsMass[i];
             objRb.isKinematic = false;
             objRb.useGravity = true;
+
+            //BUGFIX PT. 2
+            Collider collider = spearedObject.GetComponent<Collider>();
+            if (collider != null)
+                collider.enabled = true;
         }
         Destroy(gameObject);
     }
