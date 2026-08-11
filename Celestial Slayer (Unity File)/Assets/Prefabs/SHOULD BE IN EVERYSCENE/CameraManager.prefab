@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5891421111250714885}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.053462263, y: -0.16818807, z: 0.00913549, w: 0.98426175}
+  m_LocalRotation: {x: 0.05346226, y: -0.16818805, z: 0.009135491, w: 0.98426175}
   m_LocalPosition: {x: 1.1997516, y: 2.5704894, z: -10.435362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
   TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  MinimumDistanceFromTarget: 0.3
+  MinimumDistanceFromTarget: 0.8
   AvoidObstacles:
     Enabled: 1
     DistanceLimit: 0
@@ -322,9 +322,9 @@ MonoBehaviour:
       Enabled: 0
       YOffset: 0
     Strategy: 1
-    MaximumEffort: 4
+    MaximumEffort: 2
     SmoothingTime: 0
-    Damping: 2
+    Damping: 1
     DampingWhenOccluded: 2
   ShotQualityEvaluation:
     Enabled: 0
