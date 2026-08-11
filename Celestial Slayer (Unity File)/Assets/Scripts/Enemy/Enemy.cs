@@ -1,5 +1,6 @@
 using Unity.Behavior;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour
     private bool speared;
     private Rigidbody spearRb;
     private EnemySpawner spawner;
+    private NavMeshAgent navMesh;
 
     [SerializeField] private float regainSpeed;
     [SerializeField] private MeshRenderer meshRender;
@@ -15,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
         spawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
+        navMesh = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour
         spearRb = spearRigidbody;
         speared = true;
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
+        navMesh.enabled = false;
     }
 
     public void EnemyStuck()

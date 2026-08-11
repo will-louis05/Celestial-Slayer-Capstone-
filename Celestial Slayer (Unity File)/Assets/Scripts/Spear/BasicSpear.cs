@@ -213,7 +213,6 @@ public class BasicSpear : MonoBehaviour
         Collider collider = spearedRb.GetComponent<Collider>();
         if (collider != null)
             collider.enabled = false;
-        spearedRb.isKinematic = true;
 
         Destroy(spearedRb);
 
