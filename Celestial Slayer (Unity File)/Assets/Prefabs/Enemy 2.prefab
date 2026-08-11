@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2353345011533518376}
   m_Layer: 0
   m_Name: Enemy 2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40f4fffc3e89a34f89dde126ff896a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  behaviorGraph: {fileID: 0}
+  regainSpeed: 0
+  meshRender: {fileID: 0}
 --- !u!1 &4334882082594487449
 GameObject:
   m_ObjectHideFlags: 0
