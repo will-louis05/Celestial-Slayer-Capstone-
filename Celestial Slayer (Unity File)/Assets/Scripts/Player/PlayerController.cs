@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem reloadParticle;
     [SerializeField] private ParticleSystem[] particleSpeedLines;
 
-
     private InputHandler inputHandler;
     private Transform cameraTransform;
     private Rigidbody rb;
@@ -52,11 +51,15 @@ public class PlayerController : MonoBehaviour
     private bool inReload;
     private float throwTimer;
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource runSFX;
+    [SerializeField] private AudioSource throwSFX;
+    [SerializeField] private AudioSource jumpSFX;
+    [SerializeField] private AudioSource recallSFX;
+
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
     [SerializeField] private GameObject debugLight;
-
-
 
     void Start()
     {
@@ -97,7 +100,18 @@ public class PlayerController : MonoBehaviour
         {
             SpearUnequip();
         }
-            
+
+        //RUN SFX
+        if (inputHandler.moveInput.magnitude > 0.01f && grounded)
+        {
+            if (!runSFX.isPlaying)
+                runSFX.Play();
+        }
+        else
+        {
+            if (runSFX.isPlaying)
+                runSFX.Stop();
+        }
     }
 
     private void InputManger()
@@ -131,10 +145,12 @@ public class PlayerController : MonoBehaviour
         if (isAiming)
         {
             AimedMove();
+            runSFX.pitch = 0.8f;
         }
         else
         {
             RegularMove();
+            runSFX.pitch = 1f;
         }
 
         if (grounded && inputHandler.jumpTriggered)
@@ -242,6 +258,10 @@ public class PlayerController : MonoBehaviour
     {
         rb.AddForce(jumpHeight * Vector3.up * 30, ForceMode.Impulse);
         inputHandler.jumpTriggered = false;
+
+        //JUMP SFX
+        jumpSFX.pitch = Random.Range(0.9f, 1.1f);
+        jumpSFX.Play();
     }
 
     void SpearEquip()
@@ -301,6 +321,10 @@ public class PlayerController : MonoBehaviour
 
 
             spearCrosshairs[currentSpearCount].SetActive(false);
+
+            //THROW SFX
+            throwSFX.pitch = Random.Range(0.9f, 1.1f);
+            throwSFX.Play();
             
             particleSpeedLines[0].Play();
             if (throwStrength > maxThrowStrength * 0.75f)
@@ -338,6 +362,10 @@ public class PlayerController : MonoBehaviour
             reloadTimeTracker = Time.time;
 
             reloadParticle.Play();
+
+            //RECALL SFX
+            recallSFX.Play();
+
             foreach (GameObject thrownSpear in thrownSpears)
             {
                 ParticleSystem spearReloadParticle = thrownSpear.GetComponentInChildren<ParticleSystem>();
@@ -350,6 +378,10 @@ public class PlayerController : MonoBehaviour
         {
             inReload = false;
             reloadParticle.Stop();
+
+            //RECALL SFX STOP
+            recallSFX.Stop();
+
             foreach (GameObject thrownSpear in thrownSpears)
             {
                 ParticleSystem spearReloadParticle = thrownSpear.GetComponentInChildren<ParticleSystem>();
