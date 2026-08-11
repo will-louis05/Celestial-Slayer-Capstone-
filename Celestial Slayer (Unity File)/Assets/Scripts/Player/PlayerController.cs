@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
     [SerializeField] private GameObject debugLight;
+    public static bool inCombat;
 
     void Start()
     {

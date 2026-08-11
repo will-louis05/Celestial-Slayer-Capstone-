@@ -9,18 +9,18 @@ public class Enemy : MonoBehaviour
     private EnemySpawner spawner;
 
     [SerializeField] private float regainSpeed;
+    [SerializeField] private MeshRenderer meshRender;
 
     void Start()
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
-        //spawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
+        spawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
     }
 
     void Update()
     {
         if (speared)
         {
-            Debug.Log(spearRb.linearVelocity.magnitude);
             if (spearRb.linearVelocity.magnitude < regainSpeed)
             {
                 RegainControl();
@@ -30,9 +30,10 @@ public class Enemy : MonoBehaviour
 
     public void EnemySpeared(Rigidbody spearRigidbody)
     {
+        meshRender.material.color = Color.yellow;
         spearRb = spearRigidbody;
         speared = true;
-        behaviorGraph.SetVariableValue("CanMove", !speared);
+        behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
     }
 
     public void EnemyStuck()
@@ -42,15 +43,15 @@ public class Enemy : MonoBehaviour
 
     private void RegainControl()
     {
+        meshRender.material.color = Color.blue;
         speared = false;
-        behaviorGraph.SetVariableValue("CanMove", !speared);
+        behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
     }
 
     private void Killed()
     {
-        //spawner.currentEnemyCount--;
-        Debug.Log("enemyKilled");
+        spawner.currentEnemyCount--;
+        meshRender.material.color = Color.red;
         Destroy(this);
-
     }
 }

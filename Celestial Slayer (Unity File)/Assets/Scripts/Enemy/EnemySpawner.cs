@@ -10,14 +10,18 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private WaveData[] waveData;
     private int totalWaves;
     private int currentWave;
-    private bool hasSpawnedEnemy;
     public int currentEnemyCount;
 
+    [Header("DeveloperTools")]
     public bool spawnEnemies;
+    [SerializeField] private bool randomEnemySpawns;
+    [SerializeField] private GameObject combatEventObj;
+    private ICombatEvent combatEvent;
 
     
     void Start()
     {
+        combatEvent = combatEventObj.GetComponent<ICombatEvent>();
         //Populate SpawnLocation Array
         Transform spawnLocationsParent = transform.Find("SpawnLocations");
         int spawnLocationsCount = spawnLocationsParent.childCount;
@@ -30,8 +34,17 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (spawnEnemies && currentEnemyCount == 0)
+        if (currentWave == totalWaves && currentEnemyCount == 0)
         {
+            if(combatEvent != null) 
+                combatEvent.PostCombatEvent();
+            Destroy(gameObject);
+            PlayerController.inCombat = false;
+
+        }
+        else if (spawnEnemies && currentEnemyCount == 0)
+        {
+            PlayerController.inCombat = true;
             if (currentWave == totalWaves)
             {
                 Destroy(gameObject);
@@ -47,35 +60,52 @@ public class EnemySpawner : MonoBehaviour
         GameObject spawnedEnemy = null;
         List<Vector3> availableSpawns = spawnLocations;
 
-        for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
-        {
-            for(int j = 0; j < waveData[currentWave].enemyTypeSpawnNumber[i]; j++)
-            {
-                //Get random location from set locations
-                int randomIndex = UnityEngine.Random.Range(0, (spawnLocations.Count - 1));
-                Debug.Log(randomIndex + "EnemyCount" + currentEnemyCount);
-                Vector3 randomSpawnLocation = availableSpawns[randomIndex];
-                availableSpawns.RemoveAt(randomIndex);
+        if (randomEnemySpawns)
+            spawnedEnemy = RandomSpawn(availableSpawns, spawnedEnemy);
+        else
+            spawnedEnemy = RegularSpawn(availableSpawns, spawnedEnemy);
 
-                //SpawnEnemy at random Location and set its parent as the spawner
-                spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
+        
 
-                if (!hasSpawnedEnemy)
-                {
-                   
-                }
-
-                currentEnemyCount++;
-            }
-        }
-
-        Debug.Log("FirstEnemy");
         BehaviorGraphAgent behaviorGraph = spawnedEnemy.GetComponent<BehaviorGraphAgent>();
         GameObject player = GameObject.Find("Player");
 
         behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+    }
 
-        hasSpawnedEnemy = true;
+    private GameObject RandomSpawn(List<Vector3> availableSpawns, GameObject spawnedEnemy)
+    {
+        for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
+        {
+            for (int j = 0; j < waveData[currentWave].enemyTypeSpawnNumber[i]; j++)
+            {
+                //Get random location from set locations
+                int randomIndex = UnityEngine.Random.Range(0, (spawnLocations.Count - 1));
+                Vector3 randomSpawnLocation = availableSpawns[randomIndex];
+
+                //SpawnEnemy at random Location and set its parent as the spawner
+                spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
+                availableSpawns.RemoveAt(randomIndex);
+                currentEnemyCount++;
+            }
+        }
+        return spawnedEnemy;
+    }
+
+    private GameObject RegularSpawn(List<Vector3> availableSpawns, GameObject spawnedEnemy)
+    {
+        for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
+        {
+            for (int j = 0; j < waveData[currentWave].enemyTypeSpawnNumber[i]; j++)
+            {
+                //SpawnEnemy at first Location and set its parent as the spawner remove spawn
+                Vector3 SpawnLocation = availableSpawns[0];
+                spawnedEnemy = Instantiate(enemiesTypes[i], SpawnLocation, Quaternion.identity, transform);
+                availableSpawns.RemoveAt(0);
+                currentEnemyCount++;
+            }
+        }
+        return spawnedEnemy;
     }
 }
 
