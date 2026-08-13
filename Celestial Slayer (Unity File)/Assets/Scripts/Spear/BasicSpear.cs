@@ -176,7 +176,7 @@ public class BasicSpear : MonoBehaviour
             impaleDistance = spearLegnth * 0.9f;
         }
         //Adjust offset as pivot is in the centre 
-        impaleDistance -= 1;
+        impaleDistance -= spearLegnth/2;
         Vector3 spearMove = contactPoint + (transform.forward * impaleDistance);
 
         spearRb.isKinematic = true;
