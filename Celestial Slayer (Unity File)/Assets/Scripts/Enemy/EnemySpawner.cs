@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
+using Unity.VisualScripting;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -85,6 +86,8 @@ public class EnemySpawner : MonoBehaviour
 
                 //SpawnEnemy at random Location and set its parent as the spawner
                 spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
+                Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
+                enemyScrp.spawner = this.GetComponent<EnemySpawner>();
                 availableSpawns.RemoveAt(randomIndex);
                 currentEnemyCount++;
             }
@@ -100,7 +103,9 @@ public class EnemySpawner : MonoBehaviour
             {
                 //SpawnEnemy at first Location and set its parent as the spawner remove spawn
                 Vector3 SpawnLocation = availableSpawns[0];
-                spawnedEnemy = Instantiate(enemiesTypes[i], SpawnLocation, Quaternion.identity, transform);
+                spawnedEnemy = Instantiate(enemiesTypes[i], SpawnLocation, Quaternion.identity);
+                Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
+                enemyScrp.spawner = this.GetComponent<EnemySpawner>();
                 availableSpawns.RemoveAt(0);
                 currentEnemyCount++;
             }

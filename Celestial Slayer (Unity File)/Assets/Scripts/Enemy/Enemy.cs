@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     private BehaviorGraphAgent behaviorGraph;
     private bool speared;
     private Rigidbody spearRb;
-    private EnemySpawner spawner;
+    public EnemySpawner spawner;
     private NavMeshAgent navMesh;
 
     [SerializeField] private float regainSpeed;
@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
-        spawner = transform.parent.gameObject.GetComponent<EnemySpawner>();
         navMesh = GetComponent<NavMeshAgent>();
     }
 
@@ -38,6 +37,7 @@ public class Enemy : MonoBehaviour
         speared = true;
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
         navMesh.enabled = false;
+        behaviorGraph.enabled = false;
     }
 
     public void EnemyStuck()
