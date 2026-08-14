@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Collections;
 
 public class BasicSpear : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class BasicSpear : MonoBehaviour
     [Header("Angle Checks")]
     [SerializeField] private Transform angleCheck;
 
-
     private Collider spearBodyCollider;
     private Rigidbody spearRb;
     private List<float> spearedObjectsMass = new List<float>();
@@ -22,9 +22,11 @@ public class BasicSpear : MonoBehaviour
     private float preCollisionSpeed;
     private List<Enemy> spearedEnemies = new List<Enemy>();
 
-
-
     private Vector3 aimPoint;
+
+    [Header("SFX")]
+    [SerializeField] private AudioSource hitSFX;
+    private bool hitPlayed;
 
     private void Start()
     {
@@ -125,7 +127,6 @@ public class BasicSpear : MonoBehaviour
         ISpearedObj spearedObj = collisionTraform.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTraform.GetComponent<Rigidbody>();
 
-
         if (spearedObj != null)
         {
             bool pierce = false;
@@ -152,16 +153,21 @@ public class BasicSpear : MonoBehaviour
             stuck = true;
         }
 
-
         if (stuck)
         {
             SpearStuck();
         }
 
-
-
-
         inCollision = false;
+
+        //Hit SFX
+        if (!hitPlayed)
+        {
+            hitPlayed = true;
+
+            hitSFX.pitch = Random.Range(0.9f, 1.1f);
+            hitSFX.Play();
+        }
     }
 
     void PierceAmount(Collision collision)
@@ -209,7 +215,7 @@ public class BasicSpear : MonoBehaviour
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
 
-        //BUGFIX
+        //Bugfix
         Collider collider = spearedRb.GetComponent<Collider>();
         if (collider != null)
             collider.enabled = false;
@@ -242,7 +248,7 @@ public class BasicSpear : MonoBehaviour
             objRb.isKinematic = false;
             objRb.useGravity = true;
 
-            //BUGFIX PT. 2
+            //Bugfix continued
             Collider collider = spearedObject.GetComponent<Collider>();
             if (collider != null)
                 collider.enabled = true;

@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float regainSpeed;
     [SerializeField] private MeshRenderer meshRender;
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource deathSFX;
+
     void Start()
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
@@ -54,6 +57,10 @@ public class Enemy : MonoBehaviour
 
     private void Killed()
     {
+        //Death SFX
+        deathSFX.pitch = Random.Range(0.9f, 1.1f);
+        deathSFX.Play();
+
         spawner.currentEnemyCount--;
         meshRender.material.color = Color.red;
         Destroy(this);

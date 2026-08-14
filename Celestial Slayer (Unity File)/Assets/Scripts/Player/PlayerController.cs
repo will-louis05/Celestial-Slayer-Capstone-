@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource runSFX;
     [SerializeField] private AudioSource throwSFX;
     [SerializeField] private AudioSource jumpSFX;
+    [SerializeField] private AudioSource landSFX;
     [SerializeField] private AudioSource recallSFX;
 
     [Header("Debugging Tools")]
@@ -83,8 +84,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        bool wasGrounded = grounded;
+
         //Check if grounded
         grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
+
+        //Land SFX
+        if (!wasGrounded && grounded && Time.timeSinceLevelLoad > 1f)
+        {
+            landSFX.pitch = Random.Range(0.7f, 0.9f);
+            landSFX.Play();
+        }
+
         InputManger();
 
         //For Debug Purposes
@@ -102,7 +113,7 @@ public class PlayerController : MonoBehaviour
             SpearUnequip();
         }
 
-        //RUN SFX
+        //Run SFX
         if (inputHandler.moveInput.magnitude > 0.01f && grounded)
         {
             if (!runSFX.isPlaying)
@@ -260,7 +271,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(jumpHeight * Vector3.up * 30, ForceMode.Impulse);
         inputHandler.jumpTriggered = false;
 
-        //JUMP SFX
+        //Jump SFX
         jumpSFX.pitch = Random.Range(0.9f, 1.1f);
         jumpSFX.Play();
     }
@@ -323,7 +334,7 @@ public class PlayerController : MonoBehaviour
 
             spearCrosshairs[currentSpearCount].SetActive(false);
 
-            //THROW SFX
+            //Throw SFX
             throwSFX.pitch = Random.Range(0.9f, 1.1f);
             throwSFX.Play();
             
@@ -364,7 +375,7 @@ public class PlayerController : MonoBehaviour
 
             reloadParticle.Play();
 
-            //RECALL SFX
+            //Recall SFX
             recallSFX.Play();
 
             foreach (GameObject thrownSpear in thrownSpears)
@@ -380,7 +391,7 @@ public class PlayerController : MonoBehaviour
             inReload = false;
             reloadParticle.Stop();
 
-            //RECALL SFX STOP
+            //Stop recall SFX
             recallSFX.Stop();
 
             foreach (GameObject thrownSpear in thrownSpears)
