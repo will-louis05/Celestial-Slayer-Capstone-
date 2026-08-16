@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
     private void Killed()
     {
         //Death SFX
-        deathSFX.pitch = Random.Range(0.9f, 1.1f);
+        deathSFX.pitch = Random.Range(1.3f, 1.5f);
         deathSFX.Play();
 
         spawner.currentEnemyCount--;

@@ -11,7 +11,7 @@ public class AimCameraController : MonoBehaviour
     [SerializeField] private float sensitivity;
 
     [SerializeField] private float pitchMin = -40f;
-    [SerializeField] private float pitchMax = 80f;
+    [SerializeField] private float pitchMax = 55f;
 
     [SerializeField] private float shoulderSwitchSpeed = 5f;
 
@@ -48,6 +48,9 @@ public class AimCameraController : MonoBehaviour
         yaw += look.x;
         pitch -= look.y;
 
+        //Pitch clamp
+        pitch = Mathf.Clamp(pitch, pitchMin, pitchMax);
+
         yawTarget.rotation = Quaternion.Euler(0f, yaw, 0f);
         pitchTarget.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 
@@ -69,6 +72,12 @@ public class AimCameraController : MonoBehaviour
             return;
 
         yaw = Quaternion.LookRotation(flatForward).eulerAngles.y;
+
+        //Get cam pitch
+        float camPitch = camTranform.eulerAngles.x;
+        if (camPitch > 180f)
+            camPitch -= 360f;
+        pitch = Mathf.Clamp(camPitch, pitchMin, pitchMax);
 
         yawTarget.rotation = Quaternion.Euler(0f, yaw, 0f);
         pitchTarget.localRotation = Quaternion.Euler(0f, 0f, 0f);

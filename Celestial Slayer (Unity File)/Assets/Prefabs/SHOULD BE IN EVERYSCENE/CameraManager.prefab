@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3715593163909876429}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.67, y: 1.8, z: -1.8}
+  m_LocalRotation: {x: 0, y: -0.20575504, z: 0, w: 0.9786036}
+  m_LocalPosition: {x: -0.0109552145, y: 2.3700001, z: -9.072082}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -119,7 +119,7 @@ MonoBehaviour:
   pitchTarget: {fileID: 0}
   sensitivity: 0.05
   pitchMin: -40
-  pitchMax: 80
+  pitchMax: 55
   shoulderSwitchSpeed: 5
   lookInput: {fileID: -146200543807062561, guid: 3287242a9a57ea84e900e4f89c7740ee, type: 3}
 --- !u!1 &5891421111250714885
@@ -151,8 +151,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5891421111250714885}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0645869, y: -0.000000007727917, z: 0.000000002501119, w: 0.9979121}
-  m_LocalPosition: {x: 0.65, y: 1.5404663, z: -1.9965876}
+  m_LocalRotation: {x: -0.06458691, y: 0.00000004675719, z: 0.0000000040960892, w: 0.9979121}
+  m_LocalPosition: {x: -0.75413126, y: 2.1104665, z: -9.429131}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +287,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0}
   Lookahead:
     Enabled: 0
     Time: 0

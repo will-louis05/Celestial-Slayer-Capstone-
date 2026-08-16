@@ -335,7 +335,7 @@ public class PlayerController : MonoBehaviour
             spearCrosshairs[currentSpearCount].SetActive(false);
 
             //Throw SFX
-            throwSFX.pitch = Random.Range(0.9f, 1.1f);
+            throwSFX.pitch = Random.Range(1.1f, 1.3f);
             throwSFX.Play();
             
             particleSpeedLines[0].Play();

@@ -165,7 +165,7 @@ public class BasicSpear : MonoBehaviour
         {
             hitPlayed = true;
 
-            hitSFX.pitch = Random.Range(0.9f, 1.1f);
+            hitSFX.pitch = Random.Range(1.1f, 1.3f);
             hitSFX.Play();
         }
     }
