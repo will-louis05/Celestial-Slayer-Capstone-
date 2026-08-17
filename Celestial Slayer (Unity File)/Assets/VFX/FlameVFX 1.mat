@@ -34,9 +34,9 @@ Material:
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - DepthOnly
-  - SHADOWCASTER
   - MOTIONVECTORS
+  - SHADOWCASTER
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -58,14 +58,14 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
-    - _BottomColourHeight: 0.914
+    - _BottomColourHeight: 0.927
     - _CastShadows: 0
     - _Cull: 0
-    - _Distortion: 0.586
-    - _Distortion_Scale: 60.07
+    - _Distortion: 0.693
+    - _Distortion_Scale: 35.9
     - _DstBlend: 10
     - _DstBlendAlpha: 10
-    - _Height: 1.6
+    - _Height: 0.95
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
@@ -73,11 +73,11 @@ Material:
     - _Surface: 1
     - _ZTest: 4
     - _ZWrite: 0
-    - _ZWriteControl: 0
+    - _ZWriteControl: 2
     m_Colors:
-    - _Color: {r: 1, g: 0.25098038, b: 0.67155564, a: 0}
-    - _Colour2: {r: 1.6842313, g: 4.274162, b: 0.9072514, a: 1}
-    - _Distortion_Speed: {r: 0, g: -0.2, b: 0, a: 0}
-    - _Distortion_Tiling: {r: -2.31, g: -0.02, b: 0, a: 0}
+    - _Color: {r: 1.8443025, g: 0.8482792, b: 0.2607129, a: 0}
+    - _Colour2: {r: 2.3053238, g: 2.3053238, b: 2.3053238, a: 1}
+    - _Distortion_Speed: {r: 0.01, g: -0.03, b: 0, a: 0}
+    - _Distortion_Tiling: {r: 0.12, g: 4.42, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
