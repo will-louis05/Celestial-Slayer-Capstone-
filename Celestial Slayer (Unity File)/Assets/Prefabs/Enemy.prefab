@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6471174729740590417}
   - component: {fileID: 2353345011533518376}
   - component: {fileID: 6784335014791738513}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 2161203878851275301}
   - component: {fileID: 6211120811548516371}
   - component: {fileID: 3561147972613281916}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 5774809016433843167}
   - component: {fileID: 5204804778874362250}
   - component: {fileID: 3687192870993326648}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9073326088730895808}
   - component: {fileID: 3207733307377159511}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: enemy_sfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7863444505529655111}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4261806124107098470}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,9 +705,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7029948723529949830, guid: efc38b4b4489e4a47a3708ea3665f7d7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2639065506395392762, guid: efc38b4b4489e4a47a3708ea3665f7d7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: efc38b4b4489e4a47a3708ea3665f7d7, type: 3}
       propertyPath: m_Name
       value: Walker_Enemy_v4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: efc38b4b4489e4a47a3708ea3665f7d7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

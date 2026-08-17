@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool grounded;
+    public bool grounded;
     public static bool isAiming;
 
     [Header("Components")]
@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Values")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float aimedMoveSpeed;
+    [SerializeField] private float InAirMoveSpeed;
     [SerializeField] private float groundDrag;
-    [SerializeField] private float playerSlow;
     [SerializeField] private float airSpeedClamp;
     [SerializeField] private float jumpHeight;
 
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
             spearCrosshairs[i] = spearCrossParent.GetChild(i).gameObject;
         }
 
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Spear"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("NotGround"), LayerMask.NameToLayer("Spear"));
 
         throwStrength = minThrowStrength;
         currentSpearCount = totalSpearCount;
@@ -86,8 +86,8 @@ public class PlayerController : MonoBehaviour
     {
         bool wasGrounded = grounded;
 
-        //Check if grounded
-        grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
+        //Check if grounded (OLD GROUNDED CHECK)
+        //grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
 
         //Land SFX
         if (!wasGrounded && grounded && Time.timeSinceLevelLoad > 1f)
@@ -154,16 +154,7 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        if (isAiming)
-        {
-            AimedMove();
-            runSFX.pitch = 0.8f;
-        }
-        else
-        {
-            RegularMove();
-            runSFX.pitch = 1f;
-        }
+        Move();
 
         if (grounded && inputHandler.jumpTriggered)
         {
@@ -171,101 +162,82 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
-    void RegularMove()
+    void Move()
     {
         //Get postion of camera to dictate where forwards is
         Vector3 forward = cameraTransform.forward;
         forward.y = 0f;
-
-
         Vector3 right = cameraTransform.right;
         right.y = 0f;
 
-
-
         Vector3 moveDirection = forward * inputHandler.moveInput.y + right * inputHandler.moveInput.x;
+        float moveForce;
+        rb.linearDamping = groundDrag;
 
-        //Stop player from speeding up in air
-        if (grounded)
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
-            rb.linearDamping = groundDrag;
-
-            //Speed Control, stop player from endless acceleration
-            Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            if (faltVelocity.magnitude > moveSpeed)
-            {
-                Vector3 limitedVelocity = faltVelocity.normalized * moveSpeed;
-                rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
-            }
-
-            //Turns player model to face where they are walking
-            //if (moveDirection.magnitude > 0)
-            //{
-            //    Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            //    playerOrientation.transform.rotation = (Quaternion.Slerp(playerOrientation.transform.rotation, toRotation, 10f * Time.deltaTime));
-            //}
-        }
-        else
-        {
-            rb.linearDamping = 0;
-            rb.AddForce(moveDirection.normalized * (moveSpeed / 4) * airSpeedClamp, ForceMode.Force);
-        }
-
-        //Turns player towards camera
-        Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
-        Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
         
-        //90 degree cone
-        //float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
-
-        Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y, playerAngle.z);
-        playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
-    }
-
-    private void AimedMove()
-    {
-
-        Vector3 forward = playerOrientation.transform.forward;
-        forward.y = 0f;
-
-        Vector3 right = playerOrientation.transform.right;
-        right.y = 0f;
-
-        Vector3 moveDirection = forward * inputHandler.moveInput.y + right * inputHandler.moveInput.x;
-
-        //Stop player from speeding up in air
-        if (grounded)
+        if (isAiming)
         {
-            rb.AddForce(moveDirection.normalized * aimedMoveSpeed * 300f, ForceMode.Force);
-            rb.linearDamping = groundDrag;
-
-            //Speed Control, stop player from endless acceleration
-            Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            if (faltVelocity.magnitude > aimedMoveSpeed)
-            {
-                Vector3 limitedVelocity = faltVelocity.normalized * aimedMoveSpeed;
-                rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
-            }
+            runSFX.pitch = 0.8f;
+            moveForce = aimedMoveSpeed;
         }
         else
         {
+            runSFX.pitch = 1f;
+            moveForce =  moveSpeed;
+        }
+        float maxSpeed = moveForce;
+
+        if (!grounded)
+        {
+            moveForce = InAirMoveSpeed;
+            maxSpeed = moveForce/2;
             rb.linearDamping = 0;
-            rb.AddForce(moveDirection.normalized * (moveSpeed / 4) * airSpeedClamp, ForceMode.Force);
         }
 
+        rb.AddForce(moveDirection.normalized * moveForce * 300f, ForceMode.Force);
+  
 
-        //Turns player model to face where camera is looking
-        Vector3 lookDirection = yawTarget.forward;
-        lookDirection.y = 0f;
-
-        if (lookDirection.magnitude > 0)
+        //Speed Control, stop player from endless acceleration
+        Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        if (faltVelocity.magnitude > maxSpeed)
         {
-            Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
-            playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+            Vector3 limitedVelocity = faltVelocity.normalized * maxSpeed;
+            rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
+        }
+
+        //Turns player model to face where they are walking
+        //if (moveDirection.magnitude > 0)
+        //{
+        //    Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        //    playerOrientation.transform.rotation = (Quaternion.Slerp(playerOrientation.transform.rotation, toRotation, 10f * Time.deltaTime));
+        //}
+
+        //I'm pretty sure these do the same thing
+        if (!isAiming)
+        {
+            //Turns player towards camera
+            Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
+            Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
+
+            //90 degree cone
+            //float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
+
+            Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y, playerAngle.z);
+            playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
+        }
+        else
+        {
+            //Turns player model to face where camera is looking
+            Vector3 lookDirection = yawTarget.forward;
+            lookDirection.y = 0f;
+
+            if (lookDirection.magnitude > 0)
+            {
+                Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
+                playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+            }
         }
     }
-
     void Jump()
     {
         rb.AddForce(jumpHeight * Vector3.up * 30, ForceMode.Impulse);

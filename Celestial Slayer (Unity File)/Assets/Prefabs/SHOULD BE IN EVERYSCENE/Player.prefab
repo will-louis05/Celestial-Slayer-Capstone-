@@ -5288,6 +5288,74 @@ Transform:
   - {fileID: 7858681482857556574}
   m_Father: {fileID: 553500866006869721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4518159966080194834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1248137130174613301}
+  - component: {fileID: 3776385134720086817}
+  - component: {fileID: 7356117826575604565}
+  m_Layer: 3
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1248137130174613301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518159966080194834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.897, z: 0}
+  m_LocalScale: {x: 0.5141717, y: 0.5141717, z: 0.5141717}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 455253700034721769}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3776385134720086817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518159966080194834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece536453d6c75042bb01147919fcb5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+--- !u!136 &7356117826575604565
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518159966080194834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5111379
+  m_Height: 1.0222758
+  m_Direction: 1
+  m_Center: {x: -0.011137883, y: 0, z: 0}
 --- !u!1 &4556470526507343924
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,7 +5534,7 @@ GameObject:
   - component: {fileID: 696336087105653191}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5488,6 +5556,7 @@ Transform:
   - {fileID: 3180229908710377115}
   - {fileID: 7548732128640341745}
   - {fileID: 8293118095480115285}
+  - {fileID: 1248137130174613301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2976073523869511186
@@ -5509,10 +5578,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.33068603
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.0012635589, y: 0, z: 0}
 --- !u!54 &1361609846915902075
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5552,6 +5621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea33ba4c8ff6ac44a61d7ed70dee11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  grounded: 0
   playerOrientation: {fileID: 7239181631361051105}
   yawTarget: {fileID: 3180229908710377115}
   spear: {fileID: 4082352635457903904, guid: 1ff2a57cc13204449bcc8956f8542ffe, type: 3}
@@ -5565,8 +5635,8 @@ MonoBehaviour:
   - {fileID: 990029386817864708}
   moveSpeed: 35
   aimedMoveSpeed: 15
+  InAirMoveSpeed: 3
   groundDrag: 15
-  playerSlow: 0
   airSpeedClamp: 10
   jumpHeight: 30
   minThrowStrength: 5
