@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody spearRb;
     public EnemySpawner spawner;
     private NavMeshAgent navMesh;
+    private float enemyMass;
 
     [SerializeField] private float regainSpeed;
     [SerializeField] private MeshRenderer meshRender;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
         navMesh = GetComponent<NavMeshAgent>();
+        spearRb.mass = enemyMass;
     }
 
     void Update()
