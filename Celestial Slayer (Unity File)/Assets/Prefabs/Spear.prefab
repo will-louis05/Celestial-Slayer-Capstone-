@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicSpear
   spearLegnth: 2.5
-  spearSpeedRatio: 0.001
+  spearSpeedRatio: 0.01
   inverseForceRatio: 0.55
   angleCheck: {fileID: 4022765021689861975}
   hitSFX: {fileID: 6211934720691841351}
@@ -358,7 +358,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 2eff3a08b30d08c44a29f8720cbc15f7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -402,7 +402,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.75
       inSlope: 0
       outSlope: 0
       tangentMode: 0

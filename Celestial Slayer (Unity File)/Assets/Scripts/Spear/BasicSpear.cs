@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
+using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 
 public class BasicSpear : MonoBehaviour
 {
@@ -156,9 +158,7 @@ public class BasicSpear : MonoBehaviour
         }
 
         if (stuck)
-        {
-            SpearStuck();
-        }
+            SpearStuck(collision);
 
         inCollision = false;
 
@@ -166,8 +166,8 @@ public class BasicSpear : MonoBehaviour
         if (!hitPlayed)
         {
             hitPlayed = true;
-
-            hitSFX.pitch = Random.Range(1.1f, 1.3f);
+            float soundSpeed = preCollisionSpeed / 100f;
+            hitSFX.pitch = Random.Range(soundSpeed - 0.1f, soundSpeed + 0.1f);
             hitSFX.Play();
         }
     }
@@ -177,12 +177,19 @@ public class BasicSpear : MonoBehaviour
         Vector3 contactPoint = collision.GetContact(0).point;
 
         float impaleDistance = preCollisionSpeed * spearSpeedRatio;
+        Debug.Log(preCollisionSpeed);
         //Debug.Log("Impale Distance " + impaleDistance + " Speed " + preCollisionSpeed + " SpearLength " + spearLegnth);
         if (impaleDistance > spearLegnth)
         {
             //Offset so spear is Always Showing a little
             impaleDistance = spearLegnth * 0.9f;
         }
+        else if (impaleDistance < spearLegnth * 0.25)
+        {
+            //Offset so spear always pierces a reasonable amount
+            impaleDistance = spearLegnth * 0.25f;
+        }
+
         //Adjust offset as pivot is in the centre 
         impaleDistance -= spearLegnth/2;
         Vector3 spearMove = contactPoint + (transform.forward * impaleDistance);
@@ -210,6 +217,14 @@ public class BasicSpear : MonoBehaviour
             stuck = true;
             transform.SetParent(spearedRb.transform);
             Destroy(spearRb);
+
+            ////Add physics to enemy
+            //if (spearedRb.GetComponent<Enemy>())
+            //{
+            //    spearedRb.isKinematic = false;
+            //    spearedRb.useGravity = true;
+            //}
+
             return;
         }
 
@@ -219,19 +234,20 @@ public class BasicSpear : MonoBehaviour
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
 
-        ////Bugfix
-        //Collider collider = spearedRb.GetComponent<Collider>();
-        //if (collider != null)
-        //    collider.enabled = false;
+        //Bugfix
+        Collider collider = spearedRb.GetComponent<Collider>();
+        if (collider != null && !collider.GetComponent<Enemy>())
+            collider.enabled = false;
 
         Destroy(spearedRb);
 
         spearRb.linearVelocity = postCollisionSpeed * transform.forward;
     }
 
-    private void SpearStuck()
+    private void SpearStuck(Collision collision)
     {
         Debug.Log("Spear Stuck");
+        transform.SetParent(collision.transform);
         Destroy(spearRb);
         if(spearedEnemies.Count > 0)
         {
@@ -253,11 +269,12 @@ public class BasicSpear : MonoBehaviour
             objRb.isKinematic = false;
             objRb.useGravity = true;
 
-            ////Bugfix continued
-            //Collider collider = spearedObject.GetComponent<Collider>();
-            //if (collider != null)
-            //    collider.enabled = true;
+            //Bugfix continued
+            Collider collider = spearedObject.GetComponent<Collider>();
+            if (collider != null && !collider.GetComponent<Enemy>())
+                collider.enabled = true;
         }
+
         Destroy(gameObject);
     }
 
