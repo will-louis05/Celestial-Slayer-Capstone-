@@ -141,6 +141,8 @@ public class BasicSpear : MonoBehaviour
             PierceAmount(collision);
             enemyScrp.EnemySpeared(spearRb);     
             RbObjSpeared(spearedRb);
+            Debug.Log("EnemyStuck");
+
         }
         else if (spearedRb != null)
         {
@@ -202,6 +204,8 @@ public class BasicSpear : MonoBehaviour
         if (postCollisionSpeed < 0)
         {
             //Stop Spear if inverse speed is too strong
+            Debug.Log("NotEnoughForce");
+            Debug.Log(spearedRb.name);
             spearRb.linearVelocity = Vector3.zero;
             stuck = true;
             transform.SetParent(spearedRb.transform);
@@ -215,10 +219,10 @@ public class BasicSpear : MonoBehaviour
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
 
-        //Bugfix
-        Collider collider = spearedRb.GetComponent<Collider>();
-        if (collider != null)
-            collider.enabled = false;
+        ////Bugfix
+        //Collider collider = spearedRb.GetComponent<Collider>();
+        //if (collider != null)
+        //    collider.enabled = false;
 
         Destroy(spearedRb);
 
@@ -227,6 +231,7 @@ public class BasicSpear : MonoBehaviour
 
     private void SpearStuck()
     {
+        Debug.Log("Spear Stuck");
         Destroy(spearRb);
         if(spearedEnemies.Count > 0)
         {
@@ -248,10 +253,10 @@ public class BasicSpear : MonoBehaviour
             objRb.isKinematic = false;
             objRb.useGravity = true;
 
-            //Bugfix continued
-            Collider collider = spearedObject.GetComponent<Collider>();
-            if (collider != null)
-                collider.enabled = true;
+            ////Bugfix continued
+            //Collider collider = spearedObject.GetComponent<Collider>();
+            //if (collider != null)
+            //    collider.enabled = true;
         }
         Destroy(gameObject);
     }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 605
     height: 1293
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -3994,7 +3994,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/VFX
+    - Assets/Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -4004,7 +4004,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/VFX
+  - Assets/Materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\CapStone\CapStone_Git\Celestial-Slayer-Capstone-\Celestial
     Slayer (Unity File)
@@ -4014,13 +4014,13 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 40}
     m_SelectedIDs:
-    - m_Data: 58348
+    - m_Data: 57970
     m_LastClickedID:
-      m_Data: 58348
+      m_Data: 57970
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 57962
-    - m_Data: 57964
+    - m_Data: 57968
+    - m_Data: 57970
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -4054,8 +4054,8 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 57962
-    - m_Data: 57964
+    - m_Data: 57968
+    - m_Data: 57970
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -4082,9 +4082,84 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs:
+    - m_Data: -4834
+    - m_Data: -4842
+    - m_Data: -4850
+    - m_Data: -4858
+    - m_Data: -4866
+    - m_Data: -4874
+    - m_Data: -4882
+    - m_Data: -4890
+    - m_Data: -4898
+    - m_Data: -4906
+    - m_Data: -4914
+    - m_Data: -4922
+    - m_Data: -4930
+    - m_Data: -4938
+    - m_Data: -4946
+    - m_Data: -4954
+    - m_Data: -4962
+    - m_Data: -4970
+    - m_Data: -4978
+    - m_Data: -4986
+    - m_Data: -4994
+    - m_Data: -5002
+    - m_Data: -5010
+    - m_Data: -5018
+    - m_Data: -5026
+    - m_Data: -5034
+    - m_Data: -5042
+    - m_Data: -5050
+    - m_Data: -5058
+    - m_Data: -5066
+    - m_Data: -5074
+    - m_Data: -5082
+    - m_Data: -5090
+    - m_Data: -5098
+    - m_Data: -5106
+    - m_Data: -5114
+    - m_Data: -5122
+    - m_Data: -5130
+    - m_Data: -5138
+    - m_Data: -5146
+    - m_Data: -5154
+    - m_Data: -5162
+    - m_Data: -5170
+    - m_Data: -5178
+    - m_Data: -5194
+    - m_Data: -5202
+    - m_Data: -5210
+    - m_Data: -5218
+    - m_Data: -5226
+    - m_Data: -5234
+    - m_Data: -5242
+    - m_Data: -5250
+    - m_Data: -5258
+    - m_Data: -5266
+    - m_Data: -5274
+    - m_Data: -5282
+    - m_Data: -5290
+    - m_Data: -5298
+    - m_Data: -5306
+    - m_Data: -5314
+    - m_Data: -5322
+    - m_Data: -5330
+    - m_Data: -5346
+    - m_Data: -5354
+    - m_Data: -5362
+    - m_Data: -5370
+    - m_Data: -5378
+    - m_Data: -5386
+    - m_Data: -5394
+    - m_Data: -5402
+    - m_Data: -5410
+    - m_Data: -5418
+    - m_Data: -5426
+    - m_Data: -5434
+    - m_Data: -5442
+    m_LastClickedInstanceID: -4834
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -4206,12 +4281,88 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      scrollPos: {x: 0, y: 508}
+      m_SelectedIDs:
+      - m_Data: -4834
+      - m_Data: -4842
+      - m_Data: -4850
+      - m_Data: -4858
+      - m_Data: -4866
+      - m_Data: -4874
+      - m_Data: -4882
+      - m_Data: -4890
+      - m_Data: -4898
+      - m_Data: -4906
+      - m_Data: -4914
+      - m_Data: -4922
+      - m_Data: -4930
+      - m_Data: -4938
+      - m_Data: -4946
+      - m_Data: -4954
+      - m_Data: -4962
+      - m_Data: -4970
+      - m_Data: -4978
+      - m_Data: -4986
+      - m_Data: -4994
+      - m_Data: -5002
+      - m_Data: -5010
+      - m_Data: -5018
+      - m_Data: -5026
+      - m_Data: -5034
+      - m_Data: -5042
+      - m_Data: -5050
+      - m_Data: -5058
+      - m_Data: -5066
+      - m_Data: -5074
+      - m_Data: -5082
+      - m_Data: -5090
+      - m_Data: -5098
+      - m_Data: -5106
+      - m_Data: -5114
+      - m_Data: -5122
+      - m_Data: -5130
+      - m_Data: -5138
+      - m_Data: -5146
+      - m_Data: -5154
+      - m_Data: -5162
+      - m_Data: -5170
+      - m_Data: -5178
+      - m_Data: -5194
+      - m_Data: -5202
+      - m_Data: -5210
+      - m_Data: -5218
+      - m_Data: -5226
+      - m_Data: -5234
+      - m_Data: -5242
+      - m_Data: -5250
+      - m_Data: -5258
+      - m_Data: -5266
+      - m_Data: -5274
+      - m_Data: -5282
+      - m_Data: -5290
+      - m_Data: -5298
+      - m_Data: -5306
+      - m_Data: -5314
+      - m_Data: -5322
+      - m_Data: -5330
+      - m_Data: -5346
+      - m_Data: -5354
+      - m_Data: -5362
+      - m_Data: -5370
+      - m_Data: -5378
+      - m_Data: -5386
+      - m_Data: -5394
+      - m_Data: -5402
+      - m_Data: -5410
+      - m_Data: -5418
+      - m_Data: -5426
+      - m_Data: -5434
+      - m_Data: -5442
       m_LastClickedID:
-        m_Data: 0
+        m_Data: -5442
       m_ExpandedIDs:
-      - m_Data: -1342
+      - m_Data: -4830
+      - m_Data: -2148
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -4804,9 +4955,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 2.8290815, y: 8.897257, z: 0.6094065}
+    m_Target: {x: -0.87834835, y: 11.43796, z: -6.5619683}
     speed: 2
-    m_Value: {x: 2.8290815, y: 8.897257, z: 0.6094065}
+    m_Value: {x: -0.87834835, y: 11.43796, z: -6.5619683}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -4852,13 +5003,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.06494412, y: -0.33484158, z: -0.023136705, w: -0.939707}
+    m_Target: {x: -0.21395242, y: -0.16926542, z: 0.037676655, w: -0.96128434}
     speed: 2
-    m_Value: {x: 0.064911895, y: -0.336264, z: -0.02323501, w: -0.9392407}
+    m_Value: {x: -0.21396168, y: -0.16927275, z: 0.037678286, w: -0.96132594}
   m_Size:
-    m_Target: 8.957668
+    m_Target: 11.162885
     speed: 2
-    m_Value: 8.957668
+    m_Value: 11.162885
   m_Ortho:
     m_Target: 0
     speed: 2
