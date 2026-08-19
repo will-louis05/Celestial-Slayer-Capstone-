@@ -167,6 +167,8 @@ public class BasicSpear : MonoBehaviour
         {
             hitPlayed = true;
             float soundSpeed = preCollisionSpeed / 100f;
+            if (soundSpeed < 0.9f)
+                soundSpeed = 0.9f;
             hitSFX.pitch = Random.Range(soundSpeed - 0.1f, soundSpeed + 0.1f);
             hitSFX.Play();
         }
@@ -197,6 +199,14 @@ public class BasicSpear : MonoBehaviour
         spearRb.isKinematic = true;
         this.transform.position = spearMove;
         spearRb.isKinematic = false;
+
+        //Bugfix reenabling all colliders after pierce calculated
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider c in colliders)
+        {
+            //if (!c.GetComponent<Enemy>())
+                c.enabled = true;
+        }
     }
 
     void RbObjSpeared(Rigidbody spearedRb)
@@ -217,14 +227,6 @@ public class BasicSpear : MonoBehaviour
             stuck = true;
             transform.SetParent(spearedRb.transform);
             Destroy(spearRb);
-
-            ////Add physics to enemy
-            //if (spearedRb.GetComponent<Enemy>())
-            //{
-            //    spearedRb.isKinematic = false;
-            //    spearedRb.useGravity = true;
-            //}
-
             return;
         }
 
@@ -234,9 +236,9 @@ public class BasicSpear : MonoBehaviour
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
 
-        //Bugfix
+        //Bugfix removing colliders on hit
         Collider collider = spearedRb.GetComponent<Collider>();
-        if (collider != null && !collider.GetComponent<Enemy>())
+        if (collider != null) // && !collider.GetComponent<Enemy>())
             collider.enabled = false;
 
         Destroy(spearedRb);
@@ -269,9 +271,9 @@ public class BasicSpear : MonoBehaviour
             objRb.isKinematic = false;
             objRb.useGravity = true;
 
-            //Bugfix continued
+            //Bugfix ensure colliders are enabled
             Collider collider = spearedObject.GetComponent<Collider>();
-            if (collider != null && !collider.GetComponent<Enemy>())
+            if (collider != null) // && !collider.GetComponent<Enemy>())
                 collider.enabled = true;
         }
 

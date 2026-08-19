@@ -63,6 +63,14 @@ public class Enemy : MonoBehaviour
         deathSFX.pitch = Random.Range(1.3f, 1.5f);
         deathSFX.Play();
 
+        //Enable gravity on death
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+        }
+
         spawner.currentEnemyCount--;
         meshRender.material.color = Color.red;
         Destroy(this);
