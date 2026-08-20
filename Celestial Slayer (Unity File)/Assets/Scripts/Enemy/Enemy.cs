@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private float enemyMass;
 
     [SerializeField] private float regainSpeed;
+    public float damage;
     [SerializeField] private MeshRenderer meshRender;
 
     [Header("SFX")]

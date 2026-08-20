@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   spawner: {fileID: 0}
   regainSpeed: 15
+  damage: 0
   meshRender: {fileID: 3984456953139623562}
   deathSFX: {fileID: 3207733307377159511}
 --- !u!65 &6784335014791738513
@@ -348,6 +349,7 @@ GameObject:
   - component: {fileID: 5774809016433843167}
   - component: {fileID: 5204804778874362250}
   - component: {fileID: 3687192870993326648}
+  - component: {fileID: 1203433290276788131}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -448,6 +450,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1203433290276788131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407081955170502177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e95e92100b980442bfc5b75d1ab8744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  enemyParent: {fileID: 2353345011533518376}
 --- !u!1 &7598403643998740346
 GameObject:
   m_ObjectHideFlags: 0
