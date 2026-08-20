@@ -20,6 +20,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int totalHitPoints;
 
 
+    private void Start()
+    {
+        health = maxPlayerHealth;
+    }
     private void Update()
     {
         Debug.Log("Health: " + health);
