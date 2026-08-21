@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6455b2f6cc2b6f4eb397c09ea3af2b6
+guid: 7c52e343355a9574fbd8dc74a3d0e23f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -37,16 +37,16 @@ ModelImporter:
       name: Idle
       takeName: Rig|RigAction
       internalID: 1513717263979871970
-      firstFrame: 120
-      lastFrame: 180
+      firstFrame: 2
+      lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -65,7 +65,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Rig|RigAction
-      internalID: 4697037400121947202
+      internalID: -9072809562584896593
       firstFrame: 300
       lastFrame: 336
       wrapMode: 0
@@ -74,8 +74,37 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Rig|RigAction
+      internalID: 7442670476025483458
+      firstFrame: 360
+      lastFrame: 400
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -114,7 +143,7 @@ ModelImporter:
     bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
-    maxBonesPerVertex: 3
+    maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
     generateMeshLods: 0
@@ -441,13 +470,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: StarChild_Walker_Animation(Clone)
+    - name: StarChild_Walker_Animation 1(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Rig
-      parentName: StarChild_Walker_Animation(Clone)
+      parentName: StarChild_Walker_Animation 1(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 189.5717, y: 189.5717, z: 189.5717}
@@ -752,7 +781,7 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: StarChild
-      parentName: StarChild_Walker_Animation(Clone)
+      parentName: StarChild_Walker_Animation 1(Clone)
       position: {x: 0.00000017881393, y: 0.00000023841858, z: -0.0000003320165}
       rotation: {x: 0.19053884, y: -0.07892403, z: 0.37445652, w: 0.90401787}
       scale: {x: 100, y: 100, z: 99.99999}
