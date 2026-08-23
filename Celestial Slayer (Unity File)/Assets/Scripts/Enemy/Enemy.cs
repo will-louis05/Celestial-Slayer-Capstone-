@@ -9,11 +9,11 @@ public class Enemy : MonoBehaviour
     private Rigidbody spearRb;
     public EnemySpawner spawner;
     private NavMeshAgent navMesh;
+    private Animator animator;
     private float enemyMass;
 
     [SerializeField] private float regainSpeed;
     public float damage;
-    [SerializeField] private MeshRenderer meshRender;
 
     [Header("SFX")]
     [SerializeField] private AudioSource deathSFX;
@@ -22,7 +22,10 @@ public class Enemy : MonoBehaviour
     {
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
         navMesh = GetComponent<NavMeshAgent>();
+        spearRb = gameObject.GetComponent<Rigidbody>();
         spearRb.mass = enemyMass;
+        animator = GetComponent<Animator>();
+        animator.SetBool("CanMove", !speared);
     }
 
     void Update()
@@ -38,10 +41,10 @@ public class Enemy : MonoBehaviour
 
     public void EnemySpeared(Rigidbody spearRigidbody)
     {
-        meshRender.material.color = Color.yellow;
         spearRb = spearRigidbody;
         speared = true;
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
+        animator.SetBool("CanMove", !speared);
         navMesh.enabled = false;
         behaviorGraph.enabled = false;
     }
@@ -53,9 +56,9 @@ public class Enemy : MonoBehaviour
 
     private void RegainControl()
     {
-        meshRender.material.color = Color.blue;
         speared = false;
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
+        animator.SetBool("CanMove", !speared);
     }
 
     private void Killed()
@@ -73,7 +76,6 @@ public class Enemy : MonoBehaviour
         }
 
         spawner.currentEnemyCount--;
-        meshRender.material.color = Color.red;
         Destroy(this);
     }
 }

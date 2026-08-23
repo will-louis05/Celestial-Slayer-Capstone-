@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Collections;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Rendering;
 
 public class BasicSpear : MonoBehaviour
 {
@@ -11,8 +8,10 @@ public class BasicSpear : MonoBehaviour
     [SerializeField] private float spearSpeedRatio;
     [SerializeField] private float inverseForceRatio;
 
-    [Header("Angle Checks")]
+    [Header("Components")]
     [SerializeField] private Transform angleCheck;
+    [SerializeField] private Collider bigCollider;
+    [SerializeField] private Collider smallCollider;
 
     private Collider spearBodyCollider;
     private Rigidbody spearRb;
@@ -225,7 +224,7 @@ public class BasicSpear : MonoBehaviour
             Debug.Log(spearedRb.name);
             spearRb.linearVelocity = Vector3.zero;
             stuck = true;
-            transform.SetParent(spearedRb.transform);
+            transform.SetParent(spearedRb.transform, true);
             Destroy(spearRb);
             return;
         }
@@ -248,8 +247,6 @@ public class BasicSpear : MonoBehaviour
 
     private void SpearStuck(Collision collision)
     {
-        Debug.Log("Spear Stuck");
-        transform.SetParent(collision.transform);
         Destroy(spearRb);
         if(spearedEnemies.Count > 0)
         {
