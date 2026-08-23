@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("Health: " + health);
+       // Debug.Log("Health: " + health);
         if(resetHealth)
             health = maxPlayerHealth;
 
