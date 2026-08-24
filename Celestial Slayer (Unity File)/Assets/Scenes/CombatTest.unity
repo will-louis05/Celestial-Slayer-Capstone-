@@ -1298,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
       propertyPath: 'waveData.Array.data[0].enemyTypeSpawnNumber.Array.data[0]'
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
       propertyPath: 'waveData.Array.data[1].enemyTypeSpawnNumber.Array.data[0]'
@@ -1310,7 +1310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3033389827597640338, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4128239261477559636, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2410,6 +2410,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 455253700034721769, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870482760267497652, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: infiniteHealth
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5597025639639147693, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}

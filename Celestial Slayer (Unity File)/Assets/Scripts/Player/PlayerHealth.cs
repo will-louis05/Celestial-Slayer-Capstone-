@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private HealthSystem healthSystem;
-    [SerializeField] private bool resetHealth;
 
     [Header("Health Regen")]
     [SerializeField] private float maxPlayerHealth = 100;
@@ -19,15 +19,29 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health Points")]
     [SerializeField] private int totalHitPoints;
 
+    [Header("Dev Tools")]
+    private Transform greenScalePoint;
+    [SerializeField] private bool infiniteHealth;
+    [SerializeField] private bool resetHealth;
+
 
     private void Start()
     {
         health = maxPlayerHealth;
+        animator = GetComponent<Animator>();
+        greenScalePoint = GameObject.Find("Scalepoint").transform;
     }
     private void Update()
     {
-       // Debug.Log("Health: " + health);
-        if(resetHealth)
+        // Debug.Log("Health: " + health);
+        if (resetHealth)
+        {
+            health = maxPlayerHealth;
+            resetHealth = false;
+        }
+
+
+        if(infiniteHealth)
             health = maxPlayerHealth;
 
         if(health < maxPlayerHealth)
@@ -37,6 +51,9 @@ public class PlayerHealth : MonoBehaviour
             else if(healthSystem == HealthSystem.healthPoints)
                 HealthPoints();
         }
+
+        if (health <= 0)
+            Die();
 
     }
 
@@ -57,6 +74,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (health > maxPlayerHealth)
             health = maxPlayerHealth;
+
+        greenScalePoint.localScale = new Vector3(health / 100f, 1, 1);
     }
 
     private void HealthPoints()
@@ -67,11 +86,19 @@ public class PlayerHealth : MonoBehaviour
 
     public void Hit(float damage)
     {
+        Debug.Log("damage " + damage);
         hit = true;
         health -= damage;
         animator.SetTrigger("Hit");
+        greenScalePoint.localScale = new Vector3 (health / 100f, 1, 1);
+        Debug.Log("health = " +health + " scale = " + greenScalePoint.localScale);
     }
 
+    private void Die()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
 
 
 

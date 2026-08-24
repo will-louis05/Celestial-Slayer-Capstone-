@@ -5466,7 +5466,6 @@ GameObject:
   - component: {fileID: 5804311513639597548}
   - component: {fileID: 870482760267497652}
   - component: {fileID: 8346364394675993745}
-  - component: {fileID: 4863876609605097743}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5657,20 +5656,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4863876609605097743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5597025639639147693}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c251f266caca12a4d90d7039e645a4c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationStateController
-  acceleration: 2
-  deceleration: 2
 --- !u!1 &5794355804615274249
 GameObject:
   m_ObjectHideFlags: 0

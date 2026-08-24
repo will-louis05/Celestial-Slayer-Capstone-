@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
+    [SerializeField] private bool disableMovementInReload;
     [SerializeField] private GameObject debugLight;
     public static bool inCombat;
 
@@ -86,11 +87,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Animations();
+
         //WONT WORK WITH NEW GROUND CHECK
         bool wasGrounded = grounded;
-        animator.SetBool("InAim", isAiming);
-        animator.SetBool("InAir", !grounded);
-
         //OLD GROUND CHECK
         //grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
 
@@ -146,7 +146,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Movement();
+        if (inReload && disableMovementInReload)
+        {
+
+        }
+        else
+        {
+            Movement();
+        }
 
         if(heldSpear != null)
         {
@@ -204,10 +211,6 @@ public class PlayerController : MonoBehaviour
             Vector3 limitedVelocity = faltVelocity.normalized * maxSpeed;
             rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
         }
-
-        animator.SetFloat("VelocityX", rb.linearVelocity.x);
-        animator.SetFloat("VelocityY", rb.linearVelocity.z);
-        animator.SetFloat("Speed", rb.linearVelocity.magnitude);
 
         //Pretty sure these do the same thing, should remove one
         if(!isAiming)
@@ -398,5 +401,14 @@ public class PlayerController : MonoBehaviour
             inReload = false;
         }
         animator.SetBool("InSummon", inReload);
+    }
+
+    private void Animations()
+    {
+        animator.SetFloat("VelocityX", rb.linearVelocity.x);
+        animator.SetFloat("VelocityY", rb.linearVelocity.z);
+        animator.SetFloat("Speed", rb.linearVelocity.magnitude);
+        animator.SetBool("InAim", isAiming);
+        animator.SetBool("InAir", !grounded);
     }
 }

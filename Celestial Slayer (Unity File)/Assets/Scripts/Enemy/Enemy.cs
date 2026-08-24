@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent navMesh;
     private Animator animator;
     private float enemyMass;
+    public EnemyAttack attackScrpt;
 
     [SerializeField] private float regainSpeed;
     public float damage;
@@ -78,5 +79,6 @@ public class Enemy : MonoBehaviour
         spawner.currentEnemyCount--;
         Debug.Log("enemyKilled");
         Destroy(this);
+        Destroy(attackScrpt);
     }
 }
