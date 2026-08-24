@@ -10,8 +10,6 @@ public class BasicSpear : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Transform angleCheck;
-    [SerializeField] private Collider bigCollider;
-    [SerializeField] private Collider smallCollider;
 
     private Collider spearBodyCollider;
     private Rigidbody spearRb;
@@ -33,10 +31,6 @@ public class BasicSpear : MonoBehaviour
     {
         spearRb = GetComponent<Rigidbody>();
         spearBodyCollider = GetComponentInChildren<Collider>();
-    }
-
-    private void Update()
-    {
     }
 
     private void FixedUpdate()
@@ -79,6 +73,10 @@ public class BasicSpear : MonoBehaviour
         if (!held && !stuck)
         {
             bool acceptAngle = RayCheck();
+            //Spears enemies when spear is already inside them before being thrown
+            //if (collision.collider.CompareTag("Enemy"))
+            //    acceptAngle = true;
+
             if (acceptAngle)
                 SpearHit(collision);
             if (stuck)
@@ -114,6 +112,7 @@ public class BasicSpear : MonoBehaviour
 
     bool RayCheck()
     {
+        Debug.Log("raycheck");
         if (Physics.Raycast(angleCheck.position, transform.forward, 0.5f))
             return true;
 

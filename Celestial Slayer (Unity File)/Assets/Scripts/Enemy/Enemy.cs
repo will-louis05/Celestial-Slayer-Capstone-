@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
         }
 
         spawner.currentEnemyCount--;
+        Destroy(gameObject);
         Destroy(this);
     }
 }
