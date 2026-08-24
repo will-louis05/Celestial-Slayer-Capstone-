@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -7,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
     private float timeSinceLastDamaged;
     private bool hit;
     private float health;
+    private Animator animator;
 
     [SerializeField] private HealthSystem healthSystem;
     [SerializeField] private bool resetHealth;
@@ -69,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
     {
         hit = true;
         health -= damage;
+        animator.SetTrigger("Hit");
     }
 
 

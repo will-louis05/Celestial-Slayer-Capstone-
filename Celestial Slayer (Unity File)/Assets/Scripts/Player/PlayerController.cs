@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool grounded;
+    public bool grounded;
     public static bool isAiming;
 
     [Header("Components")]
@@ -20,13 +20,14 @@ public class PlayerController : MonoBehaviour
     private Transform cameraTransform;
     private Rigidbody rb;
     private GameObject[] spearCrosshairs;
+    private Animator animator;
 
     [Header("Movement Values")]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float groundMoveSpeed;
     [SerializeField] private float aimedMoveSpeed;
+    [SerializeField] private float inAirMoveSpeed;
+    [SerializeField] private float maxAirSpeed;
     [SerializeField] private float groundDrag;
-    [SerializeField] private float playerSlow;
-    [SerializeField] private float airSpeedClamp;
     [SerializeField] private float jumpHeight;
 
     [Header("Spear Values")]
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         inputHandler = InputHandler.instance;
         cameraTransform = Camera.main.transform;
+        animator = GetComponent<Animator>();
 
         Transform spearCrossParent = GameObject.Find("SpearCrosshairCount").transform;
         spearCrosshairs = new GameObject[spearCrossParent.childCount];
@@ -84,10 +86,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //WONT WORK WITH NEW GROUND CHECK
         bool wasGrounded = grounded;
+        animator.SetBool("InAim", isAiming);
+        animator.SetBool("InAir", !grounded);
 
-        //Check if grounded
-        grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
+        //OLD GROUND CHECK
+        //grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
 
         //Land SFX
         if (!wasGrounded && grounded && Time.timeSinceLevelLoad > 1f)
@@ -97,9 +102,6 @@ public class PlayerController : MonoBehaviour
         }
 
         InputManger();
-
-        //For Debug Purposes
-        //if(Input.GetKeyDown(KeyCode.F)) Debug.Log()
 
         if (infiniteSpears)
             currentSpearCount = 5;
@@ -154,16 +156,7 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        if (isAiming)
-        {
-            AimedMove();
-            runSFX.pitch = 0.8f;
-        }
-        else
-        {
-            RegularMove();
-            runSFX.pitch = 1f;
-        }
+        Move();
 
         if (grounded && inputHandler.jumpTriggered)
         {
@@ -171,98 +164,73 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
-    void RegularMove()
+    void Move()
     {
         //Get postion of camera to dictate where forwards is
         Vector3 forward = cameraTransform.forward;
         forward.y = 0f;
-
-
         Vector3 right = cameraTransform.right;
         right.y = 0f;
 
-
-
         Vector3 moveDirection = forward * inputHandler.moveInput.y + right * inputHandler.moveInput.x;
+        float moveSpeed = 0;
+        float maxSpeed = 0;
+        rb.linearDamping = groundDrag;
 
-        //Stop player from speeding up in air
-        if (grounded)
+        if (!grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
-            rb.linearDamping = groundDrag;
-
-            //Speed Control, stop player from endless acceleration
-            Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            if (faltVelocity.magnitude > moveSpeed)
-            {
-                Vector3 limitedVelocity = faltVelocity.normalized * moveSpeed;
-                rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
-            }
-
-            //Turns player model to face where they are walking
-            //if (moveDirection.magnitude > 0)
-            //{
-            //    Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            //    playerOrientation.transform.rotation = (Quaternion.Slerp(playerOrientation.transform.rotation, toRotation, 10f * Time.deltaTime));
-            //}
+            moveSpeed = inAirMoveSpeed;
+            maxSpeed = maxAirSpeed;
+            rb.linearDamping = 0;
+        }
+        else if (isAiming)
+        {
+            moveSpeed = aimedMoveSpeed;
+            maxSpeed = moveSpeed;
+            runSFX.pitch = 0.8f;
         }
         else
         {
-            rb.linearDamping = 0;
-            rb.AddForce(moveDirection.normalized * (moveSpeed / 4) * airSpeedClamp, ForceMode.Force);
+            moveSpeed = groundMoveSpeed;
+            maxSpeed = moveSpeed;
+            runSFX.pitch = 1f;
+        }
+        rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
+
+        //Speed Control, stop player from endless acceleration
+        Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        if (faltVelocity.magnitude > maxSpeed)
+        {
+            Vector3 limitedVelocity = faltVelocity.normalized * maxSpeed;
+            rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
         }
 
-        //Turns player towards camera
-        Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
-        Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
+        animator.SetFloat("VelocityX", rb.linearVelocity.x);
+        animator.SetFloat("VelocityY", rb.linearVelocity.z);
+        animator.SetFloat("Speed", rb.linearVelocity.magnitude);
+
+        //Pretty sure these do the same thing, should remove one
+        if(!isAiming)
+        { 
+            //Turns player towards camera
+            Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
+            Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
         
-        //90 degree cone
-        //float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
-
-        Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y, playerAngle.z);
-        playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
-    }
-
-    private void AimedMove()
-    {
-
-        Vector3 forward = playerOrientation.transform.forward;
-        forward.y = 0f;
-
-        Vector3 right = playerOrientation.transform.right;
-        right.y = 0f;
-
-        Vector3 moveDirection = forward * inputHandler.moveInput.y + right * inputHandler.moveInput.x;
-
-        //Stop player from speeding up in air
-        if (grounded)
-        {
-            rb.AddForce(moveDirection.normalized * aimedMoveSpeed * 300f, ForceMode.Force);
-            rb.linearDamping = groundDrag;
-
-            //Speed Control, stop player from endless acceleration
-            Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            if (faltVelocity.magnitude > aimedMoveSpeed)
-            {
-                Vector3 limitedVelocity = faltVelocity.normalized * aimedMoveSpeed;
-                rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
-            }
+            //90 degree cone
+            //float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
+            Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y, playerAngle.z);
+            playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
         else
-        {
-            rb.linearDamping = 0;
-            rb.AddForce(moveDirection.normalized * (moveSpeed / 4) * airSpeedClamp, ForceMode.Force);
-        }
+        {        
+            Vector3 lookDirection = yawTarget.forward;
+            lookDirection.y = 0f;
 
-
-        //Turns player model to face where camera is looking
-        Vector3 lookDirection = yawTarget.forward;
-        lookDirection.y = 0f;
-
-        if (lookDirection.magnitude > 0)
-        {
-            Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
-            playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+            if (lookDirection.magnitude > 0)
+            {
+                Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
+                playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+            }
         }
     }
 
@@ -270,6 +238,8 @@ public class PlayerController : MonoBehaviour
     {
         rb.AddForce(jumpHeight * Vector3.up * 30, ForceMode.Impulse);
         inputHandler.jumpTriggered = false;
+
+        animator.SetTrigger("Jump");
 
         //Jump SFX
         jumpSFX.pitch = Random.Range(0.9f, 1.1f);
@@ -308,7 +278,7 @@ public class PlayerController : MonoBehaviour
 
     void SpearThrow()
     {
-
+        //Build throw strength when aimed
         if (isAiming)
         {
             inThrow = true;
@@ -324,6 +294,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //ThrowSpear
         if (!inThrow || inThrow && !inputHandler.fireTriggered)
         {
             BasicSpear spearScrp = heldSpear.GetComponent<BasicSpear>();
@@ -331,6 +302,7 @@ public class PlayerController : MonoBehaviour
             currentSpearCount -= 1;
             thrownSpears.Add(heldSpear);
 
+            animator.SetTrigger("Throw");
 
             spearCrosshairs[currentSpearCount].SetActive(false);
 
@@ -390,7 +362,7 @@ public class PlayerController : MonoBehaviour
         {
             inReload = false;
             reloadParticle.Stop();
-
+            animator.SetBool("InSummon", inReload);
             //Stop recall SFX
             recallSFX.Stop();
 
@@ -405,7 +377,7 @@ public class PlayerController : MonoBehaviour
         inReload = true;
         float elaspedTime = Time.time - reloadTimeTracker;
 
-        if(elaspedTime >= reloadTimeSec)
+        if (elaspedTime >= reloadTimeSec)
         {
             foreach(GameObject thrownSpear in thrownSpears)
             {
@@ -424,6 +396,7 @@ public class PlayerController : MonoBehaviour
 
             inputHandler.reloadTriggered = false;
             inReload = false;
-        }              
+        }
+        animator.SetBool("InSummon", inReload);
     }
 }
