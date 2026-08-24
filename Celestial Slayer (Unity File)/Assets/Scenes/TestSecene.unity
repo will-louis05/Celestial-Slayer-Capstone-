@@ -7391,6 +7391,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5804311513639597548, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: spear
+      value: 
+      objectReference: {fileID: 4082352635457903904, guid: 34b982b11325b0c479adf7957787b22c, type: 3}
+    - target: {fileID: 5804311513639597548, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1087923101}
@@ -7398,6 +7402,14 @@ PrefabInstance:
       propertyPath: spearFollow
       value: 
       objectReference: {fileID: 333078752}
+    - target: {fileID: 8346364394675993745, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: fe94910cfe11c81408a233ca42651643, type: 3}
+    - target: {fileID: 8346364394675993745, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

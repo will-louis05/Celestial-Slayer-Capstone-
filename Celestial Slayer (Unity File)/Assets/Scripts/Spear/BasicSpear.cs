@@ -45,18 +45,6 @@ public class BasicSpear : MonoBehaviour
 
         Transform camTransform = Camera.main.transform;
 
-        //RaycastHit hit;
-        //if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 500))
-        //{
-        //    aimPoint = hit.point;
-        //    transform.LookAt(aimPoint);
-        //}
-        //else
-        //{
-        //    aimPoint = camTransform.forward * 500;
-        //    transform.LookAt(aimPoint);
-        //}
-
         Vector3 moveDirection = camTransform.forward * throwStrength * 250f;
 
         spearBodyCollider.enabled = true;
@@ -66,6 +54,7 @@ public class BasicSpear : MonoBehaviour
         held = false;
 
         spearRb.AddForce(moveDirection, ForceMode.Impulse);
+        preCollisionSpeed = moveDirection.magnitude;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -74,8 +63,11 @@ public class BasicSpear : MonoBehaviour
         {
             bool acceptAngle = RayCheck();
             //Spears enemies when spear is already inside them before being thrown
-            //if (collision.collider.CompareTag("Enemy"))
-            //    acceptAngle = true;
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                acceptAngle = true;
+                Debug.Log("InsideEnemy");
+            }
 
             if (acceptAngle)
                 SpearHit(collision);
@@ -83,32 +75,6 @@ public class BasicSpear : MonoBehaviour
                 gameObject.layer = 0;
         }
     }
-
-    //bool AngleCheck(Collision collision)
-    //{
-    //    angleCheck.rotation = Quaternion.Euler(transform.forward);
-    //    Vector3 contactPoint = collision.GetContact(0).point;
-    //    angleCheck.LookAt(contactPoint);
-
-    //    float xAngle = angleCheck.localEulerAngles.x;
-    //    float yAngle = angleCheck.localEulerAngles.y;
-
-    //    bool xCheck = false;
-    //    bool yCheck = false;
-
-    //    Debug.Log("X Angle: " + xAngle + " Y Angle: " + yAngle);
-
-    //    if (xAngle > -xAllowedAngle && yAngle < xAllowedAngle)
-    //        xCheck = true;
-
-    //    if (yAngle > -yAllowedAngle && yAngle < yAllowedAngle)
-    //        yCheck = true;
-
-    //    if (xCheck && yCheck)
-    //        return true;
-    //    else
-    //        return false;
-    //}
 
     bool RayCheck()
     {
@@ -219,11 +185,10 @@ public class BasicSpear : MonoBehaviour
         if (postCollisionSpeed < 0)
         {
             //Stop Spear if inverse speed is too strong
-            Debug.Log("NotEnoughForce");
-            Debug.Log(spearedRb.name);
             spearRb.linearVelocity = Vector3.zero;
             stuck = true;
             transform.SetParent(spearedRb.transform, true);
+            spearBodyCollider.gameObject.layer = 0;
             Destroy(spearRb);
             return;
         }
@@ -246,6 +211,8 @@ public class BasicSpear : MonoBehaviour
 
     private void SpearStuck(Collision collision)
     {
+        //Allow Player To Interact With Spear Again
+        spearBodyCollider.gameObject.layer = 0;
         Destroy(spearRb);
         if(spearedEnemies.Count > 0)
         {

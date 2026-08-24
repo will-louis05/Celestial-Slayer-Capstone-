@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
         }
 
         spawner.currentEnemyCount--;
-        Destroy(gameObject);
+        Debug.Log("enemyKilled");
         Destroy(this);
     }
 }
