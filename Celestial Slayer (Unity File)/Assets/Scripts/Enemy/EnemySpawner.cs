@@ -14,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("DeveloperTools")]
     public bool spawnEnemies;
-    [SerializeField] private bool randomEnemySpawns;
     [SerializeField] private GameObject combatEventObj;
 
     
@@ -59,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject spawnedEnemy = null;
         List<Vector3> availableSpawns = spawnLocations;
-
+        bool randomEnemySpawns = waveData[currentWave].randomSpawns;
         if (randomEnemySpawns)
             spawnedEnemy = RandomSpawn(availableSpawns, spawnedEnemy);
         else
@@ -116,5 +115,6 @@ public class EnemySpawner : MonoBehaviour
 [Serializable]
 public struct WaveData
 {
+    public bool randomSpawns;
     public int[] enemyTypeSpawnNumber;
 }

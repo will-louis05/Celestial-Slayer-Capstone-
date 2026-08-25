@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour
 
         //WONT WORK WITH NEW GROUND CHECK
         bool wasGrounded = grounded;
-        Debug.Log("InAir = " + !grounded);
         //OLD GROUND CHECK
         //grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
 
