@@ -254,6 +254,7 @@ public class PlayerController : MonoBehaviour
        
         if (!inEquip)
         {
+            animator.SetBool("InEquip", true);
             debugLight.SetActive(true);
             reloadTimeTracker = Time.time;
             inEquip = true;
@@ -263,6 +264,7 @@ public class PlayerController : MonoBehaviour
         if (elapsedTime > equipTime)
         {
             debugLight.SetActive(false);
+            animator.SetBool("InEquip", false);
             heldSpear = Instantiate(spear, holdOffset);
             heldSpear.transform.SetParent(holdOffset);
             holdingSpear = true;
@@ -285,8 +287,10 @@ public class PlayerController : MonoBehaviour
         if (isAiming)
         {
             inThrow = true;
+            animator.SetBool("InCharge", true);
             if (throwStrength < maxThrowStrength)
             {
+
                 throwStrength += throwStrengthIncrease * Time.deltaTime;
                 float throwPercentage = 1 - (throwStrength / (maxThrowStrength * 2));
                 crosshair.localScale = new Vector3(throwPercentage, throwPercentage, throwPercentage);
@@ -306,6 +310,7 @@ public class PlayerController : MonoBehaviour
             thrownSpears.Add(heldSpear);
 
             animator.SetTrigger("Throw");
+            animator.SetBool("InCharge", false);
 
             spearCrosshairs[currentSpearCount].SetActive(false);
 
@@ -339,6 +344,7 @@ public class PlayerController : MonoBehaviour
             inputHandler.fireTriggered = false;
             inThrow = false;
             crosshair.localScale = new Vector3(1, 1, 1);
+            animator.SetBool("InCharge", false);
         }
     }
 
