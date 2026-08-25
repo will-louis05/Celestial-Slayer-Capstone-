@@ -3744,7 +3744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1654667999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4899,6 +4899,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 302929309253485969, guid: a11b36ee5cf034241a2ad115302869bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 567134202079574845, guid: a11b36ee5cf034241a2ad115302869bf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016585384650226258, guid: a11b36ee5cf034241a2ad115302869bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558441396770123055, guid: a11b36ee5cf034241a2ad115302869bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5583490672614270338, guid: a11b36ee5cf034241a2ad115302869bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.78088
@@ -4942,6 +4958,10 @@ PrefabInstance:
     - target: {fileID: 6314492223186412176, guid: a11b36ee5cf034241a2ad115302869bf, type: 3}
       propertyPath: m_Name
       value: Blockout4 LightPass
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365698639782204293, guid: a11b36ee5cf034241a2ad115302869bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
