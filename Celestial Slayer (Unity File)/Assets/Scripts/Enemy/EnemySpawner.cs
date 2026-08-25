@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
-using Unity.VisualScripting;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -17,12 +16,11 @@ public class EnemySpawner : MonoBehaviour
     public bool spawnEnemies;
     [SerializeField] private bool randomEnemySpawns;
     [SerializeField] private GameObject combatEventObj;
-    private ICombatEvent combatEvent;
 
     
     void Start()
     {
-        combatEvent = combatEventObj.GetComponent<ICombatEvent>();
+
         //Populate SpawnLocation Array
         Transform spawnLocationsParent = transform.Find("SpawnLocations");
         int spawnLocationsCount = spawnLocationsParent.childCount;
@@ -37,7 +35,8 @@ public class EnemySpawner : MonoBehaviour
     {
         if (currentWave == totalWaves && currentEnemyCount == 0)
         {
-            if(combatEvent != null) 
+            ICombatEvent combatEvent = combatEventObj.GetComponent<ICombatEvent>();
+            if (combatEvent != null) 
                 combatEvent.PostCombatEvent();
             Destroy(gameObject);
             PlayerController.inCombat = false;

@@ -86,12 +86,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void Hit(float damage)
     {
-        Debug.Log("damage " + damage);
         hit = true;
         health -= damage;
         animator.SetTrigger("Hit");
         greenScalePoint.localScale = new Vector3 (health / 100f, 1, 1);
-        Debug.Log("health = " +health + " scale = " + greenScalePoint.localScale);
     }
 
     private void Die()
