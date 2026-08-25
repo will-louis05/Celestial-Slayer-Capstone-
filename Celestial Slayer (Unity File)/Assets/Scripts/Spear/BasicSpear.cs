@@ -143,8 +143,6 @@ public class BasicSpear : MonoBehaviour
         Vector3 contactPoint = collision.GetContact(0).point;
 
         float impaleDistance = preCollisionSpeed * spearSpeedRatio;
-        Debug.Log(preCollisionSpeed);
-        //Debug.Log("Impale Distance " + impaleDistance + " Speed " + preCollisionSpeed + " SpearLength " + spearLegnth);
         if (impaleDistance > spearLegnth)
         {
             //Offset so spear is Always Showing a little

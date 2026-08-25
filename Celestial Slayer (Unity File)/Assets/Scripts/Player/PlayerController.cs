@@ -405,8 +405,8 @@ public class PlayerController : MonoBehaviour
 
     private void Animations()
     {
-        animator.SetFloat("VelocityX", rb.linearVelocity.x);
-        animator.SetFloat("VelocityY", rb.linearVelocity.z);
+        animator.SetFloat("VelocityX", inputHandler.moveInput.x);
+        animator.SetFloat("VelocityY", inputHandler.moveInput.y);
         animator.SetFloat("Speed", rb.linearVelocity.magnitude);
         animator.SetBool("InAim", isAiming);
         animator.SetBool("InAir", !grounded);
