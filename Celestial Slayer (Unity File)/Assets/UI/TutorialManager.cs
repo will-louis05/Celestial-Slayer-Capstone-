@@ -6,10 +6,15 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private bool tutorialOn = true;
     [SerializeField] string[] messages;
+
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private CanvasGroup textGroup;
-    [SerializeField] private CanvasGroup gradientGroup;
+    [SerializeField] private CanvasGroup panelGroup;
+
+    [SerializeField] private float delay = 3f;
     [SerializeField] private Ease ease = Ease.OutQuint;
+
+    [SerializeField] private AudioSource notificationSFX;
 
     //private RectTransform rectTrans;
     //private Vector3 startPos;
@@ -19,27 +24,31 @@ public class TutorialManager : MonoBehaviour
         //rectTrans = gradientGroup.GetComponent<RectTransform>();
         //startPos = rectTrans.position;
 
-        gradientGroup.alpha = 0;
-        textGroup.alpha = 0;
+        panelGroup.alpha = 0;
+        textGroup.alpha = 1;
+
+        text.text = messages[0];
 
         if (tutorialOn)
-            Sequence();
+            RunTutorial();
     }
 
-    private void Sequence()
+    private void RunTutorial()
     {
         Sequence sequence = DOTween.Sequence();
 
-        sequence.AppendInterval(3f);
+        sequence.AppendInterval(delay)
+            .Append(panelGroup.DOFade(1f, delay).SetEase(ease));
 
         foreach (string s in messages)
         {
             sequence.AppendCallback(() => text.text = s)
-                .Append(gradientGroup.DOFade(1f, 3f).SetEase(ease))
-                .Join(textGroup.DOFade(1f, 3f).SetEase(ease))
-                .AppendInterval(3f)
-                .Append(gradientGroup.DOFade(0f, 3f).SetEase(ease))
-                .Join(textGroup.DOFade(0f, 3f).SetEase(ease));
+                .AppendCallback(() => notificationSFX.Play())
+                .Append(textGroup.DOFade(1f, delay).SetEase(ease))
+                .AppendInterval(delay)
+                .Append(textGroup.DOFade(0f, delay).SetEase(ease));
         }
+
+        sequence.Append(panelGroup.DOFade(0f, delay).SetEase(ease));
     }
 }
