@@ -9,7 +9,7 @@ public class GroundCheck : MonoBehaviour
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("NotGround"), LayerMask.NameToLayer("GroundCheck"));
         playerController = transform.parent.GetComponent<PlayerController>();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         playerController.grounded = true;
     }
