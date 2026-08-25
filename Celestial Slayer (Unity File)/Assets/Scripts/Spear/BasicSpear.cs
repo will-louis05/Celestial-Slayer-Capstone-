@@ -202,6 +202,11 @@ public class BasicSpear : MonoBehaviour
         if (collider != null) // && !collider.GetComponent<Enemy>())
             collider.enabled = false;
 
+        if(collider.CompareTag("Enemy"))
+        {
+            collider.enabled = false;
+        }
+
         Destroy(spearedRb);
 
         spearRb.linearVelocity = postCollisionSpeed * transform.forward;
@@ -236,6 +241,9 @@ public class BasicSpear : MonoBehaviour
             Collider collider = spearedObject.GetComponent<Collider>();
             if (collider != null) // && !collider.GetComponent<Enemy>())
                 collider.enabled = true;
+
+            if (spearedObject.CompareTag("Enemy"))
+                Destroy(spearedObject);
         }
 
         Destroy(gameObject);

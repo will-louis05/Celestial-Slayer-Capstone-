@@ -60,7 +60,7 @@ public class InputHandler : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         //Find All Actions

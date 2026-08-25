@@ -8,6 +8,7 @@ public class SpearHold : MonoBehaviour
     void Update()
     {
         transform.position = weaponHold.position;
-        transform.rotation = weaponHold.rotation;
+        //transform.rotation = weaponHold.rotation;
+        Debug.Log("spearPos = " + transform.position + "weaponHoldPos" +  weaponHold.position);
     }
 }
