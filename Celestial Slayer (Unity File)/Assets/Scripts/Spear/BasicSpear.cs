@@ -23,6 +23,8 @@ public class BasicSpear : MonoBehaviour
 
     private Vector3 aimPoint;
 
+    private float timer = 0.01f;
+
     [Header("SFX")]
     [SerializeField] private AudioSource hitSFX;
     private bool hitPlayed;
@@ -131,8 +133,8 @@ public class BasicSpear : MonoBehaviour
         {
             hitPlayed = true;
             float soundSpeed = preCollisionSpeed / 100f;
-            if (soundSpeed < 0.9f)
-                soundSpeed = 0.9f;
+            if (soundSpeed < 0.8f)
+                soundSpeed = 0.8f;
             hitSFX.pitch = Random.Range(soundSpeed - 0.1f, soundSpeed + 0.1f);
             hitSFX.Play();
         }
@@ -148,10 +150,10 @@ public class BasicSpear : MonoBehaviour
             //Offset so spear is Always Showing a little
             impaleDistance = spearLegnth * 0.9f;
         }
-        else if (impaleDistance < spearLegnth * 0.25)
+        else if (impaleDistance < spearLegnth * 0.1f)
         {
             //Offset so spear always pierces a reasonable amount
-            impaleDistance = spearLegnth * 0.25f;
+            impaleDistance = spearLegnth * 0.1f;
         }
 
         //Adjust offset as pivot is in the centre 
@@ -177,6 +179,10 @@ public class BasicSpear : MonoBehaviour
         //float directionRelative = Vector3.Dot(preCollisionSpeed,spearedRb.linearVelocity);
 
         float inveseForce = spearedRb.mass * inverseForceRatio;
+
+        //BUGFIX if hit immediately auto set speed
+        if (Time.deltaTime < timer)
+            preCollisionSpeed = 90f;
 
         float postCollisionSpeed = preCollisionSpeed - inveseForce;
 
