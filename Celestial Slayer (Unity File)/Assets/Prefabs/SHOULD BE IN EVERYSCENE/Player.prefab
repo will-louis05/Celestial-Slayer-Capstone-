@@ -5627,7 +5627,6 @@ MonoBehaviour:
   runSFX: {fileID: 5808871301832604016}
   throwSFX: {fileID: 7220684116935596288}
   jumpSFX: {fileID: 7375597477886494212}
-  landSFX: {fileID: 109071039115373881}
   recallSFX: {fileID: 5572235377035428581}
   infiniteSpears: 0
   disableMovementInReload: 1
@@ -5944,6 +5943,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a28e91b58f2a54cbaac0dc0a186547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+  landSFX: {fileID: 109071039115373881}
+  requiredAirTime: 1
 --- !u!1 &7239181631361051105
 GameObject:
   m_ObjectHideFlags: 0

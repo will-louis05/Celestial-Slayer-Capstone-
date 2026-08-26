@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource runSFX;
     [SerializeField] private AudioSource throwSFX;
     [SerializeField] private AudioSource jumpSFX;
-    [SerializeField] private AudioSource landSFX;
+    //[SerializeField] private AudioSource landSFX;
     [SerializeField] private AudioSource recallSFX;
 
     [Header("Debugging Tools")]
@@ -89,17 +89,18 @@ public class PlayerController : MonoBehaviour
     {
         Animations();
 
-        //WONT WORK WITH NEW GROUND CHECK
-        bool wasGrounded = grounded;
+        ////WONT WORK WITH NEW GROUND CHECK
+        //bool wasGrounded = grounded;
+
         //OLD GROUND CHECK
         //grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
 
         //Land SFX
-        if (!wasGrounded && grounded && Time.timeSinceLevelLoad > 1f)
-        {
-            landSFX.pitch = Random.Range(0.7f, 0.9f);
-            landSFX.Play();
-        }
+        //if (!wasGrounded && grounded && Time.timeSinceLevelLoad > 1f)
+        //{
+        //    landSFX.pitch = Random.Range(0.7f, 0.9f);
+        //    landSFX.Play();
+        //}
 
         InputManger();
 
