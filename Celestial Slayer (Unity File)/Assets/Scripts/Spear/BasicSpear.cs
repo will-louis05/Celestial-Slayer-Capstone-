@@ -80,7 +80,6 @@ public class BasicSpear : MonoBehaviour
 
     bool RayCheck()
     {
-        Debug.Log("raycheck");
         if (Physics.Raycast(angleCheck.position, transform.forward, 0.5f))
             return true;
 
@@ -91,6 +90,8 @@ public class BasicSpear : MonoBehaviour
     {
         inCollision = true;
         Transform collisionTraform = collision.transform;
+        if (collisionTraform.CompareTag("Enemy"))
+            collisionTraform = collisionTraform.root;
         Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
         ISpearedObj spearedObj = collisionTraform.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTraform.GetComponent<Rigidbody>();

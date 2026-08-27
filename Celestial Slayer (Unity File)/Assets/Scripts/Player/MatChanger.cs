@@ -16,7 +16,6 @@ public class MatChanger : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(changeMat);
         if (changeMat)
         {
             changeMat = false;

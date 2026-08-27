@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent navMesh;
     private Animator animator;
     private float enemyMass;
+    [SerializeField] private GameObject[] joints;
     public EnemyAttack attackScrpt;
 
     [SerializeField] private float regainSpeed;
@@ -27,6 +28,11 @@ public class Enemy : MonoBehaviour
         spearRb.mass = enemyMass;
         animator = GetComponent<Animator>();
         animator.SetBool("CanMove", !speared);
+
+        foreach (var joint in joints)
+        {
+            joint.GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
 
     void Update()
@@ -69,12 +75,11 @@ public class Enemy : MonoBehaviour
         deathSFX.Play();
 
         //Enable gravity on death
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-            rb.useGravity = true;
-        }
+        animator.enabled = false;
+        //foreach (var joint in joints)
+        //{
+        //    joint.GetComponent<Rigidbody>().isKinematic = false;
+        //}
 
         spawner.currentEnemyCount--;
         Debug.Log("enemyKilled");

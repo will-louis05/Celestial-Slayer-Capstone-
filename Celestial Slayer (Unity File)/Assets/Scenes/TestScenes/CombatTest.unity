@@ -4422,6 +4422,18 @@ PrefabInstance:
       propertyPath: spearFollow
       value: 
       objectReference: {fileID: 333078752}
+    - target: {fileID: 8346364394675993745, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346364394675993745, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346364394675993745, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4518,18 +4530,6 @@ PrefabInstance:
     - target: {fileID: 4931051897611580973, guid: d4452ea4a561f2146976cfeee48f52fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675609951216753872, guid: d4452ea4a561f2146976cfeee48f52fb, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -764
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675609951216753872, guid: d4452ea4a561f2146976cfeee48f52fb, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 422
-      objectReference: {fileID: 0}
-    - target: {fileID: 9048458093653068856, guid: d4452ea4a561f2146976cfeee48f52fb, type: 3}
-      propertyPath: m_RenderMode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
