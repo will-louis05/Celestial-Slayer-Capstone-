@@ -341,7 +341,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UpperBody
+  m_Name: AimLayer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 5981829403964283972}
@@ -465,7 +465,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: RunLayer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7952198145465689193}
@@ -725,7 +725,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
+    m_Name: RunLayer
     m_StateMachine: {fileID: -2421387454663653623}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -737,7 +737,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: UpperBody
+    m_Name: AimLayer
     m_StateMachine: {fileID: -5035934516754843263}
     m_Mask: {fileID: 31900000, guid: b35d445ab9d958242805bf2d231d6099, type: 2}
     m_Motions: []
@@ -749,7 +749,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Arm
+    m_Name: ThrowLayer
     m_StateMachine: {fileID: 3622679569896468917}
     m_Mask: {fileID: 31900000, guid: 6cbfb513886ee5845979ecfe2d701d95, type: 2}
     m_Motions: []
@@ -966,7 +966,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Arm
+  m_Name: ThrowLayer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -2301684608979865617}
