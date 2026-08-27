@@ -83,9 +83,9 @@ public class EnemySpawner : MonoBehaviour
                 Vector3 randomSpawnLocation = availableSpawns[randomIndex];
 
                 //SpawnEnemy at random Location and set its parent as the spawner
-                spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity, transform);
+                spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity);
                 Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
-                enemyScrp.spawner = this.GetComponent<EnemySpawner>();
+                enemyScrp.spawner = this;
                 availableSpawns.RemoveAt(randomIndex);
                 currentEnemyCount++;
             }
@@ -103,7 +103,7 @@ public class EnemySpawner : MonoBehaviour
                 Vector3 SpawnLocation = availableSpawns[0];
                 spawnedEnemy = Instantiate(enemiesTypes[i], SpawnLocation, Quaternion.identity);
                 Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
-                enemyScrp.spawner = this.GetComponent<EnemySpawner>();
+                enemyScrp.spawner = this;
                 availableSpawns.RemoveAt(0);
                 currentEnemyCount++;
             }

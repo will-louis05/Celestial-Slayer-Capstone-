@@ -29,10 +29,10 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("CanMove", !speared);
 
-        foreach (var joint in joints)
-        {
-            joint.GetComponent<Rigidbody>().isKinematic = true;
-        }
+        //foreach (var joint in joints)
+        //{
+        //    joint.GetComponent<Rigidbody>().isKinematic = true;
+        //}
     }
 
     void Update()
