@@ -23,7 +23,7 @@ public class BasicSpear : MonoBehaviour
 
     private Vector3 aimPoint;
 
-    private float timer = 0.01f;
+    //private float timer = 0.01f;
 
     [Header("SFX")]
     [SerializeField] private AudioSource hitSFX;
@@ -68,13 +68,10 @@ public class BasicSpear : MonoBehaviour
             if (collision.collider.CompareTag("Enemy"))
             {
                 acceptAngle = true;
-                Debug.Log("InsideEnemy");
             }
 
             if (acceptAngle)
                 SpearHit(collision);
-            if (stuck)
-                gameObject.layer = 0;
         }
     }
 
@@ -90,9 +87,7 @@ public class BasicSpear : MonoBehaviour
     {
         inCollision = true;
         Transform collisionTraform = collision.transform;
-        if (collisionTraform.CompareTag("Enemy"))
-            collisionTraform = collisionTraform.root;
-        Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
+            
         ISpearedObj spearedObj = collisionTraform.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTraform.GetComponent<Rigidbody>();
 
@@ -104,14 +99,22 @@ public class BasicSpear : MonoBehaviour
             if (pierce)
                 PierceAmount(collision);          
         }
-        else if (enemyScrp != null)
+        else if (collisionTraform.CompareTag("Enemy"))
         {
+            Transform limbhit = collisionTraform;
+            collisionTraform = collisionTraform.root;
+           
+            Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
+
             spearedEnemies.Add(enemyScrp);
             PierceAmount(collision);
-            enemyScrp.EnemySpeared(spearRb);     
-            RbObjSpeared(spearedRb);
-            Debug.Log("EnemyStuck");
-
+            bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed);  
+            if (failedToPierce)
+            {
+                Destroy(spearRb);
+                stuck = true;
+                transform.SetParent(limbhit);
+            }
         }
         else if (spearedRb != null)
         {
@@ -143,6 +146,7 @@ public class BasicSpear : MonoBehaviour
 
     void PierceAmount(Collision collision)
     {
+        collision.collider.enabled = false;
         Vector3 contactPoint = collision.GetContact(0).point;
 
         float impaleDistance = preCollisionSpeed * spearSpeedRatio;
@@ -172,6 +176,7 @@ public class BasicSpear : MonoBehaviour
             //if (!c.GetComponent<Enemy>())
                 c.enabled = true;
         }
+        collision.collider.enabled = false;
     }
 
     void RbObjSpeared(Rigidbody spearedRb)
@@ -182,8 +187,8 @@ public class BasicSpear : MonoBehaviour
         float inveseForce = spearedRb.mass * inverseForceRatio;
 
         //BUGFIX if hit immediately auto set speed
-        if (Time.deltaTime < timer)
-            preCollisionSpeed = 90f;
+        //if (Time.deltaTime < timer)
+        //    preCollisionSpeed = 90f;
 
         float postCollisionSpeed = preCollisionSpeed - inveseForce;
 
@@ -209,11 +214,6 @@ public class BasicSpear : MonoBehaviour
         if (collider != null) // && !collider.GetComponent<Enemy>())
             collider.enabled = false;
 
-        if(collider.CompareTag("Enemy"))
-        {
-            collider.enabled = false;
-        }
-
         Destroy(spearedRb);
 
         spearRb.linearVelocity = postCollisionSpeed * transform.forward;
@@ -233,12 +233,15 @@ public class BasicSpear : MonoBehaviour
         }
     }
 
-    public void SpearDestory()
+    public void SpearDestroy()
     {
         for (int i = 0; i < spearedObjects.Count; i++)
         {
             GameObject spearedObject = spearedObjects[i];
             spearedObject.transform.SetParent(null);
+            if (spearedObject.CompareTag("Enemy"))
+                continue;
+
             Rigidbody objRb = spearedObject.AddComponent<Rigidbody>();
             objRb.mass = spearedObjectsMass[i];
             objRb.isKinematic = false;
@@ -249,8 +252,7 @@ public class BasicSpear : MonoBehaviour
             if (collider != null) // && !collider.GetComponent<Enemy>())
                 collider.enabled = true;
 
-            if (spearedObject.CompareTag("Enemy"))
-                Destroy(spearedObject);
+            
         }
 
         Destroy(gameObject);

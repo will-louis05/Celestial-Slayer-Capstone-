@@ -10,7 +10,6 @@ public class GroundCheck : MonoBehaviour
 
     private void Start()
     {
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("NotGround"), LayerMask.NameToLayer("GroundCheck"));
         playerController = transform.parent.GetComponent<PlayerController>();
 
         airTimer = requiredAirTime;
