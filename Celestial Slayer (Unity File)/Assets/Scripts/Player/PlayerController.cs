@@ -79,8 +79,6 @@ public class PlayerController : MonoBehaviour
             spearCrosshairs[i] = spearCrossParent.GetChild(i).gameObject;
         }
 
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Spear"));
-
         throwStrength = minThrowStrength;
         currentSpearCount = totalSpearCount;
     }
@@ -392,7 +390,7 @@ public class PlayerController : MonoBehaviour
             foreach(GameObject thrownSpear in thrownSpears)
             {
                 BasicSpear spearScr = thrownSpear.GetComponent<BasicSpear>();
-                spearScr.SpearDestory();
+                spearScr.SpearDestroy();
             }
             reloadParticle.Stop();
 
