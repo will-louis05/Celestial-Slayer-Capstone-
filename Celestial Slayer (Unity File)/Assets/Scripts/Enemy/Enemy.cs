@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float regainSpeed;
     [SerializeField] private float spearSpeedDecreaseRatio;
+    [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     public float damage;
 
     [Header("SFX")]
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("CanMove", !speared);
 
+        skinnedMeshRenderer.material.color = Color.green;
         foreach (var joint in joints)
         {
             joint.GetComponent<Rigidbody>().isKinematic = true;
@@ -40,10 +42,10 @@ public class Enemy : MonoBehaviour
     {
         if (speared)
         {
-            if (spearRb.linearVelocity.magnitude < regainSpeed)
-            {
-                RegainControl();
-            }
+            //if (spearRb.linearVelocity.magnitude < regainSpeed)
+            //{
+            //    RegainControl();
+            //}
         }
     }
 
@@ -57,10 +59,11 @@ public class Enemy : MonoBehaviour
         Debug.Log("spearSpeed postFix = " + spearSpeed);
 
         float postCollisionSpeed = spearSpeed - inveseForce;
-        Debug.Log("postColSpeed");
+
         if (postCollisionSpeed < 0)
         {
             Debug.Log("SpearTooSlow");
+            skinnedMeshRenderer.material.color = Color.blue;
             return true;
         }
 
@@ -72,6 +75,8 @@ public class Enemy : MonoBehaviour
 
         navMesh.enabled = false;
         behaviorGraph.enabled = false;
+
+        skinnedMeshRenderer.material.color = Color.yellow;
 
         foreach (var joint in joints)
         {
@@ -102,6 +107,7 @@ public class Enemy : MonoBehaviour
         speared = false;
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
         animator.SetBool("CanMove", !speared);
+        skinnedMeshRenderer.material.color = Color.black;
     }
 
     private void Killed()
@@ -112,7 +118,7 @@ public class Enemy : MonoBehaviour
 
         //Enable gravity on death
         animator.enabled = false;
-
+        skinnedMeshRenderer.material.color = Color.red;
         spawner.currentEnemyCount--;
         Debug.Log("enemyKilled");
         Destroy(this);

@@ -65,12 +65,12 @@ public class BasicSpear : MonoBehaviour
         {
             bool acceptAngle = RayCheck();
             //Spears enemies when spear is already inside them before being thrown
-            if (collision.collider.CompareTag("Enemy"))
-            {
-                acceptAngle = true;
-            }
-
-            if (acceptAngle)
+            //if (collision.collider.CompareTag("Enemy"))
+            //{
+            //    acceptAngle = true;
+            //}
+            
+            if (acceptAngle && !spearedObjects.Contains(collision.gameObject))
                 SpearHit(collision);
         }
     }
@@ -111,7 +111,7 @@ public class BasicSpear : MonoBehaviour
             bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed);  
             if (failedToPierce)
             {
-                Destroy(spearRb);
+                spearRb.isKinematic = true;
                 stuck = true;
                 transform.SetParent(limbhit);
             }
@@ -199,7 +199,8 @@ public class BasicSpear : MonoBehaviour
             stuck = true;
             transform.SetParent(spearedRb.transform, true);
             spearBodyCollider.gameObject.layer = 0;
-            Destroy(spearRb);
+
+            spearRb.isKinematic = true;
             return;
         }
 
@@ -222,8 +223,8 @@ public class BasicSpear : MonoBehaviour
     private void SpearStuck(Collision collision)
     {
         //Allow Player To Interact With Spear Again
-        spearBodyCollider.gameObject.layer = 0;
-        Destroy(spearRb);
+        spearBodyCollider.gameObject.layer = 0;    
+        spearRb.isKinematic = true;
         if(spearedEnemies.Count > 0)
         {
             foreach(Enemy enemy in spearedEnemies)

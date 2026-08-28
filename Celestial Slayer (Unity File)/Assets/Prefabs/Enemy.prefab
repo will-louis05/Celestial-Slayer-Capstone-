@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40f4fffc3e89a34f89dde126ff896a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  enemyMass: 0
   spawner: {fileID: 0}
   joints:
   - {fileID: 8318302388270373171}
@@ -235,6 +236,8 @@ MonoBehaviour:
   - {fileID: 7415853353106289349}
   attackScrpt: {fileID: 0}
   regainSpeed: 15
+  spearSpeedDecreaseRatio: 0
+  skinnedMeshRenderer: {fileID: 8566035275952141067}
   damage: 30
   deathSFX: {fileID: 3207733307377159511}
 --- !u!65 &4190850932243257097
@@ -1122,5 +1125,10 @@ GameObject:
 --- !u!1 &8318302388270373171 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6353968148233485842, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
+  m_PrefabInstance: {fileID: 3124758920056923937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8566035275952141067 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6754823418332206122, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
   m_PrefabInstance: {fileID: 3124758920056923937}
   m_PrefabAsset: {fileID: 0}
