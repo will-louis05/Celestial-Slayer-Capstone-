@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private CanvasGroup textGroup;
     [SerializeField] private CanvasGroup panelGroup;
 
-    [SerializeField] private float delay = 2f;
+    [SerializeField] private float delay = 4f;
     [SerializeField] private float slowDuration = 1f;
     [SerializeField] private float quickDuration = 0.3f;
     [SerializeField] private Ease ease = Ease.OutQuint;
