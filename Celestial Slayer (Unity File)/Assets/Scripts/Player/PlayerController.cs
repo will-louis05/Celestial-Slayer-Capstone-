@@ -145,14 +145,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (inReload && disableMovementInReload)
-        {
+        Movement();
 
-        }
-        else
-        {
-            Movement();
-        }
 
         if(heldSpear != null)
         {
@@ -200,6 +194,11 @@ public class PlayerController : MonoBehaviour
             moveSpeed = groundMoveSpeed;
             maxSpeed = moveSpeed;
             runSFX.pitch = 1f;
+        }
+
+        if (inReload && disableMovementInReload)
+        {
+            moveSpeed = 0;
         }
         rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
 

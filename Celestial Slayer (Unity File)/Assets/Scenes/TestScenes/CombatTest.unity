@@ -188,7 +188,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -890,7 +890,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -1166,12 +1166,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488916935}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.03973454, y: -0.08091734, z: -0.8420954, w: 0.5317413}
-  m_LocalPosition: {x: 0.0001261828, y: 0.0019301041, z: -0.00040705933}
-  m_LocalScale: {x: 0.0010173114, y: 0.0010173117, z: 0.0052084327}
+  m_LocalRotation: {x: -0.00000017881389, y: 0.00000006086969, z: -0.00000008600646, w: 1}
+  m_LocalPosition: {x: -2.5209997, y: 3.5139997, z: -3.658}
+  m_LocalScale: {x: 0.1928535, y: 0.19285347, z: 0.987371}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1097164284}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!138 &488916941
 FixedJoint:
@@ -1181,7 +1181,7 @@ FixedJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488916935}
   serializedVersion: 1
-  m_ConnectedBody: {fileID: 0}
+  m_ConnectedBody: {fileID: 1974079639}
   m_ConnectedArticulationBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -1258,7 +1258,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2861,10 +2861,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8491639716474049611, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 488916940}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6353968148233485842, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
       insertIndex: -1
@@ -2973,11 +2970,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -2103229249255568745, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
   m_PrefabInstance: {fileID: 1052327270}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1097164284 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8491639716474049611, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
-  m_PrefabInstance: {fileID: 1052327270}
-  m_PrefabAsset: {fileID: 0}
 --- !u!144 &1097164285
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -3015,7 +3007,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -3116,7 +3108,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -3555,7 +3547,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -3606,7 +3598,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -4612,7 +4604,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -5147,7 +5139,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -5472,7 +5464,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -5894,6 +5886,10 @@ PrefabInstance:
     - target: {fileID: 2897352963628989822, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976073523869511186, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3053527578134707293, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
       propertyPath: m_Layer
@@ -6365,4 +6361,5 @@ SceneRoots:
   - {fileID: 7467392358355079291}
   - {fileID: 837062922}
   - {fileID: 1226041153}
+  - {fileID: 488916940}
   - {fileID: 1052327270}

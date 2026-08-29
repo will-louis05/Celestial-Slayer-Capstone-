@@ -20,6 +20,7 @@ public class BasicSpear : MonoBehaviour
     private bool inCollision = false;
     private float preCollisionSpeed;
     private List<Enemy> spearedEnemies = new List<Enemy>();
+    private float timer = 0.01f;
 
     private Vector3 aimPoint;
 
@@ -105,16 +106,26 @@ public class BasicSpear : MonoBehaviour
             collisionTraform = collisionTraform.root;
            
             Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
-
-            spearedEnemies.Add(enemyScrp);
-            PierceAmount(collision);
-            Debug.Log("spearRb = " + spearRb.name + " limb = " + limbhit + " preSpeed =" + preCollisionSpeed + " enemyScrp" + enemyScrp.name);
-            bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed);  
-            if (failedToPierce)
+            if (enemyScrp != null)
             {
-                spearRb.isKinematic = true;
+                //BUGFIX if hit immediately auto set speed
+                if (Time.deltaTime < timer)
+                    preCollisionSpeed = 90f;
+
+                spearedEnemies.Add(enemyScrp);
+                PierceAmount(collision);
+                bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed, collision);
+                if (failedToPierce)
+                {
+                    spearRb.isKinematic = true;
+                    stuck = true;
+                    transform.SetParent(limbhit);
+                }
+            }
+            else
+            {
+                PierceAmount(collision);
                 stuck = true;
-                transform.SetParent(limbhit);
             }
         }
         else if (spearedRb != null)

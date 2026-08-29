@@ -117,4 +117,5 @@ public struct WaveData
 {
     public bool randomSpawns;
     public int[] enemyTypeSpawnNumber;
+    public Transform waveSpawns;
 }

@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     [SerializeField] private GameObject[] joints;
     public EnemyAttack attackScrpt;
-    private float timer = 0.01f;
+
 
     [SerializeField] private float regainSpeed;
     [SerializeField] private float spearSpeedDecreaseRatio;
@@ -40,29 +40,18 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (speared)
-        {
-            //if (spearRb.linearVelocity.magnitude < regainSpeed)
-            //{
-            //    RegainControl();
-            //}
-        }
+        
+
     }
 
-    public bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed)
+    public bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision)
     {
-        Debug.Log("spearSpeed = " + spearSpeed);
         float inveseForce = enemyMass * spearSpeedDecreaseRatio;
-        //BUGFIX if hit immediately auto set speed
-        if (Time.deltaTime < timer)
-            spearSpeed = 90f;
-        Debug.Log("spearSpeed postFix = " + spearSpeed);
 
         float postCollisionSpeed = spearSpeed - inveseForce;
 
         if (postCollisionSpeed < 0)
         {
-            Debug.Log("SpearTooSlow");
             skinnedMeshRenderer.material.color = Color.blue;
             return true;
         }
@@ -77,23 +66,21 @@ public class Enemy : MonoBehaviour
         behaviorGraph.enabled = false;
 
         skinnedMeshRenderer.material.color = Color.yellow;
-
+        int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
         foreach (var joint in joints)
         {
             joint.GetComponent<Rigidbody>().isKinematic = false;
+            joint.layer = spearIgnoreLayer;
         }
 
-        FixedJoint spearFixedJoint = spearRigidbody.transform.AddComponent<FixedJoint>();
-        spearFixedJoint.connectedBody = limbhit.GetComponent<Rigidbody>();
+        FixedJoint limbFixedJoint = limbhit.AddComponent<FixedJoint>();
+        limbFixedJoint.connectedBody = spearRb.transform.GetComponent<Rigidbody>();
 
-        spearRb.linearVelocity = postCollisionSpeed * transform.forward;
+        Debug.Log(postCollisionSpeed);
+        spearRb.linearVelocity = postCollisionSpeed * spearRb.transform.forward;
 
         return false;
     }
-
-
-
-
 
 
 
@@ -117,11 +104,15 @@ public class Enemy : MonoBehaviour
         deathSFX.pitch = Random.Range(1.3f, 1.5f);
         deathSFX.Play();
 
-        //Enable gravity on death
-        animator.enabled = false;
+        //Make Them SpearableAgain
+        int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
+        foreach (var joint in joints)
+        {
+            joint.layer = spearIgnoreLayer;
+        }
+
         skinnedMeshRenderer.material.color = Color.red;
         spawner.currentEnemyCount--;
-        Debug.Log("enemyKilled");
         Destroy(this);
         Destroy(attackScrpt);
     }
