@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource runSFX;
     [SerializeField] private AudioSource throwSFX;
     [SerializeField] private AudioSource jumpSFX;
-    //[SerializeField] private AudioSource landSFX;
     [SerializeField] private AudioSource recallSFX;
+    //[SerializeField] private AudioSource landSFX;
 
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
@@ -313,7 +313,7 @@ public class PlayerController : MonoBehaviour
             spearCrosshairs[currentSpearCount].SetActive(false);
 
             //Throw SFX
-            throwSFX.pitch = Random.Range(1.1f, 1.3f);
+            throwSFX.pitch = Random.Range(0.9f, 1.1f);
             throwSFX.Play();
             
             particleSpeedLines[0].Play();

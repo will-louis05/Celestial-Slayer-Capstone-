@@ -239,7 +239,7 @@ MonoBehaviour:
   spearSpeedDecreaseRatio: 0
   skinnedMeshRenderer: {fileID: 8566035275952141067}
   damage: 30
-  deathSFX: {fileID: 3207733307377159511}
+  enemySFX: {fileID: 0}
 --- !u!65 &4190850932243257097
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -693,7 +693,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.75
       inSlope: 0
       outSlope: 0
       tangentMode: 0
