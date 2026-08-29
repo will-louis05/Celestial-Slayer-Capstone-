@@ -108,6 +108,7 @@ public class BasicSpear : MonoBehaviour
 
             spearedEnemies.Add(enemyScrp);
             PierceAmount(collision);
+            Debug.Log("spearRb = " + spearRb.name + " limb = " + limbhit + " preSpeed =" + preCollisionSpeed + " enemyScrp" + enemyScrp.name);
             bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed);  
             if (failedToPierce)
             {
@@ -176,7 +177,7 @@ public class BasicSpear : MonoBehaviour
             //if (!c.GetComponent<Enemy>())
                 c.enabled = true;
         }
-        collision.collider.enabled = false;
+        collision.collider.enabled = true;
     }
 
     void RbObjSpeared(Rigidbody spearedRb)

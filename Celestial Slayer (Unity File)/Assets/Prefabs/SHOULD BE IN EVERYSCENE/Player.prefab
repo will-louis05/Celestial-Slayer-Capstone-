@@ -5830,6 +5830,7 @@ GameObject:
   - component: {fileID: 3732700945501936046}
   - component: {fileID: 5227552397123336632}
   - component: {fileID: 3292132757614412497}
+  - component: {fileID: 5774707333810793777}
   m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -5924,12 +5925,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: -0.000000029802322, z: 0}
+--- !u!114 &5774707333810793777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851665820072702759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a28e91b58f2a54cbaac0dc0a186547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+  landSFX: {fileID: 109071039115373881}
+  requiredAirTime: 1
 --- !u!1 &7239181631361051105
 GameObject:
   m_ObjectHideFlags: 0

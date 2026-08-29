@@ -86,6 +86,7 @@ public class Enemy : MonoBehaviour
         FixedJoint spearFixedJoint = spearRigidbody.transform.AddComponent<FixedJoint>();
         spearFixedJoint.connectedBody = limbhit.GetComponent<Rigidbody>();
 
+        spearRb.linearVelocity = postCollisionSpeed * transform.forward;
 
         return false;
     }
