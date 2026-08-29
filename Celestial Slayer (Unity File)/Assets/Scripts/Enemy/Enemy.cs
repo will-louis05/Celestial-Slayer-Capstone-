@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     private BehaviorGraphAgent behaviorGraph;
     private bool speared;
     [SerializeField] private float enemyMass;
+    private Rigidbody enemyRb;
+    private Collider enemyCollider;
     private Rigidbody spearRb;
     public EnemySpawner spawner;
     private NavMeshAgent navMesh;
@@ -15,17 +17,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject[] joints;
     public EnemyAttack attackScrpt;
 
-
     [SerializeField] private float regainSpeed;
     [SerializeField] private float spearSpeedDecreaseRatio;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     public float damage;
 
     [Header("SFX")]
-    [SerializeField] private AudioSource deathSFX;
+    [SerializeField] private AudioSource enemySFX;
 
     void Start()
     {
+        enemyRb = GetComponent<Rigidbody>();
+        enemyCollider = GetComponent<Collider>();
+
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
         navMesh = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -41,7 +45,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
-
     }
 
     public bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision)
@@ -69,21 +72,31 @@ public class Enemy : MonoBehaviour
         int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
         foreach (var joint in joints)
         {
-            joint.GetComponent<Rigidbody>().isKinematic = false;
+            //Bugfix ensure joint has rigidbody
+            Rigidbody jointrb = joint.GetComponent<Rigidbody>();
+            if (jointrb != null)
+                jointrb.isKinematic = false;
+
+            //joint.GetComponent<Rigidbody>().isKinematic = false;
             joint.layer = spearIgnoreLayer;
         }
 
         FixedJoint limbFixedJoint = limbhit.AddComponent<FixedJoint>();
         limbFixedJoint.connectedBody = spearRb.transform.GetComponent<Rigidbody>();
 
-        Debug.Log(postCollisionSpeed);
-        spearRb.linearVelocity = postCollisionSpeed * spearRb.transform.forward;
+        //spearRb.linearVelocity = postCollisionSpeed * spearRb.transform.forward;
+
+        //Bugfix apply velocity to both spear and enemy
+        Vector3 velocity = postCollisionSpeed * spearRb.transform.forward;
+        spearRb.linearVelocity = velocity;
+        enemyRb.isKinematic = false;
+        enemyRb.linearVelocity = velocity;
+
+        attackScrpt.enabled = false;
+        //enemyCollider.enabled = false;
 
         return false;
     }
-
-
-
 
     public void EnemyStuck()
     {
@@ -92,6 +105,9 @@ public class Enemy : MonoBehaviour
 
     private void RegainControl()
     {
+        attackScrpt.enabled = true;
+        enemyRb.isKinematic = true;
+
         speared = false;
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
         animator.SetBool("CanMove", !speared);
@@ -100,9 +116,8 @@ public class Enemy : MonoBehaviour
 
     private void Killed()
     {
-        //Death SFX
-        deathSFX.pitch = Random.Range(1.3f, 1.5f);
-        deathSFX.Play();
+        enemyRb.isKinematic = true;
+        //enemyCollider.enabled = true;
 
         //Make Them SpearableAgain
         int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
