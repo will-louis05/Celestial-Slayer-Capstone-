@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 567914824859416514}
   - component: {fileID: 6471174729740590417}
-  - component: {fileID: 2353345011533518376}
-  - component: {fileID: 3154824847848586285}
-  - component: {fileID: 581370576820692178}
   m_Layer: 8
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -60,98 +57,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2353345011533518376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482427714760531327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e40f4fffc3e89a34f89dde126ff896a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyMass: 80
-  spawner: {fileID: 0}
-  joints:
-  - {fileID: 8318302388270373171}
-  - {fileID: 2995388591689662181}
-  - {fileID: 2931947309072339602}
-  - {fileID: 4818904910527550022}
-  - {fileID: 6802958628445447639}
-  - {fileID: 2117769476651999480}
-  - {fileID: 5301453139316108726}
-  - {fileID: 4983992880455506606}
-  - {fileID: 5896700445545549182}
-  - {fileID: 6986853272506172331}
-  - {fileID: 7415853353106289349}
-  attackScrpt: {fileID: 0}
-  regainSpeed: 15
-  spearSpeedDecreaseRatio: 0.01
-  skinnedMeshRenderer: {fileID: 8566035275952141067}
-  damage: 30
-  enemySFX: {fileID: 0}
---- !u!195 &3154824847848586285
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482427714760531327}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &581370576820692178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3482427714760531327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
-  m_Graph: {fileID: -4348025084845766074, guid: 7171a8d805e05274bb589cfe00469f6c, type: 2}
-  m_BlackboardVariableOverridesList:
-  - rid: 4375641815185883376
-  - rid: 4375641815185883377
-  m_OriginalGraph: {fileID: -4348025084845766074, guid: 7171a8d805e05274bb589cfe00469f6c, type: 2}
-  m_IsInitialised: 0
-  m_IsStarted: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 4375641815185883376
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        m_Value: {fileID: 3482427714760531327, guid: 711db2b567f11864bb47d72e370397d2, type: 3}
-    - rid: 4375641815185883377
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 16989680183115384724
-          m_Value1: 6915944402714386302
-        Name: Target (Player)
-        m_Value: {fileID: 0}
 --- !u!1 &3541821996213385544
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e95e92100b980442bfc5b75d1ab8744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  enemyParent: {fileID: 2353345011533518376}
+  enemyParent: {fileID: 0}
 --- !u!135 &478106262658996273
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -494,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e95e92100b980442bfc5b75d1ab8744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  enemyParent: {fileID: 2353345011533518376}
+  enemyParent: {fileID: 0}
 --- !u!1 &7598403643998740346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,8 +2027,3 @@ CapsuleCollider:
   m_Height: 0.0028770491
   m_Direction: 1
   m_Center: {x: -0.0000157237, y: 0.0007069817, z: -0.0003736861}
---- !u!137 &8566035275952141067 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6754823418332206122, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
-  m_PrefabInstance: {fileID: 3124758920056923937}
-  m_PrefabAsset: {fileID: 0}

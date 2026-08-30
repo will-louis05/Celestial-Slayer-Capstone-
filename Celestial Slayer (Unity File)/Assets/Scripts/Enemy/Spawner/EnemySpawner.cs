@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
-using static GizmoSpawnLocations;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -57,7 +56,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        GameObject spawnedEnemy = null;
         List<Vector3> availableSpawns = spawnLocations;
         List <int> spawnType = new List<int>();
         if (waveData[currentWave].waveSpawns != null)
@@ -71,19 +69,12 @@ public class EnemySpawner : MonoBehaviour
         }
         bool randomEnemySpawns = waveData[currentWave].randomSpawns;
         if (randomEnemySpawns)
-            spawnedEnemy = RandomSpawn(availableSpawns, spawnedEnemy);
+            RandomSpawn(availableSpawns);
         else
-            spawnedEnemy = RegularSpawn(availableSpawns, spawnedEnemy, spawnType);
-
-        
-
-        BehaviorGraphAgent behaviorGraph = spawnedEnemy.GetComponent<BehaviorGraphAgent>();
-        GameObject player = GameObject.Find("Player");
-
-        behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+            RegularSpawn(availableSpawns, spawnType);
     }
 
-    private GameObject RandomSpawn(List<Vector3> availableSpawns, GameObject spawnedEnemy)
+    private void RandomSpawn(List<Vector3> availableSpawns)
     {
         for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
         {
@@ -94,19 +85,25 @@ public class EnemySpawner : MonoBehaviour
                 Vector3 randomSpawnLocation = availableSpawns[randomIndex];
 
                 //SpawnEnemy at random Location and set its parent as the spawner
-                spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity);
+                GameObject spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity);
                 Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
                 enemyScrp.spawner = this;
                 availableSpawns.RemoveAt(randomIndex);
                 currentEnemyCount++;
             }
+            Debug.Log("eType = " + enemiesTypes[i]);
+            BehaviorGraphAgent behaviorGraph = enemiesTypes[i].GetComponent<BehaviorGraphAgent>();
+
+            if (behaviorGraph != null)
+            {
+                GameObject player = GameObject.Find("Player");
+                behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+            }
         }
-        return spawnedEnemy;
     }
 
-    private GameObject RegularSpawn(List<Vector3> availableSpawns, GameObject spawnedEnemy, List<int> enemyType)
+    private void RegularSpawn(List<Vector3> availableSpawns, List<int> enemyType)
     {
-        Debug.Log("InRegularSpawn");
         for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
         {
             while(true)
@@ -115,27 +112,30 @@ public class EnemySpawner : MonoBehaviour
                 int spawnIndex = -1;
                 for (int k = 0; k < enemyType.Count; k++)
                 {
-                    Debug.Log("InIndex");
                     if(enemyType[k] == i)
                     {
                         spawnIndex = k; 
                         enemyType.RemoveAt(k);
-                        Debug.Log(spawnIndex);
                         break;               
                     }
                 }
                 if (spawnIndex == -1)
                     break;
-                Debug.Log("stillinSpawn");
                 Vector3 spawnLocation = availableSpawns[spawnIndex];
-                spawnedEnemy = Instantiate(enemiesTypes[i], spawnLocation, Quaternion.identity);
+                GameObject spawnedEnemy = Instantiate(enemiesTypes[i], spawnLocation, Quaternion.identity);
                 Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
                 enemyScrp.spawner = this;
                 availableSpawns.RemoveAt(0);
                 currentEnemyCount++;
             }
+
+            BehaviorGraphAgent behaviorGraph = enemiesTypes[i].GetComponent<BehaviorGraphAgent>();
+            if(behaviorGraph != null)
+            {
+                GameObject player = GameObject.Find("Player");
+                behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+            }
         }
-        return spawnedEnemy;
     }
 }
 
