@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
+using static GizmoSpawnLocations;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -58,11 +59,21 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject spawnedEnemy = null;
         List<Vector3> availableSpawns = spawnLocations;
+        List <int> spawnType = new List<int>();
+        if (waveData[currentWave].waveSpawns != null)
+        {
+            int spawnLocationsCount = waveData[currentWave].waveSpawns.childCount;
+            for (int i = 0; i < spawnLocationsCount; i++)
+            {
+                availableSpawns.Add(waveData[currentWave].waveSpawns.GetChild(i).position);
+                spawnType.Add(waveData[currentWave].waveSpawns.GetChild(i).GetComponent<GizmoSpawnLocations>().enemyTypeInt);
+            }
+        }
         bool randomEnemySpawns = waveData[currentWave].randomSpawns;
         if (randomEnemySpawns)
             spawnedEnemy = RandomSpawn(availableSpawns, spawnedEnemy);
         else
-            spawnedEnemy = RegularSpawn(availableSpawns, spawnedEnemy);
+            spawnedEnemy = RegularSpawn(availableSpawns, spawnedEnemy, spawnType);
 
         
 
@@ -93,15 +104,31 @@ public class EnemySpawner : MonoBehaviour
         return spawnedEnemy;
     }
 
-    private GameObject RegularSpawn(List<Vector3> availableSpawns, GameObject spawnedEnemy)
+    private GameObject RegularSpawn(List<Vector3> availableSpawns, GameObject spawnedEnemy, List<int> enemyType)
     {
+        Debug.Log("InRegularSpawn");
         for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
         {
-            for (int j = 0; j < waveData[currentWave].enemyTypeSpawnNumber[i]; j++)
+            while(true)
             {
-                //SpawnEnemy at first Location and set its parent as the spawner remove spawn
-                Vector3 SpawnLocation = availableSpawns[0];
-                spawnedEnemy = Instantiate(enemiesTypes[i], SpawnLocation, Quaternion.identity);
+                //Find Spawner, if not spawner break to the next enemy
+                int spawnIndex = -1;
+                for (int k = 0; k < enemyType.Count; k++)
+                {
+                    Debug.Log("InIndex");
+                    if(enemyType[k] == i)
+                    {
+                        spawnIndex = k; 
+                        enemyType.RemoveAt(k);
+                        Debug.Log(spawnIndex);
+                        break;               
+                    }
+                }
+                if (spawnIndex == -1)
+                    break;
+                Debug.Log("stillinSpawn");
+                Vector3 spawnLocation = availableSpawns[spawnIndex];
+                spawnedEnemy = Instantiate(enemiesTypes[i], spawnLocation, Quaternion.identity);
                 Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
                 enemyScrp.spawner = this;
                 availableSpawns.RemoveAt(0);

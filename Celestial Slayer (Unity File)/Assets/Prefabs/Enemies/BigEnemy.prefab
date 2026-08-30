@@ -150,7 +150,7 @@ MonoBehaviour:
   regainSpeed: 15
   spearSpeedDecreaseRatio: 0.01
   skinnedMeshRenderer: {fileID: 8566035275952141067}
-  damage: 30
+  damage: 40
   enemySFX: {fileID: 0}
 --- !u!1 &3541821996213385544
 GameObject:
@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 8823114441109087529}
   - component: {fileID: 7428901917012146439}
   - component: {fileID: 4942167845760819390}
+  - component: {fileID: 3027718424426695297}
   m_Layer: 0
   m_Name: AttackHitBox
   m_TagString: Enemy
@@ -256,6 +257,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
   enemyParent: {fileID: 2353345011533518376}
+--- !u!135 &3027718424426695297
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541821996213385544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.50000024
+  m_Center: {x: 0.00000047683716, y: 0.0000009536743, z: 0.0000009536743}
 --- !u!1 &4334882082594487449
 GameObject:
   m_ObjectHideFlags: 0

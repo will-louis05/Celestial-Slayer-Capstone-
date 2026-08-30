@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class BasicSpear : MonoBehaviour
+public class BasicSpear : Spear
 {
     [Header("Spear Stats")]
     [SerializeField] private float spearLegnth;
@@ -11,14 +11,11 @@ public class BasicSpear : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Transform angleCheck;
 
-    private Collider spearBodyCollider;
-    private Rigidbody spearRb;
     private List<float> spearedObjectsMass = new List<float>();
     private List<GameObject> spearedObjects = new List<GameObject>();
-    private bool held = true;
+    
     private bool stuck = false;
     private bool inCollision = false;
-    private float preCollisionSpeed;
     private List<Enemy> spearedEnemies = new List<Enemy>();
     private float timer = 0.01f;
 
@@ -42,23 +39,7 @@ public class BasicSpear : MonoBehaviour
             preCollisionSpeed = spearRb.linearVelocity.magnitude;
     }
 
-    public void SpearThrown(float throwStrength, float maxThrowStrength)
-    {
-        transform.SetParent(null);
-
-        Transform camTransform = Camera.main.transform;
-
-        Vector3 moveDirection = camTransform.forward * throwStrength * 250f;
-
-        spearBodyCollider.enabled = true;
-
-        spearRb.isKinematic = false;
-        spearRb.useGravity = true;
-        held = false;
-
-        spearRb.AddForce(moveDirection, ForceMode.Impulse);
-        preCollisionSpeed = moveDirection.magnitude;
-    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {

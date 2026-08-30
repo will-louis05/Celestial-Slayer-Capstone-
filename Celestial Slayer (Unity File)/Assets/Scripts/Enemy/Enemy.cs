@@ -34,8 +34,8 @@ public class Enemy : MonoBehaviour
         navMesh = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         animator.SetBool("CanMove", !speared);
-
-        skinnedMeshRenderer.material.color = Color.green;
+        ////DEBUG TOOL
+        //skinnedMeshRenderer.material.color = Color.green;
         foreach (var joint in joints)
         {
             joint.GetComponent<Rigidbody>().isKinematic = true;
@@ -53,11 +53,12 @@ public class Enemy : MonoBehaviour
 
         float postCollisionSpeed = spearSpeed - inveseForce;
 
-        if (postCollisionSpeed < 0)
-        {
-            skinnedMeshRenderer.material.color = Color.blue;
-            return true;
-        }
+        ////DEBUG TOOL
+        //if (postCollisionSpeed < 0)
+        //{
+        //    skinnedMeshRenderer.material.color = Color.blue;
+        //    return true;
+        //}
 
         spearRb = spearRigidbody;
         speared = true;
@@ -68,7 +69,8 @@ public class Enemy : MonoBehaviour
         navMesh.enabled = false;
         behaviorGraph.enabled = false;
 
-        skinnedMeshRenderer.material.color = Color.yellow;
+        ////DEBUG TOOL
+        //skinnedMeshRenderer.material.color = Color.yellow;
         int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
         foreach (var joint in joints)
         {
@@ -111,7 +113,8 @@ public class Enemy : MonoBehaviour
         speared = false;
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
         animator.SetBool("CanMove", !speared);
-        skinnedMeshRenderer.material.color = Color.black;
+        ////DEBUG TOOL
+        //skinnedMeshRenderer.material.color = Color.black;
     }
 
     private void Killed()
@@ -125,8 +128,8 @@ public class Enemy : MonoBehaviour
         {
             joint.layer = spearIgnoreLayer;
         }
-
-        skinnedMeshRenderer.material.color = Color.red;
+        ////Debug TOOL
+        //skinnedMeshRenderer.material.color = Color.red;
         spawner.currentEnemyCount--;
         Destroy(this);
         Destroy(attackScrpt);

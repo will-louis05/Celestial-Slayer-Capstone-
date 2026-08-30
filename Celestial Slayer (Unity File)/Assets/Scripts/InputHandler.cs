@@ -39,7 +39,7 @@ public class InputHandler : MonoBehaviour
     public bool jumpTriggered;
     public bool shoulderSwitchTriggered;
     public bool equipBasicSpearTriggered;
-    public bool equipTranferTriggered;
+    public bool equipTranferSpearTriggered;
     public bool fireTriggered;
     public bool reloadTriggered;
 
@@ -105,8 +105,8 @@ public class InputHandler : MonoBehaviour
         equipBasicSpearAction.performed += context => equipBasicSpearTriggered = true;
         equipBasicSpearAction.canceled += context => equipBasicSpearTriggered = false;
 
-        equipTranferSpearAction.performed += context => equipTranferTriggered = true;
-        equipTranferSpearAction.canceled += context => equipTranferTriggered = false;
+        equipTranferSpearAction.performed += context => equipTranferSpearTriggered = true;
+        equipTranferSpearAction.canceled += context => equipTranferSpearTriggered = false;
 
         reloadAction.performed += context => reloadTriggered = true;
         reloadAction.canceled += context => reloadTriggered = false;

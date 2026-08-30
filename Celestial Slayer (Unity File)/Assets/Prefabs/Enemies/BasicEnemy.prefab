@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 8823114441109087529}
   - component: {fileID: 7428901917012146439}
   - component: {fileID: 4942167845760819390}
+  - component: {fileID: 9066742769205840285}
   m_Layer: 0
   m_Name: AttackHitBox
   m_TagString: Enemy
@@ -180,8 +181,8 @@ Transform:
   m_GameObject: {fileID: 3541821996213385544}
   serializedVersion: 2
   m_LocalRotation: {x: -0.051056117, y: 0.72120935, z: -0.059756078, w: 0.6882439}
-  m_LocalPosition: {x: 0.000206, y: 0.001137, z: -0.000189}
-  m_LocalScale: {x: 0.0022399868, y: 0.002239987, z: 0.0022399866}
+  m_LocalPosition: {x: 0.000139, y: 0.001134, z: 0.00028}
+  m_LocalScale: {x: 0.0017186882, y: 0.0017186884, z: 0.0017186879}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1845018721006761566}
@@ -256,6 +257,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
   enemyParent: {fileID: 2353345011533518376}
+--- !u!135 &9066742769205840285
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541821996213385544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.50000024
+  m_Center: {x: 0.00000047683716, y: 0.0000009536743, z: 0.0000009536743}
 --- !u!1 &4334882082594487449
 GameObject:
   m_ObjectHideFlags: 0
