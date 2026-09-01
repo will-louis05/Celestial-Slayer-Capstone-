@@ -2,11 +2,15 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
+using System.Linq;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private List<Vector3> spawnLocations = new List<Vector3>();
-    [SerializeField] private GameObject[] enemiesTypes;
+    private List<Transform> spawnLocations = new List<Transform>();
+    [Header("Enemy Types")]
+    [SerializeField] private GameObject basicEnemy;
+    [SerializeField] private GameObject bruteEnemy;
+    [SerializeField] private GameObject flyingEnemy;
     [SerializeField] private WaveData[] waveData;
     private int totalWaves;
     private int currentWave;
@@ -14,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("DeveloperTools")]
     public bool spawnEnemies;
-    [SerializeField] private GameObject combatEventObj;
+    [SerializeField] private ICombatEvent combatEvent;
 
     
     void Start()
@@ -25,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
         int spawnLocationsCount = spawnLocationsParent.childCount;
         for (int i = 0; i < spawnLocationsCount; i++)
         {
-            spawnLocations.Add(spawnLocationsParent.GetChild(i).position);
+            spawnLocations.Add(spawnLocationsParent.GetChild(i));
         }
         totalWaves = waveData.Length;
     }
@@ -34,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
     {
         if (currentWave == totalWaves && currentEnemyCount == 0)
         {
-            ICombatEvent combatEvent = combatEventObj.GetComponent<ICombatEvent>();
             if (combatEvent != null) 
                 combatEvent.PostCombatEvent();
             Destroy(gameObject);
@@ -56,43 +59,43 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        List<Vector3> availableSpawns = spawnLocations;
-        List <int> spawnType = new List<int>();
+        List<Transform> availableSpawns = spawnLocations;
+        GameObject[] enemiesTypes = { basicEnemy, bruteEnemy, flyingEnemy };
+
         if (waveData[currentWave].waveSpawns != null)
         {
             int spawnLocationsCount = waveData[currentWave].waveSpawns.childCount;
             for (int i = 0; i < spawnLocationsCount; i++)
             {
-                availableSpawns.Add(waveData[currentWave].waveSpawns.GetChild(i).position);
-                spawnType.Add(waveData[currentWave].waveSpawns.GetChild(i).GetComponent<GizmoSpawnLocations>().enemyTypeInt);
+                availableSpawns.Add(waveData[currentWave].waveSpawns.GetChild(i));
             }
         }
         bool randomEnemySpawns = waveData[currentWave].randomSpawns;
+
         if (randomEnemySpawns)
-            RandomSpawn(availableSpawns);
+            RandomSpawn(availableSpawns, enemiesTypes);
         else
-            RegularSpawn(availableSpawns, spawnType);
+            RegularSpawn(availableSpawns);
     }
 
-    private void RandomSpawn(List<Vector3> availableSpawns)
+    private void RandomSpawn(List<Transform> availableSpawns, GameObject[] enemyTypes)
     {
-        for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
+        for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumberForRandomOnly.Length; i++)
         {
-            for (int j = 0; j < waveData[currentWave].enemyTypeSpawnNumber[i]; j++)
+            for (int j = 0; j < waveData[currentWave].enemyTypeSpawnNumberForRandomOnly[i]; j++)
             {
                 //Get random location from set locations
                 int randomIndex = UnityEngine.Random.Range(0, (spawnLocations.Count - 1));
-                Vector3 randomSpawnLocation = availableSpawns[randomIndex];
+                Vector3 randomSpawnLocation = availableSpawns[randomIndex].position;
 
                 //SpawnEnemy at random Location and set its parent as the spawner
-                GameObject spawnedEnemy = Instantiate(enemiesTypes[i], randomSpawnLocation, Quaternion.identity);
+                GameObject spawnedEnemy = Instantiate(enemyTypes[i], randomSpawnLocation, Quaternion.identity);
                 Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
                 enemyScrp.spawner = this;
                 availableSpawns.RemoveAt(randomIndex);
                 currentEnemyCount++;
             }
-            Debug.Log("eType = " + enemiesTypes[i]);
-            BehaviorGraphAgent behaviorGraph = enemiesTypes[i].GetComponent<BehaviorGraphAgent>();
+            BehaviorGraphAgent behaviorGraph = enemyTypes[i].GetComponent<BehaviorGraphAgent>();
 
             if (behaviorGraph != null)
             {
@@ -102,39 +105,42 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void RegularSpawn(List<Vector3> availableSpawns, List<int> enemyType)
+    private void RegularSpawn(List<Transform> availableSpawns)
     {
-        for (int i = 0; i < waveData[currentWave].enemyTypeSpawnNumber.Length; i++)
+        bool firstBasicEnemySpawn = true;
+        bool firstBruteEnemySpawn = true;
+        for (int i = 0; i < availableSpawns.Count; i++)
         {
-            while(true)
+            GameObject enemySpawned;
+            GizmoSpawnLocations.EnemyType enemyType = availableSpawns[0].GetComponent<GizmoSpawnLocations>().enemyType;
+            switch (enemyType)
             {
-                //Find Spawner, if not spawner break to the next enemy
-                int spawnIndex = -1;
-                for (int k = 0; k < enemyType.Count; k++)
-                {
-                    if(enemyType[k] == i)
+                case GizmoSpawnLocations.EnemyType.basic:
+                    enemySpawned = Instantiate(basicEnemy, availableSpawns[0].position, Quaternion.identity);
+                    if(firstBasicEnemySpawn)
                     {
-                        spawnIndex = k; 
-                        enemyType.RemoveAt(k);
-                        break;               
+                        BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
+                        GameObject player = GameObject.Find("Player");
+                        behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+                        firstBasicEnemySpawn= false;
                     }
-                }
-                if (spawnIndex == -1)
                     break;
-                Vector3 spawnLocation = availableSpawns[spawnIndex];
-                GameObject spawnedEnemy = Instantiate(enemiesTypes[i], spawnLocation, Quaternion.identity);
-                Enemy enemyScrp = spawnedEnemy.GetComponent<Enemy>();
-                enemyScrp.spawner = this;
-                availableSpawns.RemoveAt(0);
-                currentEnemyCount++;
+                case GizmoSpawnLocations.EnemyType.brute:
+                    enemySpawned = Instantiate(bruteEnemy, availableSpawns[0].position, Quaternion.identity);
+                    if (firstBruteEnemySpawn)
+                    {
+                        BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
+                        GameObject player = GameObject.Find("Player");
+                        behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+                        firstBruteEnemySpawn = false;
+                    }
+                    break;
+                case GizmoSpawnLocations.EnemyType.flying:
+                    Instantiate(flyingEnemy, availableSpawns[0].position, Quaternion.identity);
+                    break;
             }
-
-            BehaviorGraphAgent behaviorGraph = enemiesTypes[i].GetComponent<BehaviorGraphAgent>();
-            if(behaviorGraph != null)
-            {
-                GameObject player = GameObject.Find("Player");
-                behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
-            }
+            availableSpawns.RemoveAt(0);
+            currentEnemyCount++;
         }
     }
 }
@@ -142,7 +148,7 @@ public class EnemySpawner : MonoBehaviour
 [Serializable]
 public struct WaveData
 {
-    public bool randomSpawns;
-    public int[] enemyTypeSpawnNumber;
     public Transform waveSpawns;
+    public bool randomSpawns;
+    public int[] enemyTypeSpawnNumberForRandomOnly;
 }

@@ -78,15 +78,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9166ee54fe1fef640ab50c4bf2257350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemiesTypes:
-  - {fileID: 3482427714760531327, guid: 8338a5462e225cb47a35dfe3dfcc1d88, type: 3}
-  - {fileID: 3482427714760531327, guid: 711db2b567f11864bb47d72e370397d2, type: 3}
-  - {fileID: 3482427714760531327, guid: e1452d6f5d3f55e42b5040572da073dc, type: 3}
-  - {fileID: 3482427714760531327, guid: 91c1eac7e4cd6f240b70e6906747622c, type: 3}
+  basicEnemy: {fileID: 3482427714760531327, guid: 8338a5462e225cb47a35dfe3dfcc1d88, type: 3}
+  bruteEnemy: {fileID: 3482427714760531327, guid: e1452d6f5d3f55e42b5040572da073dc, type: 3}
+  flyingEnemy: {fileID: 3482427714760531327, guid: 91c1eac7e4cd6f240b70e6906747622c, type: 3}
   waveData:
-  - randomSpawns: 0
-    enemyTypeSpawnNumber: 01000000010000000100000001000000
-    waveSpawns: {fileID: 4446272100065890729}
+  - waveSpawns: {fileID: 4446272100065890729}
+    randomSpawns: 0
+    enemyTypeSpawnNumberForRandomOnly: 
   currentEnemyCount: 0
   spawnEnemies: 0
   combatEventObj: {fileID: 0}

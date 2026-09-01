@@ -7,6 +7,11 @@ public class Spear : MonoBehaviour
     protected bool held = true;
     protected float preCollisionSpeed;
 
+    protected virtual void Start()
+    {
+        spearRb = GetComponent<Rigidbody>();
+        spearBodyCollider = GetComponentInChildren<Collider>();
+    }
 
     public void SpearThrown(float throwStrength, float maxThrowStrength)
     {

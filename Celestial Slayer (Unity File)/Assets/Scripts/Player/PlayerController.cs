@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
     [SerializeField] private bool disableMovementInReload;
-    [SerializeField] private GameObject debugLight;
     public static bool inCombat;
 
     void Start()
@@ -269,17 +269,9 @@ public class PlayerController : MonoBehaviour
        
         if (!inEquip)
         {
-            animator.SetBool("InEquip", true);
-            debugLight.SetActive(true);
+            animator.SetTrigger("InEquip");
             reloadTimeTracker = Time.time;
             inEquip = true;
-        }     
-
-        var elapsedTime = Time.time - reloadTimeTracker;
-        if (elapsedTime > equipTime)
-        {
-            debugLight.SetActive(false);
-            animator.SetBool("InEquip", false);
 
             GameObject spearToSpawn = null;
             switch (currentSpearType)
@@ -291,11 +283,24 @@ public class PlayerController : MonoBehaviour
                     spearToSpawn = transferSpear;
                     break;
             }
-                
             heldSpear = Instantiate(spearToSpawn, holdOffset);
+            Animator spearAni = heldSpear.GetComponent<Animator>();
+            var aniLength = spearAni.GetCurrentAnimatorStateInfo(0).length;
+            aniLength = aniLength/ equipTime;
+            spearAni.speed = aniLength;
 
+            //var equpLength = spearAni.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("UpperBody")).length; 
+            //equpLength = equpLength/ equipTime;
+            //animator.speed = equpLength;
 
-            heldSpear.transform.SetParent(holdOffset);
+        }
+
+        var elapsedTime = Time.time - reloadTimeTracker;
+        if (elapsedTime > equipTime)
+        {
+            Animator spearAni = heldSpear.GetComponent<Animator>();
+            Destroy(spearAni);
+            //animator.speed = 1;
             holdingSpear = true;
             inEquip = false;
         }
@@ -456,5 +461,6 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", rb.linearVelocity.magnitude);
         animator.SetBool("InAim", isAiming);
         animator.SetBool("InAir", !grounded);
+        animator.SetBool("Equipped", holdingSpear);
     }
 }

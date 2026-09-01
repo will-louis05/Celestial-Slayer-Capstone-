@@ -27,12 +27,6 @@ public class BasicSpear : Spear
     [SerializeField] private AudioSource hitSFX;
     private bool hitPlayed;
 
-    private void Start()
-    {
-        spearRb = GetComponent<Rigidbody>();
-        spearBodyCollider = GetComponentInChildren<Collider>();
-    }
-
     private void FixedUpdate()
     {
         if (!inCollision && !stuck)

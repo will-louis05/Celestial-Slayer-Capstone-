@@ -1,8 +1,15 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class TransferSpear : Spear
 {
     public Transform player;
+
+    protected override void Start()
+    {
+        base.Start();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -21,10 +28,9 @@ public class TransferSpear : Spear
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
         playerRb.isKinematic = true;
         player.position = enemyHitLocation;
+        Transform playerOrientation = player.Find("Orientation");
+        playerOrientation.LookAt(enemyHit);
         playerRb.isKinematic = false;
-
-        Camera camera = Camera.main;
-
 
         Destroy(gameObject);
     }

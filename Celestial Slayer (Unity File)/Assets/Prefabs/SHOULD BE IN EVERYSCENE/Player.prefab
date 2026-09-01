@@ -5623,7 +5623,7 @@ MonoBehaviour:
   maxThrowStrength: 10
   throwStrengthIncrease: 2
   totalSpearCount: 5
-  equipTime: 1
+  equipTime: 0.8
   reloadTimeSec: 2
   runSFX: {fileID: 5808871301832604016}
   throwSFX: {fileID: 7220684116935596288}
@@ -5631,7 +5631,6 @@ MonoBehaviour:
   recallSFX: {fileID: 5572235377035428581}
   infiniteSpears: 0
   disableMovementInReload: 1
-  debugLight: {fileID: 5794355804615274249}
 --- !u!114 &870482760267497652
 MonoBehaviour:
   m_ObjectHideFlags: 0

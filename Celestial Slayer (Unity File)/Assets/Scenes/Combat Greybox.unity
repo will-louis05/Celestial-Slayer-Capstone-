@@ -258,33 +258,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8024611349946882221, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!1 &64799267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2603902425033353276, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &64799272
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64799267}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3390558720134950976, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
 --- !u!1 &66655448
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,12 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
---- !u!4 &83070535 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-  m_PrefabInstance: {fileID: 1702563851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &93489086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7724465388419305180, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -435,7 +402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &131864636 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7730628236323004275, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -596,6 +562,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3410944087502363961, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
+--- !u!4 &150846529 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4446272100065890729, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+  m_PrefabInstance: {fileID: 720384870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &162377534
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +612,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &182426951
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &187677816 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 680876955173326919, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -760,7 +729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &201480964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4419750279637768902, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -914,7 +882,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &296129742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6235801278199477793, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -992,7 +959,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &311112429 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7633038302171600669, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -1020,65 +986,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4536773283001372330, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!1 &313918481 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8592853243112604763, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &313918486
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313918481}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5741174448488666723, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!1 &329608443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6385967385969593093, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &329608448
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329608443}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3163171260390484736, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!4 &333078752 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3761769499213530266, guid: 54b865c732924d54d864a88fb8fe5956, type: 3}
-  m_PrefabInstance: {fileID: 4305009979358375198}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &348070402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7261796011440622807, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -1178,7 +1085,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &463505803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6198835542574416564, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -1451,7 +1356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &493457755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5567294033793781570, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -1550,7 +1454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &529451228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1682,33 +1586,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7546553, y: 0.61058384, z: 0.16847008}
   m_Center: {x: -0.07203568, y: 0, z: -0.08478673}
---- !u!1 &604413433 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5347100541691162904, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &604413438
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604413433}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5731547941117289742, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
 --- !u!1 &604978919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2006,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &681815393 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7131786251025370747, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2192,9 +2068,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+      propertyPath: waveData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+      propertyPath: enemiesTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+      propertyPath: 'enemiesTypes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3482427714760531327, guid: e1452d6f5d3f55e42b5040572da073dc, type: 3}
+    - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+      propertyPath: 'enemiesTypes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3482427714760531327, guid: 91c1eac7e4cd6f240b70e6906747622c, type: 3}
+    - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+      propertyPath: 'enemiesTypes.Array.data[3]'
+      value: 
+      objectReference: {fileID: 3482427714760531327, guid: 711db2b567f11864bb47d72e370397d2, type: 3}
+    - target: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+      propertyPath: waveData.Array.data[1].waveSpawns
+      value: 
+      objectReference: {fileID: 150846529}
     - target: {fileID: 3033389827597640338, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033389827597640338, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4128239261477559636, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2237,7 +2141,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4338942278940178337, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
@@ -2286,7 +2191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &747875366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,7 +2236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &772438115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 165163324136259853, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2405,7 +2308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1001 &843685000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2651,7 +2553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &916565916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 670232242863146585, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2751,7 +2652,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &965529881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &967223292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3069665825335161229, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2870,7 +2769,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1020933160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,7 +2814,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1069955609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7708385605861332282, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2989,7 +2886,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1075143860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3035,21 +2931,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
---- !u!137 &1076005434 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1781582525894013230, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-  m_PrefabInstance: {fileID: 1702563851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1079572992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3761031960741111661, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
   m_PrefabInstance: {fileID: 1568063446}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1087923101 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7892791524981590260, guid: d4452ea4a561f2146976cfeee48f52fb, type: 3}
-  m_PrefabInstance: {fileID: 7467392358355079291}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1111276886 stripped
 GameObject:
@@ -3105,75 +2990,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4142219771195877799, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!1 &1121043441
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1121043444}
-  - component: {fileID: 1121043443}
-  - component: {fileID: 1121043442}
-  m_Layer: 0
-  m_Name: EnemyTrigger (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1121043442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121043441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1353606358e67c488665ba9c2e07d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnableObjectTrigger
-  objectToEnable: {fileID: 655200643}
-  enemySpawner: {fileID: 2065167969}
-  EnableSpawnerOverObject: 1
---- !u!65 &1121043443
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121043441}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1121043444
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121043441}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.8761037, z: -0, w: 0.48212275}
-  m_LocalPosition: {x: 7.24, y: 6.99, z: 35.55}
-  m_LocalScale: {x: 7.7250967, y: 5.4938703, z: 9.293829}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -122.352, z: 0}
 --- !u!1 &1126441151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,7 +3035,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1137060080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5340091857427654203, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -3381,34 +3196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
---- !u!1 &1250943748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7017556782390406923, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1250943750
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250943748}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2477511411847689622, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
 --- !u!1 &1286869822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,7 +3241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1302696402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8698502109259237731, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -3581,7 +3367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1387391270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,7 +3412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1398089289 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3632389392201349066, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -3727,7 +3511,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1448718264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,7 +3556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1464958147 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6980853498836812012, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -4269,18 +4051,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1670582977 stripped
+--- !u!1 &1666267982
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5631882875756351132, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1670582982
-MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670582977}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666267986}
+  - component: {fileID: 1666267985}
+  - component: {fileID: 1666267984}
+  - component: {fileID: 1666267983}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1666267983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666267982}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -4292,10 +4088,81 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3237064147268127946, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1666267984
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666267982}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1666267985
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666267982}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1666267986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666267982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.18, y: 4.81, z: -1.91}
+  m_LocalScale: {x: 3.1332, y: 6.657, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1685432914
 GameObject:
   m_ObjectHideFlags: 0
@@ -4341,7 +4208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1699598841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1479821185551874879, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -4369,67 +4235,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2562719210547629881, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!1001 &1702563851
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2109902898}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.08299899
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: m_Name
-      value: NewMasterCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781582525894013230, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7e309c70b5577c14f84e9b4440452549, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
 --- !u!1 &1741259584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,7 +4280,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1751580700 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8802538296200553011, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -4575,7 +4379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1815355287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1595924190882575212, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -4675,34 +4478,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
---- !u!1 &1839751045 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2164834962027794132, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1839751050
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839751045}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4026644384297347843, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
 --- !u!1 &1840537286 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1430552170790098391, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -4883,7 +4658,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1914654912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4929,7 +4703,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1920541100 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4114599497052413994, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -4957,33 +4730,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3541629673168548286, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!1 &1921412746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3601587517317690335, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1921412751
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921412746}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5512361600001258384, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
 --- !u!1 &1924471126 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2758000808328580726, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -5056,7 +4802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &1933475310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 98038277807246471, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -5430,7 +5175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1 &2006087164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8809526723852944693, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -5647,44 +5391,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2746142260806068395, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
---- !u!114 &2065167969 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 350089705269546880, guid: 22340d7e50fc9c343bb7933cb38fce01, type: 3}
-  m_PrefabInstance: {fileID: 1568063446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9166ee54fe1fef640ab50c4bf2257350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
---- !u!1 &2082373317 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5730275569452565266, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-  m_PrefabInstance: {fileID: 7509735362954324055}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &2082373322
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082373317}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6233881508918280898, guid: 23541a8bcd5397f489f3bb2c6a0da043, type: 3}
 --- !u!1 &2104980010
 GameObject:
   m_ObjectHideFlags: 0
@@ -5730,12 +5436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
---- !u!4 &2109902898 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 553500866006869721, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-  m_PrefabInstance: {fileID: 6137656742635221860}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2116260357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3180229908710377115, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
@@ -5786,7 +5486,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
-  enemyTypeInt: 0
 --- !u!1001 &1016004330329280198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5895,6 +5594,10 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 6137656742635221861}
+    - target: {fileID: 6992724187894472340, guid: c228286ba8cfd2a4aae782bf1c4e6d0d, type: 3}
+      propertyPath: Target.CustomLookAtTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7184550085227968805, guid: c228286ba8cfd2a4aae782bf1c4e6d0d, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
@@ -6017,113 +5720,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 488474739587777080, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 684ecdf163871914dbc72f07d31b245e, type: 2}
-    - target: {fileID: 3674292719057438587, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3816918486606618043, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158622830562991553, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158622830562991553, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158622830562991553, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5597025639639147693, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5723739606278688095, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_Name
-      value: NewMasterCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5804311513639597548, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 1087923101}
-    - target: {fileID: 5804311513639597548, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: spearFollow
-      value: 
-      objectReference: {fileID: 333078752}
-    - target: {fileID: 5804311513639597548, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: disableMovementInReload
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949477302342662423, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 684ecdf163871914dbc72f07d31b245e, type: 2}
-    - target: {fileID: 6026689061924525501, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: changeMat
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6026689061924525501, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: meshRenderer
-      value: 
-      objectReference: {fileID: 1076005434}
-    - target: {fileID: 6026689061924525501, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: playerMaterials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6026689061924525501, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'playerMaterials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 73f49013167179741946930d69ed936f, type: 2}
-    - target: {fileID: 6026689061924525501, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'playerMaterials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 258b3067bd517d5448cc6800dc47432e, type: 2}
-    - target: {fileID: 6026689061924525501, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'playerMaterials.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6026689061924525501, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'playerMaterials.Array.data[3]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 258b3067bd517d5448cc6800dc47432e, type: 2}
-    - target: {fileID: 6563667528951447840, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 69835bb2297eb4a41a08a1aa0b60e29c, type: 2}
-    - target: {fileID: 6739447225835647909, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739447225835647909, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: weaponHold
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6886864221048598117, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7229860803099206818, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 684ecdf163871914dbc72f07d31b245e, type: 2}
-    - target: {fileID: 8678821154835087985, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 684ecdf163871914dbc72f07d31b245e, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5723739606278688095, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 553500866006869721, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 83070535}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
 --- !u!4 &6137656742635221861 stripped
@@ -6348,12 +5951,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9215629245532242352, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1847620224}
-    - targetCorrespondingSourceObject: {fileID: 7017556782390406923, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1250943750}
-    - targetCorrespondingSourceObject: {fileID: 8592853243112604763, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 313918486}
     - targetCorrespondingSourceObject: {fileID: 1866752466777399734, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1615147334}
@@ -6423,21 +6020,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 670232242863146585, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 916565921}
-    - targetCorrespondingSourceObject: {fileID: 2603902425033353276, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 64799272}
-    - targetCorrespondingSourceObject: {fileID: 6385967385969593093, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 329608448}
-    - targetCorrespondingSourceObject: {fileID: 3601587517317690335, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1921412751}
     - targetCorrespondingSourceObject: {fileID: 7131786251025370747, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 681815398}
-    - targetCorrespondingSourceObject: {fileID: 5347100541691162904, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 604413438}
     - targetCorrespondingSourceObject: {fileID: 6157399517117958974, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1819387524}
@@ -6474,9 +6059,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2013509146058848226, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1631423632}
-    - targetCorrespondingSourceObject: {fileID: 2164834962027794132, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1839751050}
     - targetCorrespondingSourceObject: {fileID: 2950515005353930799, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 383140489}
@@ -6486,9 +6068,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3069665825335161229, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 967223297}
-    - targetCorrespondingSourceObject: {fileID: 5631882875756351132, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1670582982}
     - targetCorrespondingSourceObject: {fileID: 4131297898535645446, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1934020628}
@@ -6516,9 +6095,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4249824698266661297, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 111620285}
-    - targetCorrespondingSourceObject: {fileID: 5730275569452565266, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2082373322}
     - targetCorrespondingSourceObject: {fileID: 2611622075957413516, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
       insertIndex: -1
       addedObject: {fileID: 605564507}
@@ -6648,7 +6224,7 @@ SceneRoots:
   - {fileID: 1604330541}
   - {fileID: 852001031}
   - {fileID: 529451230}
-  - {fileID: 1121043444}
   - {fileID: 1654668000}
   - {fileID: 7509735362954324055}
   - {fileID: 1208695229}
+  - {fileID: 1666267986}

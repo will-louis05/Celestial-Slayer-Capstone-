@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     private bool speared;
     [SerializeField] private float enemyMass;
     private Rigidbody enemyRb;
-    private Collider enemyCollider;
     private Rigidbody spearRb;
     public EnemySpawner spawner;
     private NavMeshAgent navMesh;
@@ -28,8 +27,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyRb = GetComponent<Rigidbody>();
-        enemyCollider = GetComponent<Collider>();
-
         behaviorGraph = GetComponent<BehaviorGraphAgent>();
         navMesh = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -74,28 +71,22 @@ public class Enemy : MonoBehaviour
         int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
         foreach (var joint in joints)
         {
-            //Bugfix ensure joint has rigidbody
-            Rigidbody jointrb = joint.GetComponent<Rigidbody>();
-            if (jointrb != null)
-                jointrb.isKinematic = false;
-
-            //joint.GetComponent<Rigidbody>().isKinematic = false;
+            joint.GetComponent<Rigidbody>().isKinematic = false;
             joint.layer = spearIgnoreLayer;
         }
 
         FixedJoint limbFixedJoint = limbhit.AddComponent<FixedJoint>();
         limbFixedJoint.connectedBody = spearRb.transform.GetComponent<Rigidbody>();
 
-        //spearRb.linearVelocity = postCollisionSpeed * spearRb.transform.forward;
+        spearRb.linearVelocity = postCollisionSpeed * spearRb.transform.forward;
 
         //Bugfix apply velocity to both spear and enemy
-        Vector3 velocity = postCollisionSpeed * spearRb.transform.forward;
-        spearRb.linearVelocity = velocity;
-        enemyRb.isKinematic = false;
-        enemyRb.linearVelocity = velocity;
+        //Vector3 velocity = postCollisionSpeed * spearRb.transform.forward;
+        //spearRb.linearVelocity = velocity;
+        //enemyRb.isKinematic = false;
+        //enemyRb.linearVelocity = velocity;
 
-        attackScrpt.enabled = false;
-        //enemyCollider.enabled = false;
+        //attackScrpt.enabled = false;
 
         return false;
     }
@@ -119,9 +110,6 @@ public class Enemy : MonoBehaviour
 
     private void Killed()
     {
-        enemyRb.isKinematic = true;
-        //enemyCollider.enabled = true;
-
         //Make Them SpearableAgain
         int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
         foreach (var joint in joints)
