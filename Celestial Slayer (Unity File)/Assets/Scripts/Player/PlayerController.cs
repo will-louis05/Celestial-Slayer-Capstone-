@@ -449,8 +449,10 @@ public class PlayerController : MonoBehaviour
 
     private void Animations()
     {
-        animator.SetFloat("VelocityX", inputHandler.moveInput.x);
-        animator.SetFloat("VelocityY", inputHandler.moveInput.y);
+        //(Jude) changed the velocity to represent a percentage of the max speed so there is a little bit on blending, but I cant find exactly what sets the mex speed. but I know the number (14)
+
+        animator.SetFloat("VelocityX", (inputHandler.moveInput.x) * (rb.linearVelocity.magnitude / 14.0f));
+        animator.SetFloat("VelocityY", (inputHandler.moveInput.y) * (rb.linearVelocity.magnitude / 14.0f));
         animator.SetFloat("Speed", rb.linearVelocity.magnitude);
         animator.SetBool("InAim", isAiming);
         animator.SetBool("InAir", !grounded);
