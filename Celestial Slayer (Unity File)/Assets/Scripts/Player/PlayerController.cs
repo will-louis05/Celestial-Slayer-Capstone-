@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [Header("Spear Types")]
     [SerializeField] private GameObject basicSpear;
     [SerializeField] private GameObject transferSpear;
+    [SerializeField] private GameObject explosiveSpear;
 
     [Header("Spear Values")]
     [SerializeField] private float minThrowStrength;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private float reloadTimeTracker;
     private int currentSpearCount;
     private float throwStrength;
-    private enum CurrentSpearType {basicSpear, transferSpear}
+    private enum CurrentSpearType {basicSpear, transferSpear, explosiveSpear}
     CurrentSpearType currentSpearType;
 
     private GameObject heldSpear;
@@ -91,19 +92,6 @@ public class PlayerController : MonoBehaviour
     {
         Animations();
 
-        ////WONT WORK WITH NEW GROUND CHECK
-        //bool wasGrounded = grounded;
-
-        //OLD GROUND CHECK
-        //grounded = Physics.Raycast(transform.position, Vector3.down, 1f + 0.2f);
-
-        //Land SFX
-        //if (!wasGrounded && grounded && Time.timeSinceLevelLoad > 1f)
-        //{
-        //    landSFX.pitch = Random.Range(0.7f, 0.9f);
-        //    landSFX.Play();
-        //}
-
         InputManger();
 
         if (infiniteSpears)
@@ -113,10 +101,6 @@ public class PlayerController : MonoBehaviour
         {
             SpearEquip();
         }
-        //else if (!spearEquiped && holdingSpear)
-        //{
-        //    SpearUnequip();
-        //}
 
         //Run SFX
         if (inputHandler.moveInput.magnitude > 0.01f && grounded)
@@ -133,23 +117,28 @@ public class PlayerController : MonoBehaviour
 
     private void InputManger()
     {
-        if (inputHandler.equipBasicSpearTriggered || inputHandler.equipTranferSpearTriggered)
+        if ((inputHandler.equipBasicSpearTriggered && currentSpearType != CurrentSpearType.basicSpear) || (inputHandler.equipTranferSpearTriggered && currentSpearType != CurrentSpearType.transferSpear) || (inputHandler.equipExplosiveSpearTriggered && currentSpearType != CurrentSpearType.explosiveSpear))
         {
-            if (inputHandler.equipBasicSpearTriggered && currentSpearType != CurrentSpearType.basicSpear)
+            if (inputHandler.equipBasicSpearTriggered)
             {
                 currentSpearType = CurrentSpearType.basicSpear;
-                Destroy(heldSpear);
-                holdingSpear = false;
+                inputHandler.equipBasicSpearTriggered = false;
             }
-            else if (inputHandler.equipTranferSpearTriggered && currentSpearType != CurrentSpearType.transferSpear)
+            else if (inputHandler.equipTranferSpearTriggered)
             {               
                 currentSpearType = CurrentSpearType.transferSpear;
-                Destroy(heldSpear);
-                holdingSpear = false;
+                inputHandler.equipTranferSpearTriggered = false;
             }
-            inputHandler.equipTranferSpearTriggered = false;
-            inputHandler.equipBasicSpearTriggered = false;
-            //spearEquiped = !spearEquiped;
+            else if(inputHandler.equipExplosiveSpearTriggered)
+            {
+                currentSpearType = CurrentSpearType.explosiveSpear;
+                inputHandler.equipExplosiveSpearTriggered = false;     
+            }
+            GameObject spearToDestroy = heldSpear;
+            heldSpear = null;
+            Destroy(spearToDestroy);
+            holdingSpear = false;
+            inEquip = false;
         }
 
         if (inputHandler.fireTriggered && holdingSpear || inThrow)
@@ -282,6 +271,9 @@ public class PlayerController : MonoBehaviour
                 case CurrentSpearType.transferSpear:
                     spearToSpawn = transferSpear;
                     break;
+                case CurrentSpearType.explosiveSpear:
+                    spearToSpawn = explosiveSpear;
+                    break;
             }
             heldSpear = Instantiate(spearToSpawn, holdOffset);
             Animator spearAni = heldSpear.GetComponent<Animator>();
@@ -306,14 +298,6 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
-    //void SpearUnequip()
-    //{ 
-    //    GameObject spearToDestory = heldSpear;
-    //    Destroy(spearToDestory);
-    //    heldSpear = null;
-    //    holdingSpear = false;
-    //}
 
     void SpearThrow()
     {

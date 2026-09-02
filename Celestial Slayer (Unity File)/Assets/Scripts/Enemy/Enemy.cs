@@ -44,6 +44,15 @@ public class Enemy : MonoBehaviour
         
     }
 
+    public void ExplosionHit()
+    {
+        foreach (var joint in joints)
+        {
+            joint.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        Killed();
+    }
+
     public bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision)
     {
         float inveseForce = enemyMass * spearSpeedDecreaseRatio;

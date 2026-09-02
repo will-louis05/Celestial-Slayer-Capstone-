@@ -70,6 +70,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Equip Explosive Spear",
+                    "type": "Button",
+                    "id": "3ec86e72-38cb-4add-a804-106a84c49dfb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "9a0c30c9-a59c-4162-8d37-d59f45e7a3ac",
@@ -229,6 +238,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Equip Transfer Spear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "756bbdc7-bbbe-4ad9-a9ff-494cbd53211c",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Explosive Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -18,6 +18,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string shoulderSwitch = "Shoulder Switch";
     [SerializeField] private string equipSpear = "Equip Spear";
     [SerializeField] private string equipTranferSpear = "Equip Transfer Spear";
+    [SerializeField] private string equipExplosiveSpear = "Equip Explosive Spear";
     [SerializeField] private string reload = "Reload";
 
     private InputAction moveAction;
@@ -28,6 +29,7 @@ public class InputHandler : MonoBehaviour
     private InputAction shoulderSwitchAction;
     private InputAction equipBasicSpearAction;
     private InputAction equipTranferSpearAction;
+    private InputAction equipExplosiveSpearAction;
     private InputAction reloadAction;
 
     public Vector2 moveInput { get; private set; }
@@ -40,6 +42,7 @@ public class InputHandler : MonoBehaviour
     public bool shoulderSwitchTriggered;
     public bool equipBasicSpearTriggered;
     public bool equipTranferSpearTriggered;
+    public bool equipExplosiveSpearTriggered;
     public bool fireTriggered;
     public bool reloadTriggered;
 
@@ -72,10 +75,8 @@ public class InputHandler : MonoBehaviour
         shoulderSwitchAction = playerControls.FindActionMap(actionMapName).FindAction(shoulderSwitch);
         equipBasicSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipSpear);
         equipTranferSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipTranferSpear);
+        equipExplosiveSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipExplosiveSpear);
         reloadAction = playerControls.FindActionMap(actionMapName).FindAction(reload);
-
-
-
 
         RegisterInputAction();
     }
@@ -108,6 +109,11 @@ public class InputHandler : MonoBehaviour
         equipTranferSpearAction.performed += context => equipTranferSpearTriggered = true;
         equipTranferSpearAction.canceled += context => equipTranferSpearTriggered = false;
 
+        equipExplosiveSpearAction.performed += context => equipExplosiveSpearTriggered = true;
+        equipExplosiveSpearAction.canceled += context => equipExplosiveSpearTriggered = false;
+
+
+
         reloadAction.performed += context => reloadTriggered = true;
         reloadAction.canceled += context => reloadTriggered = false;
     }
@@ -125,6 +131,7 @@ public class InputHandler : MonoBehaviour
         shoulderSwitchAction.Enable();
         equipBasicSpearAction.Enable();
         equipTranferSpearAction.Enable();
+        equipExplosiveSpearAction.Enable();
         reloadAction.Enable();
     }
 
@@ -138,6 +145,7 @@ public class InputHandler : MonoBehaviour
         shoulderSwitchAction.Disable();
         equipBasicSpearAction.Disable(); 
         equipTranferSpearAction.Disable();
+        equipExplosiveSpearAction.Disable();
         reloadAction.Disable();
     }
 }
