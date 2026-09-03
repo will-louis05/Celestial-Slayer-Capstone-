@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
-using System.Linq;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -111,7 +110,7 @@ public class EnemySpawner : MonoBehaviour
         bool firstBruteEnemySpawn = true;
         for (int i = 0; i < availableSpawns.Count; i++)
         {
-            GameObject enemySpawned;
+            GameObject enemySpawned = null;
             GizmoSpawnLocations.EnemyType enemyType = availableSpawns[0].GetComponent<GizmoSpawnLocations>().enemyType;
             switch (enemyType)
             {
@@ -136,10 +135,11 @@ public class EnemySpawner : MonoBehaviour
                     }
                     break;
                 case GizmoSpawnLocations.EnemyType.flying:
-                    Instantiate(flyingEnemy, availableSpawns[0].position, Quaternion.identity);
+                    enemySpawned = Instantiate(flyingEnemy, availableSpawns[0].position, Quaternion.identity);
                     break;
             }
             availableSpawns.RemoveAt(0);
+            enemySpawned.GetComponent<Enemy>().spawner = this;
             currentEnemyCount++;
         }
     }

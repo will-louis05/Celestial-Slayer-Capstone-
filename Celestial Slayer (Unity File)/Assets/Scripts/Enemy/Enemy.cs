@@ -44,6 +44,15 @@ public class Enemy : MonoBehaviour
         
     }
 
+    public void ExplosionHit()
+    {
+        foreach (var joint in joints)
+        {
+            joint.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        Killed();
+    }
+
     public bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision)
     {
         float inveseForce = enemyMass * spearSpeedDecreaseRatio;
@@ -120,6 +129,9 @@ public class Enemy : MonoBehaviour
         //skinnedMeshRenderer.material.color = Color.red;
         spawner.currentEnemyCount--;
         Destroy(this);
+        Destroy(navMesh);
+        Destroy(behaviorGraph);
+        Destroy(animator);
         Destroy(attackScrpt);
     }
 }
