@@ -156,7 +156,8 @@ public class PlayerController : MonoBehaviour
 
         if(heldSpear != null)
         {
-            holdOffset.LookAt(spearFollow);
+            heldSpear.transform.parent = spearFollow;
+            //holdOffset.LookAt(spearFollow);
         }
     }
 
@@ -275,7 +276,8 @@ public class PlayerController : MonoBehaviour
                     spearToSpawn = explosiveSpear;
                     break;
             }
-            heldSpear = Instantiate(spearToSpawn, holdOffset);
+            heldSpear = Instantiate(spearToSpawn, spearFollow);
+            //heldSpear = Instantiate(spearToSpawn, holdOffset);
             Animator spearAni = heldSpear.GetComponent<Animator>();
             var aniLength = spearAni.GetCurrentAnimatorStateInfo(0).length;
             aniLength = aniLength/ equipTime;
