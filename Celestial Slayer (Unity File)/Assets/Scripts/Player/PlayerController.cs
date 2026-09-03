@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource jumpSFX;
     [SerializeField] private AudioSource recallSFX;
     //[SerializeField] private AudioSource landSFX;
+    [SerializeField] private AudioSource aimSFX;
 
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
@@ -140,6 +141,10 @@ public class PlayerController : MonoBehaviour
             holdingSpear = false;
             inEquip = false;
         }
+
+        //Aim SFX
+        if (inputHandler.fireTriggered && holdingSpear && !inThrow)
+            aimSFX.PlayOneShot(aimSFX.clip);
 
         if (inputHandler.fireTriggered && holdingSpear || inThrow)
             SpearThrow();
@@ -324,6 +329,9 @@ public class PlayerController : MonoBehaviour
         //ThrowSpear
         if (!inThrow || inThrow && !inputHandler.fireTriggered)
         {
+            if (aimSFX.isPlaying)
+                aimSFX.Stop();
+
             Spear spearScrp = heldSpear.GetComponent<Spear>();
             spearScrp.SpearThrown(throwStrength, maxThrowStrength);
             currentSpearCount -= 1;
@@ -361,6 +369,9 @@ public class PlayerController : MonoBehaviour
         //Cancel Throw if player stops aiming while in throw
         if (inThrow && !isAiming)
         {
+            if (aimSFX.isPlaying)
+                aimSFX.Stop();
+
             inputHandler.fireTriggered = false;
             inThrow = false;
             crosshair.localScale = new Vector3(1, 1, 1);
