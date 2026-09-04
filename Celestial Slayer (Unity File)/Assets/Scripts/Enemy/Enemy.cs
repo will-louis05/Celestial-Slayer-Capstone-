@@ -129,6 +129,9 @@ public class Enemy : MonoBehaviour
         //skinnedMeshRenderer.material.color = Color.red;
         spawner.currentEnemyCount--;
         Destroy(this);
+        Destroy(navMesh);
+        Destroy(behaviorGraph);
+        Destroy(animator);
         Destroy(attackScrpt);
     }
 }

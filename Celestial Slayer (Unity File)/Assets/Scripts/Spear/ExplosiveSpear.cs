@@ -9,6 +9,7 @@ public class ExplosiveSpear: Spear
     private void OnCollisionEnter(Collision collision)
     {
         Explosion();
+        Destroy(gameObject);
     }
 
     private void Explosion()
@@ -21,8 +22,9 @@ public class ExplosiveSpear: Spear
             if (collider.CompareTag("Enemy") && collider.transform.root != enemyhit)
             {
                 enemyhit = collider.transform.root;
-                Debug.Log(enemyhit);
-                enemyhit.GetComponent<Enemy>().ExplosionHit();
+                Enemy enemyHitScrp = enemyhit.GetComponent<Enemy>();
+                if(enemyHitScrp != null)
+                    enemyHitScrp.ExplosionHit();
             }
             if (objRb != null)
             {
