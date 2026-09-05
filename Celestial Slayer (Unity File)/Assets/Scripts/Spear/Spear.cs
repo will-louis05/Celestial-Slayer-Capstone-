@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Spear : MonoBehaviour
 {
@@ -18,11 +19,16 @@ public class Spear : MonoBehaviour
         transform.SetParent(null);
 
         Transform camTransform = Camera.main.transform;
+        Vector3 spearfollow = camTransform.GetChild(0).position;
+        transform.position = new Vector3(transform.position.x, spearfollow.y, transform.position.z);
+        transform.LookAt(spearfollow);
 
-        Vector3 moveDirection = camTransform.forward * throwStrength * 250f;
+        Vector3 moveDirection = transform.forward * throwStrength * 250f;
 
         spearBodyCollider.enabled = true;
 
+        spearRb.interpolation = RigidbodyInterpolation.Interpolate;
+        spearRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         spearRb.isKinematic = false;
         spearRb.useGravity = true;
         held = false;

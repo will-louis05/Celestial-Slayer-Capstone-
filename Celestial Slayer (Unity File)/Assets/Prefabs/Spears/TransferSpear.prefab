@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3225421586706535871
+--- !u!1001 &7051055282705117695
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 732546582846149433, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: m_Name
-      value: BasicSpear
+      value: TransferSpear
       objectReference: {fileID: 0}
     - target: {fileID: 901478246524940304, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 901478246524940304, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 901478246524940304, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55,45 +55,29 @@ PrefabInstance:
     - target: {fileID: 8088292704337442904, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 176a9a44bb4a26d45966a3d0e55d5ca3, type: 2}
-    m_RemovedComponents:
-    - {fileID: 386770678611656872, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
+      objectReference: {fileID: 2100000, guid: a2b1e5fbd969349439743dc596ecaba6, type: 2}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 732546582846149433, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2131146279209135638}
+      addedObject: {fileID: 1352313482747516581}
   m_SourcePrefab: {fileID: 100100000, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
---- !u!4 &1817203498593759438 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3889701793382409585, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
-  m_PrefabInstance: {fileID: 3225421586706535871}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &2747387766529106717 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 784278646654088866, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
-  m_PrefabInstance: {fileID: 3225421586706535871}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2803623690657171078 stripped
+--- !u!1 &7777969820133171910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 732546582846149433, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
-  m_PrefabInstance: {fileID: 3225421586706535871}
+  m_PrefabInstance: {fileID: 7051055282705117695}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2131146279209135638
+--- !u!114 &1352313482747516581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2803623690657171078}
+  m_GameObject: {fileID: 7777969820133171910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5ce62a24eb9fb41a37d0fc241d33dc, type: 3}
+  m_Script: {fileID: 11500000, guid: f3bd5dbbdce5ee944b9a54a13bc57ceb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicSpear
-  spearLegnth: 2.5
-  spearSpeedRatio: 0.01
-  inverseForceRatio: 0.55
-  angleCheck: {fileID: 1817203498593759438}
-  hitSFX: {fileID: 2747387766529106717}
+  m_EditorClassIdentifier: Assembly-CSharp::TransferSpear

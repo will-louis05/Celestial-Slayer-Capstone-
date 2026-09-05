@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform yawTarget;
 
     [SerializeField] private Transform holdOffset;
-    [SerializeField] private Transform spearFollow;
     [SerializeField] private Transform crosshair;
     [SerializeField] private ParticleSystem reloadParticle;
     [SerializeField] private ParticleSystem[] particleSpeedLines;
@@ -43,7 +42,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int totalSpearCount;
     [SerializeField] private float equipTime;
     [SerializeField] private float reloadTimeSec;
-    private float reloadTimeTracker;
+    [SerializeField] private float delayBeforeReload;
+    private float timer;
     private int currentSpearCount;
     private float throwStrength;
     private enum CurrentSpearType {basicSpear, transferSpear, explosiveSpear}
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     private bool inEquip;
     private bool inThrow;
     private bool inReload;
-    private float throwTimer;
+    private bool inDelayThrow;
 
     [Header("SFX")]
     [SerializeField] private AudioSource runSFX;
@@ -98,9 +98,20 @@ public class PlayerController : MonoBehaviour
         if (infiniteSpears)
             currentSpearCount = 5;
 
+
+
         if ((!holdingSpear && currentSpearCount != 0) || inEquip)
         {
-            SpearEquip();
+            if (!inDelayThrow && !inEquip)
+            {
+                inDelayThrow = true;
+                timer = Time.time;
+            }
+            else if (delayBeforeReload < (Time.time - timer))
+            {
+                inDelayThrow = false;
+                SpearEquip();
+            }
         }
 
         //Run SFX
@@ -264,8 +275,8 @@ public class PlayerController : MonoBehaviour
        
         if (!inEquip)
         {
+            timer = Time.time;
             animator.SetTrigger("InEquip");
-            reloadTimeTracker = Time.time;
             inEquip = true;
 
             GameObject spearToSpawn = null;
@@ -283,6 +294,7 @@ public class PlayerController : MonoBehaviour
             }
             //heldSpear = Instantiate(spearToSpawn, spearFollow); (Jude)
             heldSpear = Instantiate(spearToSpawn, holdOffset);
+            heldSpear.transform.localRotation = Quaternion.Euler(new Vector3(90,0,0));  
             Animator spearAni = heldSpear.GetComponent<Animator>();
             var aniLength = spearAni.GetCurrentAnimatorStateInfo(0).length;
             aniLength = aniLength/ equipTime;
@@ -294,7 +306,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        var elapsedTime = Time.time - reloadTimeTracker;
+        var elapsedTime = Time.time - timer;
         if (elapsedTime > equipTime)
         {
             Animator spearAni = heldSpear.GetComponent<Animator>();
@@ -383,7 +395,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!inReload)
         {
-            reloadTimeTracker = Time.time;
+            timer = Time.time;
 
             reloadParticle.Play();
 
@@ -421,7 +433,7 @@ public class PlayerController : MonoBehaviour
         }
 
         inReload = true;
-        float elaspedTime = Time.time - reloadTimeTracker;
+        float elaspedTime = Time.time - timer;
 
         if (elaspedTime >= reloadTimeSec)
         {

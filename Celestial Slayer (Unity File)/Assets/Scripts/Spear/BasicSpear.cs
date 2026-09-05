@@ -33,7 +33,11 @@ public class BasicSpear : Spear
             preCollisionSpeed = spearRb.linearVelocity.magnitude;
     }
 
-    
+    private void Update()
+    {
+        Debug.DrawRay(angleCheck.position, transform.forward, Color.blue);
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
