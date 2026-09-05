@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TransferSpear : Spear
 {
-    public Transform player;
+    private Transform player;
 
     protected override void Start()
     {

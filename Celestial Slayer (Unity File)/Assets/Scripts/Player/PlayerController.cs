@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
         if(heldSpear != null)
         {
             //heldSpear.transform.parent = spearFollow; (Jude)
-            holdOffset.LookAt(spearFollow);
+            //holdOffset.LookAt(spearFollow);
         }
     }
 
