@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -18,9 +19,9 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Health Points")]
     [SerializeField] private int totalHitPoints;
+    private Image healthBarFill;
 
     [Header("Dev Tools")]
-    private Transform greenScalePoint;
     [SerializeField] private bool infiniteHealth;
     [SerializeField] private bool resetHealth;
 
@@ -29,8 +30,11 @@ public class PlayerHealth : MonoBehaviour
     {
         health = maxPlayerHealth;
         animator = GetComponent<Animator>();
-        greenScalePoint = GameObject.Find("Scalepoint").transform;
+
+        healthBarFill = GameObject.Find("BarFront").GetComponent<Image>();
+        healthBarFill.fillAmount = Mathf.Clamp01(health / maxPlayerHealth);
     }
+
     private void Update()
     {
         // Debug.Log("Health: " + health);
@@ -38,11 +42,16 @@ public class PlayerHealth : MonoBehaviour
         {
             health = maxPlayerHealth;
             resetHealth = false;
+
+            healthBarFill.fillAmount = Mathf.Clamp01(health / maxPlayerHealth);
         }
 
-
-        if(infiniteHealth)
+        if (infiniteHealth)
+        {
             health = maxPlayerHealth;
+
+            healthBarFill.fillAmount = Mathf.Clamp01(health / maxPlayerHealth);
+        }
 
         if(health < maxPlayerHealth)
         {
@@ -54,7 +63,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
             Die();
-
     }
 
     private void RegenHealth()
@@ -75,13 +83,12 @@ public class PlayerHealth : MonoBehaviour
         if (health > maxPlayerHealth)
             health = maxPlayerHealth;
 
-        greenScalePoint.localScale = new Vector3(health / 100f, 1, 1);
+        healthBarFill.fillAmount = Mathf.Clamp01(health / maxPlayerHealth);
     }
 
     private void HealthPoints()
     {
         
-
     }
 
     public void Hit(float damage)
@@ -89,7 +96,8 @@ public class PlayerHealth : MonoBehaviour
         hit = true;
         health -= damage;
         animator.SetTrigger("Hit");
-        greenScalePoint.localScale = new Vector3 (health / 100f, 1, 1);
+
+        healthBarFill.fillAmount = Mathf.Clamp01(health / maxPlayerHealth);
     }
 
     private void Die()
@@ -97,7 +105,4 @@ public class PlayerHealth : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }
-
-
-
 }
