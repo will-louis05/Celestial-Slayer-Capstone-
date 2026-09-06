@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4577664705163946673
+--- !u!114 &-1338297550536886217
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,20 +20,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SonicBoom
-  m_Shader: {fileID: -6465566751694194690, guid: 11bbf4fbd0c691049915fbc00a711e0d, type: 3}
+  m_Name: AirBurst
+  m_Shader: {fileID: -6465566751694194690, guid: 443cd3dcc5cf17f48812d2c1c8304385, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ALPHATEST_ON
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: TransparentCutout
+    RenderType: Transparent
   disabledShaderPasses:
+  - DepthOnly
   - SHADOWCASTER
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -54,31 +55,29 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 1
-    - _AlphaToMask: 1
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
     - _Blend: 0
+    - _BottomColourHeight: 0.267
     - _CastShadows: 0
     - _Cull: 0
-    - _Distortion: 0.205
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _Height: 0.03
-    - _NoiseDensity: 5.97
-    - _Noise_Scale: 9.36
+    - _Distortion: 0.209
+    - _Distortion_Scale: 50
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
+    - _Height: 1.03
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scroll: 0.19
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _UV_Scroll_W: 0
-    - _UV_scroll: 0
-    - _UV_scroll_W: 0
-    - _Width: 1.81
+    - _Surface: 1
     - _ZTest: 4
-    - _ZWrite: 1
-    - _ZWriteControl: 1
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Colour2: {r: 0.131052, g: 0.8962264, b: 0.7512486, a: 0}
+    - _Distortion_Speed: {r: 0, g: 0.28, b: 0, a: 0}
+    - _Distortion_Tiling: {r: -1.04, g: 0.49, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
