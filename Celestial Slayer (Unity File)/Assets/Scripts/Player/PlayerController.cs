@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform holdOffset;
     [SerializeField] private Transform crosshair;
     [SerializeField] private ParticleSystem reloadParticle;
-    [SerializeField] private ParticleSystem[] particleSpeedLines;
+    //[SerializeField] private ParticleSystem[] particleSpeedLines;
 
     private InputHandler inputHandler;
     private Transform cameraTransform;
@@ -358,15 +358,15 @@ public class PlayerController : MonoBehaviour
             throwSFX.pitch = Random.Range(0.9f, 1.1f);
             throwSFX.Play();
             
-            particleSpeedLines[0].Play();
-            if (throwStrength > maxThrowStrength * 0.75f)
-            {
-                particleSpeedLines[1].Play();
-            }
-            if (throwStrength == maxThrowStrength)
-            {
-                particleSpeedLines[2].Play();
-            }
+            //particleSpeedLines[0].Play();
+            //if (throwStrength > maxThrowStrength * 0.75f)
+            //{
+            //    particleSpeedLines[1].Play();
+            //}
+            //if (throwStrength == maxThrowStrength)
+            //{
+            //    particleSpeedLines[2].Play();
+            //}
 
             throwStrength = minThrowStrength;
             crosshair.localScale = new Vector3(1,1,1);

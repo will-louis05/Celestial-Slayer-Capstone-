@@ -4,11 +4,13 @@ public class ExplosiveSpear: Spear
 {
     [SerializeField] private float radius;
     [SerializeField] private float force;
+    [SerializeField] private GameObject explosionParticle;
 
 
     private void OnCollisionEnter(Collision collision)
     {
         Explosion();
+        Instantiate(explosionParticle, collision.contacts[0].point, Quaternion.identity);
         Destroy(gameObject);
     }
 

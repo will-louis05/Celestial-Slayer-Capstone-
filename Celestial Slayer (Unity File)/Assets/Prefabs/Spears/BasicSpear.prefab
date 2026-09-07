@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 8088292704337442904, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 176a9a44bb4a26d45966a3d0e55d5ca3, type: 2}
+      objectReference: {fileID: 2100000, guid: 0e5f711ed74304e46be241e9780454ad, type: 2}
     m_RemovedComponents:
     - {fileID: 386770678611656872, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
     m_RemovedGameObjects: []
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5ce62a24eb9fb41a37d0fc241d33dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicSpear
+  throwParticle: {fileID: 1382900035844795722, guid: 675c574ce8147ce4fb1e9bec0e355692, type: 3}
   spearLegnth: 2.5
   spearSpeedRatio: 0.01
   inverseForceRatio: 0.55
