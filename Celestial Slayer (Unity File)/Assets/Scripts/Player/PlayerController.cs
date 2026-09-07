@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Transform cameraTransform;
     private Rigidbody rb;
     private GameObject[] spearCrosshairs;
+    private Image[] spearCrosshairImages;
     private Animator animator;
 
     [Header("Movement Values")]
@@ -78,11 +80,15 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         animator = GetComponent<Animator>();
 
+        //Spear UI icons
         Transform spearCrossParent = GameObject.Find("SpearCrosshairCount").transform;
         spearCrosshairs = new GameObject[spearCrossParent.childCount];
-        for(int i = 0; i < spearCrossParent.childCount; i++)
+        spearCrosshairImages = new Image[spearCrossParent.childCount];
+        for (int i = 0; i < spearCrossParent.childCount; i++)
         {
             spearCrosshairs[i] = spearCrossParent.GetChild(i).gameObject;
+            spearCrosshairImages[i] = spearCrosshairs[i].GetComponent<Image>();
+            spearCrosshairImages[i].fillAmount = 1f;
         }
 
         throwStrength = minThrowStrength;
@@ -265,7 +271,6 @@ public class PlayerController : MonoBehaviour
 
         animator.SetTrigger("Jump");
 
-        //Jump SFX
         jumpSFX.pitch = Random.Range(0.9f, 1.1f);
         jumpSFX.Play();
     }
@@ -352,9 +357,9 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Throw");
             animator.SetBool("InCharge", false);
 
-            spearCrosshairs[currentSpearCount].SetActive(false);
+            //Unfill UI spear
+            spearCrosshairImages[currentSpearCount].fillAmount = 0f;
 
-            //Throw SFX
             throwSFX.pitch = Random.Range(0.9f, 1.1f);
             throwSFX.Play();
             
@@ -399,7 +404,6 @@ public class PlayerController : MonoBehaviour
 
             reloadParticle.Play();
 
-            //Recall SFX
             recallSFX.Play();
 
             foreach (GameObject thrownSpear in thrownSpears)
@@ -418,7 +422,6 @@ public class PlayerController : MonoBehaviour
             inReload = false;
             reloadParticle.Stop();
             animator.SetBool("InSummon", inReload);
-            //Stop recall SFX
             recallSFX.Stop();
 
             foreach (GameObject thrownSpear in thrownSpears)
@@ -429,11 +432,21 @@ public class PlayerController : MonoBehaviour
                     spearReloadParticle.Stop();
                 }
             }
+
+            //Cancel UI refill
+            for (int i = currentSpearCount; i < totalSpearCount; i++)
+                spearCrosshairImages[i].fillAmount = 0f;
+
             return;
         }
 
         inReload = true;
         float elaspedTime = Time.time - timer;
+
+        //Refill UI spears
+        float progress = Mathf.Clamp01(elaspedTime / reloadTimeSec);
+        for (int i = currentSpearCount; i < totalSpearCount; i++)
+            spearCrosshairImages[i].fillAmount = progress;
 
         if (elaspedTime >= reloadTimeSec)
         {
@@ -447,11 +460,9 @@ public class PlayerController : MonoBehaviour
             }
             reloadParticle.Stop();
 
-            foreach (GameObject spearCrosshair in spearCrosshairs)
-            {
-                spearCrosshair.SetActive(true);
-            }
-       
+            for (int i = 0; i < spearCrosshairImages.Length; i++)
+                spearCrosshairImages[i].fillAmount = 1f;
+
             thrownSpears.Clear();
             currentSpearCount = totalSpearCount;
 
