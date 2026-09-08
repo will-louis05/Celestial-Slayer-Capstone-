@@ -149,7 +149,7 @@ MonoBehaviour:
   attackScrpt: {fileID: 0}
   regainSpeed: 15
   spearSpeedDecreaseRatio: 0.01
-  skinnedMeshRenderer: {fileID: 8566035275952141067}
+  skinnedMeshRenderer: {fileID: 0}
   damage: 40
   enemySFX: {fileID: 0}
 --- !u!1 &3541821996213385544
@@ -856,6 +856,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1849573421718262483, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 13a6c4554f43422458165f28665a438f, type: 2}
     - target: {fileID: 2668605608433959078, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2122,8 +2126,3 @@ CapsuleCollider:
   m_Height: 0.0028770491
   m_Direction: 1
   m_Center: {x: -0.0000157237, y: 0.0007069817, z: -0.0003736861}
---- !u!137 &8566035275952141067 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6754823418332206122, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
-  m_PrefabInstance: {fileID: 3124758920056923937}
-  m_PrefabAsset: {fileID: 0}

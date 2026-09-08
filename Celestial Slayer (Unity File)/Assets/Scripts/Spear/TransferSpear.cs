@@ -32,6 +32,7 @@ public class TransferSpear : Spear
         playerOrientation.LookAt(enemyHit);
         playerRb.isKinematic = false;
 
+        playerRb.GetComponent<PlayerController>().disableTurn = true;
         Destroy(gameObject);
     }
 

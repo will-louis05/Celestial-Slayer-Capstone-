@@ -22,14 +22,6 @@ public class EnemySpawner : MonoBehaviour
     
     void Start()
     {
-
-        //Populate SpawnLocation Array
-        Transform spawnLocationsParent = transform.Find("SpawnLocations");
-        int spawnLocationsCount = spawnLocationsParent.childCount;
-        for (int i = 0; i < spawnLocationsCount; i++)
-        {
-            spawnLocations.Add(spawnLocationsParent.GetChild(i));
-        }
         totalWaves = waveData.Length;
     }
 
@@ -58,17 +50,30 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        List<Transform> availableSpawns = spawnLocations;
+        List<Transform> availableSpawns = new List<Transform>();
         GameObject[] enemiesTypes = { basicEnemy, bruteEnemy, flyingEnemy };
 
         if (waveData[currentWave].waveSpawns != null)
         {
+            availableSpawns = spawnLocations;
             int spawnLocationsCount = waveData[currentWave].waveSpawns.childCount;
             for (int i = 0; i < spawnLocationsCount; i++)
             {
                 availableSpawns.Add(waveData[currentWave].waveSpawns.GetChild(i));
             }
         }
+        else
+        {
+            //Populate SpawnLocation Array
+            Transform spawnLocationsParent = transform.Find("SpawnLocations");
+            int spawnLocationsCount = spawnLocationsParent.childCount;
+            for (int i = 0; i < spawnLocationsCount; i++)
+            {
+                spawnLocations.Add(spawnLocationsParent.GetChild(i));
+            }
+            availableSpawns = spawnLocations;
+        }
+
         bool randomEnemySpawns = waveData[currentWave].randomSpawns;
 
         if (randomEnemySpawns)
@@ -120,6 +125,7 @@ public class EnemySpawner : MonoBehaviour
                     {
                         BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
                         GameObject player = GameObject.Find("Player");
+                        Debug.Log(behaviorGraph);
                         behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
                         firstBasicEnemySpawn= false;
                     }
