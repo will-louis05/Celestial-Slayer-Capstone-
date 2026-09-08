@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public bool grounded;
     public static bool isAiming;
+    public bool disableTurn;
 
     [Header("Components")]
     [SerializeField] private GameObject playerOrientation;
@@ -241,15 +242,20 @@ public class PlayerController : MonoBehaviour
 
         //Pretty sure these do the same thing, should remove one
         if(!isAiming)
-        { 
-            //Turns player towards camera
-            Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
-            Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
-        
-            //90 degree cone
-            //float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
-            Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y, playerAngle.z);
-            playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
+        {
+            if (!disableTurn)
+            {
+                //Turns player towards camera
+                Vector3 camAngle = Camera.main.transform.rotation.eulerAngles;
+                Vector3 playerAngle = playerOrientation.transform.rotation.eulerAngles;
+
+                //90 degree cone
+                //float angleDif = Mathf.Clamp(Mathf.DeltaAngle(camAngle.y, playerAngle.y), -60f, 30f);
+                Quaternion targetRotation = Quaternion.Euler(playerAngle.x, camAngle.y, playerAngle.z);
+                playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotation, 10f * Time.deltaTime);
+            }
+            else
+                disableTurn = false;
         }
         else
         {        
