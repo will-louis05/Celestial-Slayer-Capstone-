@@ -5551,6 +5551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   grounded: 0
+  disableTurn: 0
   playerOrientation: {fileID: 7239181631361051105}
   yawTarget: {fileID: 3180229908710377115}
   holdOffset: {fileID: 8531362809733996157}
@@ -5605,7 +5606,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5597025639639147693}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cdaa133bdf67824eab06e6af242cda4, type: 3}
   m_Name: 
@@ -6403,7 +6404,7 @@ PrefabInstance:
     - target: {fileID: 1781582525894013230, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7e309c70b5577c14f84e9b4440452549, type: 2}
+      objectReference: {fileID: 2100000, guid: 258b3067bd517d5448cc6800dc47432e, type: 2}
     - target: {fileID: 1832479619761508946, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
       propertyPath: m_Layer
       value: 3
