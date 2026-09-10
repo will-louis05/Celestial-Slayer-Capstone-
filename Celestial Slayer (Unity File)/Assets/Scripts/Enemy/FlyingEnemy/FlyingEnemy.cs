@@ -5,12 +5,14 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float distanceFromPlayer;
     [SerializeField] private GameObject shot;
+    [SerializeField] private GameObject areaOfEffectAttack;
     private Transform player;
     private float timeSinceLastFired;
     [Header("Damge Values")]
-    [SerializeField] private float damgeDelt;
-    [SerializeField] private float damgeTicTime;
+    [SerializeField] private float damageDelt;
+    [SerializeField] private float damageTicTime;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private float timeTillDestory;
 
     private void Start()
     {
@@ -43,6 +45,6 @@ public class FlyingEnemy : MonoBehaviour
     private void Fire(Vector3 playerLocation)
     {
         GameObject shotFired = Instantiate(shot, ((0.1f * transform.forward) + transform.position), Quaternion.identity);
-        shotFired.GetComponent<FlyerShot>().ShotSpawn(playerLocation, projectileSpeed, damgeDelt, damgeTicTime);
+        shotFired.GetComponent<FlyerShot>().ShotSpawn(playerLocation, projectileSpeed, damageDelt, damageTicTime, areaOfEffectAttack, timeTillDestory);
     }
 }

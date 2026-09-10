@@ -73,8 +73,10 @@ MonoBehaviour:
   fireRate: 0
   distanceFromPlayer: 0
   shot: {fileID: 6288514440704905835, guid: edf17f12c0cb5d14490174d1010b4303, type: 3}
-  damgeDelt: 0
-  damgeTicTime: 0
+  areaOfEffectAttack: {fileID: 7460042946053087435, guid: 9bddeecabc0517749a6b0c4d3d4e3d52, type: 3}
+  damageDelt: 0
+  damageTicTime: 0
+  projectileSpeed: 0
 --- !u!1 &4334882082594487449
 GameObject:
   m_ObjectHideFlags: 0

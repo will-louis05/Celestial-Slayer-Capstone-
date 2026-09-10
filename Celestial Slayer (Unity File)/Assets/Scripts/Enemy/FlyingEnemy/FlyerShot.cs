@@ -3,23 +3,26 @@ using UnityEngine;
 public class FlyerShot : MonoBehaviour
 {
     private Vector3 playerPos;
-    public float speed;
+    private float speed;
     private bool ballSpawned;
     private bool ballhit;
     private GameObject areaOfEffectAttack;
-    public float damgeOverTime;
-    public float damgeTicTime;
+    private float damageOverTime;
+    private float damageTicTime;
+    private float timeTillDestory;
     [SerializeField] private GameObject areaOfEffectObj;
 
 
-    public void ShotSpawn(Vector3 playerPosition, float ballSpeed, float damge, float ticTime)
+    public void ShotSpawn(Vector3 playerPosition, float ballSpeed, float damage, float ticTime, GameObject areaOfEfftect, float timeTillDes)
     {
         playerPos = playerPosition;
         speed = ballSpeed;
         transform.LookAt(playerPos);
         ballSpawned = true;
-        damgeOverTime = damge;
-        damgeTicTime = ticTime;
+        areaOfEffectAttack = areaOfEfftect;
+        damageOverTime = damage;
+        damageTicTime = ticTime;
+        timeTillDestory = timeTillDes;
     }
 
     void Update()
@@ -40,7 +43,9 @@ public class FlyerShot : MonoBehaviour
     {
         GameObject areaOfEffect = Instantiate(areaOfEffectAttack, collision.contacts[0].point, Quaternion.identity);
         AreaOfEffectAttack areaScrpt = areaOfEffect.GetComponent<AreaOfEffectAttack>();
-        areaScrpt.damgeOverTime = damgeOverTime;
-        areaScrpt.damgeTicTime = damgeTicTime;
+        areaScrpt.damgeOverTime = damageOverTime;
+        areaScrpt.damgeTicTime = damageTicTime;
+        areaScrpt.timeTillDestory = timeTillDestory;
+        Destroy(gameObject);
     }
 }

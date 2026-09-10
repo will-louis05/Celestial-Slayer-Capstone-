@@ -23,25 +23,32 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (airTimer <= 0f) // && Time.timeSinceLevelLoad > 0.01f)
+        if (other.isTrigger != true)
         {
-            landSFX.pitch = Random.Range(0.7f, 0.9f);
-            landSFX.Play();
-        }
+            if (airTimer <= 0f) // && Time.timeSinceLevelLoad > 0.01f)
+            {
+                landSFX.pitch = Random.Range(0.7f, 0.9f);
+                landSFX.Play();
+            }
 
-        airTimer = requiredAirTime;
+            airTimer = requiredAirTime;
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        playerController.grounded = true;
+        if(other.isTrigger != true)
+            playerController.grounded = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        playerController.grounded = false;
+        if (other.isTrigger != true)
+        {
+            playerController.grounded = false;
 
-        airTimer = requiredAirTime;
+            airTimer = requiredAirTime;
+        }
     }
 }
 
