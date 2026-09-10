@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567914824859416514}
   - component: {fileID: 6471174729740590417}
+  - component: {fileID: 2005034137618167773}
   m_Layer: 8
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -57,6 +58,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2005034137618167773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482427714760531327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56b0bd6667f89f4ab22039482a98733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
+  fireRate: 0
+  distanceFromPlayer: 0
+  shot: {fileID: 6288514440704905835, guid: edf17f12c0cb5d14490174d1010b4303, type: 3}
+  damgeDelt: 0
+  damgeTicTime: 0
 --- !u!1 &4334882082594487449
 GameObject:
   m_ObjectHideFlags: 0
