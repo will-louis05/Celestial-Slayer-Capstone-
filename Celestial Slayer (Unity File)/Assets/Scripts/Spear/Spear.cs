@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Spear : MonoBehaviour
 {
@@ -7,6 +6,7 @@ public class Spear : MonoBehaviour
     protected Rigidbody spearRb;
     protected bool held = true;
     protected float preCollisionSpeed;
+    private GameObject vfxSpawned;
     [SerializeField] protected GameObject throwParticle;
 
     protected virtual void Start()
@@ -33,9 +33,16 @@ public class Spear : MonoBehaviour
         spearRb.useGravity = true;
         held = false;
 
-        Instantiate(throwParticle, (transform.forward * 2f + transform.position), transform.rotation);
-
+        vfxSpawned = Instantiate(throwParticle, (transform.forward * 2f + transform.position), transform.rotation);
+        Invoke(nameof(DestoryVFX), 2f);
         spearRb.AddForce(moveDirection, ForceMode.Impulse);
         preCollisionSpeed = moveDirection.magnitude;
+
+
+    }
+
+    private void DestoryVFX()
+    {
+        Destroy(vfxSpawned);
     }
 }

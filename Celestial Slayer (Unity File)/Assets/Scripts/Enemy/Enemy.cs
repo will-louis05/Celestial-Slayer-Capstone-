@@ -1,5 +1,4 @@
 using Unity.Behavior;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,6 +18,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float regainSpeed;
     [SerializeField] private float spearSpeedDecreaseRatio;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
+    public bool isBigEnemy;
     public float damage;
 
     [Header("SFX")]
@@ -39,11 +39,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
-
     public void ExplosionHit()
     {
         foreach (var joint in joints)
@@ -59,12 +54,12 @@ public class Enemy : MonoBehaviour
 
         float postCollisionSpeed = spearSpeed - inveseForce;
 
-        ////DEBUG TOOL
-        //if (postCollisionSpeed < 0)
-        //{
-        //    skinnedMeshRenderer.material.color = Color.blue;
-        //    return true;
-        //}
+        //DEBUG TOOL
+        if (postCollisionSpeed < 0)
+        {
+            //skinnedMeshRenderer.material.color = Color.blue;
+            return true;
+        }
 
         spearRb = spearRigidbody;
         speared = true;
@@ -84,7 +79,7 @@ public class Enemy : MonoBehaviour
             joint.layer = spearIgnoreLayer;
         }
 
-        FixedJoint limbFixedJoint = limbhit.AddComponent<FixedJoint>();
+        FixedJoint limbFixedJoint = limbhit.gameObject.AddComponent<FixedJoint>();
         limbFixedJoint.connectedBody = spearRb.transform.GetComponent<Rigidbody>();
 
         spearRb.linearVelocity = postCollisionSpeed * spearRb.transform.forward;
@@ -120,10 +115,9 @@ public class Enemy : MonoBehaviour
     private void Killed()
     {
         //Make Them SpearableAgain
-        int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
         foreach (var joint in joints)
         {
-            joint.layer = spearIgnoreLayer;
+            joint.layer = 0;
         }
         ////Debug TOOL
         //skinnedMeshRenderer.material.color = Color.red;

@@ -8,18 +8,11 @@ public class AreaOfEffectAttack : MonoBehaviour
     public float damgeTicTime;
     private float timeSinceLastDamged;
     public float timeTillDestory;
-    private float aliveTime;
 
     private void Start()
     {
         timeSinceLastDamged = Time.time;
-    }
-
-    private void Update()
-    {
-        aliveTime += Time.deltaTime;
-        if(timeTillDestory < aliveTime)
-            Destroy(gameObject);
+        Invoke(nameof(DestoryArea), timeTillDestory);
     }
 
     private void OnTriggerStay(Collider collider)
@@ -33,7 +26,6 @@ public class AreaOfEffectAttack : MonoBehaviour
             }
             if (damgeTicTime < (Time.time - timeSinceLastDamged))
             {
-                Debug.Log("dmg");
                 playerHealth.Hit(damgeOverTime);
                 timeSinceLastDamged = Time.time;
             }
@@ -42,5 +34,10 @@ public class AreaOfEffectAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         timeSinceLastDamged = Time.time;
+    }
+
+    private void DestoryArea()
+    {
+        Destroy(gameObject);
     }
 }

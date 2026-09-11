@@ -85,6 +85,7 @@ public class BasicSpear : Spear
             collisionTraform = collisionTraform.root;
            
             Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
+            FlyingEnemy flyEnemyScrp = collisionTraform.GetComponent<FlyingEnemy>();
             if (enemyScrp != null)
             {
                 //BUGFIX if hit immediately auto set speed
@@ -100,6 +101,10 @@ public class BasicSpear : Spear
                     stuck = true;
                     transform.SetParent(limbhit);
                 }
+            }
+            else if(flyEnemyScrp != null)
+            {
+                bool failedToPierce = flyEnemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed, collision);
             }
             else
             {

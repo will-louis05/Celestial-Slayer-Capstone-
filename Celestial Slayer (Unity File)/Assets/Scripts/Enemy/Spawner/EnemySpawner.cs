@@ -129,6 +129,7 @@ public class EnemySpawner : MonoBehaviour
                         behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
                         firstBasicEnemySpawn= false;
                     }
+                    enemySpawned.GetComponent<Enemy>().spawner = this;
                     break;
                 case GizmoSpawnLocations.EnemyType.brute:
                     enemySpawned = Instantiate(bruteEnemy, availableSpawns[0].position, Quaternion.identity);
@@ -139,13 +140,14 @@ public class EnemySpawner : MonoBehaviour
                         behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
                         firstBruteEnemySpawn = false;
                     }
+                    enemySpawned.GetComponent<Enemy>().spawner = this;
                     break;
                 case GizmoSpawnLocations.EnemyType.flying:
                     enemySpawned = Instantiate(flyingEnemy, availableSpawns[0].position, Quaternion.identity);
+                    enemySpawned.GetComponent<FlyingEnemy>().spawner = this;
                     break;
             }
             availableSpawns.RemoveAt(0);
-            enemySpawned.GetComponent<Enemy>().spawner = this;
             currentEnemyCount++;
         }
     }

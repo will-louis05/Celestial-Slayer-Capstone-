@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1627925168895229140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3960641401325027835}
+  - component: {fileID: 7708167720898376804}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3960641401325027835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627925168895229140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 567914824859416514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7708167720898376804
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627925168895229140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.8498287, z: 1}
+  m_Center: {x: 0, y: 0.4744768, z: -0}
 --- !u!1 &3482427714760531327
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +64,8 @@ GameObject:
   - component: {fileID: 567914824859416514}
   - component: {fileID: 6471174729740590417}
   - component: {fileID: 2005034137618167773}
-  m_Layer: 8
+  - component: {fileID: 7207687115957604308}
+  m_Layer: 0
   m_Name: FlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -31,6 +85,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 3960641401325027835}
   - {fileID: 7863444505529655111}
   - {fileID: 4261806124107098470}
   - {fileID: 2147454518598109304}
@@ -70,13 +125,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56b0bd6667f89f4ab22039482a98733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
-  fireRate: 0
-  distanceFromPlayer: 0
+  fireRate: 7
+  distanceFromPlayer: 40
   shot: {fileID: 6288514440704905835, guid: edf17f12c0cb5d14490174d1010b4303, type: 3}
   areaOfEffectAttack: {fileID: 7460042946053087435, guid: 9bddeecabc0517749a6b0c4d3d4e3d52, type: 3}
-  damageDelt: 0
-  damageTicTime: 0
-  projectileSpeed: 0
+  joints:
+  - {fileID: 3482427714760531327}
+  enemyMass: 0
+  spearSpeedDecreaseRatio: 0
+  spawner: {fileID: 0}
+  damageDelt: 4
+  damageTicTime: 0.3
+  projectileSpeed: 0.3
+  timeTillDestory: 5
+--- !u!54 &7207687115957604308
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482427714760531327}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4334882082594487449
 GameObject:
   m_ObjectHideFlags: 0

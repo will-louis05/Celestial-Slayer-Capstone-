@@ -25,8 +25,11 @@ public class ExplosiveSpear: Spear
             {
                 enemyhit = collider.transform.root;
                 Enemy enemyHitScrp = enemyhit.GetComponent<Enemy>();
-                if(enemyHitScrp != null)
-                    enemyHitScrp.ExplosionHit();
+                if (enemyHitScrp != null)
+                {
+                    if (enemyHitScrp.isBigEnemy == false)
+                        enemyHitScrp.ExplosionHit();
+                }
             }
             if (objRb != null)
             {

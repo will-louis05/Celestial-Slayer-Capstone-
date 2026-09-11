@@ -10,10 +10,11 @@ public class FlyerShot : MonoBehaviour
     private float damageOverTime;
     private float damageTicTime;
     private float timeTillDestory;
+    private Collider self;
     [SerializeField] private GameObject areaOfEffectObj;
 
 
-    public void ShotSpawn(Vector3 playerPosition, float ballSpeed, float damage, float ticTime, GameObject areaOfEfftect, float timeTillDes)
+    public void ShotSpawn(Vector3 playerPosition, float ballSpeed, float damage, float ticTime, GameObject areaOfEfftect, float timeTillDes, Collider shooter)
     {
         playerPos = playerPosition;
         speed = ballSpeed;
@@ -23,6 +24,7 @@ public class FlyerShot : MonoBehaviour
         damageOverTime = damage;
         damageTicTime = ticTime;
         timeTillDestory = timeTillDes;
+        self = shooter;
     }
 
     void Update()
@@ -34,14 +36,18 @@ public class FlyerShot : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        ObjHit(collision);
+        if (collision != self)
+        {
+            ObjHit();
+        }
     }
 
-    private void ObjHit(Collision collision)
+    private void ObjHit()
     {
-        GameObject areaOfEffect = Instantiate(areaOfEffectAttack, collision.contacts[0].point, Quaternion.identity);
+        GameObject areaOfEffect = Instantiate(areaOfEffectAttack, transform.position, Quaternion.identity);
+        Debug.Log(areaOfEffect);    
         AreaOfEffectAttack areaScrpt = areaOfEffect.GetComponent<AreaOfEffectAttack>();
         areaScrpt.damgeOverTime = damageOverTime;
         areaScrpt.damgeTicTime = damageTicTime;
