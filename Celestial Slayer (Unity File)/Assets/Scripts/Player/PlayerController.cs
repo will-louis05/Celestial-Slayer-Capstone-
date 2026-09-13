@@ -107,8 +107,6 @@ public class PlayerController : MonoBehaviour
         if (infiniteSpears)
             currentSpearCount = 5;
 
-
-
         if ((!holdingSpear && currentSpearCount != 0) || inEquip)
         {
             if (!inDelayThrow && !inEquip)
@@ -180,7 +178,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
-
 
         if(heldSpear != null)
         {
@@ -263,15 +260,20 @@ public class PlayerController : MonoBehaviour
                 disableTurn = false;
         }
         else
-        {        
-            Vector3 lookDirection = yawTarget.forward;
-            lookDirection.y = 0f;
-
-            if (lookDirection.magnitude > 0)
+        {
+            if (!disableTurn)
             {
-                Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
-                playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+                Vector3 lookDirection = yawTarget.forward;
+                lookDirection.y = 0f;
+
+                if (lookDirection.magnitude > 0)
+                {
+                    Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
+                    playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+                }
             }
+            else
+                disableTurn = false;
         }
     }
 

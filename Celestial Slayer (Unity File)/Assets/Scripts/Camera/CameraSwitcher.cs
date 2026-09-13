@@ -76,6 +76,6 @@ public class CameraSwitcher : MonoBehaviour
         Vector3 forward = aimCam.transform.forward;
         float angle = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
         orbitalFollow.HorizontalAxis.Value = angle;
-        orbitalFollow.VerticalAxis.Value = 17.5f;
+        orbitalFollow.VerticalAxis.Value = 20f;
     }
 }
