@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
             spearCrosshairImages[i].fillAmount = 1f;
         }
 
+        ColourManager.instance.SetCrosshair((int)currentSpearType);
+
         throwStrength = minThrowStrength;
         currentSpearCount = totalSpearCount;
     }
@@ -142,16 +144,19 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpearType = CurrentSpearType.basicSpear;
                 inputHandler.equipBasicSpearTriggered = false;
+                ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
             else if (inputHandler.equipTranferSpearTriggered)
             {               
                 currentSpearType = CurrentSpearType.transferSpear;
                 inputHandler.equipTranferSpearTriggered = false;
+                ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
             else if(inputHandler.equipExplosiveSpearTriggered)
             {
                 currentSpearType = CurrentSpearType.explosiveSpear;
-                inputHandler.equipExplosiveSpearTriggered = false;     
+                inputHandler.equipExplosiveSpearTriggered = false;
+                ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
             GameObject spearToDestroy = heldSpear;
             heldSpear = null;

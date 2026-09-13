@@ -4,18 +4,20 @@ using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] private bool tutorialOn = true;
     [SerializeField] string[] messages;
 
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private CanvasGroup textGroup;
-    [SerializeField] private CanvasGroup panelGroup;
-
+    [Header("Animation")]
     [SerializeField] private float delay = 4f;
     [SerializeField] private float slowDuration = 1f;
     [SerializeField] private float quickDuration = 0.3f;
     [SerializeField] private Ease ease = Ease.OutQuint;
 
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private CanvasGroup textGroup;
+    [SerializeField] private CanvasGroup panelGroup;
     [SerializeField] private AudioSource notificationSFX;
 
     //private RectTransform rectTrans;
