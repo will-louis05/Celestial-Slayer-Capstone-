@@ -3,12 +3,18 @@ using UnityEngine;
 
 public class TransferSpear : Spear
 {
+    private CinemachineOrbitalFollow thirdPersonCam;
+    private AimCameraController aimCam;
+
     private Transform player;
 
     protected override void Start()
     {
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        thirdPersonCam = GameObject.Find("ThirdPersonCamera").GetComponent<CinemachineOrbitalFollow>();
+        aimCam = GameObject.Find("AimCamera").GetComponent<AimCameraController>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -32,9 +38,36 @@ public class TransferSpear : Spear
         playerOrientation.LookAt(enemyHit);
         playerRb.isKinematic = false;
 
-        playerRb.GetComponent<PlayerController>().disableTurn = true;
+        PlayerController playerController = playerRb.GetComponent<PlayerController>();
+        playerController.disableTurn = true;
+        LookAtEnemy(enemyHit);
+
         Destroy(gameObject);
     }
 
+    private void LookAtEnemy(Transform enemy)
+    {
+        Vector3 lookDirection = enemy.position - player.position;
+        lookDirection.y = 0f;
+        if (lookDirection.sqrMagnitude <= 0)
+            return;
+        Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
 
+        player.rotation = lookRotation;
+        Transform playerOrientation = player.Find("Orientation");
+        Transform yawTarget = player.Find("YawTarget");
+        playerOrientation.rotation = lookRotation;
+        yawTarget.rotation = lookRotation;
+
+        //Reset cameras
+        if (PlayerController.isAiming)
+        {
+            aimCam.SetCameForward(player);
+        }
+        else
+        {
+            thirdPersonCam.HorizontalAxis.Value = lookRotation.eulerAngles.y;
+            thirdPersonCam.VerticalAxis.Value = 20f;
+        }
+    }
 }

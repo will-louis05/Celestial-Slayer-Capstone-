@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
             spearCrosshairImages[i].fillAmount = 1f;
         }
 
+        ColourManager.instance.SetCrosshair((int)currentSpearType);
+
         throwStrength = minThrowStrength;
         currentSpearCount = totalSpearCount;
     }
@@ -104,8 +106,6 @@ public class PlayerController : MonoBehaviour
 
         if (infiniteSpears)
             currentSpearCount = 5;
-
-
 
         if ((!holdingSpear && currentSpearCount != 0) || inEquip)
         {
@@ -142,16 +142,19 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpearType = CurrentSpearType.basicSpear;
                 inputHandler.equipBasicSpearTriggered = false;
+                ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
             else if (inputHandler.equipTranferSpearTriggered)
             {               
                 currentSpearType = CurrentSpearType.transferSpear;
                 inputHandler.equipTranferSpearTriggered = false;
+                ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
             else if(inputHandler.equipExplosiveSpearTriggered)
             {
                 currentSpearType = CurrentSpearType.explosiveSpear;
-                inputHandler.equipExplosiveSpearTriggered = false;     
+                inputHandler.equipExplosiveSpearTriggered = false;
+                ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
             GameObject spearToDestroy = heldSpear;
             heldSpear = null;
@@ -175,7 +178,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
-
 
         if(heldSpear != null)
         {
@@ -258,15 +260,20 @@ public class PlayerController : MonoBehaviour
                 disableTurn = false;
         }
         else
-        {        
-            Vector3 lookDirection = yawTarget.forward;
-            lookDirection.y = 0f;
-
-            if (lookDirection.magnitude > 0)
+        {
+            if (!disableTurn)
             {
-                Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
-                playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+                Vector3 lookDirection = yawTarget.forward;
+                lookDirection.y = 0f;
+
+                if (lookDirection.magnitude > 0)
+                {
+                    Quaternion targetRotaiton = Quaternion.LookRotation(lookDirection);
+                    playerOrientation.transform.rotation = Quaternion.Slerp(playerOrientation.transform.rotation, targetRotaiton, 10f * Time.deltaTime);
+                }
             }
+            else
+                disableTurn = false;
         }
     }
 
