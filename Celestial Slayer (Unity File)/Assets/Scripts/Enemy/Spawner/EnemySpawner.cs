@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Behavior;
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,13 +12,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject bruteEnemy;
     [SerializeField] private GameObject flyingEnemy;
     [SerializeField] private WaveData[] waveData;
+    [SerializeField] private GameObject tempBruteSpawnerEffect;
+    [SerializeField] private GameObject tempBasicSpawnerEffect;
     private int totalWaves;
     private int currentWave;
     public int currentEnemyCount;
 
     [Header("DeveloperTools")]
     public bool spawnEnemies;
-    [SerializeField] private ICombatEvent combatEvent;
+    [SerializeField] private GameObject combatEvent;
 
     
     void Start()
@@ -27,15 +30,17 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (currentWave == totalWaves && currentEnemyCount == 0)
+        if (currentWave == totalWaves && currentEnemyCount <= 0)
         {
-            if (combatEvent != null) 
-                combatEvent.PostCombatEvent();
+            if (combatEvent != null)
+            {
+                combatEvent.GetComponent<ICombatEvent>().PostCombatEvent();
+            }
             Destroy(gameObject);
             PlayerController.inCombat = false;
 
         }
-        else if (spawnEnemies && currentEnemyCount == 0)
+        else if (spawnEnemies && currentEnemyCount <= 0)
         {
             PlayerController.inCombat = true;
             if (currentWave == totalWaves)
@@ -113,33 +118,36 @@ public class EnemySpawner : MonoBehaviour
     {
         bool firstBasicEnemySpawn = true;
         bool firstBruteEnemySpawn = true;
-        for (int i = 0; i < availableSpawns.Count; i++)
+        int availableSpawnsCount = availableSpawns.Count;
+        for (int i = 0; i < availableSpawnsCount; i++)
         {
             GameObject enemySpawned = null;
             GizmoSpawnLocations.EnemyType enemyType = availableSpawns[0].GetComponent<GizmoSpawnLocations>().enemyType;
+            GameObject spawnVFX = null;
             switch (enemyType)
             {
                 case GizmoSpawnLocations.EnemyType.basic:
                     enemySpawned = Instantiate(basicEnemy, availableSpawns[0].position, Quaternion.identity);
-                    if(firstBasicEnemySpawn)
-                    {
-                        BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
-                        GameObject player = GameObject.Find("Player");
-                        Debug.Log(behaviorGraph);
-                        behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
-                        firstBasicEnemySpawn= false;
-                    }
+                    spawnVFX = Instantiate(tempBasicSpawnerEffect, availableSpawns[0].position + Vector3.up * 0.6f, Quaternion.identity);
+                    //if (firstBasicEnemySpawn)
+                    //{
+                    //    BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
+                    //    GameObject player = GameObject.Find("Player");
+                    //    behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+                    //    firstBasicEnemySpawn = false;
+                    //}
                     enemySpawned.GetComponent<Enemy>().spawner = this;
                     break;
                 case GizmoSpawnLocations.EnemyType.brute:
                     enemySpawned = Instantiate(bruteEnemy, availableSpawns[0].position, Quaternion.identity);
-                    if (firstBruteEnemySpawn)
-                    {
-                        BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
-                        GameObject player = GameObject.Find("Player");
-                        behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
-                        firstBruteEnemySpawn = false;
-                    }
+                    spawnVFX = Instantiate(tempBruteSpawnerEffect, availableSpawns[0].position + Vector3.up * 2.5f, Quaternion.identity);
+                    //if (firstBruteEnemySpawn)
+                    //{
+                    //    BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
+                    //    GameObject player = GameObject.Find("Player");
+                    //    behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+                    //    firstBruteEnemySpawn = false;
+                    //}
                     enemySpawned.GetComponent<Enemy>().spawner = this;
                     break;
                 case GizmoSpawnLocations.EnemyType.flying:
@@ -149,7 +157,20 @@ public class EnemySpawner : MonoBehaviour
             }
             availableSpawns.RemoveAt(0);
             currentEnemyCount++;
+            if (spawnVFX != null)
+            {
+                StartCoroutine(VFXDestroyer(spawnVFX));
+            }
+            BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
+            GameObject player = GameObject.Find("Player");
+            behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
         }
+    }
+
+    private IEnumerator VFXDestroyer(GameObject spawnVFX)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(spawnVFX);
     }
 }
 

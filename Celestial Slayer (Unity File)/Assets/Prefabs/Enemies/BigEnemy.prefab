@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyMass: 200
+  forceRequiredToSpear: 100
+  runSpeed: 7
   spawner: {fileID: 0}
   joints:
   - {fileID: 8318302388270373171}
@@ -152,6 +154,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 3672226539627132402}
   isBigEnemy: 1
   damage: 40
+  enemyDisable: 0
   enemySFX: {fileID: 3207733307377159511}
 --- !u!1 &3541821996213385544
 GameObject:
@@ -182,8 +185,8 @@ Transform:
   m_GameObject: {fileID: 3541821996213385544}
   serializedVersion: 2
   m_LocalRotation: {x: -0.051056117, y: 0.72120935, z: -0.059756078, w: 0.6882439}
-  m_LocalPosition: {x: 0.000206, y: 0.001137, z: -0.000189}
-  m_LocalScale: {x: 0.0022399868, y: 0.002239987, z: 0.0022399866}
+  m_LocalPosition: {x: 0.00089, y: 0.00125, z: -0.0002}
+  m_LocalScale: {x: 0.003280577, y: 0.0032805775, z: 0.0032805768}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1845018721006761566}
@@ -257,7 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e95e92100b980442bfc5b75d1ab8744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  enemyParent: {fileID: 2353345011533518376}
 --- !u!135 &3027718424426695297
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -495,7 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e95e92100b980442bfc5b75d1ab8744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  enemyParent: {fileID: 2353345011533518376}
 --- !u!1 &7598403643998740346
 GameObject:
   m_ObjectHideFlags: 0

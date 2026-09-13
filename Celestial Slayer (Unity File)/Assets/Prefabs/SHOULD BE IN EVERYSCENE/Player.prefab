@@ -5507,7 +5507,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &696336087105653191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5567,7 +5567,7 @@ MonoBehaviour:
   transferSpear: {fileID: 7777969820133171910, guid: 083f581ecd46a2742924a38fddd46adf, type: 3}
   explosiveSpear: {fileID: 1608799227217340317, guid: 75ced820b6bae9441b633e8be0c7714c, type: 3}
   minThrowStrength: 5
-  maxThrowStrength: 10
+  maxThrowStrength: 15
   throwStrengthIncrease: 2
   totalSpearCount: 5
   equipTime: 0.8
@@ -5597,7 +5597,7 @@ MonoBehaviour:
   timeTillHealthregenSec: 3
   healthRegenPerSecond: 4
   totalHitPoints: 0
-  infiniteHealth: 0
+  infiniteHealth: 1
   resetHealth: 0
 --- !u!114 &6026689061924525501
 MonoBehaviour:
@@ -5615,7 +5615,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 73f49013167179741946930d69ed936f, type: 2}
   - {fileID: 2100000, guid: 7e309c70b5577c14f84e9b4440452549, type: 2}
   - {fileID: 2100000, guid: 829decf48a462db41ad0832e0915e52f, type: 2}
-  - {fileID: 2100000, guid: 9655a9d188ab07b449849729a1869a89, type: 2}
   changeMat: 0
   meshRenderer: {fileID: 6563667528951447840}
 --- !u!95 &8346364394675993745

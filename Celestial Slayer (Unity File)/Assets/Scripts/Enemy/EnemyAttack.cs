@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] private Enemy enemyParent;
+    private Enemy enemyParent;
     private float damage;
 
     private void Start()
     {
+        Transform parent = transform.root;
+        enemyParent = parent.GetComponent<Enemy>();
         damage = enemyParent.damage;
+        enemyParent.attackScrpt = this;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     private BehaviorGraphAgent behaviorGraph;
     private bool speared;
     [SerializeField] private float enemyMass;
+    [SerializeField] private float forceRequiredToSpear;
+    [SerializeField] private float runSpeed;
     private Rigidbody enemyRb;
     private Rigidbody spearRb;
     public EnemySpawner spawner;
@@ -21,6 +23,10 @@ public class Enemy : MonoBehaviour
     public bool isBigEnemy;
     public float damage;
 
+    private FixedJoint jointOnSpear;
+    [SerializeField] private bool enemyDisable;
+    private bool inEnabled;
+
     [Header("SFX")]
     [SerializeField] private AudioSource enemySFX;
 
@@ -31,11 +37,21 @@ public class Enemy : MonoBehaviour
         navMesh = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         animator.SetBool("CanMove", !speared);
+
+        behaviorGraph.BlackboardReference.SetVariableValue("Speed", runSpeed);
         ////DEBUG TOOL
         //skinnedMeshRenderer.material.color = Color.green;
         foreach (var joint in joints)
         {
             joint.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (enemyDisable)
+        {
+            RegainControl();
         }
     }
 
@@ -55,7 +71,8 @@ public class Enemy : MonoBehaviour
         float postCollisionSpeed = spearSpeed - inveseForce;
 
         //DEBUG TOOL
-        if (postCollisionSpeed < 0)
+        //Debug.Log("Post colSpeed = " + postCollisionSpeed);
+        if (postCollisionSpeed < forceRequiredToSpear)
         {
             //skinnedMeshRenderer.material.color = Color.blue;
             return true;
@@ -90,7 +107,7 @@ public class Enemy : MonoBehaviour
         //enemyRb.isKinematic = false;
         //enemyRb.linearVelocity = velocity;
 
-        //attackScrpt.enabled = false;
+        attackScrpt.enabled = false;
 
         return false;
     }
@@ -102,14 +119,46 @@ public class Enemy : MonoBehaviour
 
     private void RegainControl()
     {
-        attackScrpt.enabled = true;
-        enemyRb.isKinematic = true;
+        //attackScrpt.enabled = true;
+
+        //jointOnSpear = null;
+        foreach (var joint in joints)
+        {
+            joint.GetComponent<Rigidbody>().isKinematic = true;
+            joint.layer = 0;
+        }
 
         speared = false;
+
+
+        animator.enabled = true;
+        navMesh.enabled = true;
+        behaviorGraph.enabled = true;
+
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
         animator.SetBool("CanMove", !speared);
         ////DEBUG TOOL
         //skinnedMeshRenderer.material.color = Color.black;
+    }
+
+    private void DisableEnemy()
+    {
+        behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
+        animator.enabled = false;
+
+        navMesh.enabled = false;
+        behaviorGraph.enabled = false;
+
+        ////DEBUG TOOL
+        //skinnedMeshRenderer.material.color = Color.yellow;
+        int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
+        foreach (var joint in joints)
+        {
+            joint.GetComponent<Rigidbody>().isKinematic = false;
+            joint.layer = spearIgnoreLayer;
+        }
+
+        enemyDisable = false;
     }
 
     private void Killed()
@@ -122,10 +171,10 @@ public class Enemy : MonoBehaviour
         ////Debug TOOL
         //skinnedMeshRenderer.material.color = Color.red;
         spawner.currentEnemyCount--;
-        Destroy(this);
         Destroy(navMesh);
         Destroy(behaviorGraph);
         Destroy(animator);
         Destroy(attackScrpt);
+        Destroy(this);
     }
 }

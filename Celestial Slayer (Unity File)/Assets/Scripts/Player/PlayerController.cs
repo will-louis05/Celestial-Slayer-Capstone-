@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform yawTarget;
 
     [SerializeField] private Transform holdOffset;
-    [SerializeField] private Transform crosshair;
     [SerializeField] private ParticleSystem reloadParticle;
     //[SerializeField] private ParticleSystem[] particleSpeedLines;
 
@@ -24,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private GameObject[] spearCrosshairs;
     private Image[] spearCrosshairImages;
     private Animator animator;
+    private Transform crosshair;
+
 
     [Header("Movement Values")]
     [SerializeField] private float groundMoveSpeed;
@@ -81,6 +82,8 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         animator = GetComponent<Animator>();
 
+        crosshair = GameObject.Find("Crosshair").transform;
+
         //Spear UI icons
         Transform spearCrossParent = GameObject.Find("SpearCrosshairCount").transform;
         spearCrosshairs = new GameObject[spearCrossParent.childCount];
@@ -119,6 +122,12 @@ public class PlayerController : MonoBehaviour
                 inDelayThrow = false;
                 SpearEquip();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
         }
 
         //Run SFX
@@ -364,7 +373,9 @@ public class PlayerController : MonoBehaviour
 
             Spear spearScrp = heldSpear.GetComponent<Spear>();
             spearScrp.SpearThrown(throwStrength, maxThrowStrength);
+
             currentSpearCount -= 1;
+
             thrownSpears.Add(heldSpear);
 
             animator.SetTrigger("Throw");

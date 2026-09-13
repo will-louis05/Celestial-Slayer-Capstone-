@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyMass: 80
+  forceRequiredToSpear: 50
+  runSpeed: 10
   spawner: {fileID: 0}
   joints:
   - {fileID: 8318302388270373171}
@@ -150,7 +152,9 @@ MonoBehaviour:
   regainSpeed: 15
   spearSpeedDecreaseRatio: 0.01
   skinnedMeshRenderer: {fileID: 0}
-  damage: 30
+  isBigEnemy: 0
+  damage: 20
+  enemyDisable: 0
   enemySFX: {fileID: 0}
 --- !u!1 &3541821996213385544
 GameObject:
@@ -256,7 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e95e92100b980442bfc5b75d1ab8744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  enemyParent: {fileID: 2353345011533518376}
 --- !u!135 &9066742769205840285
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -494,7 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e95e92100b980442bfc5b75d1ab8744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  enemyParent: {fileID: 2353345011533518376}
 --- !u!1 &7598403643998740346
 GameObject:
   m_ObjectHideFlags: 0

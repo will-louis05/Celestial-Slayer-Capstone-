@@ -36,8 +36,6 @@ public class BasicSpear : Spear
     private void Update()
     {
         Debug.DrawRay(angleCheck.position, transform.forward * 0.5f, Color.blue);
-        if (Physics.Raycast(angleCheck.position, transform.forward, 0.5f))
-            Debug.Log("RayInsideSomething");
     }
 
 
@@ -66,7 +64,6 @@ public class BasicSpear : Spear
 
     void SpearHit(Collision collision)
     {
-        Debug.Log("RayPass");
         inCollision = true;
         Transform collisionTraform = collision.transform;
             
@@ -87,14 +84,12 @@ public class BasicSpear : Spear
             collisionTraform = collisionTraform.root;
            
             Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
-            FlyingEnemy flyEnemyScrp = collisionTraform.GetComponent<FlyingEnemy>();
             if (enemyScrp != null)
             {
                 //BUGFIX if hit immediately auto set speed
                 if (Time.deltaTime < timer)
                     preCollisionSpeed = 90f;
 
-                spearedEnemies.Add(enemyScrp);
                 PierceAmount(collision);
                 bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed, collision);
                 if (failedToPierce)
@@ -103,10 +98,10 @@ public class BasicSpear : Spear
                     stuck = true;
                     transform.SetParent(limbhit);
                 }
-            }
-            else if(flyEnemyScrp != null)
-            {
-                bool failedToPierce = flyEnemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed, collision);
+                else
+                {
+                    spearedEnemies.Add(enemyScrp);
+                }
             }
             else
             {
@@ -121,7 +116,6 @@ public class BasicSpear : Spear
         }
         else
         {
-            Debug.Log("hitStatic");
             PierceAmount(collision);
             stuck = true;
         }
@@ -205,7 +199,6 @@ public class BasicSpear : Spear
 
         //RigidBody must be destoryed to prevent physics bugs as such save mass to reapply later
         spearedObjects.Add(spearedRb.gameObject);
-        Debug.Log(spearedRb.name);
         spearedRb.transform.SetParent(this.transform);
         spearedObjectsMass.Add(spearedRb.mass);
 
