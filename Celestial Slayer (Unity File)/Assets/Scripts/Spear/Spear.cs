@@ -18,16 +18,17 @@ public class Spear : MonoBehaviour
     public void SpearThrown(float throwStrength, float maxThrowStrength)
     {
         transform.SetParent(null);
-
         Transform camTransform = Camera.main.transform;
-        Vector3 spearfollow = camTransform.GetChild(0).position;
-        transform.LookAt(spearfollow);
+        Transform spearfollow = camTransform.GetChild(0);
+        //transform.rotation = spearfollow.rotation;
+        //Debug.Log("postActio = " + transform.rotation + " spearFollowTrans = " + spearfollow.rotation);
+        transform.LookAt(spearfollow.position);
 
         Vector3 moveDirection = transform.forward * throwStrength * 250f;
 
         spearBodyCollider.enabled = true;
 
-        spearRb.interpolation = RigidbodyInterpolation.Interpolate;
+        //spearRb.interpolation = RigidbodyInterpolation.Interpolate;
         spearRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         spearRb.isKinematic = false;
         spearRb.useGravity = true;
@@ -35,10 +36,9 @@ public class Spear : MonoBehaviour
 
         vfxSpawned = Instantiate(throwParticle, (transform.forward * 2f + transform.position), transform.rotation);
         Invoke(nameof(DestoryVFX), 2f);
+
         spearRb.AddForce(moveDirection, ForceMode.Impulse);
         preCollisionSpeed = moveDirection.magnitude;
-
-
     }
 
     private void DestoryVFX()
