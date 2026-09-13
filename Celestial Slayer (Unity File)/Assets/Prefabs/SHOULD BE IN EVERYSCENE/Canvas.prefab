@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -810,14 +810,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36150a4a38ee67945b9ef845051d8bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColourTinter
-  mainColour: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
-  altColour: {r: 1, g: 1, b: 1, a: 1}
+  primaryColour: {r: 0.08627451, g: 0.79607844, b: 0.83137256, a: 1}
+  secondaryColour: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColour: {r: 0, g: 0, b: 0, a: 0.7490196}
   primaryUI:
-  - {fileID: 6684861757849877228}
-  - {fileID: 2987361412090324928}
-  - {fileID: 6192611103608951869}
-  - {fileID: 3166864710860213263}
-  - {fileID: 8706329800807607331}
   - {fileID: 8551978601862160203}
   - {fileID: 6100715185574018854}
   secondaryUI:
@@ -827,6 +823,13 @@ MonoBehaviour:
   - {fileID: 146232672891173124}
   - {fileID: 8235598857774517575}
   - {fileID: 7021713712597988143}
+  backgroundUI:
+  - {fileID: 6684861757849877228}
+  - {fileID: 2987361412090324928}
+  - {fileID: 6192611103608951869}
+  - {fileID: 3166864710860213263}
+  - {fileID: 8706329800807607331}
+  - {fileID: 4453125015441197234}
   texts:
   - {fileID: 4277272196730030917}
   - {fileID: 3619040550393262176}
@@ -1246,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1361,7 +1364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1436,7 +1439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
+  m_Color: {r: 0.08627451, g: 0.79607844, b: 0.83137256, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1586,7 +1589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1661,7 +1664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1714,7 +1717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 122, y: 30}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &6708641295444591231
@@ -1942,7 +1945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08522318, g: 0.7966519, b: 0.83, a: 1}
+  m_Color: {r: 0.08627451, g: 0.79607844, b: 0.83137256, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

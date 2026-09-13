@@ -8,10 +8,12 @@ public class ColourManager : MonoBehaviour
     public static ColourManager instance;
 
     [Header("UI")]
-    [SerializeField] private Color mainColour = Color.black;
-    [SerializeField] private Color altColour = Color.white;
+    [SerializeField] private Color primaryColour = Color.black;
+    [SerializeField] private Color secondaryColour = Color.white;
+    [SerializeField] private Color backgroundColour = Color.clear;
     [SerializeField] private List<Image> primaryUI = new List<Image>();
     [SerializeField] private List<Image> secondaryUI = new List<Image>();
+    [SerializeField] private List<Image> backgroundUI = new List<Image>();
     [SerializeField] private List<TMP_Text> texts = new List<TMP_Text>();
 
     [Header("Crosshair")]
@@ -38,20 +40,23 @@ public class ColourManager : MonoBehaviour
     public void ApplyTint()
     {
         foreach (Image img in primaryUI)
-            img.color = mainColour;
+            img.color = primaryColour;
 
         foreach (Image img in secondaryUI)
-            img.color = altColour;
+            img.color = secondaryColour;
+
+        foreach (Image img in backgroundUI)
+            img.color = backgroundColour;
 
         foreach (TMP_Text text in texts)
         {
-            text.color = altColour;
+            text.color = secondaryColour;
 
             Material mat = text.fontSharedMaterial;
             if (mat != null)
             {
                 mat.EnableKeyword(ShaderUtilities.Keyword_Glow);
-                mat.SetColor(ShaderUtilities.ID_GlowColor, altColour);
+                mat.SetColor(ShaderUtilities.ID_GlowColor, secondaryColour);
             }
         }
     }
