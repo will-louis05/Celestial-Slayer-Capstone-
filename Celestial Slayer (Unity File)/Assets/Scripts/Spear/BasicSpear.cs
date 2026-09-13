@@ -35,7 +35,9 @@ public class BasicSpear : Spear
 
     private void Update()
     {
-        Debug.DrawRay(angleCheck.position, transform.forward, Color.blue);
+        Debug.DrawRay(angleCheck.position, transform.forward * 0.5f, Color.blue);
+        if (Physics.Raycast(angleCheck.position, transform.forward, 0.5f))
+            Debug.Log("RayInsideSomething");
     }
 
 
@@ -59,12 +61,12 @@ public class BasicSpear : Spear
     {
         if (Physics.Raycast(angleCheck.position, transform.forward, 0.5f))
             return true;
-
         return false;
     }
 
     void SpearHit(Collision collision)
     {
+        Debug.Log("RayPass");
         inCollision = true;
         Transform collisionTraform = collision.transform;
             
@@ -119,6 +121,7 @@ public class BasicSpear : Spear
         }
         else
         {
+            Debug.Log("hitStatic");
             PierceAmount(collision);
             stuck = true;
         }
@@ -212,15 +215,16 @@ public class BasicSpear : Spear
             collider.enabled = false;
 
         Destroy(spearedRb);
-
         spearRb.linearVelocity = postCollisionSpeed * transform.forward;
     }
 
     private void SpearStuck(Collision collision)
     {
         //Allow Player To Interact With Spear Again
-        spearBodyCollider.gameObject.layer = 0;    
+        spearBodyCollider.gameObject.layer = 0;
         spearRb.isKinematic = true;
+        spearRb.useGravity = false;
+        stuck = true;
         if(spearedEnemies.Count > 0)
         {
             foreach(Enemy enemy in spearedEnemies)
