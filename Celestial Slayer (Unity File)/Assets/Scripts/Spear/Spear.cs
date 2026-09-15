@@ -5,6 +5,7 @@ public class Spear : MonoBehaviour
     protected Collider spearBodyCollider;
     protected Rigidbody spearRb;
     protected bool held = true;
+    protected float throwSpeed;
     protected float preCollisionSpeed;
     private GameObject vfxSpawned;
     [SerializeField] protected GameObject throwParticle;
@@ -25,6 +26,7 @@ public class Spear : MonoBehaviour
         transform.LookAt(spearfollow.position);
 
         Vector3 moveDirection = transform.forward * throwStrength * 250f;
+        throwSpeed = throwStrength * 12f;
 
         spearBodyCollider.enabled = true;
 
