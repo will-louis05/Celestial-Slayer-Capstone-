@@ -8,8 +8,7 @@ public class BasicSpear : Spear
     [SerializeField] private float spearSpeedRatio;
     [SerializeField] private float inverseForceRatio;
 
-    [Header("Components")]
-    [SerializeField] private Transform angleCheck;
+    //[Header("Components")]
 
     private List<float> spearedObjectsMass = new List<float>();
     private List<GameObject> spearedObjects = new List<GameObject>();
@@ -35,12 +34,13 @@ public class BasicSpear : Spear
 
     private void Update()
     {
-        Debug.DrawRay(angleCheck.position, transform.forward * 0.5f, Color.blue);
+        Debug.DrawRay(transform.position, transform.forward * 2f, Color.blue);
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.transform); 
         if (!held && !stuck)
         {
             bool acceptAngle = RayCheck();
@@ -49,7 +49,7 @@ public class BasicSpear : Spear
             //{
             //    acceptAngle = true;
             //}
-            
+            Debug.Log(acceptAngle);
             if (acceptAngle && !spearedObjects.Contains(collision.gameObject))
                 SpearHit(collision);
         }
@@ -57,8 +57,12 @@ public class BasicSpear : Spear
 
     bool RayCheck()
     {
-        if (Physics.Raycast(angleCheck.position, transform.forward, 0.5f))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+        {
+            Debug.Log(hit);
             return true;
+        }
         return false;
     }
 
@@ -66,6 +70,7 @@ public class BasicSpear : Spear
     {
         inCollision = true;
         Transform collisionTraform = collision.transform;
+        Debug.Log(collisionTraform);
             
         ISpearedObj spearedObj = collisionTraform.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTraform.GetComponent<Rigidbody>();

@@ -14,7 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6271627352026198537, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: m_ImplicitCom
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6271627352026198537, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 732546582846149433, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
       propertyPath: m_Name
