@@ -16,11 +16,9 @@ public class BasicSpear : Spear
     private bool stuck = false;
     private bool inCollision = false;
     private List<Enemy> spearedEnemies = new List<Enemy>();
-    private float timer = 0.01f;
+    public float timer = 1f;
 
     private Vector3 aimPoint;
-
-    //private float timer = 0.01f;
 
     [Header("SFX")]
     [SerializeField] private AudioSource hitSFX;
@@ -30,6 +28,9 @@ public class BasicSpear : Spear
     {
         if (!inCollision && !stuck)
             preCollisionSpeed = spearRb.linearVelocity.magnitude;
+
+        if (!held)
+            timer += Time.deltaTime;
     }
 
     private void Update()
@@ -91,9 +92,9 @@ public class BasicSpear : Spear
             Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
             if (enemyScrp != null)
             {
-                //BUGFIX if hit immediately auto set speed
-                if (Time.deltaTime < timer)
-                    preCollisionSpeed = 90f;
+                ////BUGFIX if hit immediately auto set speed
+                if (timer > 0f)
+                    preCollisionSpeed = throwSpeed;
 
                 PierceAmount(collision);
                 bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed, collision);
@@ -135,8 +136,8 @@ public class BasicSpear : Spear
         {
             hitPlayed = true;
             float soundSpeed = preCollisionSpeed / 100f;
-            if (soundSpeed < 0.8f)
-                soundSpeed = 0.8f;
+            if (soundSpeed < 0.5f)
+                soundSpeed = 0.5f;
             hitSFX.pitch = Random.Range(soundSpeed - 0.1f, soundSpeed + 0.1f);
             hitSFX.Play();
         }
@@ -185,8 +186,8 @@ public class BasicSpear : Spear
         float inveseForce = spearedRb.mass * inverseForceRatio;
 
         //BUGFIX if hit immediately auto set speed
-        //if (Time.deltaTime < timer)
-        //    preCollisionSpeed = 90f;
+        if (timer > 0f)
+            preCollisionSpeed = throwSpeed;
 
         float postCollisionSpeed = preCollisionSpeed - inveseForce;
 
