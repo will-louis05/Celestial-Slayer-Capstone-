@@ -8,8 +8,7 @@ public class BasicSpear : Spear
     [SerializeField] private float spearSpeedRatio;
     [SerializeField] private float inverseForceRatio;
 
-    [Header("Components")]
-    [SerializeField] private Transform angleCheck;
+    //[Header("Components")]
 
     private List<float> spearedObjectsMass = new List<float>();
     private List<GameObject> spearedObjects = new List<GameObject>();
@@ -17,11 +16,9 @@ public class BasicSpear : Spear
     private bool stuck = false;
     private bool inCollision = false;
     private List<Enemy> spearedEnemies = new List<Enemy>();
-    private float timer = 0.01f;
+    public float timer = 1f;
 
     private Vector3 aimPoint;
-
-    //private float timer = 0.01f;
 
     [Header("SFX")]
     [SerializeField] private AudioSource hitSFX;
@@ -31,16 +28,20 @@ public class BasicSpear : Spear
     {
         if (!inCollision && !stuck)
             preCollisionSpeed = spearRb.linearVelocity.magnitude;
+
+        if (!held)
+            timer += Time.deltaTime;
     }
 
     private void Update()
     {
-        Debug.DrawRay(angleCheck.position, transform.forward * 0.5f, Color.blue);
+        Debug.DrawRay(transform.position, transform.forward * 2f, Color.blue);
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.transform); 
         if (!held && !stuck)
         {
             bool acceptAngle = RayCheck();
@@ -49,7 +50,7 @@ public class BasicSpear : Spear
             //{
             //    acceptAngle = true;
             //}
-            
+            Debug.Log(acceptAngle);
             if (acceptAngle && !spearedObjects.Contains(collision.gameObject))
                 SpearHit(collision);
         }
@@ -57,8 +58,12 @@ public class BasicSpear : Spear
 
     bool RayCheck()
     {
-        if (Physics.Raycast(angleCheck.position, transform.forward, 0.5f))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+        {
+            Debug.Log(hit);
             return true;
+        }
         return false;
     }
 
@@ -66,6 +71,7 @@ public class BasicSpear : Spear
     {
         inCollision = true;
         Transform collisionTraform = collision.transform;
+        Debug.Log(collisionTraform);
             
         ISpearedObj spearedObj = collisionTraform.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTraform.GetComponent<Rigidbody>();
@@ -86,9 +92,9 @@ public class BasicSpear : Spear
             Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
             if (enemyScrp != null)
             {
-                //BUGFIX if hit immediately auto set speed
-                if (Time.deltaTime < timer)
-                    preCollisionSpeed = 90f;
+                ////BUGFIX if hit immediately auto set speed
+                if (timer > 0f)
+                    preCollisionSpeed = throwSpeed;
 
                 PierceAmount(collision);
                 bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed, collision);
@@ -130,8 +136,8 @@ public class BasicSpear : Spear
         {
             hitPlayed = true;
             float soundSpeed = preCollisionSpeed / 100f;
-            if (soundSpeed < 0.8f)
-                soundSpeed = 0.8f;
+            if (soundSpeed < 0.5f)
+                soundSpeed = 0.5f;
             hitSFX.pitch = Random.Range(soundSpeed - 0.1f, soundSpeed + 0.1f);
             hitSFX.Play();
         }
@@ -180,8 +186,8 @@ public class BasicSpear : Spear
         float inveseForce = spearedRb.mass * inverseForceRatio;
 
         //BUGFIX if hit immediately auto set speed
-        //if (Time.deltaTime < timer)
-        //    preCollisionSpeed = 90f;
+        if (timer > 0f)
+            preCollisionSpeed = throwSpeed;
 
         float postCollisionSpeed = preCollisionSpeed - inveseForce;
 

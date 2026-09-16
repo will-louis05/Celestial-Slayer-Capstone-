@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,8 +19,8 @@ public class PlayerController : MonoBehaviour
     private InputHandler inputHandler;
     private Transform cameraTransform;
     private Rigidbody rb;
-    private GameObject[] spearCrosshairs;
-    private Image[] spearCrosshairImages;
+    private AmmoManager ammoManager;
+
     private Animator animator;
     private Transform crosshair;
 
@@ -43,19 +42,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float minThrowStrength;
     [SerializeField] private float maxThrowStrength;
     [SerializeField] private float throwStrengthIncrease;
-    [SerializeField] private int totalSpearCount;
     [SerializeField] private float equipTime;
     [SerializeField] private float reloadTimeSec;
     [SerializeField] private float delayBeforeReload;
     private float timer;
-    private int currentSpearCount;
     private float throwStrength;
-    private enum CurrentSpearType {basicSpear, transferSpear, explosiveSpear}
+    private enum CurrentSpearType { basicSpear, transferSpear, explosiveSpear }
     CurrentSpearType currentSpearType;
 
     private GameObject heldSpear;
     private List<GameObject> thrownSpears = new List<GameObject>();
-    private bool spearEquiped;
+    private int spearsToRemove;
     private bool holdingSpear;
     private bool inEquip;
     private bool inThrow;
@@ -71,7 +68,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource aimSFX;
 
     [Header("Debugging Tools")]
-    [SerializeField] private bool infiniteSpears;
     [SerializeField] private bool disableMovementInReload;
     public static bool inCombat;
 
@@ -81,24 +77,12 @@ public class PlayerController : MonoBehaviour
         inputHandler = InputHandler.instance;
         cameraTransform = Camera.main.transform;
         animator = GetComponent<Animator>();
+        ammoManager = GetComponent<AmmoManager>();
 
         crosshair = GameObject.Find("Crosshair").transform;
 
-        //Spear UI icons
-        Transform spearCrossParent = GameObject.Find("SpearCrosshairCount").transform;
-        spearCrosshairs = new GameObject[spearCrossParent.childCount];
-        spearCrosshairImages = new Image[spearCrossParent.childCount];
-        for (int i = 0; i < spearCrossParent.childCount; i++)
-        {
-            spearCrosshairs[i] = spearCrossParent.GetChild(i).gameObject;
-            spearCrosshairImages[i] = spearCrosshairs[i].GetComponent<Image>();
-            spearCrosshairImages[i].fillAmount = 1f;
-        }
-
-        ColourManager.instance.SetCrosshair((int)currentSpearType);
-
         throwStrength = minThrowStrength;
-        currentSpearCount = totalSpearCount;
+
     }
 
     private void Update()
@@ -107,10 +91,9 @@ public class PlayerController : MonoBehaviour
 
         InputManger();
 
-        if (infiniteSpears)
-            currentSpearCount = 5;
+        
 
-        if ((!holdingSpear && currentSpearCount != 0) || inEquip)
+        if ((!holdingSpear && ammoManager.currentSpearCount != 0) || inEquip)
         {
             if (!inDelayThrow && !inEquip)
             {
@@ -154,12 +137,12 @@ public class PlayerController : MonoBehaviour
                 ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
             else if (inputHandler.equipTranferSpearTriggered)
-            {               
+            {
                 currentSpearType = CurrentSpearType.transferSpear;
                 inputHandler.equipTranferSpearTriggered = false;
                 ColourManager.instance.SetCrosshair((int)currentSpearType);
             }
-            else if(inputHandler.equipExplosiveSpearTriggered)
+            else if (inputHandler.equipExplosiveSpearTriggered)
             {
                 currentSpearType = CurrentSpearType.explosiveSpear;
                 inputHandler.equipExplosiveSpearTriggered = false;
@@ -179,7 +162,7 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.fireTriggered && holdingSpear || inThrow)
             SpearThrow();
 
-        if ((inputHandler.reloadTriggered && currentSpearCount != totalSpearCount && !inEquip) || inReload)
+        if ((inputHandler.reloadTriggered && ammoManager.currentSpearCount != ammoManager.totalSpearCount && !inEquip) || inReload)
             SpearReload();
 
     }
@@ -188,7 +171,7 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
 
-        if(heldSpear != null)
+        if (heldSpear != null)
         {
             //heldSpear.transform.parent = spearFollow; (Jude)
             //holdOffset.LookAt(spearFollow);
@@ -202,7 +185,7 @@ public class PlayerController : MonoBehaviour
         if (grounded && inputHandler.jumpTriggered)
         {
             Jump();
-        }   
+        }
     }
 
     void Move()
@@ -252,7 +235,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Pretty sure these do the same thing, should remove one
-        if(!isAiming)
+        if (!isAiming)
         {
             if (!disableTurn)
             {
@@ -299,7 +282,7 @@ public class PlayerController : MonoBehaviour
 
     void SpearEquip()
     {
-       
+
         if (!inEquip)
         {
             timer = Time.time;
@@ -311,22 +294,26 @@ public class PlayerController : MonoBehaviour
             {
                 case CurrentSpearType.basicSpear:
                     spearToSpawn = basicSpear;
+                    spearsToRemove = 1;
                     break;
                 case CurrentSpearType.transferSpear:
                     spearToSpawn = transferSpear;
+                    spearsToRemove = 2;
                     break;
                 case CurrentSpearType.explosiveSpear:
                     spearToSpawn = explosiveSpear;
+                    spearsToRemove = 3;
                     break;
             }
             //heldSpear = Instantiate(spearToSpawn, spearFollow); (Jude)
             heldSpear = Instantiate(spearToSpawn, holdOffset);
-            heldSpear.transform.localRotation = Quaternion.Euler(new Vector3(90,0,0));  
+            heldSpear.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
             Animator spearAni = heldSpear.GetComponent<Animator>();
             var aniLength = spearAni.GetCurrentAnimatorStateInfo(0).length;
-            aniLength = aniLength/ equipTime;
+            aniLength = aniLength / equipTime;
             spearAni.speed = aniLength;
 
+            ammoManager.ShowSpearCost((int)currentSpearType, spearsToRemove);
             //var equpLength = spearAni.GetCurrentAnimatorStateInfo(animator.GetLayerIndex("UpperBody")).length; 
             //equpLength = equpLength/ equipTime;
             //animator.speed = equpLength;
@@ -342,7 +329,7 @@ public class PlayerController : MonoBehaviour
             holdingSpear = true;
             inEquip = false;
         }
-        
+
     }
 
     void SpearThrow()
@@ -350,8 +337,10 @@ public class PlayerController : MonoBehaviour
         //Build throw strength when aimed
         if (isAiming)
         {
-            inThrow = true;
-            animator.SetBool("InCharge", true);
+            if (inThrow)
+            {
+                animator.SetBool("InCharge", true);
+            }
             if (throwStrength < maxThrowStrength)
             {
 
@@ -363,6 +352,7 @@ public class PlayerController : MonoBehaviour
             {
                 throwStrength = maxThrowStrength;
             }
+            inThrow = true;
         }
 
         //ThrowSpear
@@ -374,19 +364,17 @@ public class PlayerController : MonoBehaviour
             Spear spearScrp = heldSpear.GetComponent<Spear>();
             spearScrp.SpearThrown(throwStrength, maxThrowStrength);
 
-            currentSpearCount -= 1;
 
             thrownSpears.Add(heldSpear);
 
             animator.SetTrigger("Throw");
             animator.SetBool("InCharge", false);
-
-            //Unfill UI spear
-            spearCrosshairImages[currentSpearCount].fillAmount = 0f;
+         
+            ammoManager.DecreaseSpearCount(spearsToRemove);
 
             throwSFX.pitch = Random.Range(0.9f, 1.1f);
             throwSFX.Play();
-            
+
             //particleSpeedLines[0].Play();
             //if (throwStrength > maxThrowStrength * 0.75f)
             //{
@@ -398,7 +386,7 @@ public class PlayerController : MonoBehaviour
             //}
 
             throwStrength = minThrowStrength;
-            crosshair.localScale = new Vector3(1,1,1);
+            crosshair.localScale = new Vector3(1, 1, 1);
 
             inThrow = false;
             heldSpear = null;
@@ -420,7 +408,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SpearReload() 
+    void SpearReload()
     {
         if (!inReload)
         {
@@ -458,8 +446,8 @@ public class PlayerController : MonoBehaviour
             }
 
             //Cancel UI refill
-            for (int i = currentSpearCount; i < totalSpearCount; i++)
-                spearCrosshairImages[i].fillAmount = 0f;
+            ammoManager.CancelReloadUI();
+            
 
             return;
         }
@@ -468,13 +456,12 @@ public class PlayerController : MonoBehaviour
         float elaspedTime = Time.time - timer;
 
         //Refill UI spears
-        float progress = Mathf.Clamp01(elaspedTime / reloadTimeSec);
-        for (int i = currentSpearCount; i < totalSpearCount; i++)
-            spearCrosshairImages[i].fillAmount = progress;
+
+        ammoManager.StarReloadUI(elaspedTime, reloadTimeSec);
 
         if (elaspedTime >= reloadTimeSec)
         {
-            foreach(GameObject thrownSpear in thrownSpears)
+            foreach (GameObject thrownSpear in thrownSpears)
             {
                 if (thrownSpear != null)
                 {
@@ -484,17 +471,16 @@ public class PlayerController : MonoBehaviour
             }
             reloadParticle.Stop();
 
-            for (int i = 0; i < spearCrosshairImages.Length; i++)
-                spearCrosshairImages[i].fillAmount = 1f;
-
+            ammoManager.Reload();
             thrownSpears.Clear();
-            currentSpearCount = totalSpearCount;
 
             inputHandler.reloadTriggered = false;
             inReload = false;
         }
         animator.SetBool("InSummon", inReload);
     }
+
+    
 
     private void Animations()
     {

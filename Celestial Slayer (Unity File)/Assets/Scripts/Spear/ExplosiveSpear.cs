@@ -21,7 +21,7 @@ public class ExplosiveSpear: Spear
         foreach (Collider collider in colliders)
         {
             Rigidbody objRb = collider.GetComponent<Rigidbody>();
-            if (collider.CompareTag("Enemy") && collider.transform.root != enemyhit)
+            if (collider.CompareTag("Enemy"))
             {
                 enemyhit = collider.transform.root;
                 Enemy enemyHitScrp = enemyhit.GetComponent<Enemy>();
