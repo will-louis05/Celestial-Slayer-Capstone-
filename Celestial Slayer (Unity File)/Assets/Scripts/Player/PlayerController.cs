@@ -132,21 +132,36 @@ public class PlayerController : MonoBehaviour
         {
             if (inputHandler.equipBasicSpearTriggered)
             {
-                currentSpearType = CurrentSpearType.basicSpear;
-                inputHandler.equipBasicSpearTriggered = false;
-                ColourManager.instance.SetCrosshair((int)currentSpearType);
+                int needSpears = 1;
+                if(needSpears <= ammoManager.currentSpearCount)
+                {
+                    currentSpearType = CurrentSpearType.basicSpear;
+                    inputHandler.equipBasicSpearTriggered = false;
+                    ColourManager.instance.SetCrosshair((int)currentSpearType);
+                    spearsToRemove = needSpears;
+                }
             }
             else if (inputHandler.equipTranferSpearTriggered)
             {
-                currentSpearType = CurrentSpearType.transferSpear;
-                inputHandler.equipTranferSpearTriggered = false;
-                ColourManager.instance.SetCrosshair((int)currentSpearType);
+                int needSpears = 2;
+                if (needSpears <= ammoManager.currentSpearCount)
+                {
+                    currentSpearType = CurrentSpearType.transferSpear;
+                    inputHandler.equipTranferSpearTriggered = false;
+                    ColourManager.instance.SetCrosshair((int)currentSpearType);
+                    spearsToRemove = needSpears;
+                }
             }
-            else if (inputHandler.equipExplosiveSpearTriggered)
+                else if (inputHandler.equipExplosiveSpearTriggered)
             {
-                currentSpearType = CurrentSpearType.explosiveSpear;
-                inputHandler.equipExplosiveSpearTriggered = false;
-                ColourManager.instance.SetCrosshair((int)currentSpearType);
+                int needSpears = 3;
+                if (needSpears <= ammoManager.currentSpearCount)
+                {
+                    currentSpearType = CurrentSpearType.explosiveSpear;
+                    inputHandler.equipExplosiveSpearTriggered = false;
+                    ColourManager.instance.SetCrosshair((int)currentSpearType);
+                    spearsToRemove = needSpears;
+                }
             }
             GameObject spearToDestroy = heldSpear;
             heldSpear = null;
@@ -294,18 +309,14 @@ public class PlayerController : MonoBehaviour
             {
                 case CurrentSpearType.basicSpear:
                     spearToSpawn = basicSpear;
-                    spearsToRemove = 1;
                     break;
                 case CurrentSpearType.transferSpear:
                     spearToSpawn = transferSpear;
-                    spearsToRemove = 2;
                     break;
                 case CurrentSpearType.explosiveSpear:
                     spearToSpawn = explosiveSpear;
-                    spearsToRemove = 3;
                     break;
             }
-            //heldSpear = Instantiate(spearToSpawn, spearFollow); (Jude)
             heldSpear = Instantiate(spearToSpawn, holdOffset);
             heldSpear.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
             Animator spearAni = heldSpear.GetComponent<Animator>();
@@ -392,6 +403,11 @@ public class PlayerController : MonoBehaviour
             heldSpear = null;
             holdingSpear = false;
             inputHandler.fireTriggered = false;
+
+            //ReturnToBasicSpear
+            currentSpearType = CurrentSpearType.basicSpear;
+            ColourManager.instance.SetCrosshair((int)currentSpearType);
+            spearsToRemove = 1;
         }
 
 
@@ -436,14 +452,15 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("InSummon", inReload);
             recallSFX.Stop();
 
-            foreach (GameObject thrownSpear in thrownSpears)
-            {
-                if (thrownSpear != null)
-                {
-                    ParticleSystem spearReloadParticle = thrownSpear.GetComponentInChildren<ParticleSystem>();
-                    spearReloadParticle.Stop();
-                }
-            }
+            ////Old System SpearGrab
+            //foreach (GameObject thrownSpear in thrownSpears)
+            //{
+            //    if (thrownSpear != null)
+            //    {
+            //        ParticleSystem spearReloadParticle = thrownSpear.GetComponentInChildren<ParticleSystem>();
+            //        spearReloadParticle.Stop();
+            //    }
+            //}
 
             //Cancel UI refill
             ammoManager.CancelReloadUI();
@@ -461,14 +478,15 @@ public class PlayerController : MonoBehaviour
 
         if (elaspedTime >= reloadTimeSec)
         {
-            foreach (GameObject thrownSpear in thrownSpears)
-            {
-                if (thrownSpear != null)
-                {
-                    BasicSpear spearScr = thrownSpear.GetComponent<BasicSpear>();
-                    spearScr.SpearDestroy();
-                }
-            }
+            ////Old Spear Particle
+            //foreach (GameObject thrownSpear in thrownSpears)
+            //{
+            //    if (thrownSpear != null)
+            //    {
+            //        BasicSpear spearScr = thrownSpear.GetComponent<BasicSpear>();
+            //        spearScr.SpearDestroy();
+            //    }
+            //}
             reloadParticle.Stop();
 
             ammoManager.Reload();

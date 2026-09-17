@@ -5,6 +5,7 @@ public class ExplosiveSpear: Spear
     [SerializeField] private float radius;
     [SerializeField] private float force;
     [SerializeField] private GameObject explosionParticle;
+    private int killedEnemyCount;
 
 
     private void OnCollisionEnter(Collision collision)
@@ -28,9 +29,14 @@ public class ExplosiveSpear: Spear
                 if (enemyHitScrp != null)
                 {
                     if (enemyHitScrp.isBigEnemy == false)
+                    {
+                        killedEnemyCount++;
                         enemyHitScrp.ExplosionHit();
+                        if(killedEnemyCount == 3)
+                            GameObject.Find("Player").GetComponent<AmmoManager>().RefundSpear();
+                    }
                 }
-            }
+                }
             if (objRb != null)
             {
                 objRb.isKinematic = false;

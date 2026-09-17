@@ -6,8 +6,9 @@ public class AmmoManager : MonoBehaviour
     private PlayerController playerController;   
     private GameObject[] spearCrosshairs;
     public Image[] spearCrosshairImages;
+    [SerializeField] private int refundAmount = 1;
 
-    public int totalSpearCount;
+    public int totalSpearCount = 5;
     public int currentSpearCount { get; private set;}
 
 
@@ -52,6 +53,7 @@ public class AmmoManager : MonoBehaviour
         {
             currentSpearCount -= 1;
             spearCrosshairImages[currentSpearCount].fillAmount = 0f;
+            spearCrosshairImages[currentSpearCount].color = Color.white;
         }
 
     }
@@ -103,5 +105,10 @@ public class AmmoManager : MonoBehaviour
             currentSpearCountUI -= 1;
             spearCrosshairImages[currentSpearCountUI].color = starColour;
         }
+    }
+
+    public void RefundSpear()
+    {
+        currentSpearCount += refundAmount;
     }
 }
