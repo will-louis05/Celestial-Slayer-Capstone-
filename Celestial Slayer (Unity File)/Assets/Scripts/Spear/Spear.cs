@@ -16,7 +16,7 @@ public class Spear : MonoBehaviour
         spearBodyCollider = GetComponentInChildren<Collider>();
     }
 
-    public void SpearThrown(float throwStrength, float maxThrowStrength)
+    public virtual void SpearThrown(float throwStrength, float maxThrowStrength)
     {
         transform.SetParent(null);
         Transform camTransform = Camera.main.transform;

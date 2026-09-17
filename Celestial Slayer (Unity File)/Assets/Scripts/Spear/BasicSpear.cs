@@ -233,7 +233,7 @@ public class BasicSpear : Spear
         }
     }
 
-    public void SpearDestroy()
+    public void SpearDestroyOld()
     {
         for (int i = 0; i < spearedObjects.Count; i++)
         {
@@ -256,6 +256,11 @@ public class BasicSpear : Spear
         }
 
         Destroy(gameObject);
+    }
+
+    public void SpearDestroy()
+    {
+        Destroy(this);
     }
 
     //private void OnDrawGizmos()

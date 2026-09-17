@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private bool inThrow;
     private bool inReload;
     private bool inDelayThrow;
+    private float chargeThrowDelay;
 
     [Header("SFX")]
     [SerializeField] private AudioSource runSFX;
@@ -348,10 +349,7 @@ public class PlayerController : MonoBehaviour
         //Build throw strength when aimed
         if (isAiming)
         {
-            if (inThrow)
-            {
-                animator.SetBool("InCharge", true);
-            }
+
             if (throwStrength < maxThrowStrength)
             {
 
