@@ -18,9 +18,9 @@ public class ColourManager : MonoBehaviour
 
     [Header("Crosshair")]
     [SerializeField] private Image crosshair;
-    [SerializeField] private Color basicColour;
-    [SerializeField] private Color transferColour;
-    [SerializeField] private Color explosiveColour;
+    [SerializeField] private Color basicColour = Color.aquamarine;
+    [SerializeField] private Color transferColour = Color.purple;
+    [SerializeField] private Color explosiveColour = Color.red;
 
     private void OnValidate()
     {

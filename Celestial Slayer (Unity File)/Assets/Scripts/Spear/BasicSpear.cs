@@ -92,8 +92,8 @@ public class BasicSpear : Spear
             Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
             if (enemyScrp != null)
             {
-                ////BUGFIX if hit immediately auto set speed
-                if (timer > 0f)
+                //Immediate hit speed bugfix
+                if (timer > 0f && preCollisionSpeed < 1f)
                     preCollisionSpeed = throwSpeed;
 
                 PierceAmount(collision);
@@ -185,8 +185,8 @@ public class BasicSpear : Spear
 
         float inveseForce = spearedRb.mass * inverseForceRatio;
 
-        //BUGFIX if hit immediately auto set speed
-        if (timer > 0f)
+        //Immediate hit speed bugfix
+        if (timer > 0f && preCollisionSpeed < 1f)
             preCollisionSpeed = throwSpeed;
 
         float postCollisionSpeed = preCollisionSpeed - inveseForce;

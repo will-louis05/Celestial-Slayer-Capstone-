@@ -11,8 +11,7 @@ public class AmmoManager : MonoBehaviour
     public int totalSpearCount = 5;
     public int currentSpearCount { get; private set;}
 
-
-    [Header("StarColours")]
+    [Header("Star Colours")]
     [SerializeField] private Color basicSpearColour = Color.aquamarine;
     [SerializeField] private Color transferSpearColour = Color.purple;
     [SerializeField] private Color explosiveSpearColour = Color.red;
@@ -20,7 +19,6 @@ public class AmmoManager : MonoBehaviour
     [Header("Debugging Tools")]
     [SerializeField] private bool infiniteSpears;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerController = GetComponent<PlayerController>();
@@ -45,7 +43,6 @@ public class AmmoManager : MonoBehaviour
             currentSpearCount = 5;
     }
 
-    // Update is called once per frame
     public void DecreaseSpearCount(int spearsToRemove)
     {
         //Unfill UI spear
