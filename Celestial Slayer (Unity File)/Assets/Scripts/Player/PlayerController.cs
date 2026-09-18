@@ -486,7 +486,6 @@ public class PlayerController : MonoBehaviour
         float elaspedTime = Time.time - timer;
 
         //Refill UI spears
-
         ammoManager.StarReloadUI(elaspedTime, reloadTimeSec);
 
         if (elaspedTime >= reloadTimeSec)
@@ -507,11 +506,13 @@ public class PlayerController : MonoBehaviour
 
             inputHandler.reloadTriggered = false;
             inReload = false;
+
+            //Move spear cost back to the front
+            ammoManager.ShowSpearCost((int)currentSpearType, spearsToRemove);
         }
+
         animator.SetBool("InSummon", inReload);
     }
-
-    
 
     private void Animations()
     {
