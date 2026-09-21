@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 
 public class ColourManager : MonoBehaviour
 {
     public static ColourManager instance;
+    private Coroutine coroutine;
 
     [Header("UI")]
     [SerializeField] private Color primaryColour = Color.black;
@@ -15,12 +17,16 @@ public class ColourManager : MonoBehaviour
     [SerializeField] private List<Image> secondaryUI = new List<Image>();
     [SerializeField] private List<Image> backgroundUI = new List<Image>();
     [SerializeField] private List<TMP_Text> texts = new List<TMP_Text>();
+    [SerializeField] private GameObject filter;
 
     [Header("Crosshair")]
     [SerializeField] private Image crosshair;
     [SerializeField] private Color basicColour = Color.aquamarine;
     [SerializeField] private Color transferColour = Color.purple;
     [SerializeField] private Color explosiveColour = Color.red;
+
+    [Header("SFX")]
+    [SerializeField] private AudioSource errorSFX;
 
     private void OnValidate()
     {
@@ -59,6 +65,8 @@ public class ColourManager : MonoBehaviour
                 mat.SetColor(ShaderUtilities.ID_GlowColor, secondaryColour);
             }
         }
+
+        filter.gameObject.SetActive(false);
     }
 
     public void SetCrosshair(int index)
@@ -75,5 +83,32 @@ public class ColourManager : MonoBehaviour
                 crosshair.color = explosiveColour;
                 break;
         }
+    }
+
+    public void MissingSpearsFlash()
+    {
+        if (coroutine != null)
+            StopCoroutine(coroutine);
+
+        coroutine = StartCoroutine(Flash());
+    }
+
+    private IEnumerator Flash()
+    {
+        if (errorSFX != null)
+        {
+            errorSFX.pitch = Random.Range(0.9f, 1.1f);
+            errorSFX.Play();
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            filter.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            filter.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        coroutine = null;
     }
 }
