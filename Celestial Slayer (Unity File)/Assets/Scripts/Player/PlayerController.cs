@@ -149,10 +149,6 @@ public class PlayerController : MonoBehaviour
                     spearsToRemove = needSpears;
                     switched = true;
                 }
-                else
-                {
-                    Debug.Log("Missing spears!");
-                }
             }
             else if (inputHandler.equipTranferSpearTriggered)
             {
@@ -167,6 +163,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    ColourManager.instance.MissingSpearsFlash();
                     Debug.Log("Missing spears!");
                 }
             }
@@ -183,6 +180,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    ColourManager.instance.MissingSpearsFlash();
                     Debug.Log("Missing spears!");
                 }
             }
