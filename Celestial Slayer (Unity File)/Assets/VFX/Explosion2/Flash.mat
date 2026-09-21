@@ -7,33 +7,28 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Airburst2
-  m_Shader: {fileID: -6465566751694194690, guid: 539fd22ba1f9c8047bf7f47f1843a38b, type: 3}
+  m_Name: Flash
+  m_Shader: {fileID: -6465566751694194690, guid: f694ee51a7134054fae365229ee0ebd5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
+  - _ALPHATEST_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: Transparent
+    RenderType: TransparentCutout
   disabledShaderPasses:
-  - DepthOnly
   - SHADOWCASTER
   - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_308568f275474edb86498e1da0f5892b_Texture_1_Texture2D:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_e26ce29a75bd4dc4a4f7c35621914292_Texture_1_Texture2D:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+    - _SampleTexture2D_689051bf774340d483a7deb8b8e311dc_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 622ba7a159b52f64e94ef7891178c658, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -50,40 +45,35 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
+    - _AlphaClip: 1
+    - _AlphaToMask: 1
     - _Blend: 0
-    - _BottomColourHeight: 0.914
     - _CastShadows: 0
     - _Cull: 0
-    - _Distortion: 0.377
-    - _Distortion_Scale: 50
-    - _DstBlend: 10
-    - _DstBlendAlpha: 10
-    - _Height: 1.6
+    - _Distortion: 1
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _Float: 0
+    - _Float_1: -0.84
+    - _Height: 0.5
+    - _NoiseDensity: -7.1
+    - _Noise_Scale: 5.46
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SrcBlend: 5
+    - _Scroll: 0.04
+    - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Surface: 1
+    - _Surface: 0
+    - _UV_scroll_W: 1
+    - _Width: 0.5
     - _ZTest: 4
-    - _ZWrite: 0
-    - _ZWriteControl: 0
+    - _ZWrite: 1
+    - _ZWriteControl: 1
     m_Colors:
-    - _Background: {r: 0.682353, g: 0.7764707, b: 0.5333334, a: 1}
-    - _Bubbles: {r: 0.9968553, g: 1, b: 0.99056596, a: 1}
-    - _Color: {r: 0.2193396, g: 0.8773585, b: 0.8576257, a: 0}
-    - _Colour2: {r: 0.131052, g: 0.8962264, b: 0.7512486, a: 0}
-    - _Distortion_Speed: {r: 0, g: -0.2, b: 0, a: 0}
-    - _Distortion_Tiling: {r: 0.88, g: 1, b: 0, a: 0}
-    - _Foam: {r: 0.5215686, g: 0.6316191, b: 0.6627451, a: 1}
-    - _Highlight: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow: {r: 0.23451406, g: 0.31325543, b: 0.32075468, a: 1}
-    - _Shine: {r: 1, g: 1, b: 1, a: 0}
-    - _Streek: {r: 1, g: 1, b: 1, a: 1}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &9189144158551231122
+--- !u!114 &2230261756942099992
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Airburst2
-  m_Shader: {fileID: -6465566751694194690, guid: 539fd22ba1f9c8047bf7f47f1843a38b, type: 3}
+  m_Name: RedSatrands
+  m_Shader: {fileID: -6465566751694194690, guid: b4dc34d9d26fcf143bea88762c86007f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -28,14 +28,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_308568f275474edb86498e1da0f5892b_Texture_1_Texture2D:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_e26ce29a75bd4dc4a4f7c35621914292_Texture_1_Texture2D:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -70,20 +62,13 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Background: {r: 0.682353, g: 0.7764707, b: 0.5333334, a: 1}
-    - _Bubbles: {r: 0.9968553, g: 1, b: 0.99056596, a: 1}
     - _Color: {r: 0.2193396, g: 0.8773585, b: 0.8576257, a: 0}
     - _Colour2: {r: 0.131052, g: 0.8962264, b: 0.7512486, a: 0}
     - _Distortion_Speed: {r: 0, g: -0.2, b: 0, a: 0}
     - _Distortion_Tiling: {r: 0.88, g: 1, b: 0, a: 0}
-    - _Foam: {r: 0.5215686, g: 0.6316191, b: 0.6627451, a: 1}
-    - _Highlight: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow: {r: 0.23451406, g: 0.31325543, b: 0.32075468, a: 1}
-    - _Shine: {r: 1, g: 1, b: 1, a: 0}
-    - _Streek: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &9189144158551231122
+--- !u!114 &3125652454370238370
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
