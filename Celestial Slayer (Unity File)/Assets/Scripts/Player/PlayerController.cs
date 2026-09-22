@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    ColourManager.instance.MissingSpearsFlash();
+                    ColourManager.instance.MissingSpears(1, needSpears - ammoManager.currentSpearCount);
                     Debug.Log("Missing spears!");
                 }
             }
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    ColourManager.instance.MissingSpearsFlash();
+                    ColourManager.instance.MissingSpears(2, needSpears - ammoManager.currentSpearCount);
                     Debug.Log("Missing spears!");
                 }
             }

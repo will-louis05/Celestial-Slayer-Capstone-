@@ -1,32 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Collections;
-using TMPro;
 
 public class ColourManager : MonoBehaviour
 {
     public static ColourManager instance;
     private Coroutine coroutine;
 
-    [Header("UI")]
-    [SerializeField] private Color primaryColour = Color.black;
-    [SerializeField] private Color secondaryColour = Color.white;
-    [SerializeField] private Color backgroundColour = Color.clear;
-    [SerializeField] private List<Image> primaryUI = new List<Image>();
-    [SerializeField] private List<Image> secondaryUI = new List<Image>();
-    [SerializeField] private List<Image> backgroundUI = new List<Image>();
-    [SerializeField] private List<TMP_Text> texts = new List<TMP_Text>();
-    [SerializeField] private GameObject filter;
+    private AmmoManager ammoManager;
 
-    [Header("Crosshair")]
-    [SerializeField] private Image crosshair;
-    [SerializeField] private Color basicColour = Color.aquamarine;
+    [Header("Colours")]
+    [SerializeField] private Color defaultColour = Color.aquamarine;
     [SerializeField] private Color transferColour = Color.purple;
     [SerializeField] private Color explosiveColour = Color.red;
+    [SerializeField] private Color textColour = Color.white;
+
+    [Header("References")]
+    [SerializeField] private Image crosshair;
+    [SerializeField] private List<Image> primaryUI = new List<Image>();
+    [SerializeField] private List<TMP_Text> texts = new List<TMP_Text>();
+    [SerializeField] private List<Image> missingSpears = new List<Image>();
 
     [Header("SFX")]
-    [SerializeField] private AudioSource errorSFX;
+    [SerializeField] private AudioSource missingSFX;
 
     private void OnValidate()
     {
@@ -40,33 +38,29 @@ public class ColourManager : MonoBehaviour
 
     private void Start()
     {
+        ammoManager = GameObject.Find("Player").GetComponent<AmmoManager>();
+
         ApplyTint();
+
+        foreach (Image img in missingSpears)
+            img.gameObject.SetActive(false);
     }
 
     public void ApplyTint()
     {
         foreach (Image img in primaryUI)
-            img.color = primaryColour;
-
-        foreach (Image img in secondaryUI)
-            img.color = secondaryColour;
-
-        foreach (Image img in backgroundUI)
-            img.color = backgroundColour;
+            img.color = defaultColour;
 
         foreach (TMP_Text text in texts)
         {
-            text.color = secondaryColour;
-
+            text.color = textColour;
             Material mat = text.fontSharedMaterial;
             if (mat != null)
             {
                 mat.EnableKeyword(ShaderUtilities.Keyword_Glow);
-                mat.SetColor(ShaderUtilities.ID_GlowColor, secondaryColour);
+                mat.SetColor(ShaderUtilities.ID_GlowColor, textColour);
             }
         }
-
-        filter.gameObject.SetActive(false);
     }
 
     public void SetCrosshair(int index)
@@ -74,7 +68,7 @@ public class ColourManager : MonoBehaviour
         switch (index)
         {
             case 0:
-                crosshair.color = basicColour;
+                crosshair.color = defaultColour;
                 break;
             case 1:
                 crosshair.color = transferColour;
@@ -85,30 +79,49 @@ public class ColourManager : MonoBehaviour
         }
     }
 
-    public void MissingSpearsFlash()
+    public void MissingSpears(int index, int amount)
     {
+        Color color = defaultColour;
+        switch (index)
+        {
+            case 1:
+                color = transferColour;
+                break;
+            case 2:
+                color = explosiveColour;
+                break;
+        }
+        color.a = 0.5f;
+
+        foreach (Image img in missingSpears)
+        {
+            img.color = color;
+            img.gameObject.SetActive(false);
+        }
+
         if (coroutine != null)
             StopCoroutine(coroutine);
+        coroutine = StartCoroutine(Flash(amount));
 
-        coroutine = StartCoroutine(Flash());
+        if (missingSFX != null)
+            missingSFX.Play();
     }
 
-    private IEnumerator Flash()
+    private IEnumerator Flash(int n)
     {
-        if (errorSFX != null)
-        {
-            errorSFX.pitch = Random.Range(0.9f, 1.1f);
-            errorSFX.Play();
-        }
+        List<Image> images = new List<Image>();
+        for (int i = ammoManager.currentSpearCount; i < ammoManager.currentSpearCount + n; i++)
+            images.Add(missingSpears[i]);
 
         for (int i = 0; i < 3; i++)
         {
-            filter.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.1f);
-            filter.gameObject.SetActive(false);
+            foreach (Image img in images)
+                img.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.1f);
+            foreach (Image img in images)
+                img.gameObject.SetActive(false);
         }
-
         coroutine = null;
     }
 }
