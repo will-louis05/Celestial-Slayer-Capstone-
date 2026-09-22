@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class AmmoManager : MonoBehaviour
 {
-    private PlayerController playerController;   
     private GameObject[] spearCrosshairs;
     public Image[] spearCrosshairImages;
+    public int killsNeedForRefund;
     [SerializeField] private int refundAmount = 1;
 
     public int totalSpearCount = 5;
@@ -21,8 +21,6 @@ public class AmmoManager : MonoBehaviour
 
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
-
         //Spear UI icons
         Transform spearCrossParent = GameObject.Find("SpearCrosshairCount").transform;
         spearCrosshairs = new GameObject[spearCrossParent.childCount];

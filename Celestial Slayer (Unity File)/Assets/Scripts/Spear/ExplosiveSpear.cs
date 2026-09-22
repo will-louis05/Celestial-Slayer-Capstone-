@@ -28,15 +28,13 @@ public class ExplosiveSpear: Spear
                 Enemy enemyHitScrp = enemyhit.GetComponent<Enemy>();
                 if (enemyHitScrp != null)
                 {
-                    if (enemyHitScrp.isBigEnemy == false)
-                    {
-                        killedEnemyCount++;
-                        enemyHitScrp.ExplosionHit();
-                        if(killedEnemyCount == 3)
-                            GameObject.Find("Player").GetComponent<AmmoManager>().RefundSpear();
+                    killedEnemyCount++;
+                    enemyHitScrp.ExplosionHit();
+                    AmmoManager ammoScrpt = GameObject.Find("Player").GetComponent<AmmoManager>();
+                    if (killedEnemyCount == ammoScrpt.killsNeedForRefund)
+                        GameObject.Find("Player").GetComponent<AmmoManager>().RefundSpear();
                     }
-                }
-                }
+            }
             if (objRb != null)
             {
                 objRb.isKinematic = false;

@@ -15,6 +15,7 @@ public class BasicSpear : Spear
     
     private bool stuck = false;
     private bool inCollision = false;
+    private int enemiesKilled;
     private List<Enemy> spearedEnemies = new List<Enemy>();
     public float timer = 1f;
 
@@ -107,6 +108,9 @@ public class BasicSpear : Spear
                 else
                 {
                     spearedEnemies.Add(enemyScrp);
+                    AmmoManager ammoScrpt = GameObject.Find("Player").GetComponent<AmmoManager>();
+                    if (enemiesKilled == ammoScrpt.killsNeedForRefund)
+                        ammoScrpt.RefundSpear();
                 }
             }
             else
