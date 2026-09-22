@@ -1,6 +1,4 @@
-using Unity.Behavior;
 using UnityEngine;
-using UnityEngine.AI;
 
 
 public class FlyingEnemy : MonoBehaviour, IEnemyInterface
@@ -66,7 +64,7 @@ public class FlyingEnemy : MonoBehaviour, IEnemyInterface
     {
         GameObject shotFired = Instantiate(shot, ((0.1f * transform.forward) + transform.position), Quaternion.identity);
         Collider enemyCollider = GetComponentInChildren<Collider>();
-        shotFired.GetComponent<FlyerShot>().ShotSpawn(playerLocation, projectileSpeed, damageDelt, damageTicTime, areaOfEffectAttack, timeTillDestory, this.GetComponent<Collider>());
+        shotFired.GetComponent<FlyerShot>().ShotSpawn(playerLocation, projectileSpeed, damageDelt, damageTicTime, areaOfEffectAttack, timeTillDestory, enemyCollider);
     }
 
     public void ExplosionHit()

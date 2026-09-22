@@ -19,7 +19,6 @@ public class AreaOfEffectAttack : MonoBehaviour
     {
         if (collider.transform.CompareTag("Player"))
         {
-            Debug.Log("PlayerAttack");
             if (playerHealth == null)
             { 
                 playerHealth = collider.transform.GetComponent<PlayerHealth>();
