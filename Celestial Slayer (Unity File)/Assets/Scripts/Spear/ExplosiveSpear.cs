@@ -7,9 +7,7 @@ public class ExplosiveSpear: Spear
     [SerializeField] private float force;
     [SerializeField] private GameObject explosionParticle;
     private GameObject explosion;
-    [SerializeField] private GameObject debugSphere;
     private int killedEnemyCount;
-    private bool drawGizmo;
 
 
     private void OnCollisionEnter(Collision collision)
@@ -47,9 +45,6 @@ public class ExplosiveSpear: Spear
                 objRb.AddExplosionForce(force, transform.position, radius);
             }
         }
-        GameObject sphere = Instantiate(debugSphere, transform.position, Quaternion.identity);
-        var sphereSize = radius * 2;
-        sphere.transform.localScale = new Vector3(sphereSize, sphereSize, sphereSize);
     }
 
     private void DestoryExplosionVFX()
