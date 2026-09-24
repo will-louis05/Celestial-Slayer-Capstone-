@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private Enemy enemyParent;
     private float damage;
 
     private void Start()
     {
         Transform parent = transform.root;
-        enemyParent = parent.GetComponent<Enemy>();
+        MeleeEnemy enemyParent = parent.GetComponent<MeleeEnemy>();
         damage = enemyParent.damage;
         enemyParent.attackScrpt = this;
     }

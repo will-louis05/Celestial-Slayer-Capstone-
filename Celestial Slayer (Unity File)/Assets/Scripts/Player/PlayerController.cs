@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float delayBeforeReload;
     private float timer;
     private float throwStrength;
-    private enum CurrentSpearType { basicSpear, transferSpear, explosiveSpear }
-    CurrentSpearType currentSpearType;
+    public enum CurrentSpearType { basicSpear, transferSpear, explosiveSpear }
+    public CurrentSpearType currentSpearType { get; private set; }
 
     private GameObject heldSpear;
     private List<GameObject> thrownSpears = new List<GameObject>();
-    private int spearsToRemove;
+    public int spearsToRemove { get; private set; }
     private bool holdingSpear;
     private bool inEquip;
     private bool inThrow;
@@ -373,6 +373,10 @@ public class PlayerController : MonoBehaviour
                 throwStrength += throwStrengthIncrease * Time.deltaTime;
                 float throwPercentage = 1 - (throwStrength / (maxThrowStrength * 2));
                 crosshair.localScale = new Vector3(throwPercentage, throwPercentage, throwPercentage);
+            }
+            else if (throwStrength < (maxThrowStrength - throwStrength))
+            {
+
             }
             else
             {
