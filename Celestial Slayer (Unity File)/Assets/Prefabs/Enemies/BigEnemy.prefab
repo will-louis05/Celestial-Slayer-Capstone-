@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6471174729740590417}
   - component: {fileID: 3255146723711927258}
   - component: {fileID: 4040773792916490902}
-  - component: {fileID: 2353345011533518376}
+  - component: {fileID: 7784526821616485531}
   m_Layer: 8
   m_Name: BigEnemy
   m_TagString: Enemy
@@ -120,7 +120,7 @@ MonoBehaviour:
           m_Value1: 6915944402714386302
         Name: Target (Player)
         m_Value: {fileID: 0}
---- !u!114 &2353345011533518376
+--- !u!114 &7784526821616485531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,33 +129,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3482427714760531327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e40f4fffc3e89a34f89dde126ff896a2, type: 3}
+  m_Script: {fileID: 11500000, guid: c9592f47f388cdd48b64eb8edcc08f40, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyMass: 200
-  forceRequiredToSpear: 100
-  runSpeed: 7
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
+  enemyMass: 0
+  forceRequiredToSpear: 0
+  joints: []
   spawner: {fileID: 0}
-  joints:
-  - {fileID: 8318302388270373171}
-  - {fileID: 2995388591689662181}
-  - {fileID: 2931947309072339602}
-  - {fileID: 4818904910527550022}
-  - {fileID: 6802958628445447639}
-  - {fileID: 2117769476651999480}
-  - {fileID: 5301453139316108726}
-  - {fileID: 4983992880455506606}
-  - {fileID: 5896700445545549182}
-  - {fileID: 6986853272506172331}
-  - {fileID: 7415853353106289349}
-  attackScrpt: {fileID: 4942167845760819390}
-  regainSpeed: 15
-  spearSpeedDecreaseRatio: 0.01
-  skinnedMeshRenderer: {fileID: 3672226539627132402}
-  isBigEnemy: 1
-  damage: 40
-  enemyDisable: 0
-  enemySFX: {fileID: 3207733307377159511}
+  regainSpeed: 0
+  spearSpeedDecreaseRatio: 0
+  damage: 0
+  enemySFX: {fileID: 0}
+  runSpeed: 0
+  attackScrpt: {fileID: 0}
 --- !u!1 &3541821996213385544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,11 +1352,6 @@ CharacterJoint:
 --- !u!4 &3231305055332499658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
-  m_PrefabInstance: {fileID: 3124758920056923937}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &3672226539627132402 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1849573421718262483, guid: 7c52e343355a9574fbd8dc74a3d0e23f, type: 3}
   m_PrefabInstance: {fileID: 3124758920056923937}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &4818904910527550022 stripped

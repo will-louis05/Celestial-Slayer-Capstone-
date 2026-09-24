@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
         throwStrength = minThrowStrength;
 
+        animator.SetFloat("ChargeTime", ((maxThrowStrength - throwStrength) / throwStrengthIncrease)/100);
+
         spearsToRemove = 1;
     }
 
@@ -368,15 +370,18 @@ public class PlayerController : MonoBehaviour
         //Build throw strength when aimed
         if (isAiming)
         {
+            float throwPercentageb = throwStrength/maxThrowStrength;
+            if ((throwPercentageb) > 0.4)
+            {
+                Debug.Log("Incharge is true. Throw per = " + throwPercentageb + " throwStrength = " + throwStrength + " MaxThrowstength = " + maxThrowStrength );
+                animator.SetBool("InCharge", true);
+            }
+
             if (throwStrength < maxThrowStrength)
             {
                 throwStrength += throwStrengthIncrease * Time.deltaTime;
                 float throwPercentage = 1 - (throwStrength / (maxThrowStrength * 2));
                 crosshair.localScale = new Vector3(throwPercentage, throwPercentage, throwPercentage);
-            }
-            else if (throwStrength < (maxThrowStrength - throwStrength))
-            {
-
             }
             else
             {
