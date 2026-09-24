@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float regainSpeed;
     [SerializeField] protected float spearSpeedDecreaseRatio;
     public float damage;
+    public EnemyAttack attackScrpt;
 
     //[SerializeField] private bool enemyDisable;
     //private bool inEnabled;
