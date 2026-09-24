@@ -25,7 +25,7 @@ public class AreaOfEffectAttack : MonoBehaviour
             }
             if (damgeTicTime < (Time.time - timeSinceLastDamged))
             {
-                playerHealth.Hit(damgeOverTime);
+                playerHealth.Hit(damgeOverTime, false);
                 timeSinceLastDamged = Time.time;
             }
         }

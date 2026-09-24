@@ -18,7 +18,7 @@ public class EnemyAttack : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            playerHealth.Hit(damage);
+            playerHealth.Hit(damage, false);
         }
     }
 }
