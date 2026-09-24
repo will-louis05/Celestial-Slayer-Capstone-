@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     public int spearsToRemove { get; private set; }
     private bool holdingSpear;
     private bool inEquip;
-    private bool inThrow;
+    public bool inThrow { get; private set; }
     private bool inReload;
     private bool inDelayThrow;
     private float chargeThrowDelay;
