@@ -42,7 +42,6 @@ public class BasicSpear : Spear
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.transform); 
         if (!held && !stuck)
         {
             bool acceptAngle = RayCheck();
@@ -51,7 +50,6 @@ public class BasicSpear : Spear
             //{
             //    acceptAngle = true;
             //}
-            Debug.Log(acceptAngle);
             if (acceptAngle && !spearedObjects.Contains(collision.gameObject))
                 SpearHit(collision);
         }

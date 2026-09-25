@@ -39,6 +39,9 @@ public class AmmoManager : MonoBehaviour
     {
         if (infiniteSpears)
             currentSpearCount = 5;
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    RefundSpear();
     }
 
     public void DecreaseSpearCount(int spearsToRemove)
@@ -50,7 +53,6 @@ public class AmmoManager : MonoBehaviour
             spearCrosshairImages[currentSpearCount].fillAmount = 0f;
             spearCrosshairImages[currentSpearCount].color = Color.white;
         }
-
     }
 
     public void CancelReloadUI()
@@ -105,5 +107,9 @@ public class AmmoManager : MonoBehaviour
     public void RefundSpear()
     {
         currentSpearCount += refundAmount;
+        spearCrosshairImages[currentSpearCount - 1].fillAmount = 1f;
+
+        PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
+        ShowSpearCost((int)player.currentSpearType, player.spearsToRemove);
     }
 }

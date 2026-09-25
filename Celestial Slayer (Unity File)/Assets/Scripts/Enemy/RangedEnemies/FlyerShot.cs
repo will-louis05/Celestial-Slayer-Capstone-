@@ -40,7 +40,6 @@ public class FlyerShot : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("HitObj");
         if (collider != self)
         {
             ObjHit();

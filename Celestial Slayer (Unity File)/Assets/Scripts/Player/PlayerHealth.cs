@@ -6,11 +6,11 @@ public class PlayerHealth : MonoBehaviour
 {
     private enum HealthSystem { regenHealth, healthPoints };
     private float timeSinceLastDamaged;
-    private bool hit;
     private float health;
     private Animator animator;
 
     [SerializeField] private HealthSystem healthSystem;
+    [SerializeField] private float mercyTime;
 
     [Header("Health Regen")]
     [SerializeField] private float maxPlayerHealth = 100;
@@ -67,12 +67,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void RegenHealth()
     {
-        if(hit)
-        {
-            timeSinceLastDamaged = Time.time;
-            hit = false;
-        }
-
         float damageTime = Time.time - timeSinceLastDamaged;
 
         if(damageTime >= timeTillHealthregenSec)
@@ -91,13 +85,17 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
-    public void Hit(float damage)
+    public void Hit(float damage, bool isTicEffect)
     {
-        hit = true;
+        if ((Time.time - timeSinceLastDamaged) < mercyTime && !isTicEffect)
+            return;
+        
         health -= damage;
         animator.SetTrigger("Hit");
 
         healthBarFill.fillAmount = Mathf.Clamp01(health / maxPlayerHealth);
+
+        timeSinceLastDamaged = Time.time;
     }
 
     private void Die()

@@ -5430,7 +5430,6 @@ GameObject:
   - component: {fileID: 5804311513639597548}
   - component: {fileID: 870482760267497652}
   - component: {fileID: 3475087595500500795}
-  - component: {fileID: 6026689061924525501}
   - component: {fileID: 8346364394675993745}
   m_Layer: 3
   m_Name: Player
@@ -5591,6 +5590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   healthSystem: 0
+  mercyTime: 0
   maxPlayerHealth: 100
   timeTillHealthregenSec: 3
   healthRegenPerSecond: 4
@@ -5610,30 +5610,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoManager
   spearCrosshairImages: []
+  killsNeedForRefund: 0
   refundAmount: 1
   totalSpearCount: 5
   basicSpearColour: {r: 0.08627451, g: 0.79607844, b: 0.8313726, a: 1}
   transferSpearColour: {r: 0.5921569, g: 0.47843137, b: 0.8784314, a: 1}
   explosiveSpearColour: {r: 0.8, g: 0, b: 0, a: 1}
   infiniteSpears: 0
---- !u!114 &6026689061924525501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5597025639639147693}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdaa133bdf67824eab06e6af242cda4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MatChanger
-  playerMaterials:
-  - {fileID: 2100000, guid: 73f49013167179741946930d69ed936f, type: 2}
-  - {fileID: 2100000, guid: 7e309c70b5577c14f84e9b4440452549, type: 2}
-  - {fileID: 2100000, guid: 829decf48a462db41ad0832e0915e52f, type: 2}
-  changeMat: 0
-  meshRenderer: {fileID: 6563667528951447840}
 --- !u!95 &8346364394675993745
 Animator:
   serializedVersion: 7
@@ -6606,10 +6589,5 @@ Transform:
 --- !u!4 &4910364453249423333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
-  m_PrefabInstance: {fileID: 4877300579755257870}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &6563667528951447840 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1781582525894013230, guid: baced83f13eed76419c270ad4fbcbffd, type: 3}
   m_PrefabInstance: {fileID: 4877300579755257870}
   m_PrefabAsset: {fileID: 0}

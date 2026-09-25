@@ -13,7 +13,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float regainSpeed;
     [SerializeField] protected float spearSpeedDecreaseRatio;
     public float damage;
-    public EnemyAttack attackScrpt;
+
+    private bool dead = false;
 
     //[SerializeField] private bool enemyDisable;
     //private bool inEnabled;
@@ -59,7 +60,14 @@ public abstract class Enemy : MonoBehaviour
         }
         ////Debug TOOL
         //skinnedMeshRenderer.material.color = Color.red;
-        spawner.currentEnemyCount--;
+
+        //Prevent double kill
+        if (!dead)
+        {
+            spawner.currentEnemyCount--;
+            dead = true;
+        }
+
         Destroy(animator);
         Destroy(this);
     }

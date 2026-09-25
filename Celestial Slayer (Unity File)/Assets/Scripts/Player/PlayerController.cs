@@ -46,15 +46,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float delayBeforeReload;
     private float timer;
     private float throwStrength;
-    private enum CurrentSpearType { basicSpear, transferSpear, explosiveSpear }
-    CurrentSpearType currentSpearType;
+    public enum CurrentSpearType { basicSpear, transferSpear, explosiveSpear }
+    public CurrentSpearType currentSpearType { get; private set; }
 
     private GameObject heldSpear;
     private List<GameObject> thrownSpears = new List<GameObject>();
-    private int spearsToRemove;
+    public int spearsToRemove { get; private set; }
     private bool holdingSpear;
     private bool inEquip;
-    private bool inThrow;
+    public bool inThrow { get; private set; }
     private bool inReload;
     private bool inDelayThrow;
     private float chargeThrowDelay;
@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
         crosshair = GameObject.Find("Crosshair").transform;
 
         throwStrength = minThrowStrength;
+
+        animator.SetFloat("ChargeTime", ((maxThrowStrength - throwStrength) / throwStrengthIncrease)/100);
 
         spearsToRemove = 1;
     }
@@ -368,6 +370,13 @@ public class PlayerController : MonoBehaviour
         //Build throw strength when aimed
         if (isAiming)
         {
+            float throwPercentageb = throwStrength/maxThrowStrength;
+            if ((throwPercentageb) > 0.4)
+            {
+                Debug.Log("Incharge is true. Throw per = " + throwPercentageb + " throwStrength = " + throwStrength + " MaxThrowstength = " + maxThrowStrength );
+                animator.SetBool("InCharge", true);
+            }
+
             if (throwStrength < maxThrowStrength)
             {
                 throwStrength += throwStrengthIncrease * Time.deltaTime;

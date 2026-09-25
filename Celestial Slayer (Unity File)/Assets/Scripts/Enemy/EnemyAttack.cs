@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private Enemy enemyParent;
     private float damage;
 
     private void Start()
     {
         Transform parent = transform.root;
-        enemyParent = parent.GetComponent<Enemy>();
+        MeleeEnemy enemyParent = parent.GetComponent<MeleeEnemy>();
         damage = enemyParent.damage;
         enemyParent.attackScrpt = this;
     }
@@ -18,7 +17,7 @@ public class EnemyAttack : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            playerHealth.Hit(damage);
+            playerHealth.Hit(damage, false);
         }
     }
 }
