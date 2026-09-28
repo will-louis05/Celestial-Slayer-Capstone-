@@ -112,5 +112,7 @@ public class AmmoManager : MonoBehaviour
 
         PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
         ShowSpearCost((int)player.currentSpearType, player.spearsToRemove);
+
+        ColourManager.instance.RefundUI();
     }
 }

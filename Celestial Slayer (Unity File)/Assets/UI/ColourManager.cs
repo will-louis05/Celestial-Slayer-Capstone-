@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class ColourManager : MonoBehaviour
 {
     public static ColourManager instance;
-    private Coroutine coroutine;
+    private Coroutine missingCoroutine;
+    private Coroutine refundCoroutine;
 
     private AmmoManager ammoManager;
 
@@ -22,9 +23,11 @@ public class ColourManager : MonoBehaviour
     [SerializeField] private List<Image> primaryUI = new List<Image>();
     [SerializeField] private List<TMP_Text> texts = new List<TMP_Text>();
     [SerializeField] private List<Image> missingSpears = new List<Image>();
+    [SerializeField] private GameObject refundUI;
 
     [Header("SFX")]
     [SerializeField] private AudioSource missingSFX;
+    [SerializeField] private AudioSource refundSFX;
 
     private void OnValidate()
     {
@@ -41,6 +44,8 @@ public class ColourManager : MonoBehaviour
         ammoManager = GameObject.Find("Player").GetComponent<AmmoManager>();
 
         ApplyTint();
+
+        refundUI.SetActive(false);
 
         foreach (Image img in missingSpears)
             img.gameObject.SetActive(false);
@@ -79,6 +84,17 @@ public class ColourManager : MonoBehaviour
         }
     }
 
+    public void RefundUI()
+    {
+        if (refundCoroutine != null)
+            StopCoroutine(refundCoroutine);
+
+        refundCoroutine = StartCoroutine(Flash(refundUI));
+
+        if (refundSFX != null)
+            refundSFX.Play();
+    }
+
     public void MissingSpears(int index, int amount)
     {
         Color color = defaultColour;
@@ -99,15 +115,27 @@ public class ColourManager : MonoBehaviour
             img.gameObject.SetActive(false);
         }
 
-        if (coroutine != null)
-            StopCoroutine(coroutine);
-        coroutine = StartCoroutine(Flash(amount));
+        if (missingCoroutine != null)
+            StopCoroutine(missingCoroutine);
+        missingCoroutine = StartCoroutine(FlashSpears(amount));
 
         if (missingSFX != null)
             missingSFX.Play();
     }
 
-    private IEnumerator Flash(int n)
+    private IEnumerator Flash(GameObject target)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            target.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            target.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+        }
+        refundCoroutine = null;
+    }
+
+    private IEnumerator FlashSpears(int n)
     {
         List<Image> images = new List<Image>();
         for (int i = ammoManager.currentSpearCount; i < ammoManager.currentSpearCount + n; i++)
@@ -122,6 +150,6 @@ public class ColourManager : MonoBehaviour
             foreach (Image img in images)
                 img.gameObject.SetActive(false);
         }
-        coroutine = null;
+        missingCoroutine = null;
     }
 }
