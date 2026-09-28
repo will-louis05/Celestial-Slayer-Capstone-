@@ -106,6 +106,7 @@ public class AmmoManager : MonoBehaviour
 
     public void RefundSpear()
     {
+        Debug.Log("RefundCalled");
         currentSpearCount += refundAmount;
         spearCrosshairImages[currentSpearCount - 1].fillAmount = 1f;
 

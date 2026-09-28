@@ -2,15 +2,13 @@ using UnityEngine;
 
 public abstract class RangedEnemy : Enemy
 {
-    [SerializeField] protected float distanceFromPlayer;
-    [SerializeField] protected GameObject shot;
-
     protected Transform player;
     private float timeSinceLastFired;
 
-    [Header("Damge Values")]
+    [Header("Ranged Values")]
+    [SerializeField] protected float distanceFromPlayer;
+    [SerializeField] protected GameObject shot;
     [SerializeField] protected float fireRate;
-    [SerializeField] protected float damageDelt;
     [SerializeField] protected float projectileSpeed;
 
     protected override void Start()
@@ -26,12 +24,6 @@ public abstract class RangedEnemy : Enemy
         return false;
     }
 
-    protected override void Killed()
-    {
-        spawner.currentEnemyCount--;
-        Destroy(gameObject);
-    }
-
     protected void FindPlayer()
     {
         Vector3 directionFromPlayer = player.position - transform.position;
@@ -40,13 +32,13 @@ public abstract class RangedEnemy : Enemy
             RaycastHit hit;
             if (Physics.Raycast(transform.position, directionFromPlayer, out hit))
             {
-                Debug.DrawRay(transform.position, directionFromPlayer);
+                Debug.DrawRay(transform.position, directionFromPlayer * distanceFromPlayer);
                 if (hit.collider.CompareTag("Player"))
                 {
 
                     if (fireRate < (Time.time - timeSinceLastFired))
                     {
-                        Fire(hit.point);
+                        Fire();
                         timeSinceLastFired = Time.time;
                     }
                 }
@@ -54,5 +46,6 @@ public abstract class RangedEnemy : Enemy
         }
     }
 
-    protected abstract void Fire(Vector3 playerPos);
+    protected abstract void Fire();
+
 }

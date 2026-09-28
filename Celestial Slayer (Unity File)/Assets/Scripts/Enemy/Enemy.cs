@@ -5,17 +5,17 @@ public abstract class Enemy : MonoBehaviour
     protected bool speared;
     protected Animator animator;
 
-    [SerializeField] protected float enemyMass;
-    [SerializeField] protected float forceRequiredToSpear;
     [SerializeField] protected GameObject[] joints;
     public EnemySpawner spawner;
 
+    [Header("Enemy Attributes")]
+    [SerializeField] protected float enemyMass;
+    [SerializeField] protected float forceRequiredToSpear;
     [SerializeField] private float regainSpeed;
     [SerializeField] protected float spearSpeedDecreaseRatio;
     public float damage;
 
     private bool dead = false;
-
     //[SerializeField] private bool enemyDisable;
     //private bool inEnabled;
     //[SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
@@ -46,10 +46,11 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision);
 
-    public void EnemyStuck()
+    public  void EnemyStuck()
     {
         Killed();
     }
+
 
     protected virtual void Killed()
     {
@@ -64,7 +65,7 @@ public abstract class Enemy : MonoBehaviour
         //Prevent double kill
         if (!dead)
         {
-            spawner.currentEnemyCount--;
+            //spawner.currentEnemyCount--;
             dead = true;
         }
 

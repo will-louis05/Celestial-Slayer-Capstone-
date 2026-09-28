@@ -60,7 +60,6 @@ public class BasicSpear : Spear
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
         {
-            Debug.Log(hit);
             return true;
         }
         return false;
@@ -69,11 +68,10 @@ public class BasicSpear : Spear
     void SpearHit(Collision collision)
     {
         inCollision = true;
-        Transform collisionTraform = collision.transform;
-        Debug.Log(collisionTraform);
+        Transform collisionTransform = collision.transform;
             
-        ISpearedObj spearedObj = collisionTraform.GetComponent<ISpearedObj>();
-        Rigidbody spearedRb = collisionTraform.GetComponent<Rigidbody>();
+        ISpearedObj spearedObj = collisionTransform.GetComponent<ISpearedObj>();
+        Rigidbody spearedRb = collisionTransform.GetComponent<Rigidbody>();
 
         if (spearedObj != null)
         {
@@ -83,12 +81,12 @@ public class BasicSpear : Spear
             if (pierce)
                 PierceAmount(collision);          
         }
-        else if (collisionTraform.CompareTag("Enemy"))
+        else if (collisionTransform.CompareTag("Enemy"))
         {
-            Transform limbhit = collisionTraform;
-            collisionTraform = collisionTraform.root;
-           
-            Enemy enemyScrp = collisionTraform.GetComponent<Enemy>();
+            Transform limbhit = collisionTransform;
+            collisionTransform = collisionTransform.root;          
+            Enemy enemyScrp = collisionTransform.GetComponent<Enemy>();
+
             if (enemyScrp != null)
             {
                 //Immediate hit speed bugfix
@@ -97,8 +95,10 @@ public class BasicSpear : Spear
 
                 PierceAmount(collision);
                 bool failedToPierce = enemyScrp.EnemySpeared(spearRb, limbhit, preCollisionSpeed, collision);
+
                 if (failedToPierce)
                 {
+                    //Attach Spear to limbhit 
                     spearRb.isKinematic = true;
                     stuck = true;
                     transform.SetParent(limbhit);
@@ -106,6 +106,7 @@ public class BasicSpear : Spear
                 else
                 {
                     spearedEnemies.Add(enemyScrp);
+                    //Refund Spear System
                     AmmoManager ammoScrpt = GameObject.Find("Player").GetComponent<AmmoManager>();
                     if (enemiesKilled == ammoScrpt.killsNeedForRefund)
                         ammoScrpt.RefundSpear();

@@ -5567,7 +5567,7 @@ MonoBehaviour:
   explosiveSpear: {fileID: 1608799227217340317, guid: 75ced820b6bae9441b633e8be0c7714c, type: 3}
   minThrowStrength: 5
   maxThrowStrength: 15
-  throwStrengthIncrease: 2
+  throwStrengthIncrease: 5
   equipTime: 0.8
   reloadTimeSec: 2
   delayBeforeReload: 0.2
@@ -5595,7 +5595,7 @@ MonoBehaviour:
   timeTillHealthregenSec: 3
   healthRegenPerSecond: 4
   totalHitPoints: 0
-  infiniteHealth: 1
+  infiniteHealth: 0
   resetHealth: 0
 --- !u!114 &3475087595500500795
 MonoBehaviour:
@@ -5610,7 +5610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoManager
   spearCrosshairImages: []
-  killsNeedForRefund: 0
+  killsNeedForRefund: 3
   refundAmount: 1
   totalSpearCount: 5
   basicSpearColour: {r: 0.08627451, g: 0.79607844, b: 0.8313726, a: 1}

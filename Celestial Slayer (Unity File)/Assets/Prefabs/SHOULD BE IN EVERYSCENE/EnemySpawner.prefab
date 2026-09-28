@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 613600376105048659}
-  - {fileID: 2705876049612565729}
   - {fileID: 2916075912027772792}
   - {fileID: 456726391081186721}
+  - {fileID: 2705876049612565729}
   m_Father: {fileID: 4128239261477559636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754552559864161728
@@ -129,10 +129,10 @@ MonoBehaviour:
   basicEnemy: {fileID: 3482427714760531327, guid: 8338a5462e225cb47a35dfe3dfcc1d88, type: 3}
   bruteEnemy: {fileID: 3482427714760531327, guid: e1452d6f5d3f55e42b5040572da073dc, type: 3}
   flyingEnemy: {fileID: 3482427714760531327, guid: 91c1eac7e4cd6f240b70e6906747622c, type: 3}
+  sentryEnemy: {fileID: 0}
   waveData:
   - waveSpawns: {fileID: 4446272100065890729}
-    randomSpawns: 0
-    enemyTypeSpawnNumberForRandomOnly: 
+    enemyCountTillSpawnNextWave: 0
   tempBruteSpawnerEffect: {fileID: 6929441498494883423, guid: fd77e94b656ca974aa8ac76003118aa2, type: 3}
   tempBasicSpawnerEffect: {fileID: 4889525000294816745, guid: 700b478cad5fbbf4fbe494059e720ee0, type: 3}
   currentEnemyCount: 0
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 2705876049612565729}
   - component: {fileID: 546477367248376112}
   m_Layer: 7
-  m_Name: SpawnSmall (1)
+  m_Name: SpawnRanged (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48438123f4e07344814f2e14550070b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
-  enemyType: 1
+  enemyType: 3
 --- !u!1 &7062196941511588700
 GameObject:
   m_ObjectHideFlags: 0

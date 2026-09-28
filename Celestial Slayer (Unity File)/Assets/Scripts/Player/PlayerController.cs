@@ -373,7 +373,6 @@ public class PlayerController : MonoBehaviour
             float throwPercentageb = throwStrength/maxThrowStrength;
             if ((throwPercentageb) > 0.4)
             {
-                Debug.Log("Incharge is true. Throw per = " + throwPercentageb + " throwStrength = " + throwStrength + " MaxThrowstength = " + maxThrowStrength );
                 animator.SetBool("InCharge", true);
             }
 
