@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
-        if (grounded && inputHandler.jumpTriggered)
+        if (grounded && inputHandler.jumpTriggered && (!inReload && disableMovementInReload))
             Jump();
     }
 
@@ -397,6 +397,10 @@ public class PlayerController : MonoBehaviour
 
             Spear spearScrp = heldSpear.GetComponent<Spear>();
             spearScrp.SpearThrown(throwStrength, maxThrowStrength);
+
+            //Recoil if in air (needs to include pitch)
+            if (!grounded)
+                rb.AddForce(-heldSpear.transform.forward * throwStrength * 100, ForceMode.Impulse);
 
             thrownSpears.Add(heldSpear);
 
