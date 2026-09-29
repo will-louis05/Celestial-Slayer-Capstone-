@@ -31,7 +31,7 @@ public class BasicSpear : Spear
             preCollisionSpeed = spearRb.linearVelocity.magnitude;
 
         if (!held)
-            timer += Time.deltaTime;
+            timer -= Time.deltaTime;
     }
 
     private void Update()

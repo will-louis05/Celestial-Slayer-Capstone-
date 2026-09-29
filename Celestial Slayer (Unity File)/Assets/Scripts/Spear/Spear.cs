@@ -26,7 +26,7 @@ public class Spear : MonoBehaviour
         transform.LookAt(spearfollow.position);
 
         Vector3 moveDirection = transform.forward * throwStrength * 250f;
-        throwSpeed = throwStrength;
+        throwSpeed = throwStrength * 18f; //Assuming base speed of ~90 (5 -> 90)
 
         spearBodyCollider.enabled = true;
 
