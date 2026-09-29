@@ -1,3 +1,4 @@
+using Unity.AI.Navigation.Samples;
 using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
@@ -117,6 +118,7 @@ public class MeleeEnemy : Enemy
     protected override void Killed()
     {
         Destroy(attackScrpt);
+        Destroy(this.GetComponent<AgentLinkMover>());
         Destroy(navMesh);
         Destroy(behaviorGraph);
         base.Killed();

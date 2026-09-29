@@ -65,7 +65,7 @@ public abstract class Enemy : MonoBehaviour
         //Prevent double kill
         if (!dead)
         {
-            //spawner.currentEnemyCount--;
+            spawner.currentEnemyCount--;
             dead = true;
         }
 

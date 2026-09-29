@@ -42,16 +42,20 @@ public class EnemySpawner : MonoBehaviour
             PlayerController.inCombat = false;
 
         }
-        else if (spawnEnemies && currentEnemyCount <= waveData[currentWave].enemyCountTillSpawnNextWave)
+        else if (spawnEnemies &&  currentWave < totalWaves)
         {
-            PlayerController.inCombat = true;
-            if (currentWave == totalWaves)
+            if(currentEnemyCount <= waveData[currentWave].enemyCountTillSpawnNextWave)
             {
-                Destroy(gameObject);
-                return;
+                PlayerController.inCombat = true;
+                if (currentWave == totalWaves)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+                SpawnEnemies();
+                currentWave++;
             }
-            SpawnEnemies();
-            currentWave++;
+
         }
     }
 
@@ -121,41 +125,32 @@ public class EnemySpawner : MonoBehaviour
         int availableSpawnsCount = availableSpawns.Count;
         for (int i = 0; i < availableSpawnsCount; i++)
         {
-            GameObject enemySpawned = null;
-            GizmoSpawnLocations.EnemyType enemyType = availableSpawns[0].GetComponent<GizmoSpawnLocations>().enemyType;
-            GameObject spawnVFX = null;
+            GameObject enemyToSpawn = null;
+            GizmoSpawnLocations spawnInfo = availableSpawns[0].GetComponent<GizmoSpawnLocations>();
+            GizmoSpawnLocations.EnemyType enemyType = spawnInfo.enemyType;
+            float spawnTime = spawnInfo.spawnTime;
+            //GameObject spawnVFX = null;
             switch (enemyType)
             {
                 case GizmoSpawnLocations.EnemyType.basic:
-                    enemySpawned = Instantiate(basicEnemy, availableSpawns[0].position, Quaternion.identity);
-                    spawnVFX = Instantiate(tempBasicSpawnerEffect, availableSpawns[0].position + Vector3.up * 0.6f, Quaternion.identity);
+                    enemyToSpawn = basicEnemy;
                     break;
 
                 case GizmoSpawnLocations.EnemyType.brute:
-                    enemySpawned = Instantiate(bruteEnemy, availableSpawns[0].position, Quaternion.identity);
-                    spawnVFX = Instantiate(tempBruteSpawnerEffect, availableSpawns[0].position + Vector3.up * 2.5f, Quaternion.identity);
+                    enemyToSpawn = bruteEnemy;
                     break;
-
+                        
                 case GizmoSpawnLocations.EnemyType.flying:
-                    enemySpawned = Instantiate(flyingEnemy, availableSpawns[0].position, Quaternion.identity);
+                    enemyToSpawn = flyingEnemy;
                     break;
 
                 case GizmoSpawnLocations.EnemyType.sentry:
-                    enemySpawned = Instantiate(sentryEnemy, availableSpawns[0].position, Quaternion.identity);
+                    enemyToSpawn = sentryEnemy;
                     break;
             }
-
+            StartCoroutine(SpawnEnemy(enemyToSpawn, spawnTime, availableSpawns[0].position));
             availableSpawns.RemoveAt(0);
-            enemySpawned.GetComponent<Enemy>().spawner = this;
             currentEnemyCount++;
-
-            if (spawnVFX != null)
-            {
-                StartCoroutine(VFXDestroyer(spawnVFX));
-            }
-            BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
-            GameObject player = GameObject.Find("Player");
-            behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
         }
     }
 
@@ -163,6 +158,29 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Destroy(spawnVFX);
+    }
+
+    private IEnumerator SpawnEnemy(GameObject enemyToSpawn, float spawnTime, Vector3 spawnLocation)
+    {
+        yield return new WaitForSeconds(spawnTime);
+
+        GameObject enemySpawned = Instantiate(enemyToSpawn, spawnLocation, Quaternion.identity);
+        enemySpawned.GetComponent<Enemy>().spawner = this;
+
+        BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
+
+        if (behaviorGraph != null)
+        {
+            GameObject player = GameObject.Find("Player");
+            behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+        }
+        //spawnVFX = Instantiate(tempBruteSpawnerEffect, availableSpawns[0].position + Vector3.up * 2.5f, Quaternion.identity);
+
+        //if (spawnVFX != null)
+        //{
+        //    StartCoroutine(VFXDestroyer(spawnVFX));
+        //}
+
     }
 }
 

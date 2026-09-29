@@ -4,6 +4,7 @@ public class GizmoSpawnLocations : MonoBehaviour
 {
     public enum EnemyType { basic, brute, flying, sentry,random }
     public EnemyType enemyType;
+    public float spawnTime;
     private void OnDrawGizmos()
     {
         switch(enemyType)
