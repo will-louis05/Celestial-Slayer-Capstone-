@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b779c5e218f253c49bed81d77fc63ab0, type: 2}
+  - {fileID: 2100000, guid: 445491702cc237d4ba49baff8b2c757e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b779c5e218f253c49bed81d77fc63ab0, type: 2}
+  - {fileID: 2100000, guid: 445491702cc237d4ba49baff8b2c757e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -264,7 +264,7 @@ PrefabInstance:
     - target: {fileID: -8143710011712545758, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b779c5e218f253c49bed81d77fc63ab0, type: 2}
+      objectReference: {fileID: 2100000, guid: cbdd59f55806b3344bc2dbb6da81f7be, type: 2}
     - target: {fileID: -7023974396876390944, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -316,7 +316,7 @@ PrefabInstance:
     - target: {fileID: -1120989108687609925, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b779c5e218f253c49bed81d77fc63ab0, type: 2}
+      objectReference: {fileID: 2100000, guid: a495171709c281b4d8e99da97c485b0f, type: 2}
     - target: {fileID: -1063203228461421988, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_Name
       value: Stars2
@@ -367,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_Name
-      value: SentryChild
+      value: SentryEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_Layer
@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 3729964425998498954, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b779c5e218f253c49bed81d77fc63ab0, type: 2}
+      objectReference: {fileID: 2100000, guid: c204f85401d3e914484f757f157846d2, type: 2}
     - target: {fileID: 4767400413853537203, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_Name
       value: Stars1
@@ -637,7 +637,7 @@ MonoBehaviour:
   distanceFromPlayer: 30
   shot: {fileID: 7453686942764431335, guid: 5e7f2c2a1efacfb42b9db17f38673294, type: 3}
   fireRate: 3
-  projectileSpeed: 15
+  projectileSpeed: 100
   bulletSpawnRate: 0.5
   burstCount: 3
   sentryHeart: {fileID: 6818975979094073765}

@@ -125,20 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56b0bd6667f89f4ab22039482a98733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
-  enemyMass: 1
-  forceRequiredToSpear: 0
   joints:
   - {fileID: 3482427714760531327}
   spawner: {fileID: 0}
+  enemyMass: 1
+  forceRequiredToSpear: 0
   regainSpeed: 0
   spearSpeedDecreaseRatio: 0
-  damage: 0
+  damage: 5
   enemySFX: {fileID: 0}
   distanceFromPlayer: 40
   shot: {fileID: 6288514440704905835, guid: edf17f12c0cb5d14490174d1010b4303, type: 3}
   fireRate: 7
-  damageDelt: 4
-  projectileSpeed: 0.3
+  projectileSpeed: 20
   areaOfEffectAttack: {fileID: 7460042946053087435, guid: 9bddeecabc0517749a6b0c4d3d4e3d52, type: 3}
   damageTicTime: 0.3
   timeTillDestory: 5

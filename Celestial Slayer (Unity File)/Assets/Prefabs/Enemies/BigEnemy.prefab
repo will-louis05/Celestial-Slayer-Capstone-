@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3255146723711927258}
   - component: {fileID: 4040773792916490902}
   - component: {fileID: 7784526821616485531}
+  - component: {fileID: 7391198202061440007}
   m_Layer: 8
   m_Name: BigEnemy
   m_TagString: Enemy
@@ -132,8 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9592f47f388cdd48b64eb8edcc08f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  enemyMass: 200
-  forceRequiredToSpear: 100
   joints:
   - {fileID: 6802958628445447639}
   - {fileID: 2931947309072339602}
@@ -147,12 +146,33 @@ MonoBehaviour:
   - {fileID: 4983992880455506606}
   - {fileID: 7415853353106289349}
   spawner: {fileID: 0}
+  enemyMass: 200
+  forceRequiredToSpear: 100
   regainSpeed: 15
   spearSpeedDecreaseRatio: 0.01
   damage: 40
   enemySFX: {fileID: 3207733307377159511}
   runSpeed: 4
   attackScrpt: {fileID: 0}
+--- !u!114 &7391198202061440007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482427714760531327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39754a91e8030054ca4a6a5fde185ddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Unity.AI.Navigation.Samples.AgentLinkMover
+  m_Method: 2
+  m_Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3541821996213385544
 GameObject:
   m_ObjectHideFlags: 0
