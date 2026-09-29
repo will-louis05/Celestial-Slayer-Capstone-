@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Values")]
     [SerializeField] private float groundMoveSpeed;
     [SerializeField] private float aimedMoveSpeed;
+    [SerializeField] private float summongMoveSpeed;
     [SerializeField] private float inAirMoveSpeed;
     [SerializeField] private float maxAirSpeed;
     [SerializeField] private float groundDrag;
@@ -222,7 +223,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
-        if (grounded && inputHandler.jumpTriggered && (!inReload && disableMovementInReload))
+        if (grounded && inputHandler.jumpTriggered && (!inReload))
             Jump();
     }
 
@@ -262,7 +263,11 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = 0;
         }
-        rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
+        else if(inReload && grounded)
+        {
+            moveSpeed = summongMoveSpeed;
+        }
+            rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
 
         //Speed Control, stop player from endless acceleration
         Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
