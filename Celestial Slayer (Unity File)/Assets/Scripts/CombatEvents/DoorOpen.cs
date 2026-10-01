@@ -7,4 +7,9 @@ public class DoorOpen : MonoBehaviour, ICombatEvent
     {
         Destroy(door);
     }
+
+    public void TriggerEvent()
+    {
+
+    }
 }

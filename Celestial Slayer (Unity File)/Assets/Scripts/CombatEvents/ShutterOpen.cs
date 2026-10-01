@@ -18,9 +18,17 @@ public class ShutterOpen : MonoBehaviour, ICombatEvent
             transform.localScale = new Vector3(transform.localScale.x, yScale, transform.localScale.z);
             if (yScale <= 0)
             {
-                spawner.spawnEnemies = true;
+                if (spawner != null)
+                {
+                    spawner.spawnEnemies = true;
+                }
                 Destroy(gameObject);
             }
         }
+    }
+    
+    public void TriggerEvent()
+    {
+        shutterOpening = true;
     }
 }
