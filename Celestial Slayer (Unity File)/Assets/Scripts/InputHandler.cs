@@ -179,5 +179,9 @@ public class InputHandler : MonoBehaviour
             aimLookSens = aimedControllerSens;
             controlScheme = ControlScheme.controller;
         }
+
+        //Settings menu (old input system)
+        if (Input.GetKeyDown(KeyCode.Escape))
+            MenuManager.instance.Settings();
     }
 }
