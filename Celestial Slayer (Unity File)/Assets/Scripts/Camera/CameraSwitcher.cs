@@ -1,6 +1,4 @@
-using System;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraSwitcher : MonoBehaviour
@@ -35,6 +33,14 @@ public class CameraSwitcher : MonoBehaviour
         else if (!inputHandler.aimTriggered && isAiming)
         {
             ExitAim();
+        }
+        
+        if (!isAiming)
+        {
+            //X Input
+            inputAxiscontroller.Controllers[0].Input.Gain = inputHandler.lookSens;
+            //Y input
+            inputAxiscontroller.Controllers[1].Input.Gain = -inputHandler.lookSens;
         }
     }
 

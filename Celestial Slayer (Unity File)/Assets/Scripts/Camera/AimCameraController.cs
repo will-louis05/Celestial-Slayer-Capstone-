@@ -52,7 +52,7 @@ public class AimCameraController : MonoBehaviour
     private void Update()
     {
         //Vector2 look = lookInput.action.ReadValue<Vector2>() * sensitivity;
-        Vector2 look = inputHandler.lookInput * sensitivity;
+        Vector2 look = inputHandler.lookInput * inputHandler.aimLookSens;
 
         yaw += look.x;
         pitch -= look.y;

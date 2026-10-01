@@ -43,6 +43,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "9a0c30c9-a59c-4162-8d37-d59f45e7a3ac",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Shoulder Switch",
                     "type": "Button",
                     "id": "39749305-8c49-4b1b-9bec-113dfac0b8ad",
@@ -79,15 +88,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "9a0c30c9-a59c-4162-8d37-d59f45e7a3ac",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Reload",
                     "type": "Button",
                     "id": "63f5698f-616f-492b-ac81-311032235fdc",
@@ -101,17 +101,39 @@
                 {
                     "name": "",
                     "id": "55b917ce-f654-4a17-8328-f609d1167d14",
-                    "path": "<Keyboard>/space",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Controller",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "a6c73d69-a30f-408d-814b-95f7f24bc799",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23b5d903-dd5e-47c2-8add-2dcbdaf1d0e9",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
-                    "id": "3fcad66c-a06a-4852-82e7-74bdb8f534d7",
+                    "id": "444a35da-e0da-42e7-a7eb-43a93f841a6f",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -122,44 +144,44 @@
                 },
                 {
                     "name": "up",
-                    "id": "bf8fa095-3fe5-403f-be10-07f847c1ae38",
+                    "id": "182d30cc-e930-4e3a-bf09-f982ae4b0304",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "27d83028-ea94-4117-b520-feba7380da23",
+                    "id": "fd77839f-785e-44fd-812d-de3783da7c75",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "87d1be7d-e6b3-4ee2-8327-5818f04873f3",
+                    "id": "fbbea940-88a2-4d1c-85e9-8b4a6c174dfe",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "c9b52027-4e5a-4d85-ade5-113e9928e4f2",
+                    "id": "9f73348d-09e1-4356-ac49-33a691f7c80a",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -167,10 +189,21 @@
                 {
                     "name": "",
                     "id": "78db9eaf-713e-4dd5-8f91-c70a76cd1593",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c83aa13-7483-4af9-925a-e12924f9b28e",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -178,10 +211,21 @@
                 {
                     "name": "",
                     "id": "1a3832aa-1190-46d8-aad0-33af6ea11bbf",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3257a289-ab3e-48a5-beb1-0242f5424e7e",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -189,10 +233,21 @@
                 {
                     "name": "",
                     "id": "70b3b662-f894-4fa3-ab30-cf1aa9f4c3db",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Shoulder Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8f6d961-cc62-4b29-a42d-7038cdd80539",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Shoulder Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -200,10 +255,21 @@
                 {
                     "name": "",
                     "id": "ae2ca99d-5997-4492-9489-e5960c867e66",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Equip Basic Spear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2bff63f5-39ca-4e27-b70e-b56aa964ffa2",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Equip Basic Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -211,10 +277,21 @@
                 {
                     "name": "",
                     "id": "03e72265-3078-4b02-a8eb-26ab328645cd",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc4669dd-4efb-467b-8cec-3e712ed0c517",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -222,10 +299,21 @@
                 {
                     "name": "",
                     "id": "f843cbc9-556b-43c5-bcf0-98b825c595e9",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "431c0c5e-ccd6-4cc4-a7c3-1c533a8ee34f",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -233,10 +321,21 @@
                 {
                     "name": "",
                     "id": "bad39c7f-dbf8-48bc-9fe8-f788e3b2c87f",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Equip Transfer Spear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c343477-96bb-482b-a199-1a15bc3bb15b",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Equip Transfer Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -244,10 +343,21 @@
                 {
                     "name": "",
                     "id": "756bbdc7-bbbe-4ad9-a9ff-494cbd53211c",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Equip Explosive Spear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a65fec62-ef34-4d37-827f-57c91b025467",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Equip Explosive Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -255,5 +365,33 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard + Mouse",
+            "bindingGroup": "Keyboard + Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Controller",
+            "bindingGroup": "Controller",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

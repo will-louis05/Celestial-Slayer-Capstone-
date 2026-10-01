@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
     private Transform crosshair;
+    private bool inRumble;
 
     [Header("Movement Values")]
     [SerializeField] private float groundMoveSpeed;
@@ -391,6 +393,11 @@ public class PlayerController : MonoBehaviour
             {
                 throwStrength = maxThrowStrength;
             }
+            if (!inRumble && inputHandler.controlScheme == InputHandler.ControlScheme.controller)
+            {
+                Gamepad.current.SetMotorSpeeds(.25f, 1f);
+                inRumble = true;
+            }
             inThrow = true;
         }
 
@@ -411,7 +418,12 @@ public class PlayerController : MonoBehaviour
 
             animator.SetTrigger("Throw");
             animator.SetBool("InCharge", false);
-         
+            if (inRumble)
+            {
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
+                inRumble = false;
+            }
+
             ammoManager.DecreaseSpearCount(spearsToRemove);
 
             throwSFX.pitch = Random.Range(0.9f, 1.1f);
@@ -451,6 +463,11 @@ public class PlayerController : MonoBehaviour
             inThrow = false;
             crosshair.localScale = new Vector3(1, 1, 1);
             animator.SetBool("InCharge", false);
+            if (inRumble)
+            {
+                Gamepad.current.SetMotorSpeeds(0f,0f);
+                inRumble = false;
+            }
         }
     }
 
@@ -472,6 +489,12 @@ public class PlayerController : MonoBehaviour
                     spearReloadParticle.Play();
                 }
             }
+
+            if (!inRumble && inputHandler.controlScheme == InputHandler.ControlScheme.controller)
+            {
+                Gamepad.current.SetMotorSpeeds(.25f, 1f);
+                inRumble = true;
+            }
         }
 
         if (!inputHandler.reloadTriggered)
@@ -480,6 +503,12 @@ public class PlayerController : MonoBehaviour
             reloadParticle.Stop();
             animator.SetBool("InSummon", inReload);
             recallSFX.Stop();
+
+            if (inRumble)
+            {
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
+                inRumble = false;
+            }
 
             ////Old System SpearGrab
             //foreach (GameObject thrownSpear in thrownSpears)
@@ -524,6 +553,12 @@ public class PlayerController : MonoBehaviour
 
             //Move spear cost back to the front
             ammoManager.ShowSpearCost((int)currentSpearType, spearsToRemove);
+
+            if (inRumble)
+            {
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
+                inRumble = false;
+            }
         }
 
         animator.SetBool("InSummon", inReload);

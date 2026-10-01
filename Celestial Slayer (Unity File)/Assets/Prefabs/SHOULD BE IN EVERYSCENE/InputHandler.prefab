@@ -44,7 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8714a7b687cf4554f88b03f8b39dd9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
+  mouseSens: 15
+  aimedMouseSens: 0.1
+  controllerSens: 150
+  aimedControllerSens: 0.2
+  lookSens: 15
+  aimLookSens: 0.1
   playerControls: {fileID: -944628639613478452, guid: 3287242a9a57ea84e900e4f89c7740ee, type: 3}
+  keyboardScheme: Keyboard + Mouse
+  controllerScheme: Controller
+  controlScheme: 0
   actionMapName: Player
   move: Move
   look: Look
@@ -53,9 +62,13 @@ MonoBehaviour:
   fire: Fire
   shoulderSwitch: Shoulder Switch
   equipSpear: Equip Basic Spear
+  equipTranferSpear: Equip Transfer Spear
+  equipExplosiveSpear: Equip Explosive Spear
   reload: Reload
   jumpTriggered: 0
   shoulderSwitchTriggered: 0
-  equipSpearTriggered: 0
+  equipBasicSpearTriggered: 0
+  equipTranferSpearTriggered: 0
+  equipExplosiveSpearTriggered: 0
   fireTriggered: 0
   reloadTriggered: 0

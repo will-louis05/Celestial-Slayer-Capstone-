@@ -3,8 +3,24 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    [Header("Look Sens")]
+    [SerializeField] private float mouseSens=1;
+    [SerializeField] private float aimedMouseSens = 1;
+    [SerializeField] private float controllerSens=1;
+    [SerializeField] private float aimedControllerSens = 1;
+
+    public float lookSens;
+    public float aimLookSens;
+
     [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset playerControls;
+    private PlayerInput playerInput;
+
+    [Header("Control Schemes")]
+    [SerializeField] private string keyboardScheme = "Keyboard + Mouse";
+    [SerializeField] private string controllerScheme = "Controller";
+    public enum ControlScheme { keyboard, controller }
+    public ControlScheme controlScheme;
 
     [Header("Action Map Name Reference")]
     [SerializeField] private string actionMapName = "Player";
@@ -46,7 +62,6 @@ public class InputHandler : MonoBehaviour
     public bool fireTriggered;
     public bool reloadTriggered;
 
-
     public static InputHandler instance { get; private set; }
 
     private void Awake()
@@ -65,6 +80,7 @@ public class InputHandler : MonoBehaviour
         {
             //Destroy(gameObject);
         }
+        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
 
         //Find All Actions
         moveAction = playerControls.FindActionMap(actionMapName).FindAction(move);
@@ -147,5 +163,21 @@ public class InputHandler : MonoBehaviour
         equipTranferSpearAction.Disable();
         equipExplosiveSpearAction.Disable();
         reloadAction.Disable();
+    }
+
+    private void Update()
+    {
+        if(playerInput.currentControlScheme == keyboardScheme)
+        {
+            lookSens = mouseSens;
+            aimLookSens = aimedMouseSens;
+            controlScheme = ControlScheme.keyboard;
+        }
+        else if(playerInput.currentControlScheme == controllerScheme)
+        {
+            lookSens = controllerSens;
+            aimLookSens = aimedControllerSens;
+            controlScheme = ControlScheme.controller;
+        }
     }
 }
