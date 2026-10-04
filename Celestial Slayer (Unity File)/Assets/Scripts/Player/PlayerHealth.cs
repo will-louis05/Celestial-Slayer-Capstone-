@@ -97,7 +97,7 @@ public class PlayerHealth : MonoBehaviour
 
         timeSinceLastDamaged = Time.time;
 
-        ColourManager.instance.DamageUI();
+        UIManager.instance.DamageUI();
     }
 
     private void Die()

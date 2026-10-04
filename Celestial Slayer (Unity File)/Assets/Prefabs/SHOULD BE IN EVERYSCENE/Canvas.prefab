@@ -1724,9 +1724,9 @@ GameObject:
   - component: {fileID: 9048458093653068856}
   - component: {fileID: 3819486828559996315}
   - component: {fileID: 5855859561277924834}
+  - component: {fileID: 3643905502373501379}
   - component: {fileID: 8796651303264319179}
   - component: {fileID: 5749257053423582177}
-  - component: {fileID: 3643905502373501379}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1826,6 +1826,39 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3643905502373501379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3128895912289173110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36150a4a38ee67945b9ef845051d8bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColourTinter
+  defaultColour: {r: 0.08627451, g: 0.79607844, b: 0.8313726, a: 1}
+  transferColour: {r: 0.5921569, g: 0.47843137, b: 0.8784314, a: 1}
+  explosiveColour: {r: 0.8, g: 0, b: 0, a: 1}
+  textColour: {r: 1, g: 1, b: 1, a: 1}
+  crosshair: {fileID: 4689874366305938773}
+  primaryUI:
+  - {fileID: 8551978601862160203}
+  - {fileID: 6100715185574018854}
+  texts:
+  - {fileID: 4277272196730030917}
+  - {fileID: 3619040550393262176}
+  missingSpears:
+  - {fileID: 3071649586435279930}
+  - {fileID: 121925848616302542}
+  - {fileID: 4156093450622754584}
+  - {fileID: 8995677121254675390}
+  - {fileID: 8067610004776439373}
+  refundUI: {fileID: 6035701850477103502}
+  damageVignette: {fileID: 6583103032013098725}
+  missingSFX: {fileID: 3596527222584561778}
+  refundSFX: {fileID: 0}
 --- !u!114 &8796651303264319179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,39 +1903,6 @@ MonoBehaviour:
   textGroup: {fileID: 8051436887056966772}
   panelGroup: {fileID: 1326646034545424843}
   notificationSFX: {fileID: 346875763262942400}
---- !u!114 &3643905502373501379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3128895912289173110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36150a4a38ee67945b9ef845051d8bcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColourTinter
-  defaultColour: {r: 0.08627451, g: 0.79607844, b: 0.8313726, a: 1}
-  transferColour: {r: 0.5921569, g: 0.47843137, b: 0.8784314, a: 1}
-  explosiveColour: {r: 0.8, g: 0, b: 0, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  crosshair: {fileID: 4689874366305938773}
-  primaryUI:
-  - {fileID: 8551978601862160203}
-  - {fileID: 6100715185574018854}
-  texts:
-  - {fileID: 4277272196730030917}
-  - {fileID: 3619040550393262176}
-  missingSpears:
-  - {fileID: 3071649586435279930}
-  - {fileID: 121925848616302542}
-  - {fileID: 4156093450622754584}
-  - {fileID: 8995677121254675390}
-  - {fileID: 8067610004776439373}
-  refundUI: {fileID: 6035701850477103502}
-  damageVignette: {fileID: 6583103032013098725}
-  missingSFX: {fileID: 3596527222584561778}
-  refundSFX: {fileID: 0}
 --- !u!1 &3176554381294646143
 GameObject:
   m_ObjectHideFlags: 0

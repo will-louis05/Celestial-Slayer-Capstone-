@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColourManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public static ColourManager instance;
+    public static UIManager instance;
     private Coroutine damageCoroutine;
     private Coroutine refundCoroutine;
     private Coroutine missingCoroutine;
@@ -14,9 +14,9 @@ public class ColourManager : MonoBehaviour
     private AmmoManager ammoManager;
 
     [Header("Colours")]
-    [SerializeField] private Color defaultColour = Color.aquamarine;
-    [SerializeField] private Color transferColour = Color.purple;
-    [SerializeField] private Color explosiveColour = Color.red;
+    [SerializeField] private Color defaultColour = Color.aquamarine; //16CBD4
+    [SerializeField] private Color transferColour = Color.purple; //977AE0
+    [SerializeField] private Color explosiveColour = Color.red; //CC0000
     [SerializeField] private Color textColour = Color.white;
 
     [Header("References")]
@@ -26,6 +26,8 @@ public class ColourManager : MonoBehaviour
     [SerializeField] private List<Image> missingSpears = new List<Image>();
     [SerializeField] private GameObject refundUI;
     [SerializeField] private GameObject damageVignette;
+    private int globalKills = 0;
+    [SerializeField] private TMP_Text killCounter;
 
     [Header("SFX")]
     [SerializeField] private AudioSource missingSFX;
@@ -48,6 +50,7 @@ public class ColourManager : MonoBehaviour
         ApplyTint();
 
         refundUI.SetActive(false);
+        damageVignette.SetActive(false);
 
         foreach (Image img in missingSpears)
             img.gameObject.SetActive(false);
@@ -86,12 +89,22 @@ public class ColourManager : MonoBehaviour
         }
     }
 
+    public void AddKillsUI(int amount)
+    {
+        globalKills += amount;
+
+        if (globalKills < 1000)
+            killCounter.text = globalKills.ToString();
+        else
+            killCounter.text = "999+";
+    }
+
     public void DamageUI()
     {
         if (damageCoroutine != null)
             StopCoroutine(damageCoroutine);
 
-        damageCoroutine = StartCoroutine(FlashDamage());
+        damageCoroutine = StartCoroutine(FlashDamageRoutine());
     }
 
     public void RefundUI()
@@ -99,7 +112,7 @@ public class ColourManager : MonoBehaviour
         if (refundCoroutine != null)
             StopCoroutine(refundCoroutine);
 
-        refundCoroutine = StartCoroutine(Flash(refundUI));
+        refundCoroutine = StartCoroutine(FlashRefundRoutine());
 
         if (refundSFX != null)
             refundSFX.Play();
@@ -127,25 +140,25 @@ public class ColourManager : MonoBehaviour
 
         if (missingCoroutine != null)
             StopCoroutine(missingCoroutine);
-        missingCoroutine = StartCoroutine(FlashSpears(amount));
+        missingCoroutine = StartCoroutine(FlashSpearsRoutine(amount));
 
         if (missingSFX != null)
             missingSFX.Play();
     }
 
-    private IEnumerator Flash(GameObject target)
+    private IEnumerator FlashRefundRoutine()
     {
         for (int i = 0; i < 3; i++)
         {
-            target.SetActive(true);
+            refundUI.SetActive(true);
             yield return new WaitForSeconds(0.2f);
-            target.SetActive(false);
+            refundUI.SetActive(false);
             yield return new WaitForSeconds(0.2f);
         }
         refundCoroutine = null;
     }
 
-    private IEnumerator FlashSpears(int n)
+    private IEnumerator FlashSpearsRoutine(int n)
     {
         List<Image> images = new List<Image>();
         for (int i = ammoManager.currentSpearCount; i < ammoManager.currentSpearCount + n; i++)
@@ -163,7 +176,7 @@ public class ColourManager : MonoBehaviour
         missingCoroutine = null;
     }
 
-    private IEnumerator FlashDamage()
+    private IEnumerator FlashDamageRoutine()
     {
         damageVignette.SetActive(true);
         yield return new WaitForSeconds(0.5f);

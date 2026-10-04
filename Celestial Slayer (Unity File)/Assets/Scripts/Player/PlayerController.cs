@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
                 {
                     currentSpearType = CurrentSpearType.basicSpear;
                     inputHandler.equipBasicSpearTriggered = false;
-                    ColourManager.instance.SetCrosshair((int)currentSpearType);
+                    UIManager.instance.SetCrosshair((int)currentSpearType);
                     spearsToRemove = needSpears;
                     switched = true;
                 }
@@ -162,13 +162,13 @@ public class PlayerController : MonoBehaviour
                 {
                     currentSpearType = CurrentSpearType.transferSpear;
                     inputHandler.equipTranferSpearTriggered = false;
-                    ColourManager.instance.SetCrosshair((int)currentSpearType);
+                    UIManager.instance.SetCrosshair((int)currentSpearType);
                     spearsToRemove = needSpears;
                     switched = true;
                 }
                 else
                 {
-                    ColourManager.instance.MissingSpearsUI(1, needSpears - ammoManager.currentSpearCount);
+                    UIManager.instance.MissingSpearsUI(1, needSpears - ammoManager.currentSpearCount);
                     Debug.Log("Missing spears!");
                 }
             }
@@ -179,13 +179,13 @@ public class PlayerController : MonoBehaviour
                 {
                     currentSpearType = CurrentSpearType.explosiveSpear;
                     inputHandler.equipExplosiveSpearTriggered = false;
-                    ColourManager.instance.SetCrosshair((int)currentSpearType);
+                    UIManager.instance.SetCrosshair((int)currentSpearType);
                     spearsToRemove = needSpears;
                     switched = true;
                 }
                 else
                 {
-                    ColourManager.instance.MissingSpearsUI(2, needSpears - ammoManager.currentSpearCount);
+                    UIManager.instance.MissingSpearsUI(2, needSpears - ammoManager.currentSpearCount);
                     Debug.Log("Missing spears!");
                 }
             }
@@ -449,7 +449,7 @@ public class PlayerController : MonoBehaviour
 
             //ReturnToBasicSpear
             currentSpearType = CurrentSpearType.basicSpear;
-            ColourManager.instance.SetCrosshair((int)currentSpearType);
+            UIManager.instance.SetCrosshair((int)currentSpearType);
             spearsToRemove = 1;
         }
 

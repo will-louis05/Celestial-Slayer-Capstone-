@@ -32,7 +32,7 @@ public class AmmoManager : MonoBehaviour
             spearCrosshairImages[i].fillAmount = 1f;
         }
         currentSpearCount = totalSpearCount;
-        ColourManager.instance.SetCrosshair(0);
+        UIManager.instance.SetCrosshair(0);
     }
 
     private void Update()
@@ -113,6 +113,6 @@ public class AmmoManager : MonoBehaviour
         PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
         ShowSpearCost((int)player.currentSpearType, player.spearsToRemove);
 
-        ColourManager.instance.RefundUI();
+        UIManager.instance.RefundUI();
     }
 }
