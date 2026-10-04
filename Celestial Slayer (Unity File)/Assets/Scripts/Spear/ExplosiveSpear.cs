@@ -9,7 +9,6 @@ public class ExplosiveSpear: Spear
     private GameObject explosion;
     private int killedEnemyCount;
 
-
     private void OnCollisionEnter(Collision collision)
     {
         Explosion();
@@ -30,7 +29,7 @@ public class ExplosiveSpear: Spear
             {
                 enemyhit = collider.transform.root;
                 Enemy enemyHitScrp = enemyhit.GetComponent<Enemy>();
-                if (enemyHitScrp != null)
+                if (enemyHitScrp != null && !enemyHitScrp.dead)
                 {
                     killedEnemyCount++;
                     enemyHitScrp.ExplosionHit();
@@ -45,6 +44,10 @@ public class ExplosiveSpear: Spear
                 objRb.AddExplosionForce(force, transform.position, radius);
             }
         }
+
+        //Update kill counter
+        if (killedEnemyCount > 0)
+            UIManager.instance.AddKillsUI(killedEnemyCount);
     }
 
     private void DestoryExplosionVFX()

@@ -106,6 +106,10 @@ public class BasicSpear : Spear
                 else
                 {
                     spearedEnemies.Add(enemyScrp);
+
+                    //Update kill counter
+                    UIManager.instance.AddKillsUI(1);
+
                     //Refund Spear System
                     AmmoManager ammoScrpt = GameObject.Find("Player").GetComponent<AmmoManager>();
                     if (enemiesKilled == ammoScrpt.killsNeedForRefund)

@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float spearSpeedDecreaseRatio;
     public float damage;
 
-    private bool dead = false;
+    public bool dead = false;
     //[SerializeField] private bool enemyDisable;
     //private bool inEnabled;
     //[SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;

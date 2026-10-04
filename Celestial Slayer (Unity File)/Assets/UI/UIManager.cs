@@ -54,6 +54,8 @@ public class UIManager : MonoBehaviour
 
         foreach (Image img in missingSpears)
             img.gameObject.SetActive(false);
+
+        killCounter.text = globalKills.ToString();
     }
 
     public void ApplyTint()
