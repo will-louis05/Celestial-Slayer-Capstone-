@@ -133,6 +133,7 @@ MonoBehaviour:
   regainSpeed: 0
   spearSpeedDecreaseRatio: 0
   damage: 5
+  dead: 0
   enemySFX: {fileID: 0}
   distanceFromPlayer: 40
   shot: {fileID: 6288514440704905835, guid: edf17f12c0cb5d14490174d1010b4303, type: 3}
@@ -629,6 +630,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8e53efbe1f59699429fd62f9f97882ff, type: 2}
+    - target: {fileID: -3176360718841601106, guid: 9fde730ead791c24a8f70b76cdd85ee2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: df4270f43002fba4ea7823665eda336a, type: 2}
     - target: {fileID: 6886304870204377, guid: 9fde730ead791c24a8f70b76cdd85ee2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
