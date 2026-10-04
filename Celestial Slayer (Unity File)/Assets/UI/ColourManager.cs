@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class ColourManager : MonoBehaviour
 {
     public static ColourManager instance;
-    private Coroutine missingCoroutine;
+    private Coroutine damageCoroutine;
     private Coroutine refundCoroutine;
+    private Coroutine missingCoroutine;
 
     private AmmoManager ammoManager;
 
@@ -24,6 +25,7 @@ public class ColourManager : MonoBehaviour
     [SerializeField] private List<TMP_Text> texts = new List<TMP_Text>();
     [SerializeField] private List<Image> missingSpears = new List<Image>();
     [SerializeField] private GameObject refundUI;
+    [SerializeField] private GameObject damageVignette;
 
     [Header("SFX")]
     [SerializeField] private AudioSource missingSFX;
@@ -84,6 +86,14 @@ public class ColourManager : MonoBehaviour
         }
     }
 
+    public void DamageUI()
+    {
+        if (damageCoroutine != null)
+            StopCoroutine(damageCoroutine);
+
+        damageCoroutine = StartCoroutine(FlashDamage());
+    }
+
     public void RefundUI()
     {
         if (refundCoroutine != null)
@@ -95,7 +105,7 @@ public class ColourManager : MonoBehaviour
             refundSFX.Play();
     }
 
-    public void MissingSpears(int index, int amount)
+    public void MissingSpearsUI(int index, int amount)
     {
         Color color = defaultColour;
         switch (index)
@@ -151,5 +161,13 @@ public class ColourManager : MonoBehaviour
                 img.gameObject.SetActive(false);
         }
         missingCoroutine = null;
+    }
+
+    private IEnumerator FlashDamage()
+    {
+        damageVignette.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        damageVignette.SetActive(false);
+        damageCoroutine = null;
     }
 }

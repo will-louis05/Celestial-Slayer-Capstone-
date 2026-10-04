@@ -96,6 +96,8 @@ public class PlayerHealth : MonoBehaviour
         healthBarFill.fillAmount = Mathf.Clamp01(health / maxPlayerHealth);
 
         timeSinceLastDamaged = Time.time;
+
+        ColourManager.instance.DamageUI();
     }
 
     private void Die()
