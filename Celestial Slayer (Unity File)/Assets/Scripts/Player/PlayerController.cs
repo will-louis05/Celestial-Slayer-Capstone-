@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     private bool inReload;
     private bool inDelayThrow;
     private float chargeThrowDelay;
+    private float aimReleaseTimer;
 
     [Header("SFX")]
     [SerializeField] private AudioSource runSFX;
@@ -377,6 +378,8 @@ public class PlayerController : MonoBehaviour
         //Build throw strength when aimed
         if (isAiming)
         {
+            aimReleaseTimer = Time.time;
+
             float throwPercentageb = throwStrength/maxThrowStrength;
             if ((throwPercentageb) > 0.4)
             {
@@ -453,8 +456,8 @@ public class PlayerController : MonoBehaviour
             spearsToRemove = 1;
         }
 
-        //Cancel Throw if player stops aiming while in throw
-        if (inThrow && !isAiming)
+        //Cancel Throw if player stops aiming while in throw (grace period of 0.1f)
+        if (inThrow && !isAiming && Time.time - aimReleaseTimer > 0.1f)
         {
             if (aimSFX.isPlaying)
                 aimSFX.Stop();
