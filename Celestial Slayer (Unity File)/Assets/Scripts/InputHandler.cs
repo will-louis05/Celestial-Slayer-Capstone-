@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     [Header("Look Sens")]
-    [SerializeField] private float mouseSens=1;
-    [SerializeField] private float aimedMouseSens = 1;
-    [SerializeField] private float controllerSens=1;
-    [SerializeField] private float aimedControllerSens = 1;
+    public float mouseSens = 1;
+    public float aimedMouseSens = 1;
+    public float controllerSens = 1;
+    public float aimedControllerSens = 1;
 
     public float lookSens;
     public float aimLookSens;

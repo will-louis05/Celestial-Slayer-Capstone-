@@ -8,8 +8,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject settingsScreen;
     private bool active = false;
 
-    [SerializeField] private Slider lookSens;
-    [SerializeField] private Slider aimLookSens;
+    [SerializeField] private Slider mouseSens;
+    [SerializeField] private Slider aimMouseSens;
+    [SerializeField] private Slider controllerSens;
+    [SerializeField] private Slider aimControllerSens;
 
     private void Awake()
     {
@@ -18,11 +20,17 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        lookSens.value = InputHandler.instance.lookSens;
-        lookSens.onValueChanged.AddListener(delegate { InputHandler.instance.lookSens = lookSens.value; });
+        mouseSens.value = InputHandler.instance.mouseSens;
+        mouseSens.onValueChanged.AddListener(delegate { InputHandler.instance.mouseSens = mouseSens.value; });
 
-        aimLookSens.value = InputHandler.instance.aimLookSens;
-        aimLookSens.onValueChanged.AddListener(delegate { InputHandler.instance.aimLookSens = aimLookSens.value; });
+        aimMouseSens.value = InputHandler.instance.aimedMouseSens;
+        aimMouseSens.onValueChanged.AddListener(delegate { InputHandler.instance.aimedMouseSens = aimMouseSens.value; });
+
+        controllerSens.value = InputHandler.instance.controllerSens;
+        controllerSens.onValueChanged.AddListener(delegate { InputHandler.instance.controllerSens = controllerSens.value; });
+
+        aimControllerSens.value = InputHandler.instance.aimedControllerSens;
+        aimControllerSens.onValueChanged.AddListener(delegate { InputHandler.instance.aimedControllerSens = aimControllerSens.value; });
     }
 
     public void Settings()
