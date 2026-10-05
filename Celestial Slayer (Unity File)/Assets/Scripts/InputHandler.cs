@@ -35,6 +35,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string equipSpear = "Equip Spear";
     [SerializeField] private string equipTranferSpear = "Equip Transfer Spear";
     [SerializeField] private string equipExplosiveSpear = "Equip Explosive Spear";
+    [SerializeField] private string equipUp = "EquipUp";
+    [SerializeField] private string equipDown = "EquipDown";
     [SerializeField] private string reload = "Reload";
 
     private InputAction moveAction;
@@ -46,6 +48,8 @@ public class InputHandler : MonoBehaviour
     private InputAction equipBasicSpearAction;
     private InputAction equipTranferSpearAction;
     private InputAction equipExplosiveSpearAction;
+    private InputAction equipUpAction;
+    private InputAction equipDownAction;
     private InputAction reloadAction;
 
     public Vector2 moveInput { get; private set; }
@@ -59,6 +63,8 @@ public class InputHandler : MonoBehaviour
     public bool equipBasicSpearTriggered;
     public bool equipTranferSpearTriggered;
     public bool equipExplosiveSpearTriggered;
+    public bool equipUpTriggered;
+    public bool equipDownTriggered;
     public bool fireTriggered;
     public bool reloadTriggered;
 
@@ -92,6 +98,8 @@ public class InputHandler : MonoBehaviour
         equipBasicSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipSpear);
         equipTranferSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipTranferSpear);
         equipExplosiveSpearAction = playerControls.FindActionMap(actionMapName).FindAction(equipExplosiveSpear);
+        equipUpAction = playerControls.FindActionMap(actionMapName).FindAction(equipUp);
+        equipDownAction = playerControls.FindActionMap(actionMapName).FindAction(equipDown);
         reloadAction = playerControls.FindActionMap(actionMapName).FindAction(reload);
 
         RegisterInputAction();
@@ -128,7 +136,11 @@ public class InputHandler : MonoBehaviour
         equipExplosiveSpearAction.performed += context => equipExplosiveSpearTriggered = true;
         equipExplosiveSpearAction.canceled += context => equipExplosiveSpearTriggered = false;
 
+        equipUpAction.performed += context => equipUpTriggered = true;
+        equipUpAction.canceled += context => equipUpTriggered = false;
 
+        equipDownAction.performed += context => equipDownTriggered = true;
+        equipDownAction.canceled += context => equipDownTriggered = false;
 
         reloadAction.performed += context => reloadTriggered = true;
         reloadAction.canceled += context => reloadTriggered = false;

@@ -52,6 +52,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "63f5698f-616f-492b-ac81-311032235fdc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Shoulder Switch",
                     "type": "Button",
                     "id": "39749305-8c49-4b1b-9bec-113dfac0b8ad",
@@ -88,9 +97,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reload",
-                    "type": "Button",
-                    "id": "63f5698f-616f-492b-ac81-311032235fdc",
+                    "name": "EquipUp",
+                    "type": "PassThrough",
+                    "id": "8664cc17-f634-42ea-b0a9-8e0ddc1e79f2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EquipDown",
+                    "type": "PassThrough",
+                    "id": "702c3df1-dd4a-4ef4-b468-78c01b7aff61",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -359,6 +377,50 @@
                     "processors": "",
                     "groups": ";Keyboard + Mouse",
                     "action": "Equip Explosive Spear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f644c1f-deb1-4a7b-a725-1950b02b0578",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "EquipUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4307cc4-c047-4a03-8c40-b5379d37aa56",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "EquipUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bcf63db-d553-4d51-b3e5-0d3628e207dc",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "EquipDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fdf47f72-72f1-4a50-a37e-cf9eec64ed49",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "EquipDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

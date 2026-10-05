@@ -133,13 +133,44 @@ public class PlayerController : MonoBehaviour
 
     private void InputManger()
     {
-        //Prevent reequip of current spear type (idk why this is happening)
-        if (inputHandler.equipBasicSpearTriggered && currentSpearType == CurrentSpearType.basicSpear)
-            inputHandler.equipBasicSpearTriggered = false;
-        if (inputHandler.equipTranferSpearTriggered && currentSpearType == CurrentSpearType.transferSpear)
-            inputHandler.equipTranferSpearTriggered = false;
-        if (inputHandler.equipExplosiveSpearTriggered && currentSpearType == CurrentSpearType.explosiveSpear)
-            inputHandler.equipExplosiveSpearTriggered = false;
+        if (inputHandler.equipDownTriggered || inputHandler.equipUpTriggered) 
+            SpearSelectRoate();
+
+        SpearSelect();
+
+        if (inputHandler.fireTriggered && holdingSpear && !inThrow)
+            aimSFX.PlayOneShot(aimSFX.clip);
+
+        if (inputHandler.fireTriggered && holdingSpear || (inThrow && !inThrowRequest))
+            SpearThrowRequest();
+
+        if ((inputHandler.reloadTriggered && ammoManager.currentSpearCount != ammoManager.totalSpearCount && !inEquip) || inReload)
+            SpearReload();
+    }
+
+    private void SpearSelectRoate()
+    {
+        int currentSpearIndex = (int)currentSpearType;
+        
+        if (inputHandler.equipDownTriggered)
+            currentSpearIndex--;
+        else if (inputHandler.equipUpTriggered)
+            currentSpearIndex++;
+
+        if (currentSpearIndex == -1)
+            currentSpearIndex = 2;
+        else if (currentSpearIndex == 3)
+            currentSpearIndex = 0;
+
+        if (currentSpearIndex == 0)
+            inputHandler.equipBasicSpearTriggered = true;
+        else if (currentSpearIndex == 1)
+            inputHandler.equipTranferSpearTriggered = true;
+        else if (currentSpearIndex == 2)
+            inputHandler.equipExplosiveSpearTriggered = true;
+    }
+    private void SpearSelect()
+    {
 
         if ((inputHandler.equipBasicSpearTriggered && currentSpearType != CurrentSpearType.basicSpear) || (inputHandler.equipTranferSpearTriggered && currentSpearType != CurrentSpearType.transferSpear) || (inputHandler.equipExplosiveSpearTriggered && currentSpearType != CurrentSpearType.explosiveSpear))
         {
@@ -148,7 +179,7 @@ public class PlayerController : MonoBehaviour
             if (inputHandler.equipBasicSpearTriggered)
             {
                 needSpears = 1;
-                if(needSpears <= ammoManager.currentSpearCount)
+                if (needSpears <= ammoManager.currentSpearCount)
                 {
                     currentSpearType = CurrentSpearType.basicSpear;
                     inputHandler.equipBasicSpearTriggered = false;
@@ -201,15 +232,6 @@ public class PlayerController : MonoBehaviour
                 inEquip = false;
             }
         }
-
-        if (inputHandler.fireTriggered && holdingSpear && !inThrow)
-            aimSFX.PlayOneShot(aimSFX.clip);
-
-        if (inputHandler.fireTriggered && holdingSpear || (inThrow && !inThrowRequest))
-            SpearThrowRequest();
-
-        if ((inputHandler.reloadTriggered && ammoManager.currentSpearCount != ammoManager.totalSpearCount && !inEquip) || inReload)
-            SpearReload();
     }
 
     void FixedUpdate()

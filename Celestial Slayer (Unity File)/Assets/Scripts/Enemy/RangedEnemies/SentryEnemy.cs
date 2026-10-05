@@ -5,7 +5,8 @@ public class SentryEnemy : RangedEnemy
     private int bulletsSpawnCounter;
     private GameObject[] bulletsSpawned;
     private bool inBulletSpawn;
-    [SerializeField] private float bulletSpawnRate;
+    public float bulletSpawnRate;
+    private SentryAnimations animations;
     [SerializeField] private int burstCount;
 
     [Header("Sentry Parts")]
@@ -18,6 +19,7 @@ public class SentryEnemy : RangedEnemy
     {
         base.Start();
         bulletsSpawned = new GameObject[burstCount];
+        animations = GetComponent<SentryAnimations>();
     }
 
     protected override void Fire()
@@ -33,6 +35,7 @@ public class SentryEnemy : RangedEnemy
             if (bulletsSpawnCounter < burstCount)
             {
                 inBulletSpawn = true;
+                animations.spinstar = true;
 
                 Vector3 bulletSpawnLoc = transform.position + (Vector3.up * 2) + (transform.forward * (bulletsSpawnCounter - 1));
                 bulletsSpawned[bulletsSpawnCounter] = Instantiate(shot, bulletSpawnLoc, Quaternion.identity);
@@ -42,6 +45,7 @@ public class SentryEnemy : RangedEnemy
             }
             else
             {
+                animations.spinstar = false;
                 ShootBullets();
             }
         }
@@ -117,8 +121,9 @@ public class SentryEnemy : RangedEnemy
 
     protected override void Killed()
     {
-        base.Killed();
+        Destroy(animations);
         Destroy(stars);
+        base.Killed();
     }
 
 
