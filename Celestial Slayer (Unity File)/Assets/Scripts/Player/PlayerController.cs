@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private bool holdingSpear;
     private bool inEquip;
     public bool inThrow { get; private set; }
+    private bool inThrowRequest;
     private bool inReload;
     private bool inDelayThrow;
     private float chargeThrowDelay;
@@ -204,8 +205,8 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.fireTriggered && holdingSpear && !inThrow)
             aimSFX.PlayOneShot(aimSFX.clip);
 
-        if (inputHandler.fireTriggered && holdingSpear || inThrow)
-            SpearThrow();
+        if (inputHandler.fireTriggered && holdingSpear || (inThrow && !inThrowRequest))
+            SpearThrowRequest();
 
         if ((inputHandler.reloadTriggered && ammoManager.currentSpearCount != ammoManager.totalSpearCount && !inEquip) || inReload)
             SpearReload();
@@ -373,7 +374,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SpearThrow()
+    void SpearThrowRequest()
     {
         //Build throw strength when aimed
         if (isAiming)
@@ -407,30 +408,12 @@ public class PlayerController : MonoBehaviour
         //ThrowSpear
         if (!inThrow || inThrow && !inputHandler.fireTriggered)
         {
-            if (aimSFX.isPlaying)
-                aimSFX.Stop();
-
-            Spear spearScrp = heldSpear.GetComponent<Spear>();
-            spearScrp.SpearThrown(throwStrength, maxThrowStrength);
-
-            //Recoil if in air (needs to include pitch)
-            if (!grounded)
-                rb.AddForce(-heldSpear.transform.forward * throwStrength * 100, ForceMode.Impulse);
-
-            thrownSpears.Add(heldSpear);
-
+            //ThrowSpearFunctionCalled by animator
+            inThrowRequest = true;
             animator.SetTrigger("Throw");
             animator.SetBool("InCharge", false);
-            if (inRumble)
-            {
-                Gamepad.current.SetMotorSpeeds(0f, 0f);
-                inRumble = false;
-            }
 
-            ammoManager.DecreaseSpearCount(spearsToRemove);
-
-            throwSFX.pitch = Random.Range(0.9f, 1.1f);
-            throwSFX.Play();
+            inputHandler.fireTriggered = false;
 
             //particleSpeedLines[0].Play();
             //if (throwStrength > maxThrowStrength * 0.75f)
@@ -442,18 +425,7 @@ public class PlayerController : MonoBehaviour
             //    particleSpeedLines[2].Play();
             //}
 
-            throwStrength = minThrowStrength;
-            crosshair.localScale = new Vector3(1, 1, 1);
-
-            inThrow = false;
-            heldSpear = null;
-            holdingSpear = false;
-            inputHandler.fireTriggered = false;
-
-            //ReturnToBasicSpear
-            currentSpearType = CurrentSpearType.basicSpear;
-            UIManager.instance.SetCrosshair((int)currentSpearType);
-            spearsToRemove = 1;
+           
         }
 
         //Cancel Throw if player stops aiming while in throw (grace period of 0.1f)
@@ -577,5 +549,45 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("InAim", isAiming);
         animator.SetBool("InAir", !grounded);
         animator.SetBool("Equipped", holdingSpear);
+    }
+
+    private void SpearThrow()
+    {
+        if (aimSFX.isPlaying)
+            aimSFX.Stop();
+
+        Spear spearScrp = heldSpear.GetComponent<Spear>();
+        spearScrp.SpearThrown(throwStrength, maxThrowStrength);
+
+        ammoManager.DecreaseSpearCount(spearsToRemove);
+
+        //Recoil if in air (needs to include pitch)
+        if (!grounded)
+            rb.AddForce(-heldSpear.transform.forward * throwStrength * 100, ForceMode.Impulse);
+
+        thrownSpears.Add(heldSpear);
+
+        if (inRumble)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+            inRumble = false;
+        }
+
+        throwSFX.pitch = Random.Range(0.9f, 1.1f);
+        throwSFX.Play();
+
+        throwStrength = minThrowStrength;
+        crosshair.localScale = new Vector3(1, 1, 1);
+
+        //ReturnToBasicSpear
+        currentSpearType = CurrentSpearType.basicSpear;
+        UIManager.instance.SetCrosshair((int)currentSpearType);
+        spearsToRemove = 1;
+
+        inThrow = false;
+        inThrowRequest = false;
+        heldSpear = null;
+        holdingSpear = false;
+
     }
 }

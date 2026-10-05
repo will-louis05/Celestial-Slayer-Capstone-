@@ -1,14 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class BasicSpear : Spear
 {
+    [SerializeField] private GameObject spearVFX;
+
     [Header("Spear Stats")]
     [SerializeField] private float spearLegnth;
     [SerializeField] private float spearSpeedRatio;
     [SerializeField] private float inverseForceRatio;
 
-    //[Header("Components")]
 
     private List<float> spearedObjectsMass = new List<float>();
     private List<GameObject> spearedObjects = new List<GameObject>();
@@ -102,11 +104,18 @@ public class BasicSpear : Spear
                     spearRb.isKinematic = true;
                     stuck = true;
                     transform.SetParent(limbhit);
+                    foreach(Enemy enemy in spearedEnemies)
+                    {
+                        Destroy(enemy.gameObject);
+                    }
+                    spearedEnemies.Clear();
                 }
                 else
                 {
                     spearedEnemies.Add(enemyScrp);
-
+                    GameObject vfx = Instantiate(spearVFX, collision.contacts[0].point, Quaternion.identity);
+                    StartCoroutine(DestoryExplosionVFX(vfx));
+    
                     //Update kill counter
                     UIManager.instance.AddKillsUI(1);
 
@@ -270,9 +279,9 @@ public class BasicSpear : Spear
         Destroy(this);
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawSphere(aimPoint, 1);
-    //}
+    private IEnumerator DestoryExplosionVFX(GameObject vfx)
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(vfx);
+    }
 }

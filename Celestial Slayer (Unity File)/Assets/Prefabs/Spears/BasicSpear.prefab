@@ -81,11 +81,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2131146279209135638}
   m_SourcePrefab: {fileID: 100100000, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
---- !u!4 &1817203498593759438 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3889701793382409585, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
-  m_PrefabInstance: {fileID: 3225421586706535871}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &2747387766529106717 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 784278646654088866, guid: 1dad2264e3d94d04b825d21ae3c4b468, type: 3}
@@ -109,8 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicSpear
   throwParticle: {fileID: 1382900035844795722, guid: 675c574ce8147ce4fb1e9bec0e355692, type: 3}
+  spearVFX: {fileID: 6272299523741127247, guid: 9f698f6e7a87c2a4ab355ac47c63c175, type: 3}
   spearLegnth: 2.5
   spearSpeedRatio: 0.01
   inverseForceRatio: 0.55
-  angleCheck: {fileID: 1817203498593759438}
+  timer: 1
   hitSFX: {fileID: 2747387766529106717}
