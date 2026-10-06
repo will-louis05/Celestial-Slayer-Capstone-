@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DualStaircase
       objectReference: {fileID: 0}
+    - target: {fileID: 6759503372316670726, guid: a8f7532f03135c64998f2837a2f9e3a7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e985b06b5d640744a16fed9fab84fe3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -6995279822045805645, guid: a8f7532f03135c64998f2837a2f9e3a7, type: 3}

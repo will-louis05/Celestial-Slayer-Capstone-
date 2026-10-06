@@ -104,6 +104,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7580475150606131303}
     m_Modifications:
+    - target: {fileID: -8702567183091104500, guid: 5252a6f12e5852f428f278b015d08895, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e985b06b5d640744a16fed9fab84fe3, type: 2}
     - target: {fileID: -8679921383154817045, guid: 5252a6f12e5852f428f278b015d08895, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -144,10 +148,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 119339441665732067, guid: 5252a6f12e5852f428f278b015d08895, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e985b06b5d640744a16fed9fab84fe3, type: 2}
     - target: {fileID: 919132149155446097, guid: 5252a6f12e5852f428f278b015d08895, type: 3}
       propertyPath: m_Name
       value: SplitStaircase
       objectReference: {fileID: 0}
+    - target: {fileID: 4448282018590347127, guid: 5252a6f12e5852f428f278b015d08895, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e985b06b5d640744a16fed9fab84fe3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -45223551120711417, guid: 5252a6f12e5852f428f278b015d08895, type: 3}

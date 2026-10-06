@@ -144,6 +144,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6041933309258294697, guid: 6fbb7b9b586633545ac0715dc8eadec1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e985b06b5d640744a16fed9fab84fe3, type: 2}
     - target: {fileID: 919132149155446097, guid: 6fbb7b9b586633545ac0715dc8eadec1, type: 3}
       propertyPath: m_Name
       value: SmallCurvedStaircase
