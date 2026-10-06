@@ -74,7 +74,6 @@ public class UIManager : MonoBehaviour
 
         killTotalNum.text = globalKills.ToString();
 
-        Canvas.ForceUpdateCanvases();
         counterOnScreenPos = killCounter.anchoredPosition;
         counterOffScreenPos = counterOnScreenPos - new Vector2(200f, 0f);
         killCounter.anchoredPosition = counterOffScreenPos;
@@ -82,8 +81,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            AddKills(1);
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    AddKills(1);
     }
 
     public void ApplyTint()
