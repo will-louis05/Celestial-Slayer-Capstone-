@@ -47,7 +47,7 @@ public class ExplosiveSpear: Spear
 
         //Update kill counter
         if (killedEnemyCount > 0)
-            UIManager.instance.AddKillsUI(killedEnemyCount);
+            UIManager.instance.AddKills(killedEnemyCount);
     }
 
     private void DestoryExplosionVFX()

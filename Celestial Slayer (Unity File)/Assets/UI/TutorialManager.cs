@@ -9,7 +9,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] [TextArea(1, 10)] private string[] messages;
 
     [Header("Animation")]
-    [SerializeField] private float delay = 6f;
+    [SerializeField] private float delay = 5f;
     [SerializeField] private float slowDuration = 1f;
     [SerializeField] private float quickDuration = 0.3f;
     [SerializeField] private Ease ease = Ease.OutQuint;

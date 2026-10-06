@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,9 +8,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+
     private Coroutine damageCoroutine;
     private Coroutine refundCoroutine;
     private Coroutine missingCoroutine;
+    private Coroutine comboCoroutine;
+
+    private Sequence sequence;
 
     private AmmoManager ammoManager;
 
@@ -26,8 +31,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> missingSpears = new List<Image>();
     [SerializeField] private GameObject refundUI;
     [SerializeField] private GameObject damageVignette;
+    [SerializeField] private RectTransform killCounter;
+    [SerializeField] private TMP_Text killComboNum;
+    [SerializeField] private TMP_Text killTotalNum;
+
+    private int comboKills = 0;
     private int globalKills = 0;
-    [SerializeField] private TMP_Text killCounter;
+
+    [Header("Animation")]
+    [SerializeField] private float comboTime = 3f;
+    [SerializeField] private Ease ease = Ease.OutQuint;
+
+    private Vector2 counterOnScreenPos;
+    private Vector2 counterOffScreenPos;
+    private bool counterShowing = false;
 
     [Header("SFX")]
     [SerializeField] private AudioSource missingSFX;
@@ -55,7 +72,17 @@ public class UIManager : MonoBehaviour
         foreach (Image img in missingSpears)
             img.gameObject.SetActive(false);
 
-        killCounter.text = globalKills.ToString();
+        killTotalNum.text = globalKills.ToString();
+
+        counterOnScreenPos = killCounter.anchoredPosition;
+        counterOffScreenPos = counterOnScreenPos - new Vector2(200f, 0f);
+        killCounter.anchoredPosition = counterOffScreenPos;
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    AddKills(1);
     }
 
     public void ApplyTint()
@@ -91,14 +118,52 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void AddKillsUI(int amount)
+    public void AddKills(int amount)
+    {
+        comboKills += amount;
+        killComboNum.text = comboKills.ToString();
+
+        if (sequence.IsActive())
+            sequence.Kill();
+
+        if (!counterShowing)
+        {
+            counterShowing = true;
+            killCounter.DOKill();
+            killCounter.DOAnchorPos(counterOnScreenPos, 0.5f).SetEase(ease);
+        }
+
+        if (comboCoroutine != null)
+            StopCoroutine(comboCoroutine);
+
+        comboCoroutine = StartCoroutine(ComboRoutine());
+    }
+
+    private IEnumerator ComboRoutine()
+    {
+        yield return new WaitForSeconds(comboTime);
+
+        ConfirmKills(comboKills);
+        comboKills = 0;
+        killComboNum.text = "0";
+
+        comboCoroutine = null;
+    }
+
+    private void ConfirmKills(int amount)
     {
         globalKills += amount;
 
         if (globalKills < 1000)
-            killCounter.text = globalKills.ToString();
+            killTotalNum.text = globalKills.ToString();
         else
-            killCounter.text = "999+";
+            killTotalNum.text = "999+";
+
+        sequence = DOTween.Sequence();
+        sequence.Append(killTotalNum.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f))
+            .AppendInterval(1f)
+            .Append(killCounter.DOAnchorPos(counterOffScreenPos, 0.2f).SetEase(Ease.Linear))
+            .OnComplete(() => counterShowing = false);
     }
 
     public void DamageUI()

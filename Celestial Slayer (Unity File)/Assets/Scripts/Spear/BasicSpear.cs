@@ -117,7 +117,7 @@ public class BasicSpear : Spear
                     StartCoroutine(DestoryExplosionVFX(vfx));
     
                     //Update kill counter
-                    UIManager.instance.AddKillsUI(1);
+                    UIManager.instance.AddKills(1);
 
                     //Refund Spear System
                     AmmoManager ammoScrpt = GameObject.Find("Player").GetComponent<AmmoManager>();
