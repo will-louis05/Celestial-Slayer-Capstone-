@@ -74,6 +74,7 @@ public class UIManager : MonoBehaviour
 
         killTotalNum.text = globalKills.ToString();
 
+        Canvas.ForceUpdateCanvases();
         counterOnScreenPos = killCounter.anchoredPosition;
         counterOffScreenPos = counterOnScreenPos - new Vector2(200f, 0f);
         killCounter.anchoredPosition = counterOffScreenPos;
@@ -81,8 +82,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //    AddKills(1);
+        if (Input.GetKeyDown(KeyCode.Space))
+            AddKills(1);
     }
 
     public void ApplyTint()
@@ -121,7 +122,10 @@ public class UIManager : MonoBehaviour
     public void AddKills(int amount)
     {
         comboKills += amount;
-        killComboNum.text = comboKills.ToString();
+        if (comboKills < 100)
+            killComboNum.text = comboKills.ToString();
+        else
+            killComboNum.text = "99";
 
         if (sequence.IsActive())
             sequence.Kill();
@@ -154,10 +158,10 @@ public class UIManager : MonoBehaviour
     {
         globalKills += amount;
 
-        if (globalKills < 1000)
+        if (globalKills < 100)
             killTotalNum.text = globalKills.ToString();
         else
-            killTotalNum.text = "999+";
+            killTotalNum.text = "+";
 
         sequence = DOTween.Sequence();
         sequence.Append(killTotalNum.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f))

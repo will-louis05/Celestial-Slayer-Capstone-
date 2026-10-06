@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 2
+  spawnTime: 0
 --- !u!1 &22637624
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &59864879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1520,6 +1522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 2
+  spawnTime: 0
 --- !u!1 &348070402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7261796011440622807, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -1654,6 +1657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &369028724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2039,6 +2043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &463505803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6198835542574416564, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2172,6 +2177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &499993178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &503819742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,6 +2269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &510241939 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8340710749242067071, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2349,6 +2357,7 @@ MonoBehaviour:
   objectToEnable: {fileID: 655200643}
   enemySpawner: {fileID: 655200644}
   EnableSpawnerOverObject: 1
+  interfaceObject: {fileID: 0}
 --- !u!65 &529451229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2492,6 +2501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &580849161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 332186941692473574, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -2626,6 +2636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &598782236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2876,6 +2887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &639005668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3577,6 +3589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &815502108
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,6 +3635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &819741250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4119,6 +4133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &881215152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,6 +4179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &899834503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4271,6 +4287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &916565916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 670232242863146585, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -5864,6 +5881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 2
+  spawnTime: 0
 --- !u!1001 &1410601384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6343,6 +6361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 2
+  spawnTime: 0
 --- !u!1001 &1584057623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6581,6 +6600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &1654667998
 GameObject:
   m_ObjectHideFlags: 0
@@ -6690,6 +6710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &1699598841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1479821185551874879, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -6762,6 +6783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &1717396890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6869,6 +6891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &1739005333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6976,6 +6999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 2
+  spawnTime: 0
 --- !u!1 &1777317155
 GameObject:
   m_ObjectHideFlags: 0
@@ -7021,6 +7045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &1797621519
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,6 +7091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1 &1819387519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6157399517117958974, guid: 215b243b7626b2248ab3ad456e9d4314, type: 3}
@@ -7138,6 +7164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!1001 &1835603227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8479,6 +8506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GizmoSpawnLocations
   enemyType: 0
+  spawnTime: 0
 --- !u!4 &2116260357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3180229908710377115, guid: 318173becc2dd2f4da2f363a6f6d46ee, type: 3}
@@ -8522,15 +8550,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 244969358111446589, guid: c228286ba8cfd2a4aae782bf1c4e6d0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -49.553772
+      value: -49.435524
       objectReference: {fileID: 0}
     - target: {fileID: 244969358111446589, guid: c228286ba8cfd2a4aae782bf1c4e6d0d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.095
+      value: 0.93499994
       objectReference: {fileID: 0}
     - target: {fileID: 244969358111446589, guid: c228286ba8cfd2a4aae782bf1c4e6d0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -60.18221
+      value: -60.20264
       objectReference: {fileID: 0}
     - target: {fileID: 244969358111446589, guid: c228286ba8cfd2a4aae782bf1c4e6d0d, type: 3}
       propertyPath: m_LocalRotation.w
