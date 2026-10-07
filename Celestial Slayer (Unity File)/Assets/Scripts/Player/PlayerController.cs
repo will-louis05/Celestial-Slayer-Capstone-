@@ -152,11 +152,17 @@ public class PlayerController : MonoBehaviour
     private void SpearSelectRoate()
     {
         int currentSpearIndex = (int)currentSpearType;
-        
+
         if (inputHandler.equipDownTriggered)
+        {
             currentSpearIndex--;
+            inputHandler.equipDownTriggered = false;
+        }
         else if (inputHandler.equipUpTriggered)
+        {
             currentSpearIndex++;
+            inputHandler.equipUpTriggered = false;
+        }
 
         if (currentSpearIndex == -1)
             currentSpearIndex = 2;
