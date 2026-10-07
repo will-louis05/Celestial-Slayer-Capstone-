@@ -20,10 +20,14 @@ namespace Unity.AI.Navigation.Samples
     {
         public OffMeshLinkMoveMethod m_Method = OffMeshLinkMoveMethod.Parabola;
         public AnimationCurve m_Curve = new AnimationCurve();
+        private Animator m_Animator;
+        private NavMeshAgent agent;
 
         IEnumerator Start()
         {
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            agent = GetComponent<NavMeshAgent>();
+            m_Animator = GetComponent<Animator>();
+
             agent.autoTraverseOffMeshLink = false;
             while (true)
             {
@@ -62,6 +66,8 @@ namespace Unity.AI.Navigation.Samples
             float normalizedTime = 0.0f;
             while (normalizedTime < 1.0f)
             {
+                m_Animator.SetBool("IsJumping", true);
+
                 float yOffset = height * 4.0f * (normalizedTime - normalizedTime * normalizedTime);
                 agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
                 normalizedTime += Time.deltaTime / duration;
@@ -81,6 +87,14 @@ namespace Unity.AI.Navigation.Samples
                 agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
                 normalizedTime += Time.deltaTime / duration;
                 yield return null;
+            }
+        }
+
+        private void Update()
+        {
+            if (agent.isOnOffMeshLink == false)
+            {
+                m_Animator.SetBool("IsJumping", false);
             }
         }
     }
