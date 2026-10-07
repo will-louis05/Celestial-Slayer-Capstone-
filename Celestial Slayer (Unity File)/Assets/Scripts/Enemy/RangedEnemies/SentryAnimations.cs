@@ -26,7 +26,6 @@ public class SentryAnimations : MonoBehaviour
     private void Update()
     {
         RingSpins();
-
         if(spinstar)
             StarSpin();
     }

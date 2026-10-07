@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class EnableObjectTrigger : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class EnableObjectTrigger : MonoBehaviour
     [SerializeField] private GameObject interfaceObject;
     private void OnTriggerEnter(Collider other)
     {
+        GameObject iObject = null;
+        iObject = interfaceObject;
         if (other.CompareTag("Player"))
         {
             if (!EnableSpawnerOverObject && objectToEnable != null)
@@ -19,7 +20,7 @@ public class EnableObjectTrigger : MonoBehaviour
             {
                 enemySpawner.spawnEnemies = true;
             }
-            else if(interfaceObject != null)
+            else if(iObject != null)
             {
                 interfaceObject.GetComponent<ICombatEvent>().TriggerEvent();
             }

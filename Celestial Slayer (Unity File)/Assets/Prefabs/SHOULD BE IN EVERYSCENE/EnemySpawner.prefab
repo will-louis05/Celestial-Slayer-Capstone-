@@ -93,7 +93,11 @@ MonoBehaviour:
   basicEnemy: {fileID: 3482427714760531327, guid: 8338a5462e225cb47a35dfe3dfcc1d88, type: 3}
   bruteEnemy: {fileID: 3482427714760531327, guid: e1452d6f5d3f55e42b5040572da073dc, type: 3}
   flyingEnemy: {fileID: 3482427714760531327, guid: 91c1eac7e4cd6f240b70e6906747622c, type: 3}
-  sentryEnemy: {fileID: 8729065839617414178, guid: 46e55fe469e8e46499015764e6e0e432, type: 3}
+  sentryEnemy: {fileID: 6452216328919741320, guid: f7e4fbba1878fce4cbf962a737149654, type: 3}
+  basicSpawnerVfx: {fileID: 5991813211993492990, guid: 31b1c86bdd411dc48ac773a9e4d78891, type: 3}
+  bruteSpawnerVfx: {fileID: 2562025580060176017, guid: fabbb29942be1fd4f8b16a2aa24ed71b, type: 3}
+  flyingSpawnerVfx: {fileID: 2841547524405045250, guid: 793bb838435080540b89825c4f921c3d, type: 3}
+  sentrySpawnerVfx: {fileID: 3954885271295447346, guid: 46eab0ac4fc04354285eba06777b1833, type: 3}
   waveData:
   - waveSpawns: {fileID: 4446272100065890729}
     enemyCountTillSpawnNextWave: 0
@@ -102,6 +106,7 @@ MonoBehaviour:
   currentEnemyCount: 0
   spawnEnemies: 0
   combatEvent: {fileID: 292676500421033925}
+  isTut: 0
 --- !u!1 &3251823320676268047
 GameObject:
   m_ObjectHideFlags: 0

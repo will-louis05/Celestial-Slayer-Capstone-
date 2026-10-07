@@ -17,41 +17,29 @@ public class Tutorial : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         spawner.spawnEnemies = true;
         player.lockMovement = true;
+
+
+        //MovePlayer
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        player.transform.position = tutStartPosition.position;
+        player.transform.rotation = tutStartPosition.rotation;
+        rb.isKinematic = false;
     }
 
     void Update()
     {
-        if (currentTut == 0)
-        {
-            Debug.Log("First message: " + currentTut);
-            TutorialManager.instance.TutorialMessage(currentTut);
-
-            //Welcome to Game, Puprose of game,ThrowSpear to kill enemy 
-            Debug.Log("Welcome to Game, Puprose of game,ThrowSpear to kill enemy ");
-            currentTut++;
-
-            //MovePlayer
-            Rigidbody rb = player.GetComponent<Rigidbody>();
-            rb.isKinematic = true;
-            player.transform.position = tutStartPosition.position;
-            player.transform.rotation = tutStartPosition.rotation;
-            rb.isKinematic = false;
-            player.lockMovement = false;
-            enemySpawned = false;
-
-            return;
-        }
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //    enemySpawned = true;
 
         //Wait until enemies spawned
-        if (!enemySpawned)
-        {
-            if (spawner.currentEnemyCount > 0)
-                enemySpawned = true;
-            return;
-        }
+        //if (!enemySpawned)
+        //{
+        //    if (spawner.currentEnemyCount > 0)
+        //        enemySpawned = true;
+        //    return;
+        //}
 
         if (spawner.currentEnemyCount == 0) 
         {
@@ -104,11 +92,28 @@ public class Tutorial : MonoBehaviour
                 player.transform.rotation = startPosition.rotation;
                 rb.isKinematic = false;
 
+                player.lockMovement = false;
+
                 Destroy(gameObject);
             }
 
             currentTut++;
             enemySpawned = false;
+        }
+
+        if (currentTut == 0)
+        {
+            Debug.Log("First message: " + currentTut);
+            TutorialManager.instance.TutorialMessage(currentTut);
+
+            //Welcome to Game, Puprose of game,ThrowSpear to kill enemy 
+            Debug.Log("Welcome to Game, Puprose of game,ThrowSpear to kill enemy ");
+            currentTut++;
+
+            //player.lockMovement = false;
+            //enemySpawned = false;
+
+            return;
         }
     }
 }

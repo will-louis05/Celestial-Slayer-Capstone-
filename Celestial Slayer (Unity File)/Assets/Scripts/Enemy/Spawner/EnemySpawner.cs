@@ -12,6 +12,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject bruteEnemy;
     [SerializeField] private GameObject flyingEnemy;
     [SerializeField] private GameObject sentryEnemy;
+    [Header("Enemy SpawnersVFX")]
+    [SerializeField] private GameObject basicSpawnerVfx;
+    [SerializeField] private GameObject bruteSpawnerVfx;
+    [SerializeField] private GameObject flyingSpawnerVfx;
+    [SerializeField] private GameObject sentrySpawnerVfx;
     [Header("WaveInfo")]
     [SerializeField] private WaveData[] waveData;
     [SerializeField] private GameObject tempBruteSpawnerEffect;
@@ -45,8 +50,9 @@ public class EnemySpawner : MonoBehaviour
         }
         else if (spawnEnemies &&  currentWave < totalWaves)
         {
-            if(currentEnemyCount <= waveData[currentWave].enemyCountTillSpawnNextWave)
+            if(currentEnemyCount <= waveData[currentWave].enemyCountTillSpawnNextWave || currentWave == 0)
             {
+                Debug.Log($"current enemy = {currentEnemyCount}, waveData {waveData[currentWave].enemyCountTillSpawnNextWave}");
                 PlayerController.inCombat = true;
                 if (currentWave == totalWaves)
                 {
@@ -127,6 +133,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < availableSpawnsCount; i++)
         {
             GameObject enemyToSpawn = null;
+            GameObject vfxToSpawn = null;
             GizmoSpawnLocations spawnInfo = availableSpawns[0].GetComponent<GizmoSpawnLocations>();
             GizmoSpawnLocations.EnemyType enemyType = spawnInfo.enemyType;
             float spawnTime = spawnInfo.spawnTime;
@@ -135,21 +142,25 @@ public class EnemySpawner : MonoBehaviour
             {
                 case GizmoSpawnLocations.EnemyType.basic:
                     enemyToSpawn = basicEnemy;
+                    vfxToSpawn = basicSpawnerVfx;
                     break;
 
                 case GizmoSpawnLocations.EnemyType.brute:
                     enemyToSpawn = bruteEnemy;
+                    vfxToSpawn = bruteSpawnerVfx;
                     break;
                         
                 case GizmoSpawnLocations.EnemyType.flying:
                     enemyToSpawn = flyingEnemy;
+                    vfxToSpawn = flyingSpawnerVfx;
                     break;
 
                 case GizmoSpawnLocations.EnemyType.sentry:
                     enemyToSpawn = sentryEnemy;
+                    vfxToSpawn = sentrySpawnerVfx;
                     break;
             }
-            StartCoroutine(SpawnEnemy(enemyToSpawn, spawnTime, availableSpawns[0].position));
+            StartCoroutine(SpawnEnemy(enemyToSpawn, spawnTime, availableSpawns[0].position, vfxToSpawn));
             availableSpawns.RemoveAt(0);
             currentEnemyCount++;
         }
@@ -157,16 +168,19 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator VFXDestroyer(GameObject spawnVFX)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         Destroy(spawnVFX);
     }
 
-    private IEnumerator SpawnEnemy(GameObject enemyToSpawn, float spawnTime, Vector3 spawnLocation)
+    private IEnumerator SpawnEnemy(GameObject enemyToSpawn, float spawnTime, Vector3 spawnLocation, GameObject vfxToSpawn)
     {
         yield return new WaitForSeconds(spawnTime);
 
         GameObject enemySpawned = Instantiate(enemyToSpawn, spawnLocation, Quaternion.identity);
         enemySpawned.GetComponent<Enemy>().spawner = this;
+
+        GameObject vfxSpawned = Instantiate(vfxToSpawn, spawnLocation, Quaternion.Euler(-90, 0,0));
+        StartCoroutine(VFXDestroyer(vfxSpawned));
 
         BehaviorGraphAgent behaviorGraph = enemySpawned.GetComponent<BehaviorGraphAgent>();
 

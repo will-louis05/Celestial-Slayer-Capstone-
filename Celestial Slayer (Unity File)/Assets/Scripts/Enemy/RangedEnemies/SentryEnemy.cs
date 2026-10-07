@@ -74,7 +74,7 @@ public class SentryEnemy : RangedEnemy
     private void Update()
     {
         FindPlayer();
-
+        stars.transform.LookAt(player.position);
 
         if (inBulletSpawn)
         {

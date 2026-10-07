@@ -22,10 +22,12 @@ public class FlyingEnemy : RangedEnemy
     protected override void Fire()
     {
         animator.SetTrigger("Attack");
+        Invoke(nameof(FireBullet), 4f);
     }
 
     private void FireBullet()
     {
+
         GameObject shotFired = Instantiate(shot, ((0.1f * transform.forward) + transform.position), Quaternion.identity);
         Collider enemyCollider = GetComponentInChildren<Collider>();
         shotFired.GetComponent<FlyerShot>().ShotSpawn(player.position, projectileSpeed, damage, damageTicTime, areaOfEffectAttack, timeTillDestory, enemyCollider);

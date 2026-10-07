@@ -4,6 +4,7 @@ public class ShutterOpen : MonoBehaviour, ICombatEvent
 {
     [SerializeField] private float shutterOpenTimeSecs;
     [SerializeField] private EnemySpawner spawner;
+    [SerializeField] private GameObject[] shutters;
     private bool shutterOpening;
     public void PostCombatEvent()
     {
@@ -13,22 +14,28 @@ public class ShutterOpen : MonoBehaviour, ICombatEvent
     private void Update()
     {
         if (shutterOpening)
-        { 
-            float yScale = transform.localScale.y - (shutterOpenTimeSecs * Time.deltaTime);
-            transform.localScale = new Vector3(transform.localScale.x, yScale, transform.localScale.z);
-            if (yScale <= 0)
+        {
+            foreach (GameObject s in shutters)
             {
-                if (spawner != null)
+                float yScale = s.transform.localScale.y - (shutterOpenTimeSecs * Time.deltaTime);
+                s.transform.localScale = new Vector3(s.transform.localScale.x, yScale, s.transform.localScale.z);
+                if (yScale <= 0)
                 {
-                    spawner.spawnEnemies = true;
+                    if (spawner != null)
+                    {
+                        spawner.spawnEnemies = true;
+                    }
+                    Destroy(shutters[0]);  
+                    Destroy(shutters[1]);
+                    Destroy(gameObject);
                 }
-                Destroy(gameObject);
             }
         }
     }
     
     public void TriggerEvent()
     {
+        Debug.Log("shutterTrigger");
         shutterOpening = true;
     }
 }
