@@ -40,37 +40,12 @@ public class MeleeEnemy : Enemy
         }
 
         spearRb = spearRigidbody;
-        speared = true;
-
         behaviorGraph.BlackboardReference.SetVariableValue("CanMove", !speared);
-        animator.enabled = false;
-
         navMesh.enabled = false;
         behaviorGraph.enabled = false;
-
-        ////DEBUG TOOL
-        //skinnedMeshRenderer.material.color = Color.yellow;
-        int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
-        foreach (var joint in joints)
-        {
-            joint.GetComponent<Rigidbody>().isKinematic = false;
-            joint.layer = spearIgnoreLayer;
-        }
-
-        FixedJoint limbFixedJoint = limbhit.gameObject.AddComponent<FixedJoint>();
-        limbFixedJoint.connectedBody = spearRb.transform.GetComponent<Rigidbody>();
-
-        spearRb.linearVelocity = postCollisionSpeed * spearRb.transform.forward;
-
-        //Bugfix apply velocity to both spear and enemy
-        //Vector3 velocity = postCollisionSpeed * spearRb.transform.forward;
-        //spearRb.linearVelocity = velocity;
-        //enemyRb.isKinematic = false;
-        //enemyRb.linearVelocity = velocity;
-
         attackScrpt.enabled = false;
+        return base.EnemySpeared(spearRigidbody, limbhit, spearSpeed, collision);
 
-        return false;
     }
     private void RegainControl()
     {

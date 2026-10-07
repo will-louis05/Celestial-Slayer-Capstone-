@@ -23,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("DeveloperTools")]
     public bool spawnEnemies;
     [SerializeField] private GameObject combatEvent;
+    [SerializeField] private bool isTut;
 
     
     void Start()
@@ -173,6 +174,12 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject player = GameObject.Find("Player");
             behaviorGraph.BlackboardReference.SetVariableValue("Target (Player)", player);
+        }
+
+        if (isTut)
+        {
+            behaviorGraph.BlackboardReference.SetVariableValue("CanMove", false); ;
+
         }
         //spawnVFX = Instantiate(tempBruteSpawnerEffect, availableSpawns[0].position + Vector3.up * 2.5f, Quaternion.identity);
 

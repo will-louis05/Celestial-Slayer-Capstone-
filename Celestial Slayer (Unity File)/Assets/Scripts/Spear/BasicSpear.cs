@@ -75,6 +75,7 @@ public class BasicSpear : Spear
         ISpearedObj spearedObj = collisionTransform.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTransform.GetComponent<Rigidbody>();
 
+
         if (spearedObj != null)
         {
             bool pierce = false;
@@ -83,7 +84,7 @@ public class BasicSpear : Spear
             if (pierce)
                 PierceAmount(collision);          
         }
-        else if (collisionTransform.CompareTag("Enemy"))
+        else if (collisionTransform.root.CompareTag("Enemy"))
         {
             Transform limbhit = collisionTransform;
             collisionTransform = collisionTransform.root;          
