@@ -16,7 +16,7 @@ public class Tutorial : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         spawner.spawnEnemies = true;
-        player.lockMovment = true;
+        player.lockMovement = true;
     }
     void Update()
     {
@@ -72,7 +72,7 @@ public class Tutorial : MonoBehaviour
             player.transform.position = tutStartPosition.position;
             player.transform.rotation = tutStartPosition.rotation;
             rb.isKinematic = false;
-            player.lockMovment = false;
+            player.lockMovement = false;
         }
 
     }
