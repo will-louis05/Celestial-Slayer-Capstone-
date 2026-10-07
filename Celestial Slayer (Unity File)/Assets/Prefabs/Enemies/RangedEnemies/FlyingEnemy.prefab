@@ -291,6 +291,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 567914824859416514}
     m_Modifications:
+    - target: {fileID: -9125303303237964358, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 559370569b613594884a5a557e7b90e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -331,14 +335,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7931123813949101163, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -7478743548524029444, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -5548498666891602553, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -4368831767380759091, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -3997610471859253221, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -2507676868699426687, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -2273855229125456983, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -1270449573116220307, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 559370569b613594884a5a557e7b90e0, type: 3}
       propertyPath: m_Name
       value: FlyerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349685129969006102, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066573684964955327, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455702120680880116, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665345369998052313, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2997215419302793434, guid: 559370569b613594884a5a557e7b90e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: df4270f43002fba4ea7823665eda336a, type: 2}
+    - target: {fileID: 3248321178295084042, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123072352163336548, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535705826389356583, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660446157471845875, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799562103614352763, guid: 559370569b613594884a5a557e7b90e0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

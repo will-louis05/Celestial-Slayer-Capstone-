@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
     [Header("Debugging Tools")]
     [SerializeField] private bool disableMovementInReload;
     public static bool inCombat;
+    public bool lockMovement;
 
     void Start()
     {
@@ -292,7 +293,12 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = summongMoveSpeed;
         }
-        
+
+        if (lockMovement)
+        {
+            moveSpeed = 0;
+        }
+
         rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
 
         //Speed Control, stop player from endless acceleration

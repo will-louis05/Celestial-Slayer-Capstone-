@@ -44,7 +44,47 @@ public abstract class Enemy : MonoBehaviour
         Killed();
     }
 
-    public abstract bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision);
+    public virtual bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision)
+    {
+        float inveseForce = enemyMass * spearSpeedDecreaseRatio;
+
+        float postCollisionSpeed = spearSpeed - inveseForce;
+
+        //DEBUG TOOL
+        //Debug.Log("Post colSpeed = " + postCollisionSpeed);
+        if (postCollisionSpeed < forceRequiredToSpear)
+        {
+            //skinnedMeshRenderer.material.color = Color.blue;
+            return true;
+        }
+
+        speared = true;
+        animator.enabled = false;
+
+        ////DEBUG TOOL
+        //skinnedMeshRenderer.material.color = Color.yellow;
+        int spearIgnoreLayer = LayerMask.NameToLayer("SpearIgnore");
+        foreach (var joint in joints)
+        {
+            joint.GetComponent<Rigidbody>().isKinematic = false;
+            joint.layer = spearIgnoreLayer;
+        }
+
+        FixedJoint limbFixedJoint = limbhit.gameObject.AddComponent<FixedJoint>();
+        limbFixedJoint.connectedBody = spearRigidbody.transform.GetComponent<Rigidbody>();
+
+        spearRigidbody.linearVelocity = postCollisionSpeed * spearRigidbody.transform.forward;
+
+        //Bugfix apply velocity to both spear and enemy
+        //Vector3 velocity = postCollisionSpeed * spearRb.transform.forward;
+        //spearRb.linearVelocity = velocity;
+        //enemyRb.isKinematic = false;
+        //enemyRb.linearVelocity = velocity;
+
+
+
+        return false;
+    }
 
     public  void EnemyStuck()
     {

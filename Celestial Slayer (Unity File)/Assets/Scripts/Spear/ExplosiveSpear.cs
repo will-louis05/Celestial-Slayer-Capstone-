@@ -30,7 +30,12 @@ public class ExplosiveSpear: Spear
                 enemyhit = collider.transform.root;
                 Enemy enemyHitScrp = enemyhit.GetComponent<Enemy>();
                 if (enemyHitScrp != null && !enemyHitScrp.dead)
-                {
+                { 
+                    if(enemyHitScrp is MeleeEnemy mEnemy)
+                    {
+                        if(mEnemy.isBrute)
+                            continue;
+                    }
                     killedEnemyCount++;
                     enemyHitScrp.ExplosionHit();
                     AmmoManager ammoScrpt = GameObject.Find("Player").GetComponent<AmmoManager>();

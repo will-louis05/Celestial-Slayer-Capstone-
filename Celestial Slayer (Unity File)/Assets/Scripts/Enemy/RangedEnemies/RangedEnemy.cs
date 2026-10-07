@@ -17,13 +17,6 @@ public abstract class RangedEnemy : Enemy
         base.Start();
     }
 
-    public override bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision)
-    {
-        Killed();
-        spearRigidbody.linearVelocity = spearSpeed * spearRigidbody.transform.forward;
-        return false;
-    }
-
     protected void FindPlayer()
     {
         Vector3 directionFromPlayer = player.position - transform.position;
