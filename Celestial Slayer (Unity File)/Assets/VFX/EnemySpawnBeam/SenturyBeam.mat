@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1543669363156018573
+--- !u!114 &-3707189273001605829
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sentrry
-  m_Shader: {fileID: -6465566751694194690, guid: 5ed7fae964aafb84399e0e71b18550ee, type: 3}
+  m_Name: SenturyBeam
+  m_Shader: {fileID: -6465566751694194690, guid: 8d11c1ff01338bb469e12aeacce6f22c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,14 +37,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_68897690a1834baf832146a3e17056b8_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: d85be8667bbb62a469c683ff523f5069, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_a7ee78093d9645068163ff5057cfc754_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: eeaf1b48ecc14324d92c7a0525161b3f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,11 +51,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Ambient_Light_Strenght: 0.79
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Cutoff_Thresholds: {r: -0.005, g: 0.5, b: 0, a: 0}
-    - _GlowIntensity: {r: 2.2706027, g: 2.2706027, b: 2.2706027, a: 0}
+    - _Color: {r: 0.30525136, g: 0.6603658, b: 0.070560984, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
