@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Beam
-  m_Shader: {fileID: -6465566751694194690, guid: 06819904e59cdc4459b37eb565eab73b, type: 3}
+  m_Name: FlyerBeam
+  m_Shader: {fileID: -6465566751694194690, guid: 70748ca6bbebe4b47a3a47f118ebf66b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -40,10 +40,11 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.9922155, g: 0.55502695, b: 1.9289464, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &5279885497145219133
+--- !u!114 &3094480040375981517
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
