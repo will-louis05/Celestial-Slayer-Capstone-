@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
     private void Update()
     {
         //Old input system
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             Debug.Log("Loading: " + nextScene);
             SceneManager.LoadScene(nextScene);

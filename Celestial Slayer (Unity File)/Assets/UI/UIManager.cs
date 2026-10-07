@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
         foreach (Image img in missingSpears)
             img.gameObject.SetActive(false);
 
-        killTotalNum.text = globalKills.ToString();
+        //killTotalNum.text = globalKills.ToString();
 
         counterOnScreenPos = killCounter.anchoredPosition;
         counterOffScreenPos = counterOnScreenPos - new Vector2(200f, 0f);
@@ -120,6 +120,8 @@ public class UIManager : MonoBehaviour
 
     public void AddKills(int amount)
     {
+        GlobalKillCounter.instance.globalKillNumber += amount;
+
         comboKills += amount;
         if (comboKills < 100)
             killComboNum.text = comboKills.ToString();
