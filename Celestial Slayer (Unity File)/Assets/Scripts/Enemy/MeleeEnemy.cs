@@ -10,6 +10,7 @@ public class MeleeEnemy : Enemy
     [SerializeField] protected float runSpeed;
     public EnemyAttack attackScrpt;
     private Rigidbody spearRb;
+    public bool isBrute;
 
 
     protected override void Start()

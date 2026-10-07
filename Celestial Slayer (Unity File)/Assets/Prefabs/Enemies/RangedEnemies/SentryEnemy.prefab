@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -208595431880416365, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -208595431880416365, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_TagString
@@ -415,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281855664364225751, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 281855664364225751, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       propertyPath: m_TagString
@@ -730,6 +730,7 @@ MonoBehaviour:
   stars: {fileID: 6245302059841398805}
   spinSpeed: 2
   starSpeed: 5
+  spinstar: 0
 --- !u!95 &742644437931213522
 Animator:
   serializedVersion: 7
