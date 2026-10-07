@@ -171,7 +171,6 @@ public class PlayerController : MonoBehaviour
     }
     private void SpearSelect()
     {
-
         if ((inputHandler.equipBasicSpearTriggered && currentSpearType != CurrentSpearType.basicSpear) || (inputHandler.equipTranferSpearTriggered && currentSpearType != CurrentSpearType.transferSpear) || (inputHandler.equipExplosiveSpearTriggered && currentSpearType != CurrentSpearType.explosiveSpear))
         {
             int needSpears;
@@ -385,6 +384,13 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        //Compiler error at if statement below, return and this resolves itself next frame
+        if (heldSpear == null)
+        {
+            inEquip = false;
+            return;
+        }
+
         var elapsedTime = Time.time - timer;
         if (elapsedTime > equipTime)
         {
@@ -446,8 +452,6 @@ public class PlayerController : MonoBehaviour
             //{
             //    particleSpeedLines[2].Play();
             //}
-
-           
         }
 
         //Cancel Throw if player stops aiming while in throw (grace period of 0.1f)
@@ -583,7 +587,7 @@ public class PlayerController : MonoBehaviour
 
         ammoManager.DecreaseSpearCount(spearsToRemove);
 
-        //Recoil if in air (needs to include pitch)
+        //Recoil if in air
         if (!grounded)
             rb.AddForce(-heldSpear.transform.forward * throwStrength * 100, ForceMode.Impulse);
 
@@ -610,6 +614,5 @@ public class PlayerController : MonoBehaviour
         inThrowRequest = false;
         heldSpear = null;
         holdingSpear = false;
-
     }
 }
