@@ -4,8 +4,9 @@ using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
+    public static TutorialManager instance;
+
     [Header("Settings")]
-    [SerializeField] private bool tutorialOn = true;
     [SerializeField] [TextArea(1, 10)] private string[] messages;
 
     [Header("Animation")]
@@ -20,26 +21,64 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private CanvasGroup panelGroup;
     [SerializeField] private AudioSource notificationSFX;
 
-    //private RectTransform rectTrans;
-    //private Vector3 startPos;
+    private Sequence sequence;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
-        //rectTrans = gradientGroup.GetComponent<RectTransform>();
-        //startPos = rectTrans.position;
-
         panelGroup.alpha = 0;
         textGroup.alpha = 1;
-
-        if (tutorialOn)
-            RunTutorial();
     }
 
-    private void RunTutorial()
+    public void TutorialMessage(int n)
     {
-        Sequence sequence = DOTween.Sequence();
+        if (sequence != null && sequence.IsActive())
+            sequence.Kill();
 
-        sequence.AppendInterval(1f)
+        sequence = DOTween.Sequence();
+
+        if (n == 0)
+        {
+            //First message
+            sequence.AppendInterval(1f)
+                .AppendCallback(() =>
+                {
+                    text.text = messages[n];
+                    notificationSFX.Play();
+                    panelGroup.transform.DOPunchScale(Vector3.one * 0.05f, quickDuration);
+                })
+                .Append(panelGroup.DOFade(1f, slowDuration).SetEase(ease));
+        }
+        else if (n == 5)
+        {
+            //Final message (5 is currently end of tutorial)
+            sequence.Append(panelGroup.DOFade(0f, quickDuration).SetEase(ease));
+        }
+        else
+        {
+            panelGroup.alpha = 1f;
+
+            //Tutorial message
+            sequence.Append(textGroup.DOFade(0f, quickDuration).SetEase(ease))
+                .AppendCallback(() =>
+                {
+                    text.text = messages[n];
+                    notificationSFX.Play();
+                    panelGroup.transform.DOPunchScale(Vector3.one * 0.05f, quickDuration);
+                })
+                .Append(textGroup.DOFade(1f, slowDuration).SetEase(ease));
+        }
+    }
+
+    public void RunFullTutorial()
+    {
+        Sequence seq = DOTween.Sequence();
+
+        seq.AppendInterval(1f)
             .AppendCallback(() => notificationSFX.Play())
             .Append(panelGroup.DOFade(1f, slowDuration).SetEase(ease))
             .Join(panelGroup.transform.DOPunchScale(Vector3.one * 0.05f, quickDuration))
@@ -47,7 +86,7 @@ public class TutorialManager : MonoBehaviour
 
         foreach (string s in messages)
         {
-            sequence.Append(textGroup.DOFade(0f, quickDuration).SetEase(ease))
+            seq.Append(textGroup.DOFade(0f, quickDuration).SetEase(ease))
                 .AppendCallback(() =>
                 {
                     text.text = s;
@@ -58,6 +97,6 @@ public class TutorialManager : MonoBehaviour
                 .AppendInterval(delay);
         }
 
-        sequence.Append(panelGroup.DOFade(0f, quickDuration).SetEase(ease));
+        seq.Append(panelGroup.DOFade(0f, quickDuration).SetEase(ease));
     }
 }

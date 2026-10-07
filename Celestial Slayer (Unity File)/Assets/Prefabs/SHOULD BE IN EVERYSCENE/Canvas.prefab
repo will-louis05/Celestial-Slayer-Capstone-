@@ -829,9 +829,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcome to
-
-    Celestial Slayer!'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c1316fa8022b444c83d99fa8c28b208, type: 2}
   m_sharedMaterial: {fileID: -5151187475743222209, guid: 1c1316fa8022b444c83d99fa8c28b208, type: 2}
@@ -858,24 +856,24 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -5
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: -20
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 0
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1775,7 +1773,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2037,15 +2035,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b88fa422c5096b48a1d7116b1824b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
-  tutorialOn: 1
   messages:
-  - "Move\n\u2014\u2014\u2014\nWASD / Joystick"
-  - "Aim\n\u2014\u2014\u2014\nRMB / Left Trigger\n(Press & Hold)"
-  - "Shoot\n\u2014\u2014\u2014\nLMB / Right Trigger\n(Press & Hold)"
-  - "Recall Spears\n\u2014\u2014\u2014\nR / Square\n(Press & Hold)"
-  - "Choose Spear\n\u2014\u2014\u2014\n1 (Basic)\n2 (Transfer)\n3 (Explosive)\n\nCycle
-    Spears\n\u2014\u2014\u2014\nScroll / Bumpers"
-  - Good luck!
+  - 'WELCOME TO CELESTIAL SLAYER
+
+
+    The goal of the game is to survive the constant
+    onslaught of vicious aliens. Your only weapon to fight off this unknown force
+    is an extraterrestrial spear that been grafted to your hand. To throw the spear
+    press Mouse 1 or Right Trigger'
+  - You can hold down Mouse 2 or Left Trigger to aim the spear more precisely. Holding
+    down the fire button while aimed will allow you to charge up your spear for a
+    move powerful throw.
+  - 'Heavy enemies can only be killed by a charging the basic spear. Reload your
+    ammo by holding down R or the Left face button.
+
+
+    You can hold down Mouse
+    2 or Left Trigger to aim the spear more precisely. Holding down the fire button
+    while aimed will allow you to charge up your spear for a move powerful throw.'
+  - "You can change the type of spear you\u2019re using by pressing 2 or Right on
+    the D-pad. Different spears cost different amounts as seen below with the ammo
+    counter.\n\nYou will have switched to the Transfer Spear. This spear will switch
+    you with the enemy you\u2019ve hit, allowing you to quickly reposition or setup
+    easier multi-hit attacks. Killing multiple enemies with one spear will refund
+    you a spear."
+  - Pressing 3 or down on the D-pad will switch you to the explosive spear. This
+    spear explodes in area upon impact. Charging the spear will increase the explosion
+    size, which is necessary to get bigger groups as the base throw has quite a small
+    explosion. Remember heavy enemies can only be killed with a charged basic spear.
   delay: 4
   slowDuration: 1
   quickDuration: 0.3

@@ -120,7 +120,8 @@ public class UIManager : MonoBehaviour
 
     public void AddKills(int amount)
     {
-        GlobalKillCounter.instance.globalKillNumber += amount;
+        if (GlobalKillCounter.instance != null)
+            GlobalKillCounter.instance.globalKillNumber += amount;
 
         comboKills += amount;
         if (comboKills < 100)
