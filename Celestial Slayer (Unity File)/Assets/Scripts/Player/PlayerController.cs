@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
         SpearSelect();
 
-        if (inputHandler.fireTriggered && holdingSpear && !inThrow)
+        if (inputHandler.fireTriggered && holdingSpear && !inThrow && isAiming)
             aimSFX.PlayOneShot(aimSFX.clip);
 
         if (inputHandler.fireTriggered && holdingSpear || (inThrow && !inThrowRequest))
@@ -292,7 +292,8 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = summongMoveSpeed;
         }
-            rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
+        
+        rb.AddForce(moveDirection.normalized * moveSpeed * 300f, ForceMode.Force);
 
         //Speed Control, stop player from endless acceleration
         Vector3 faltVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
@@ -464,6 +465,7 @@ public class PlayerController : MonoBehaviour
             inThrow = false;
             crosshair.localScale = new Vector3(1, 1, 1);
             animator.SetBool("InCharge", false);
+
             if (inRumble)
             {
                 Gamepad.current.SetMotorSpeeds(0f,0f);
