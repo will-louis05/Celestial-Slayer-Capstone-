@@ -52,7 +52,6 @@ public class EnemySpawner : MonoBehaviour
         {
             if(currentEnemyCount <= waveData[currentWave].enemyCountTillSpawnNextWave || currentWave == 0)
             {
-                Debug.Log($"current enemy = {currentEnemyCount}, waveData {waveData[currentWave].enemyCountTillSpawnNextWave}");
                 PlayerController.inCombat = true;
                 if (currentWave == totalWaves)
                 {
@@ -192,8 +191,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (isTut)
         {
-            behaviorGraph.BlackboardReference.SetVariableValue("CanMove", false); ;
-
+            behaviorGraph.BlackboardReference.SetVariableValue("CanMove", false);
+            GameObject.Find("Tutorial").GetComponent<Tutorial>().enemySpawned.Add(enemySpawned);
         }
         //spawnVFX = Instantiate(tempBruteSpawnerEffect, availableSpawns[0].position + Vector3.up * 2.5f, Quaternion.identity);
 

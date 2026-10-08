@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             Debug.Log("Loading: " + nextScene);
-            SceneManager.LoadScene(nextScene);
+            SceneManager.LoadScene("MainLevel");
         }
     }
 }
