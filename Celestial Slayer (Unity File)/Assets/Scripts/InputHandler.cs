@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour
 {
@@ -195,5 +196,7 @@ public class InputHandler : MonoBehaviour
         //Settings menu (old input system)
         if (Input.GetKeyDown(KeyCode.Escape))
             MenuManager.instance.Settings();
+        if(Input.GetKeyDown(KeyCode.I))
+            SceneManager.LoadScene("TitleScreen");
     }
 }

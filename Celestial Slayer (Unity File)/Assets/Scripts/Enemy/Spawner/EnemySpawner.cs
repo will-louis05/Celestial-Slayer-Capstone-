@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (currentWave == totalWaves && currentEnemyCount <= 0)
+        if (currentWave == totalWaves && currentEnemyCount <= 7)
         {
             if (combatEvent != null)
             {
@@ -195,7 +195,7 @@ public class EnemySpawner : MonoBehaviour
             Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
             tut.enemySpawned.Add(enemySpawned);
             tut.nextTut = true;
-            tut.currentTut = currentWave;
+            tut.currentTut = currentWave -  1;
         }
         //spawnVFX = Instantiate(tempBruteSpawnerEffect, availableSpawns[0].position + Vector3.up * 2.5f, Quaternion.identity);
 

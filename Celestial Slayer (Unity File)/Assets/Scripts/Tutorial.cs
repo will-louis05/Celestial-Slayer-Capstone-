@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using static PlayerController;
 
 public class Tutorial : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class Tutorial : MonoBehaviour
     public int currentTut = 0;
     public bool nextTut;
 
+    private bool destoryNextUpdate;
+
 
 
     private void Start()
@@ -22,26 +23,20 @@ public class Tutorial : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         spawner.spawnEnemies = true;
         player.lockMovement = true;
+        nextTut = true;
     }
 
     void Update()
     {
 
-        if (currentTut == 0)
+
+
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            Debug.Log("First message: " + currentTut);
-            TutorialManager.instance.TutorialMessage(currentTut);
-
-            //Welcome to Game, Puprose of game,ThrowSpear to kill enemy 
-            Debug.Log("Welcome to Game, Puprose of game,ThrowSpear to kill enemy ");
-
-            //MovePlayer
-            Rigidbody rb = player.GetComponent<Rigidbody>();
-            rb.isKinematic = true;
-            player.transform.position = tutStartPosition.position;
-            player.transform.rotation = tutStartPosition.rotation;
-            return;
+            nextTut = true;
+            currentTut = 5;
         }
+
         Rigidbody rbplayer = player.GetComponent<Rigidbody>();
         rbplayer.isKinematic = false;
         //if (Input.GetKeyDown(KeyCode.Space))
@@ -57,7 +52,21 @@ public class Tutorial : MonoBehaviour
 
         if (nextTut) 
         {
-            if (currentTut == 1)
+            if (currentTut == 0)
+            {
+                Debug.Log("First message: " + currentTut);
+                TutorialManager.instance.TutorialMessage(currentTut);
+
+                //Welcome to Game, Puprose of game,ThrowSpear to kill enemy 
+                Debug.Log("Welcome to Game, Puprose of game,ThrowSpear to kill enemy ");
+
+                //MovePlayer
+                Rigidbody rb = player.GetComponent<Rigidbody>();
+                rb.isKinematic = true;
+                player.transform.position = tutStartPosition.position;
+                player.transform.rotation = tutStartPosition.rotation;
+            }
+            else if (currentTut == 1)
             {
                 Debug.Log("Running message: " + currentTut);
                 TutorialManager.instance.TutorialMessage(currentTut);
