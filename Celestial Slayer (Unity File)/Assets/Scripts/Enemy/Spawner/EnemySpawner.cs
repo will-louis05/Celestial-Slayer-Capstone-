@@ -192,7 +192,10 @@ public class EnemySpawner : MonoBehaviour
         if (isTut)
         {
             behaviorGraph.BlackboardReference.SetVariableValue("CanMove", false);
-            GameObject.Find("Tutorial").GetComponent<Tutorial>().enemySpawned.Add(enemySpawned);
+            Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+            tut.enemySpawned.Add(enemySpawned);
+            tut.nextTut = true;
+            tut.currentTut = currentWave;
         }
         //spawnVFX = Instantiate(tempBruteSpawnerEffect, availableSpawns[0].position + Vector3.up * 2.5f, Quaternion.identity);
 

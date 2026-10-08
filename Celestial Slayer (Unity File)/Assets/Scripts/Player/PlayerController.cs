@@ -466,7 +466,6 @@ public class PlayerController : MonoBehaviour
             inputHandler.fireTriggered = false;
             inThrow = false;
             crosshair.localScale = new Vector3(1, 1, 1);
-            Debug.Log("DisableThrow");
             animator.SetBool("InCharge", false);
 
             if (inRumble)

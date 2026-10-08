@@ -12,7 +12,10 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Transform tutStartPosition;
     public List<GameObject> enemySpawned = new List<GameObject>();
 
-    private int currentTut = 0;
+    public int currentTut = 0;
+    public bool nextTut;
+
+
 
     private void Start()
     {
@@ -31,7 +34,6 @@ public class Tutorial : MonoBehaviour
 
             //Welcome to Game, Puprose of game,ThrowSpear to kill enemy 
             Debug.Log("Welcome to Game, Puprose of game,ThrowSpear to kill enemy ");
-            currentTut++;
 
             //MovePlayer
             Rigidbody rb = player.GetComponent<Rigidbody>();
@@ -53,7 +55,7 @@ public class Tutorial : MonoBehaviour
         //    return;
         //}
 
-        if (spawner.currentEnemyCount == 0 && currentTut != 0) 
+        if (nextTut) 
         {
             if (currentTut == 1)
             {
@@ -126,7 +128,6 @@ public class Tutorial : MonoBehaviour
                 }
                 Destroy(gameObject);
             }
-            currentTut++;
             foreach (GameObject enemy in enemySpawned) 
             {
                 if (enemy.GetComponent<Enemy>() == null)
@@ -135,6 +136,7 @@ public class Tutorial : MonoBehaviour
                     Destroy(enemy);
                 }
             }
+            nextTut = false;
         }
     }
 }
