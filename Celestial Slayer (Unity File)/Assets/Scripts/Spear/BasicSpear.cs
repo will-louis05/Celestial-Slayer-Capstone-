@@ -105,11 +105,17 @@ public class BasicSpear : Spear
                     spearRb.isKinematic = true;
                     stuck = true;
                     transform.SetParent(limbhit);
-                    foreach(Enemy enemy in spearedEnemies)
+                    if(enemyScrp is MeleeEnemy mEnemy)
                     {
-                        Destroy(enemy.gameObject);
+                        if (!mEnemy.isBrute)
+                        {
+                            foreach (Enemy enemy in spearedEnemies)
+                            {
+                                Destroy(enemy.gameObject);
+                            }
+                            spearedEnemies.Clear();
+                        }
                     }
-                    spearedEnemies.Clear();
                 }
                 else
                 {

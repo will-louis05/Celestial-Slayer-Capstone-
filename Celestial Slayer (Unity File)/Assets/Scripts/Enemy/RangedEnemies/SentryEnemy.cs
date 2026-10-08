@@ -5,8 +5,7 @@ public class SentryEnemy : RangedEnemy
     private int bulletsSpawnCounter;
     private GameObject[] bulletsSpawned;
     private bool inBulletSpawn;
-    public float bulletSpawnRate;
-    private SentryAnimations animations;
+    [SerializeField] private float bulletSpawnRate;
     [SerializeField] private int burstCount;
 
     [Header("Sentry Parts")]
@@ -19,7 +18,6 @@ public class SentryEnemy : RangedEnemy
     {
         base.Start();
         bulletsSpawned = new GameObject[burstCount];
-        animations = GetComponent<SentryAnimations>();
     }
 
     protected override void Fire()
@@ -35,7 +33,6 @@ public class SentryEnemy : RangedEnemy
             if (bulletsSpawnCounter < burstCount)
             {
                 inBulletSpawn = true;
-                animations.spinstar = true;
 
                 Vector3 bulletSpawnLoc = transform.position + (Vector3.up * 2) + (transform.forward * (bulletsSpawnCounter - 1));
                 bulletsSpawned[bulletsSpawnCounter] = Instantiate(shot, bulletSpawnLoc, Quaternion.identity);
@@ -45,7 +42,6 @@ public class SentryEnemy : RangedEnemy
             }
             else
             {
-                animations.spinstar = false;
                 ShootBullets();
             }
         }
@@ -74,7 +70,7 @@ public class SentryEnemy : RangedEnemy
     private void Update()
     {
         FindPlayer();
-        stars.transform.LookAt(player.position);
+
 
         if (inBulletSpawn)
         {
@@ -84,7 +80,8 @@ public class SentryEnemy : RangedEnemy
                     bullet.transform.LookAt(player);
             }
         }
-        //transform.LookAt()
+        
+        stars.transform.LookAt(player.position);
     }
 
     public override bool EnemySpeared(Rigidbody spearRigidbody, Transform limbhit, float spearSpeed, Collision collision)
@@ -103,12 +100,12 @@ public class SentryEnemy : RangedEnemy
                 joint.GetComponent<Rigidbody>().isKinematic = false;
             }
         }
-        foreach(GameObject bullet in bulletsSpawned)
+        foreach (GameObject bullet in bulletsSpawned)
         {
-            if(bullet != null)
+            if (bullet != null)
             {
                 bullet.GetComponent<Collider>().isTrigger = false;
-                var bulletRbbullet = bullet.GetComponent <Rigidbody>();
+                var bulletRbbullet = bullet.GetComponent<Rigidbody>();
                 bulletRbbullet.isKinematic = false;
                 bulletRbbullet.useGravity = true;
                 Destroy(bullet.GetComponent<SentryShot>());
@@ -116,15 +113,13 @@ public class SentryEnemy : RangedEnemy
         }
 
         spearRigidbody.linearVelocity = spearSpeed * spearRigidbody.transform.forward;
+        Killed();
         return false;
     }
 
     protected override void Killed()
     {
-        Destroy(animations);
-        Destroy(stars);
         base.Killed();
+        Destroy(stars);
     }
-
-
 }

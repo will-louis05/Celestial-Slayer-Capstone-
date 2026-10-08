@@ -81,7 +81,7 @@ public abstract class Enemy : MonoBehaviour
         //enemyRb.isKinematic = false;
         //enemyRb.linearVelocity = velocity;
 
-
+        Invoke(nameof(EnemyStuck), 60f);
 
         return false;
     }
