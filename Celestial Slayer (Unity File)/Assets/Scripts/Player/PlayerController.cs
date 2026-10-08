@@ -418,17 +418,13 @@ public class PlayerController : MonoBehaviour
 
     void SpearThrowRequest()
     {
-        Debug.Log($"outsideThrow inthrow = {inThrow} inputFire = {inputHandler.fireTriggered}");
-
         //Build throw strength when aimed
         if (isAiming)
         {
-            if (!inThrow)
-            {
-                aimReleaseTimer = Time.time;
-                animator.SetBool("InCharge", true);
-            }
 
+            aimReleaseTimer = Time.time;
+            animator.SetBool("InCharge", true);
+            inThrow = true;
 
             if (throwStrength < maxThrowStrength)
             {
@@ -445,32 +441,24 @@ public class PlayerController : MonoBehaviour
                 Gamepad.current.SetMotorSpeeds(.25f, 1f);
                 inRumble = true;
             }
-            inThrow = true;
         }
-
+        bool cancelThrow = false;
         //ThrowSpear
         if (!inThrow || inThrow && !inputHandler.fireTriggered)
         {
             if (inThrowRequest)
-                return;
-            //ThrowSpearFunctionCalled by animator
-            inThrowRequest = true;
-            animator.SetTrigger("Throw");
-            animator.SetBool("InCharge", false);
-
-            //particleSpeedLines[0].Play();
-            //if (throwStrength > maxThrowStrength * 0.75f)
-            //{
-            //    particleSpeedLines[1].Play();
-            //}
-            //if (throwStrength == maxThrowStrength)
-            //{
-            //    particleSpeedLines[2].Play();
-            //}
+                cancelThrow = true;
+            else
+            {
+                //ThrowSpearFunctionCalled by animator
+                inThrowRequest = true;
+                animator.SetTrigger("Throw");
+                animator.SetBool("InCharge", false);
+            }
         }
 
         //Cancel Throw if player stops aiming while in throw (grace period of 0.1f)
-        if (inThrow && !isAiming && Time.time - aimReleaseTimer > 0.1f)
+        if (inThrow && !isAiming && Time.time - aimReleaseTimer > 0.1f || cancelThrow)
         {
             if (aimSFX.isPlaying)
                 aimSFX.Stop();
