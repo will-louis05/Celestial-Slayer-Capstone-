@@ -79,7 +79,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693908745023204875}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.656458, y: 2.656458, z: 2.656458}
   m_ConstrainProportionsScale: 0
@@ -87,7 +87,7 @@ Transform:
   - {fileID: 3296350705034996813}
   - {fileID: 2207214955501830569}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &3041131502370114470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,11 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a368eb76c8477744a838be47996b15c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a368eb76c8477744a838be47996b15c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a368eb76c8477744a838be47996b15c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -126,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a368eb76c8477744a838be47996b15c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a368eb76c8477744a838be47996b15c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -136,6 +136,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7a368eb76c8477744a838be47996b15c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e985b06b5d640744a16fed9fab84fe3, type: 2}
     - target: {fileID: 919132149155446097, guid: 7a368eb76c8477744a838be47996b15c, type: 3}
       propertyPath: m_Name
       value: Pot_3
