@@ -49,7 +49,22 @@ public class Tutorial : MonoBehaviour
         //        enemySpawned = true;
         //    return;
         //}
-
+        if(currentTut == 4)
+        {
+            int enemyKilledCount = 0;
+            foreach (GameObject enemy in enemySpawned)
+            {
+                if (enemy.GetComponent<Enemy>() == null)
+                {
+                    enemyKilledCount++;
+                }
+            }
+            if(enemyKilledCount == 3)
+            {
+                currentTut = 5;
+                nextTut=true;
+            }
+        }
         if (nextTut) 
         {
             if (currentTut == 0)
