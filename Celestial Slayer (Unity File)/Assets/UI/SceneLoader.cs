@@ -5,13 +5,21 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private string nextScene;
 
+    private float timer = 0f;
+
     private void Update()
     {
+        if (timer < 0.1f)
+        {
+            timer += Time.deltaTime;
+            return;
+        }
+
         //Old input system
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+        if (Input.anyKeyDown)
         {
             Debug.Log("Loading: " + nextScene);
-            SceneManager.LoadScene("MainLevel");
+            SceneManager.LoadScene(nextScene);
         }
     }
 }
