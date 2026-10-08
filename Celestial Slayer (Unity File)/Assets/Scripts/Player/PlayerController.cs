@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -142,7 +143,7 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.fireTriggered && holdingSpear && !inThrow && isAiming)
             aimSFX.PlayOneShot(aimSFX.clip);
 
-        if (inputHandler.fireTriggered && holdingSpear || (inThrow && !inThrowRequest))
+        if (inputHandler.fireTriggered && holdingSpear && !inEquip|| (inThrow))
             SpearThrowRequest();
 
         if ((inputHandler.reloadTriggered && ammoManager.currentSpearCount != ammoManager.totalSpearCount && !inEquip) || inReload)
@@ -417,16 +418,17 @@ public class PlayerController : MonoBehaviour
 
     void SpearThrowRequest()
     {
+        Debug.Log($"outsideThrow inthrow = {inThrow} inputFire = {inputHandler.fireTriggered}");
+
         //Build throw strength when aimed
         if (isAiming)
         {
-            aimReleaseTimer = Time.time;
-
-            float throwPercentageb = throwStrength/maxThrowStrength;
-            if ((throwPercentageb) > 0.4)
+            if (!inThrow)
             {
+                aimReleaseTimer = Time.time;
                 animator.SetBool("InCharge", true);
             }
+
 
             if (throwStrength < maxThrowStrength)
             {
@@ -449,12 +451,12 @@ public class PlayerController : MonoBehaviour
         //ThrowSpear
         if (!inThrow || inThrow && !inputHandler.fireTriggered)
         {
+            if (inThrowRequest)
+                return;
             //ThrowSpearFunctionCalled by animator
             inThrowRequest = true;
             animator.SetTrigger("Throw");
             animator.SetBool("InCharge", false);
-
-            inputHandler.fireTriggered = false;
 
             //particleSpeedLines[0].Play();
             //if (throwStrength > maxThrowStrength * 0.75f)
@@ -476,6 +478,7 @@ public class PlayerController : MonoBehaviour
             inputHandler.fireTriggered = false;
             inThrow = false;
             crosshair.localScale = new Vector3(1, 1, 1);
+            Debug.Log("DisableThrow");
             animator.SetBool("InCharge", false);
 
             if (inRumble)
@@ -628,5 +631,7 @@ public class PlayerController : MonoBehaviour
         inThrowRequest = false;
         heldSpear = null;
         holdingSpear = false;
+        animator.SetBool("InCharge", false);
+
     }
 }
