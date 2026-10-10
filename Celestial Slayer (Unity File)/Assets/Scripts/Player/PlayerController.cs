@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
-        if (grounded && inputHandler.jumpTriggered && (!inReload))
+        if (!lockMovement && grounded && inputHandler.jumpTriggered && (!inReload))
             Jump();
     }
 
@@ -317,7 +317,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Pretty sure these do the same thing, should remove one
-        if (!isAiming)
+        if (!isAiming && !lockMovement)
         {
             if (!disableTurn)
             {
@@ -335,7 +335,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (!disableTurn)
+            if (!disableTurn && !lockMovement)
             {
                 Vector3 lookDirection = yawTarget.forward;
                 lookDirection.y = 0f;

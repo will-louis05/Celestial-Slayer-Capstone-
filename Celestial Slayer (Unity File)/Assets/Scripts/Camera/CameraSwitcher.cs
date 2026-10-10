@@ -84,4 +84,12 @@ public class CameraSwitcher : MonoBehaviour
         orbitalFollow.HorizontalAxis.Value = angle;
         orbitalFollow.VerticalAxis.Value = 20f;
     }
+
+    public void ResetCam()
+    {
+        //This doesn't work for some reason?
+        CinemachineOrbitalFollow orbitalFollow = freeLookCam.GetComponent<CinemachineOrbitalFollow>();
+        orbitalFollow.HorizontalAxis.Value = 180f;
+        orbitalFollow.VerticalAxis.Value = -20f;
+    }
 }

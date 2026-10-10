@@ -5,6 +5,8 @@ public class Tutorial : MonoBehaviour
 {
     private PlayerController player;
 
+    private CameraSwitcher cameraSwitcher;
+
     [SerializeField] private EnemySpawner spawner;
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform aimPosition;
@@ -16,21 +18,21 @@ public class Tutorial : MonoBehaviour
 
     private bool destoryNextUpdate;
 
-
-
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        cameraSwitcher = GameObject.Find("ThirdPersonCamera").GetComponent<CameraSwitcher>();
+
         spawner.spawnEnemies = true;
         player.lockMovement = true;
         nextTut = true;
+
+        cameraSwitcher.ResetCam();
     }
 
     void Update()
     {
-
-
-
         if (Input.GetKeyDown(KeyCode.O))
         {
             nextTut = true;
@@ -39,6 +41,7 @@ public class Tutorial : MonoBehaviour
 
         Rigidbody rbplayer = player.GetComponent<Rigidbody>();
         rbplayer.isKinematic = false;
+
         //if (Input.GetKeyDown(KeyCode.Space))
         //    enemySpawned = true;
 
@@ -49,6 +52,7 @@ public class Tutorial : MonoBehaviour
         //        enemySpawned = true;
         //    return;
         //}
+
         if(currentTut == 4)
         {
             int enemyKilledCount = 0;

@@ -73,7 +73,7 @@ public class AimCameraController : MonoBehaviour
 
         //Aim cam zoom (needs to be linked to aimtime on playercontroller)
         if (player.inThrow)
-            cam.Lens.FieldOfView = Mathf.MoveTowards(cam.Lens.FieldOfView, 25f, 5f * Time.deltaTime);
+            cam.Lens.FieldOfView = Mathf.MoveTowards(cam.Lens.FieldOfView, 35f, 5f * Time.deltaTime);
         else
             cam.Lens.FieldOfView = Mathf.MoveTowards(cam.Lens.FieldOfView, fov, 50f * Time.deltaTime);
     }
