@@ -137,24 +137,7 @@ public class Tutorial : MonoBehaviour
                 Debug.Log("Completing tutorial: " + currentTut);
                 TutorialManager.instance.TutorialMessage(currentTut);
 
-                //MovePlayer
-                Rigidbody rb = player.GetComponent<Rigidbody>();
-                rb.isKinematic = true;
-                player.transform.position = startPosition.position;
-                player.transform.rotation = startPosition.rotation;
-                rb.isKinematic = false;
-
-                player.lockMovement = false;
-                player.GetComponent<AmmoManager>().Reload();
-                foreach (GameObject enemy in enemySpawned)
-                {
-                    if (enemy.GetComponent<Enemy>() == null)
-                    {
-                        enemySpawned.Remove(enemy);
-                        Destroy(enemy);
-                    }
-                }
-                Destroy(gameObject);
+                Invoke(nameof(MoveDelay), .5f);
             }
             foreach (GameObject enemy in enemySpawned) 
             {
@@ -166,5 +149,32 @@ public class Tutorial : MonoBehaviour
             }
             nextTut = false;
         }
+    }
+
+    void MoveDelay()
+    {
+        //MovePlayer
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        player.transform.position = startPosition.position;
+        player.transform.rotation = startPosition.rotation;
+
+        foreach (GameObject enemy in enemySpawned)
+        {
+            if (enemy.GetComponent<Enemy>() == null)
+            {
+                enemySpawned.Remove(enemy);
+                Destroy(enemy);
+            }
+        }
+        Invoke(nameof(EnableMovement), .1f);
+    }
+    void EnableMovement()
+    {
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        player.lockMovement = false;
+        player.GetComponent<AmmoManager>().Reload();
+        Destroy(gameObject);
     }
 }
