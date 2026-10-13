@@ -28,7 +28,8 @@ public class Tutorial : MonoBehaviour
         player.lockMovement = true;
         nextTut = true;
 
-        cameraSwitcher.ResetCam();
+        if (cameraSwitcher != null)
+            cameraSwitcher.ResetCam();
     }
 
     void Update()
@@ -164,11 +165,14 @@ public class Tutorial : MonoBehaviour
 
         foreach (GameObject enemy in enemySpawned)
         {
-            enemySpawned.Remove(enemy);
+            //enemySpawned.Remove(enemy);
             Destroy(enemy);
         }
-        Invoke(nameof(EnableMovement), .1f);
+        enemySpawned.Clear();
+
+        Invoke(nameof(EnableMovement), 0.1f);
     }
+
     void EnableMovement()
     {
         Rigidbody rb = player.GetComponent<Rigidbody>();
