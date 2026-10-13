@@ -138,6 +138,9 @@ public class Tutorial : MonoBehaviour
                 TutorialManager.instance.TutorialMessage(currentTut);
 
                 Invoke(nameof(MoveDelay), .5f);
+
+                if(spawner != null)
+                    Destroy(spawner.gameObject);
             }
             foreach (GameObject enemy in enemySpawned) 
             {
@@ -161,11 +164,8 @@ public class Tutorial : MonoBehaviour
 
         foreach (GameObject enemy in enemySpawned)
         {
-            if (enemy.GetComponent<Enemy>() == null)
-            {
-                enemySpawned.Remove(enemy);
-                Destroy(enemy);
-            }
+            enemySpawned.Remove(enemy);
+            Destroy(enemy);
         }
         Invoke(nameof(EnableMovement), .1f);
     }
