@@ -33,6 +33,7 @@ public class SentryEnemy : RangedEnemy
             if (bulletsSpawnCounter < burstCount)
             {
                 inBulletSpawn = true;
+                animator.SetBool("Spawning", inBulletSpawn);
 
                 Vector3 bulletSpawnLoc = transform.position + (Vector3.up * 2) + (transform.forward * (bulletsSpawnCounter - 1));
                 bulletsSpawned[bulletsSpawnCounter] = Instantiate(shot, bulletSpawnLoc, Quaternion.identity);
@@ -61,6 +62,7 @@ public class SentryEnemy : RangedEnemy
             else if (bulletsSpawnCounter == 0)
             {
                 inBulletSpawn = false;
+                animator.SetBool("Spawning", inBulletSpawn);
             }
         }
 
