@@ -85,7 +85,7 @@ public class InputHandler : MonoBehaviour
         }
         else
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
         playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
 
@@ -196,7 +196,7 @@ public class InputHandler : MonoBehaviour
         //Settings menu (old input system)
         if (Input.GetKeyDown(KeyCode.M))
             MenuManager.instance.Settings();
-        if(Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
             SceneManager.LoadScene("TitleScreen");
     }
 }

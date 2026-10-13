@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         mouseSens.value = InputHandler.instance.mouseSens;
         mouseSens.onValueChanged.AddListener(delegate { InputHandler.instance.mouseSens = mouseSens.value; });
@@ -31,6 +31,14 @@ public class MenuManager : MonoBehaviour
 
         aimControllerSens.value = InputHandler.instance.aimedControllerSens;
         aimControllerSens.onValueChanged.AddListener(delegate { InputHandler.instance.aimedControllerSens = aimControllerSens.value; });
+    }
+
+    private void OnDisable()
+    {
+        mouseSens.onValueChanged.RemoveAllListeners();
+        aimMouseSens.onValueChanged.RemoveAllListeners();
+        controllerSens.onValueChanged.RemoveAllListeners();
+        aimControllerSens.onValueChanged.RemoveAllListeners();
     }
 
     public void Settings()
