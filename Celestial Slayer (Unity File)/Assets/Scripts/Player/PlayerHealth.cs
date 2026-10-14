@@ -102,7 +102,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+        //string currentSceneName = SceneManager.GetActiveScene().name;
+        //SceneManager.LoadScene(currentSceneName);
+
+        SceneManager.LoadScene("DeathScreen");
     }
 }

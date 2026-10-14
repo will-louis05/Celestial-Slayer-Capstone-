@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class Tutorial : MonoBehaviour
 {
     private PlayerController player;
-
     private CameraSwitcher cameraSwitcher;
 
     [SerializeField] private EnemySpawner spawner;
@@ -21,7 +20,6 @@ public class Tutorial : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-
         cameraSwitcher = GameObject.Find("ThirdPersonCamera").GetComponent<CameraSwitcher>();
 
         spawner.spawnEnemies = true;
@@ -178,7 +176,9 @@ public class Tutorial : MonoBehaviour
         Rigidbody rb = player.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         player.lockMovement = false;
-        player.GetComponent<AmmoManager>().Reload();
+        AmmoManager ammoManager = player.GetComponent<AmmoManager>();
+        ammoManager.Reload();
+        ammoManager.ShowSpearCost((int)player.currentSpearType, player.spearsToRemove);
         Destroy(gameObject);
     }
 }
