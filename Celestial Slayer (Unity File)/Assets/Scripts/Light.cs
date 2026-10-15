@@ -1,15 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LightScrp : MonoBehaviour, ISpearedObj
 {
     private bool flickering;
-    private Light lightComp;
-    [SerializeField] private float minFlickerSpeed;
-    [SerializeField] private float maxFlickerSpeed;
+    private List<Light> lightComp = new List<Light>();
+    [SerializeField] private float minFlickerSpeed = 0.1f;
+    [SerializeField] private float maxFlickerSpeed = 1;
     private bool lightOn = true;
     void Start()
     {
-        lightComp = GetComponentInChildren<Light>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Light light = transform.GetChild(i).GetComponent<Light>();
+            if (light != null)
+                lightComp.Add(light);
+        }
     }
 
     public void FuseBoxFlickerSet(float minFuseFlickerSpeed, float maxFuseFlickerSpeed)
@@ -34,11 +40,15 @@ public class LightScrp : MonoBehaviour, ISpearedObj
         flickering = true;
 
         InvokeRepeating("Flicker", 0f, Random.Range(minFlickerSpeed, maxFlickerSpeed));
+
     }
 
     private void Flicker()
     {
-        lightComp.enabled = lightOn;
-        lightOn = !lightOn;
+        foreach(Light light in lightComp)
+        {
+            light.enabled = lightOn;
+            lightOn = !lightOn;
+        }
     }
 }

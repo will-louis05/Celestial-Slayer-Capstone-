@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6982360176839773878}
+  - component: {fileID: 6443586731661433907}
   m_Layer: 0
   m_Name: HangingLight_03
   m_TagString: Untagged
@@ -35,6 +36,20 @@ Transform:
   - {fileID: 7848805806461979129}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6443586731661433907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770669139819924475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe63eea6c2566d489d0c9ad444d950e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightScrp
+  minFlickerSpeed: 0.1
+  maxFlickerSpeed: 1
 --- !u!1 &6250847960432612406
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,8 +486,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 30f28f15bf727a64db9b69b50f5350a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3856884232617194868}
   m_SourcePrefab: {fileID: 100100000, guid: 30f28f15bf727a64db9b69b50f5350a8, type: 3}
+--- !u!1 &7469043954093183811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 30f28f15bf727a64db9b69b50f5350a8, type: 3}
+  m_PrefabInstance: {fileID: 7738932618117115410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3856884232617194868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469043954093183811}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0055126976, y: 0.0055126967, z: 0.020353962}
+  m_Center: {x: 0, y: 0, z: -0.0051769814}
 --- !u!4 &7848805806461979129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 30f28f15bf727a64db9b69b50f5350a8, type: 3}

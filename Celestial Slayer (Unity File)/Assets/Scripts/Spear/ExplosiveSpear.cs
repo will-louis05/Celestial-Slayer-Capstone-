@@ -25,6 +25,9 @@ public class ExplosiveSpear: Spear
         foreach (Collider collider in colliders)
         {
             Rigidbody objRb = collider.GetComponent<Rigidbody>();
+            ISpearedObj spearedObj = null;
+            spearedObj = collider.transform.parent.GetComponent<ISpearedObj>();
+
             if (collider.CompareTag("Enemy"))
             {
                 enemyhit = collider.transform.root;
@@ -43,10 +46,14 @@ public class ExplosiveSpear: Spear
                         GameObject.Find("Player").GetComponent<AmmoManager>().RefundSpear();
                 }
             }
-            if (objRb != null)
+            else if (objRb != null)
             {
                 objRb.isKinematic = false;
                 objRb.AddExplosionForce(force, transform.position, radius);
+            }
+            else if (spearedObj != null)
+            {
+                spearedObj.Speared(out bool pierce, out bool stuck);
             }
             else
             {

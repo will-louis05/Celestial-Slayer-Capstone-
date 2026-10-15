@@ -21,7 +21,7 @@ public class SceneLoader : MonoBehaviour
         }
 
         //Old input system
-        if (Input.anyKeyDown || wait)
+        if (Input.anyKeyDown && wait)
         {
             Debug.Log("Loading: " + nextScene);
             SceneManager.LoadScene(nextScene);

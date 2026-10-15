@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
                 inDelayThrow = true;
                 timer = Time.time;
             }
-            else if (delayBeforeReload < (Time.time - timer))
+            else if (delayBeforeReload < (Time.time - timer) && spearsToRemove <= ammoManager.currentSpearCount)
             {
                 inDelayThrow = false;
                 SpearEquip();
