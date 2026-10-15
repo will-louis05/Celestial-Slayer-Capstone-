@@ -4,8 +4,13 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private string nextScene;
-
+    bool wait;
     private float timer = 0f;
+
+    private void Start()
+    {
+        Invoke(nameof(WaitF), 0.1f);
+    }
 
     private void Update()
     {
@@ -16,10 +21,15 @@ public class SceneLoader : MonoBehaviour
         }
 
         //Old input system
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown || wait)
         {
             Debug.Log("Loading: " + nextScene);
             SceneManager.LoadScene(nextScene);
         }
+    }
+
+    private void WaitF()
+    {
+        wait = true;
     }
 }

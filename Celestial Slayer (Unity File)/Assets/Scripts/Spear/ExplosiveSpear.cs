@@ -30,10 +30,10 @@ public class ExplosiveSpear: Spear
                 enemyhit = collider.transform.root;
                 Enemy enemyHitScrp = enemyhit.GetComponent<Enemy>();
                 if (enemyHitScrp != null && !enemyHitScrp.dead)
-                { 
-                    if(enemyHitScrp is MeleeEnemy mEnemy)
+                {
+                    if (enemyHitScrp is MeleeEnemy mEnemy)
                     {
-                        if(mEnemy.isBrute)
+                        if (mEnemy.isBrute)
                             continue;
                     }
                     killedEnemyCount++;
@@ -41,15 +41,22 @@ public class ExplosiveSpear: Spear
                     AmmoManager ammoScrpt = GameObject.Find("Player").GetComponent<AmmoManager>();
                     if (killedEnemyCount == ammoScrpt.killsNeedForRefund)
                         GameObject.Find("Player").GetComponent<AmmoManager>().RefundSpear();
-                    }
+                }
             }
             if (objRb != null)
             {
                 objRb.isKinematic = false;
                 objRb.AddExplosionForce(force, transform.position, radius);
             }
+            else
+            {
+                objRb = collider.transform.parent.GetComponent<Rigidbody>();
+                if (objRb != null)
+                {
+                    objRb.AddExplosionForce(force, transform.position, radius);
+                }
+            }
         }
-
         //Update kill counter
         if (killedEnemyCount > 0)
             UIManager.instance.AddKills(killedEnemyCount);

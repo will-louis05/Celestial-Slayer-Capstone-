@@ -609,10 +609,10 @@ public class PlayerController : MonoBehaviour
         throwStrength = minThrowStrength;
         crosshair.localScale = new Vector3(1, 1, 1);
 
-        //ReturnToBasicSpear
-        currentSpearType = CurrentSpearType.basicSpear;
-        UIManager.instance.SetCrosshair((int)currentSpearType);
-        spearsToRemove = 1;
+        ////ReturnToBasicSpear
+        //currentSpearType = CurrentSpearType.basicSpear;
+        //UIManager.instance.SetCrosshair((int)currentSpearType);
+        //spearsToRemove = 1;
 
         inThrow = false;
         inThrowRequest = false;

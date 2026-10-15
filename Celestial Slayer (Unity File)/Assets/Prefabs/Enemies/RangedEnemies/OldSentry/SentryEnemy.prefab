@@ -492,6 +492,38 @@ Transform:
   - {fileID: 6093440736373853375}
   m_Father: {fileID: 8243856218143379096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5595498982453155813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7875714478855461767}
+  m_Layer: 10
+  m_Name: StarsT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7875714478855461767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595498982453155813}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6245302059841398805}
+  m_Father: {fileID: 8243856218143379096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6827671548687672220
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,14 +580,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071355488561757708}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8259435531167988380}
   - {fileID: 2158114419939285887}
-  m_Father: {fileID: 8243856218143379096}
+  m_Father: {fileID: 7875714478855461767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8494552989274057075
 PrefabInstance:
@@ -816,14 +848,14 @@ PrefabInstance:
     - {fileID: 281855664364225751, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 6245302059841398805}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8045446066742872933}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4951451093086213840}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7875714478855461767}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 53ac7e94b2452d148ae1b21e2039e7f5, type: 3}
       insertIndex: -1
@@ -932,7 +964,7 @@ MonoBehaviour:
   bulletSpawnRate: 0.5
   burstCount: 3
   sentryHeart: {fileID: 6818975979094073765}
-  stars: {fileID: 8071355488561757708}
+  stars: {fileID: 5595498982453155813}
 --- !u!95 &742644437931213522
 Animator:
   serializedVersion: 7
