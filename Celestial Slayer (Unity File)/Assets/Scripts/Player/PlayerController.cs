@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -585,8 +583,9 @@ public class PlayerController : MonoBehaviour
 
         ammoManager.DecreaseSpearCount(spearsToRemove);
 
-        //Recoil if in air
-        if (!grounded)
+        //Recoil if in air and looking down enough
+        float lookPitch = yawTarget.GetChild(0).transform.rotation.eulerAngles.x;
+        if (!grounded && lookPitch > -5)
             rb.AddForce(-heldSpear.transform.forward * throwStrength * 100, ForceMode.Impulse);
 
         thrownSpears.Add(heldSpear);
