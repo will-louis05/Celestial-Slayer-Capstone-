@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class Tutorial : MonoBehaviour
 {
     private PlayerController player;
     private CameraSwitcher cameraSwitcher;
+    [SerializeField] private LoadScreens loadScreen;
+
 
     [SerializeField] private EnemySpawner spawner;
     [SerializeField] private Transform startPosition;
@@ -23,16 +26,19 @@ public class Tutorial : MonoBehaviour
         cameraSwitcher = GameObject.Find("ThirdPersonCamera").GetComponent<CameraSwitcher>();
 
         spawner.spawnEnemies = true;
-        player.lockMovement = true;
+        //player.lockMovement = true;
         nextTut = true;
 
         if (cameraSwitcher != null)
             cameraSwitcher.ResetCam();
+
+        loadScreen.ShowLoadScreen();
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) || InputHandler.instance.tutCompleted)
         {
             nextTut = true;
             currentTut = 5;
@@ -72,6 +78,7 @@ public class Tutorial : MonoBehaviour
         {
             if (currentTut == 0)
             {
+
                 Debug.Log("First message: " + currentTut);
                 TutorialManager.instance.TutorialMessage(currentTut);
 
@@ -136,7 +143,10 @@ public class Tutorial : MonoBehaviour
                 Debug.Log("Completing tutorial: " + currentTut);
                 TutorialManager.instance.TutorialMessage(currentTut);
 
-                Invoke(nameof(MoveDelay), .5f);
+                if (!InputHandler.instance.tutCompleted)
+                    Invoke(nameof(MoveDelay), .5f);
+                else
+                    MoveDelay();
 
                 if(spawner != null)
                     Destroy(spawner.gameObject);
@@ -155,6 +165,8 @@ public class Tutorial : MonoBehaviour
 
     void MoveDelay()
     {
+        if(!InputHandler.instance.tutCompleted)
+            loadScreen.ShowLoadScreen();
         //MovePlayer
         Rigidbody rb = player.GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -180,5 +192,6 @@ public class Tutorial : MonoBehaviour
         ammoManager.Reload();
         ammoManager.ShowSpearCost((int)player.currentSpearType, player.spearsToRemove);
         Destroy(gameObject);
+        InputHandler.instance.tutCompleted = true;
     }
 }

@@ -114,12 +114,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
-        }
-
         //Run SFX
         if (inputHandler.moveInput.magnitude > 0.01f && grounded)
         {

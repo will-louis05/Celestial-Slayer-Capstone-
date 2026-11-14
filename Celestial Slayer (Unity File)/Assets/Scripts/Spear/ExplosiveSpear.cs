@@ -6,6 +6,7 @@ public class ExplosiveSpear: Spear
     [SerializeField] private float radiusRatio;
     [SerializeField] private float force;
     [SerializeField] private GameObject explosionParticle;
+    [SerializeField] private float explosionSizeRatio;
     private GameObject explosion;
     private int killedEnemyCount;
 
@@ -13,6 +14,8 @@ public class ExplosiveSpear: Spear
     {
         Explosion();
         explosion = Instantiate(explosionParticle, collision.contacts[0].point, Quaternion.identity);
+        Vector3 explosionSize = Vector3.one *radius*0.1f;
+        explosion.transform.localScale = explosionSize;
         Invoke(nameof(DestoryExplosionVFX), 2f);
         Destroy(gameObject);
     }

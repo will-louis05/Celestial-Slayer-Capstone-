@@ -193,6 +193,7 @@ public class EnemySpawner : MonoBehaviour
         {
             behaviorGraph.BlackboardReference.SetVariableValue("CanMove", false);
             Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+            enemySpawned.transform.LookAt(GameObject.Find("Player").transform);
             tut.enemySpawned.Add(enemySpawned);
             tut.nextTut = true;
             tut.currentTut = currentWave -  1;

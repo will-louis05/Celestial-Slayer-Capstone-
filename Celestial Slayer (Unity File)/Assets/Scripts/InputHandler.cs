@@ -13,6 +13,8 @@ public class InputHandler : MonoBehaviour
     public float lookSens;
     public float aimLookSens;
 
+    public bool tutCompleted;
+
     [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset playerControls;
     private PlayerInput playerInput;
@@ -197,6 +199,15 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
             MenuManager.instance.Settings();
         if (Input.GetKeyDown(KeyCode.I))
+        {
+            tutCompleted = false;
             SceneManager.LoadScene("TitleScreen");
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            tutCompleted = false;
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
     }
 }
