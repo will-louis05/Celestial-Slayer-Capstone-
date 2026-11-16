@@ -6,6 +6,7 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private AudioSource enemySpawnAudio;
     private List<Transform> spawnLocations = new List<Transform>();
     [Header("Enemy Types")]
     [SerializeField] private GameObject basicEnemy;
@@ -34,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         totalWaves = waveData.Length;
+        enemySpawnAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -128,6 +130,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void RegularSpawn(List<Transform> availableSpawns)
     {
+        if (!isTut)
+        {
+            enemySpawnAudio.time = 0.1f;
+            enemySpawnAudio.Play();
+        }
         int availableSpawnsCount = availableSpawns.Count;
         for (int i = 0; i < availableSpawnsCount; i++)
         {

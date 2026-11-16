@@ -151,8 +151,11 @@ public class Tutorial : MonoBehaviour
                 if(spawner != null)
                     Destroy(spawner.gameObject);
             }
-            foreach (GameObject enemy in enemySpawned) 
+
+            int spawnedEnemyCount = enemySpawned.Count;
+            for (int i = 0; i < spawnedEnemyCount; i++) 
             {
+                var enemy = enemySpawned[0];
                 if (enemy.GetComponent<Enemy>() == null)
                 {
                     enemySpawned.Remove(enemy);

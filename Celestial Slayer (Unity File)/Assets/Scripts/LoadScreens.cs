@@ -12,9 +12,13 @@ public class LoadScreens : MonoBehaviour
 
     public void ShowLoadScreen()
     {
+        if (!inLoad)
+        {
+            loadScreenint = Random.Range(0, loadScreens.Length - 1);
+            loadScreens[loadScreenint].SetActive(true);
+        }
         inLoad = true;
-        loadScreenint = Random.Range(0, loadScreens.Length-1);
-        loadScreens[loadScreenint].SetActive(true);
+
         LoadBuffer();
         Invoke(nameof(HideLoadScreen), loadTime);
     }

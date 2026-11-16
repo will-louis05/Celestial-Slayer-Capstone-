@@ -5,10 +5,12 @@ public class ShutterOpen : MonoBehaviour, ICombatEvent
     [SerializeField] private float shutterOpenTimeSecs;
     [SerializeField] private EnemySpawner spawner;
     [SerializeField] private GameObject[] shutters;
+    [SerializeField] private AudioSource shutterAudio;
     private bool shutterOpening;
     public void PostCombatEvent()
     {
         shutterOpening = true;
+        shutterAudio.Play();
     }
 
     private void Update()
@@ -37,5 +39,6 @@ public class ShutterOpen : MonoBehaviour, ICombatEvent
     {
         Debug.Log("shutterTrigger");
         shutterOpening = true;
+        shutterAudio.Play();
     }
 }

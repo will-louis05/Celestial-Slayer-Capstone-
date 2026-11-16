@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TransferSpear : Spear
 {
@@ -27,9 +28,15 @@ public class TransferSpear : Spear
 
     private void Transfer(Collision collision)
     {
+
         Transform enemyHit = collision.transform.root;
+        NavMeshAgent enemyNav = GetComponent<NavMeshAgent>();
+        if (enemyNav != null) 
+            enemyNav.enabled = false;
         Vector3 enemyHitLocation = enemyHit.position;
         enemyHit.position = player.position;
+        if (enemyNav != null)
+            enemyNav.enabled = true;
 
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
         playerRb.isKinematic = true;

@@ -580,12 +580,11 @@ public class PlayerController : MonoBehaviour
 
         Spear spearScrp = heldSpear.GetComponent<Spear>();
         spearScrp.SpearThrown(throwStrength, maxThrowStrength);
-
         ammoManager.DecreaseSpearCount(spearsToRemove);
 
         //Recoil if in air and looking down enough
         float lookPitch = yawTarget.GetChild(0).transform.rotation.eulerAngles.x;
-        if (!grounded && lookPitch > -5)
+        if (!grounded && throwStrength > 12)
             rb.AddForce(-heldSpear.transform.forward * throwStrength * 100, ForceMode.Impulse);
 
         thrownSpears.Add(heldSpear);

@@ -71,8 +71,9 @@ public class BasicSpear : Spear
     {
         inCollision = true;
         Transform collisionTransform = collision.transform;
-            
-        ISpearedObj spearedObj = collisionTransform.parent.GetComponent<ISpearedObj>();
+
+        ISpearedObj spearedObj = null;
+        spearedObj = collisionTransform.parent.GetComponent<ISpearedObj>();
         Rigidbody spearedRb = collisionTransform.GetComponent<Rigidbody>();
 
 

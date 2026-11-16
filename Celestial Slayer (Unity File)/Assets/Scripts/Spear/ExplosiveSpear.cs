@@ -28,8 +28,7 @@ public class ExplosiveSpear: Spear
         foreach (Collider collider in colliders)
         {
             Rigidbody objRb = collider.GetComponent<Rigidbody>();
-            ISpearedObj spearedObj = null;
-            spearedObj = collider.transform.parent.GetComponent<ISpearedObj>();
+            ISpearedObj spearedObj = collider.transform.parent.GetComponent<ISpearedObj>();
 
             if (collider.CompareTag("Enemy"))
             {

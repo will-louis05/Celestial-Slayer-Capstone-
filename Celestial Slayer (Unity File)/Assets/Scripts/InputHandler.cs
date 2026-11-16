@@ -154,6 +154,7 @@ public class InputHandler : MonoBehaviour
     private void OnEnable()
     {
         //As new Input uses event system they need to be enabled and disabled
+        Debug.Log(moveAction);
         moveAction.Enable();
         lookAction.Enable();
         jumpAction.Enable();
@@ -201,13 +202,19 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             tutCompleted = false;
+            Destroy(gameObject);
+            Instantiate(this.gameObject, gameObject.transform);
             SceneManager.LoadScene("TitleScreen");
+
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
             tutCompleted = false;
             string currentSceneName = SceneManager.GetActiveScene().name;
+            Destroy(gameObject);
+            Instantiate(this.gameObject, gameObject.transform);
             SceneManager.LoadScene(currentSceneName);
+
         }
     }
 }

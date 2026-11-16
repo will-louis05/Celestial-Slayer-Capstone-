@@ -67,6 +67,8 @@ public abstract class Enemy : MonoBehaviour
         foreach (var joint in joints)
         {
             joint.GetComponent<Rigidbody>().isKinematic = false;
+            joint.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
+
             joint.layer = spearIgnoreLayer;
         }
 
